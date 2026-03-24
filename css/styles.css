@@ -1,0 +1,279 @@
+/* ============================================================
+   The Lore Atlas — Base Styles
+   ============================================================ */
+
+/* --- Reset & Base --- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  font-family: Georgia, 'Times New Roman', serif;
+  background: #f9f7f4;
+  color: #1a1a1a;
+  line-height: 1.7;
+  min-height: 100vh;
+}
+
+a {
+  color: #5c3d1e;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* --- Layout --- */
+#site-header {
+  background: #1a1a1a;
+  color: #f9f7f4;
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 56px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+#site-logo {
+  font-family: Georgia, serif;
+  font-size: 1.15rem;
+  font-weight: normal;
+  letter-spacing: 0.04em;
+  color: #f9f7f4;
+  text-decoration: none;
+}
+
+#site-logo:hover {
+  text-decoration: none;
+  color: #c9a96e;
+}
+
+#site-nav {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  list-style: none;
+}
+
+#site-nav a {
+  color: #c9c9c9;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+#site-nav a:hover,
+#site-nav a.active {
+  color: #c9a96e;
+  text-decoration: none;
+}
+
+#main-content {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 2.5rem 2rem 4rem;
+}
+
+/* --- Homepage --- */
+.home-hero {
+  margin-bottom: 3rem;
+  border-bottom: 1px solid #e0dbd3;
+  padding-bottom: 2.5rem;
+}
+
+.home-hero h1 {
+  font-size: 2rem;
+  font-weight: normal;
+  letter-spacing: 0.02em;
+  margin-bottom: 0.75rem;
+  color: #1a1a1a;
+}
+
+.home-hero .tagline {
+  font-size: 1.05rem;
+  color: #555;
+  font-style: italic;
+}
+
+.series-section {
+  margin-bottom: 2.5rem;
+}
+
+.series-section h2 {
+  font-size: 1.25rem;
+  font-weight: normal;
+  letter-spacing: 0.03em;
+  margin-bottom: 1.25rem;
+  color: #1a1a1a;
+  border-bottom: 1px solid #e0dbd3;
+  padding-bottom: 0.5rem;
+}
+
+.entity-type-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.entity-type-card {
+  background: #fff;
+  border: 1px solid #e0dbd3;
+  border-radius: 4px;
+  padding: 1.25rem;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.15s, box-shadow 0.15s;
+  display: block;
+}
+
+.entity-type-card:hover {
+  border-color: #5c3d1e;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  text-decoration: none;
+}
+
+.entity-type-card .card-label {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #888;
+  margin-bottom: 0.35rem;
+}
+
+.entity-type-card .card-title {
+  font-size: 1.05rem;
+  color: #1a1a1a;
+}
+
+.entity-type-card .card-count {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 0.85rem;
+  color: #888;
+  margin-top: 0.35rem;
+}
+
+/* --- Entity List Pages --- */
+.page-header {
+  margin-bottom: 2rem;
+  border-bottom: 1px solid #e0dbd3;
+  padding-bottom: 1rem;
+}
+
+.page-header h1 {
+  font-size: 1.6rem;
+  font-weight: normal;
+  margin-bottom: 0.25rem;
+}
+
+.page-header .breadcrumb {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 0.82rem;
+  color: #888;
+}
+
+.page-header .breadcrumb a {
+  color: #888;
+}
+
+.page-header .breadcrumb a:hover {
+  color: #5c3d1e;
+}
+
+.entity-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.entity-list-item {
+  background: #fff;
+  border: 1px solid #e0dbd3;
+  border-radius: 4px;
+  padding: 1rem 1.25rem;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.entity-list-item:hover {
+  border-color: #5c3d1e;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+  text-decoration: none;
+}
+
+.entity-list-item .item-name {
+  font-size: 1rem;
+  color: #1a1a1a;
+}
+
+.entity-list-item .item-meta {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 0.8rem;
+  color: #888;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* Role / type badges */
+.badge {
+  display: inline-block;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.15em 0.55em;
+  border-radius: 3px;
+  margin-left: 0.5rem;
+  vertical-align: middle;
+}
+
+.badge-protagonist  { background: #e8f0e8; color: #3a6b3a; }
+.badge-antagonist   { background: #f0e8e8; color: #7a2a2a; }
+.badge-supporting   { background: #e8eaf0; color: #3a4a7a; }
+.badge-one-off      { background: #f0ede8; color: #6b5a3a; }
+.badge-novel        { background: #f0ede8; color: #6b5a3a; }
+.badge-collection   { background: #e8eaf0; color: #3a4a7a; }
+.badge-deceased     { background: #ececec; color: #666; }
+
+/* --- Loading / Error states --- */
+.state-loading {
+  color: #888;
+  font-style: italic;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 0.95rem;
+  padding: 2rem 0;
+}
+
+.state-error {
+  color: #a00;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 0.95rem;
+  padding: 2rem 0;
+}
+
+/* --- Utility --- */
+.series-label {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #c9a96e;
+}

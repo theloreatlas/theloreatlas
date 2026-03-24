@@ -1,13 +1,37 @@
 <!DOCTYPE html>
-  <html lang="en">
-  <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>The Lore Atlas</title>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Lore Atlas</title>
+  <meta name="description" content="The interactive encyclopedia for public domain literary universes. Structured relational data, relationship graphs, and chapter-level spoiler controls.">
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <h1>The Lore Atlas</h1>
-    <p>The interactive encyclopedia for public domain literary universes.</p>
-    <p>Coming soon.</p>
+
+  <header id="site-header">
+    <a href="#/" id="site-logo">The Lore Atlas</a>
+    <nav>
+      <ul id="site-nav">
+        <li><a href="#/">Home</a></li>
+        <li><a href="#/sherlock_holmes/characters">Characters</a></li>
+        <li><a href="#/sherlock_holmes/cases">Cases</a></li>
+        <li><a href="#/sherlock_holmes/books">Books</a></li>
+        <li><a href="#/sherlock_holmes/locations">Locations</a></li>
+        <li><a href="#/sherlock_holmes/artifacts">Artifacts</a></li>
+        <li><a href="#/sherlock_holmes/factions">Factions</a></li>
+        <li><a href="#/sherlock_holmes/events">Timeline</a></li>
+        <li><a href="#/sherlock_holmes/relationships">Relationships</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main-content">
+    <p class="state-loading">Loading…</p>
+  </main>
+
+  <script src="js/loader.js"></script>
+  <script src="js/app.js"></script>
+
 </body>
-  </html>
+</html>
