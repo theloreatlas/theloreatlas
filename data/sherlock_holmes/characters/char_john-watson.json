@@ -1,0 +1,27 @@
+{
+  "id": "char_john-watson",
+  "series": "sherlock_holmes",
+  "name": "Dr. John H. Watson",
+  "aliases": ["Watson", "Dr. Watson", "James Watson"],
+  "role": "protagonist",
+  "status": "active",
+  "first_mention": { "book": 1, "chapter": 1 },
+  "full_reveal": { "book": 1, "chapter": 1 },
+  "affiliations": [],
+  "relationships": [
+    "rel_holmes-watson-ally",
+    "rel_watson-mary-morstan-romantic"
+  ],
+  "cases": [
+    "case_a-study-in-scarlet",
+    "case_the-sign-of-the-four",
+    "case_a-scandal-in-bohemia",
+    "case_the-final-problem",
+    "case_the-hound-of-the-baskervilles",
+    "case_the-adventure-of-the-empty-house"
+  ],
+  "biography": "Dr. John H. Watson is a retired Army surgeon and the chronicler of Sherlock Holmes's cases. Invalided home from the Second Anglo-Afghan War (wounded at the Battle of Maiwand), Watson meets Holmes through Stamford and moves into 221B Baker Street as his lodger. He serves as Holmes's companion, occasional assistant, and the narrator of nearly all the published accounts. Watson is a man of action, loyalty, and warmth — qualities that complement Holmes's cold rationalism. He later marries Mary Morstan (whom he met during The Sign of the Four), sets up a medical practice, and eventually returns to Baker Street following Mary's death. Watson's admiring but honest narration shapes how the world perceives Holmes.",
+  "tags": ["doctor", "army surgeon", "narrator", "Afghanistan", "Baker Street", "Watson"],
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

@@ -1,0 +1,13 @@
+{
+  "id": "rel_holmes-moriarty-enemy",
+  "series": "sherlock_holmes",
+  "character_a": "char_sherlock-holmes",
+  "character_b": "char_professor-moriarty",
+  "relationship_type": "enemy",
+  "first_established": "case_the-final-problem",
+  "notes": "The defining antagonistic relationship of the Holmes canon. Holmes describes Moriarty as the Napoleon of Crime — his intellectual equal and polar opposite. Where Holmes uses his extraordinary mind for detection and justice, Moriarty deploys his for criminal organization and control. Holmes has been aware of Moriarty's network for years before their confrontation, systematically building a case. Moriarty visits 221B to warn Holmes off before the final confrontation at Reichenbach. Their relationship is characterized by mutual recognition of the other's genius — a cold, professional respect beneath total enmity. They meet in person only twice in the canonical text.",
+  "first_mention": { "book": 4, "chapter": 1 },
+  "full_reveal": { "book": 4, "chapter": 10 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

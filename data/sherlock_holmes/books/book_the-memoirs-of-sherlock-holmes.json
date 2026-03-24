@@ -1,0 +1,24 @@
+{
+  "id": "book_the-memoirs-of-sherlock-holmes",
+  "series": "sherlock_holmes",
+  "title": "The Memoirs of Sherlock Holmes",
+  "publication_year": 1894,
+  "type": "short_story_collection",
+  "chronological_order": 4,
+  "stories_contained": [
+    "case_silver-blaze",
+    "case_the-yellow-face",
+    "case_the-stockbrokers-clerk",
+    "case_the-gloria-scott",
+    "case_the-musgrave-ritual",
+    "case_the-reigate-squire",
+    "case_the-crooked-man",
+    "case_the-residents-patient",
+    "case_the-greek-interpreter",
+    "case_the-naval-treaty",
+    "case_the-final-problem"
+  ],
+  "description": "The second short story collection, containing 11 cases. Introduces Professor Moriarty and culminates in The Final Problem, in which Holmes and Moriarty apparently fall to their deaths at the Reichenbach Falls.",
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

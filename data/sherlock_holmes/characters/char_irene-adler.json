@@ -1,0 +1,21 @@
+{
+  "id": "char_irene-adler",
+  "series": "sherlock_holmes",
+  "name": "Irene Adler",
+  "aliases": ["The Woman", "Mrs. Irene Norton"],
+  "role": "supporting",
+  "status": "active",
+  "first_mention": { "book": 3, "chapter": 1 },
+  "full_reveal": { "book": 3, "chapter": 1 },
+  "affiliations": [],
+  "relationships": [
+    "rel_holmes-irene-adler-other"
+  ],
+  "cases": [
+    "case_a-scandal-in-bohemia"
+  ],
+  "biography": "Irene Adler is an American opera singer and the only woman who ever truly outwitted Sherlock Holmes. Born in New Jersey, she achieved fame as a contralto in opera across Europe. She appears in a single canonical story — A Scandal in Bohemia — in which the King of Bohemia hires Holmes to recover a compromising photograph she holds. Adler outmaneuvers Holmes completely, discerning his disguise and departing England with her husband Godfrey Norton before Holmes can retrieve the photograph. Watson records that Holmes thereafter refers to her simply as 'The Woman' — the one person to have bested him. She appears in no other canonical story.",
+  "tags": ["opera singer", "The Woman", "American", "Bohemia", "photograph"],
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

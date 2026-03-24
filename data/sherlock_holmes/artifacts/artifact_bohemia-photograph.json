@@ -1,0 +1,22 @@
+{
+  "id": "artifact_bohemia-photograph",
+  "series": "sherlock_holmes",
+  "name": "The Bohemia Photograph",
+  "type": "photograph",
+  "description": "A compromising photograph showing Irene Adler together with Wilhelm Gottsreich Sigismond von Ormstein, the King of Bohemia. The King fears the photograph will be used to block his upcoming marriage to a Scandinavian princess by proving a prior romantic entanglement with Adler. The photograph is hidden in a concealed recess behind a sliding panel above the right bell-pull at Briony Lodge. Adler departs England with the photograph intact but leaves behind a letter to Holmes promising never to use it, given her own happy marriage.",
+  "ownership_chain": [
+    {
+      "character_id": "char_irene-adler",
+      "from": { "book": 3, "chapter": 1 },
+      "to": { "book": 3, "chapter": 1 }
+    }
+  ],
+  "appearance_history": [
+    "case_a-scandal-in-bohemia"
+  ],
+  "significance": "The central object of A Scandal in Bohemia. Its power lies entirely in what it represents — potential scandal — rather than any intrinsic value. Irene Adler's decision to keep it but not use it is the resolution of the case and the basis for Holmes's lasting respect for her. The photograph of Adler that Holmes requests as payment is the only personal keepsake he is known to have kept.",
+  "first_mention": { "book": 3, "chapter": 1 },
+  "full_reveal": { "book": 3, "chapter": 1 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

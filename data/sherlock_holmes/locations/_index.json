@@ -1,0 +1,63 @@
+[
+  {
+    "id": "loc_221b-baker-street",
+    "series": "sherlock_holmes",
+    "name": "221B Baker Street",
+    "type": "residence",
+    "real_world_basis": "Baker Street, Marylebone, London (the specific number did not exist in Doyle's time; now commemorated at the Sherlock Holmes Museum)",
+    "characters_associated": ["char_sherlock-holmes", "char_john-watson"],
+    "cases_occurring_here": [
+      "case_a-study-in-scarlet",
+      "case_a-scandal-in-bohemia",
+      "case_the-final-problem",
+      "case_the-adventure-of-the-empty-house"
+    ],
+    "description": "The shared lodging of Sherlock Holmes and Dr. John Watson, and the operational base for nearly all of Holmes's cases. Famous for organized chaos: chemical experiments, correspondence pinned to the mantelpiece with a jack-knife, Holmes's violin, and the initials V.R. shot into the wall. Clients arrive here; Holmes receives telegrams and letters here; and it is here that he does the bulk of his thinking. The most iconic address in English fiction.",
+    "first_mention": { "book": 1, "chapter": 2 },
+    "full_reveal": { "book": 1, "chapter": 2 },
+    "created_by": "theloreatlas",
+    "last_edited_by": "theloreatlas"
+  },
+  {
+    "id": "loc_reichenbach-falls",
+    "series": "sherlock_holmes",
+    "name": "The Reichenbach Falls",
+    "type": "natural landmark",
+    "real_world_basis": "Reichenbach Falls, Meiringen, Bern Oberland, Switzerland (real location; tourist site today)",
+    "characters_associated": ["char_sherlock-holmes", "char_professor-moriarty"],
+    "cases_occurring_here": ["case_the-final-problem"],
+    "description": "A dramatic waterfall near Meiringen in the Swiss Alps, and the site of the most famous confrontation in the Holmes canon. Holmes and Moriarty struggle here in May 1891, both apparently plunging to their deaths. Holmes later reveals he survived using Baritsu. The location has become synonymous with apparent death and sacrifice.",
+    "first_mention": { "book": 4, "chapter": 10 },
+    "full_reveal": { "book": 6, "chapter": 1 },
+    "created_by": "theloreatlas",
+    "last_edited_by": "theloreatlas"
+  },
+  {
+    "id": "loc_briony-lodge",
+    "series": "sherlock_holmes",
+    "name": "Briony Lodge",
+    "type": "residence",
+    "real_world_basis": "Serpentine Avenue, St. John's Wood, London (fictional address in a real district)",
+    "characters_associated": ["char_irene-adler"],
+    "cases_occurring_here": ["case_a-scandal-in-bohemia"],
+    "description": "The Serpentine Avenue residence of Irene Adler in St. John's Wood. Holmes stages a fake fire here to prompt Adler into revealing the hiding place of the compromising photograph. He discovers the concealed recess behind a sliding panel — but too late, as Adler has already arranged to flee.",
+    "first_mention": { "book": 3, "chapter": 1 },
+    "full_reveal": { "book": 3, "chapter": 1 },
+    "created_by": "theloreatlas",
+    "last_edited_by": "theloreatlas"
+  },
+  {
+    "id": "loc_baskerville-hall",
+    "series": "sherlock_holmes",
+    "name": "Baskerville Hall",
+    "type": "estate",
+    "real_world_basis": "Dartmoor, Devon, England (fictional hall; Fox Tor Mire is believed to be the basis for the Great Grimpen Mire)",
+    "characters_associated": ["char_sherlock-holmes", "char_john-watson"],
+    "cases_occurring_here": ["case_the-hound-of-the-baskervilles"],
+    "description": "The ancestral seat of the Baskerville family on the edge of Dartmoor, Devon. A large, ancient, gloomy building of grey stone surrounded by wild moor. The center of the Baskerville curse — the legend of a spectral hound haunting the family. Watson is stationed here while Holmes secretly investigates from the moor.",
+    "first_mention": { "book": 5, "chapter": 1 },
+    "full_reveal": { "book": 5, "chapter": 15 },
+    "created_by": "theloreatlas",
+    "last_edited_by": "theloreatlas"
+  }
+]

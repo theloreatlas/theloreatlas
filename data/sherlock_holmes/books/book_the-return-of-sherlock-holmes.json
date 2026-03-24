@@ -1,0 +1,26 @@
+{
+  "id": "book_the-return-of-sherlock-holmes",
+  "series": "sherlock_holmes",
+  "title": "The Return of Sherlock Holmes",
+  "publication_year": 1905,
+  "type": "short_story_collection",
+  "chronological_order": 6,
+  "stories_contained": [
+    "case_the-adventure-of-the-empty-house",
+    "case_the-adventure-of-the-norwood-builder",
+    "case_the-adventure-of-the-dancing-men",
+    "case_the-adventure-of-the-solitary-cyclist",
+    "case_the-adventure-of-the-priory-school",
+    "case_the-adventure-of-black-peter",
+    "case_the-adventure-of-charles-augustus-milverton",
+    "case_the-adventure-of-the-six-napoleons",
+    "case_the-adventure-of-the-three-students",
+    "case_the-adventure-of-the-golden-pince-nez",
+    "case_the-adventure-of-the-missing-three-quarter",
+    "case_the-adventure-of-the-abbey-grange",
+    "case_the-adventure-of-the-second-stain"
+  ],
+  "description": "The third short story collection, containing 13 cases. Opens with The Adventure of the Empty House, in which Holmes dramatically returns from his apparent death at Reichenbach Falls, revealing he had faked his death to evade Moriarty's associates.",
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "faction_baker-street-irregulars",
+  "series": "sherlock_holmes",
+  "name": "The Baker Street Irregulars",
+  "type": "other",
+  "alignment": "neutral — loyal to Holmes for pay",
+  "key_members": ["char_sherlock-holmes"],
+  "cases_involved": [
+    "case_a-study-in-scarlet",
+    "case_the-sign-of-the-four"
+  ],
+  "active_period": "1881–1903 (approximate)",
+  "parent_org": null,
+  "child_orgs": [],
+  "description": "The Baker Street Irregulars are a loose gang of street children employed by Sherlock Holmes as intelligence gatherers and surveillance operatives. Holmes pays them a shilling each, plus a guinea to whoever brings him the information he needs. Their value lies in their invisibility — street children go unnoticed anywhere in London, making them ideal for tailing suspects, watching addresses, and gathering street-level intelligence that no adult detective could obtain without drawing attention. They are led informally by a boy named Wiggins. Holmes regards them with genuine warmth while maintaining the transactional nature of the arrangement.",
+  "first_mention": { "book": 1, "chapter": 8 },
+  "full_reveal": { "book": 1, "chapter": 8 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "event_holmes-watson-first-meeting",
+  "series": "sherlock_holmes",
+  "name": "Holmes and Watson First Meeting",
+  "date_or_position": "January 1881 (estimated)",
+  "characters_involved": [
+    "char_sherlock-holmes",
+    "char_john-watson"
+  ],
+  "cases_linked": [
+    "case_a-study-in-scarlet"
+  ],
+  "location": "loc_221b-baker-street",
+  "description": "Stamford, an acquaintance of Watson's from Bart's Hospital, introduces Watson to Sherlock Holmes in the chemical laboratory at St. Bartholomew's Hospital. Holmes immediately deduces that Watson has been in Afghanistan. Both men are looking for lodgings; Stamford suggests they might share rooms. Holmes proposes 221B Baker Street. This meeting sets in motion the entire Holmes canon — without it, there is no narrator, no partnership, and no published accounts.",
+  "event_type": "canonical",
+  "first_mention": { "book": 1, "chapter": 1 },
+  "full_reveal": { "book": 1, "chapter": 1 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

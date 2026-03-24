@@ -1,0 +1,14 @@
+{
+  "id": "book_a-study-in-scarlet",
+  "series": "sherlock_holmes",
+  "title": "A Study in Scarlet",
+  "publication_year": 1887,
+  "type": "novel",
+  "chronological_order": 1,
+  "stories_contained": [
+    "case_a-study-in-scarlet"
+  ],
+  "description": "The first Holmes novel, introducing Sherlock Holmes and Dr. John Watson. Watson, recently returned from Afghanistan, meets Holmes through a mutual acquaintance and they take up lodgings together at 221B Baker Street. Their first case involves a murder investigation in Lauriston Gardens with the word 'RACHE' written in blood, revealing a tale of vengeance rooted in the American frontier.",
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

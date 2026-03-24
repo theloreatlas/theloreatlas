@@ -1,0 +1,13 @@
+{
+  "id": "rel_holmes-mycroft-family",
+  "series": "sherlock_holmes",
+  "character_a": "char_sherlock-holmes",
+  "character_b": "char_mycroft-holmes",
+  "relationship_type": "family",
+  "first_established": "case_the-greek-interpreter",
+  "notes": "Mycroft is Sherlock's older brother. Holmes does not mention Mycroft's existence until The Greek Interpreter — Watson is surprised to learn Holmes has a brother at all. Holmes states plainly that Mycroft's powers of observation and synthesis exceed his own, but that Mycroft entirely lacks the energy and ambition to apply them actively. The brothers share a remarkable hereditary gift for deduction. Their relationship is affectionate but characteristically understated — they meet infrequently, communicate efficiently, and respect each other's distinct spheres. Mycroft occasionally provides Holmes with government intelligence or calls on Holmes when his own sedentary nature prevents him from acting.",
+  "first_mention": { "book": 4, "chapter": 9 },
+  "full_reveal": { "book": 4, "chapter": 9 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

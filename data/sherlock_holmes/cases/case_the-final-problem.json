@@ -1,0 +1,32 @@
+{
+  "id": "case_the-final-problem",
+  "series": "sherlock_holmes",
+  "title": "The Final Problem",
+  "case_nickname": "Reichenbach",
+  "source_book": "book_the-memoirs-of-sherlock-holmes",
+  "characters_involved": [
+    "char_sherlock-holmes",
+    "char_john-watson",
+    "char_professor-moriarty"
+  ],
+  "locations": [
+    "loc_221b-baker-street",
+    "loc_reichenbach-falls"
+  ],
+  "artifacts_involved": [],
+  "timeline_position": { "book": 4, "chapter": 10 },
+  "synopsis": "Holmes informs Watson that he has been systematically dismantling Professor Moriarty's criminal network and expects Moriarty will attempt to kill him before he can bring the case to trial. The two flee to the Continent. Moriarty pursues them. Near Meiringen, Switzerland, Holmes and Watson visit the Reichenbach Falls. Holmes sends Watson away on a false errand. When Watson returns, Holmes is gone. Two sets of footprints lead to the edge of the precipice. A note from Holmes to Watson is found, suggesting Holmes knew he would not survive the encounter.",
+  "solution": "Holmes and Moriarty struggle at the edge of the Reichenbach Falls and both apparently plunge to their deaths. Watson finds Holmes's farewell note but no body. Colonel Sebastian Moran, Moriarty's chief of staff, is believed to have been present. The true outcome — that Holmes survived by using his knowledge of Baritsu to throw Moriarty while clinging to the cliff face — is not revealed until The Adventure of the Empty House (book 6).",
+  "notable_elements": [
+    "First introduction of Professor Moriarty as Holmes's arch-nemesis",
+    "Apparent death of Sherlock Holmes — Doyle intended this to end the series",
+    "Watson's narration is written as a memorial to Holmes",
+    "The 'missing' three years between The Final Problem and The Adventure of the Empty House",
+    "Introduces Colonel Sebastian Moran as Moriarty's second-in-command",
+    "Holmes's farewell letter to Watson is one of the most famous passages in the canon"
+  ],
+  "first_mention": { "book": 4, "chapter": 10 },
+  "full_reveal": { "book": 6, "chapter": 1 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

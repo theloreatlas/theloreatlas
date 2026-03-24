@@ -1,0 +1,13 @@
+{
+  "id": "rel_holmes-irene-adler-other",
+  "series": "sherlock_holmes",
+  "character_a": "char_sherlock-holmes",
+  "character_b": "char_irene-adler",
+  "relationship_type": "other",
+  "first_established": "case_a-scandal-in-bohemia",
+  "notes": "Adler is the one person who has unambiguously bested Holmes — she recognized his disguise, deduced his plan, and departed England before he could act. Holmes thereafter refers to her simply as 'The Woman,' using the definite article to signal her unique status in his estimation. The nature of Holmes's regard for Adler is deliberately ambiguous in the canonical text: Watson notes that it was not love (Holmes distrusted emotions as interfering with reason) but was something distinct from his regard for any other person. The relationship exists entirely within a single case; they never meet again in the canon.",
+  "first_mention": { "book": 3, "chapter": 1 },
+  "full_reveal": { "book": 3, "chapter": 1 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

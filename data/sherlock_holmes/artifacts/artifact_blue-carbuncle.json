@@ -1,0 +1,22 @@
+{
+  "id": "artifact_blue-carbuncle",
+  "series": "sherlock_holmes",
+  "name": "The Blue Carbuncle",
+  "type": "gemstone",
+  "description": "A brilliant blue carbuncle (a large gemstone, likely a blue garnet or sapphire) of extraordinary value, described as having a history of blood and misfortune. The stone was stolen from the Countess of Morcar at the Hotel Cosmopolitan. It passes through a remarkable chain of hands: from the thief (John Horner, wrongly accused) to a goose seller, concealed inside a Christmas goose, and ultimately discovered by Holmes when the goose is cut open at 221B Baker Street.",
+  "ownership_chain": [
+    {
+      "character_id": "char_sherlock-holmes",
+      "from": { "book": 3, "chapter": 7 },
+      "to": { "book": 3, "chapter": 7 }
+    }
+  ],
+  "appearance_history": [
+    "case_the-adventure-of-the-blue-carbuncle"
+  ],
+  "significance": "One of the most charming artifacts in the canon — a priceless gem discovered inside a Christmas goose. The case is notable for Holmes's decision to release the actual thief (James Ryder) rather than prosecute him, reasoning that imprisonment would make a worse man of him. The carbuncle itself is a MacGuffin that drives a comic chain-of-custody mystery.",
+  "first_mention": { "book": 3, "chapter": 7 },
+  "full_reveal": { "book": 3, "chapter": 7 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

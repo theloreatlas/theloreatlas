@@ -1,0 +1,22 @@
+{
+  "id": "event_reichenbach-falls-confrontation",
+  "series": "sherlock_holmes",
+  "name": "The Reichenbach Falls Confrontation",
+  "date_or_position": "4 May 1891",
+  "characters_involved": [
+    "char_sherlock-holmes",
+    "char_professor-moriarty",
+    "char_john-watson"
+  ],
+  "cases_linked": [
+    "case_the-final-problem",
+    "case_the-adventure-of-the-empty-house"
+  ],
+  "location": "loc_reichenbach-falls",
+  "description": "At the Reichenbach Falls near Meiringen, Switzerland, Sherlock Holmes and Professor Moriarty engage in a final struggle at the edge of the precipice. Holmes has dismantled Moriarty's criminal network and both men know there can be only one outcome. Holmes sends Watson away on a false errand. When Watson returns, both men are gone — only footprints leading to the edge and Holmes's farewell note remain. Witnesses report seeing two men struggling. The world believes both dead. Holmes later reveals he survived using Baritsu, throwing Moriarty while clinging to the cliff face. He spent three years traveling under the alias Sigerson.",
+  "event_type": "canonical",
+  "first_mention": { "book": 4, "chapter": 10 },
+  "full_reveal": { "book": 6, "chapter": 1 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

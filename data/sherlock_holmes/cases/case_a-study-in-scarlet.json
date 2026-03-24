@@ -1,0 +1,32 @@
+{
+  "id": "case_a-study-in-scarlet",
+  "series": "sherlock_holmes",
+  "title": "A Study in Scarlet",
+  "case_nickname": "The Lauriston Gardens Murder",
+  "source_book": "book_a-study-in-scarlet",
+  "characters_involved": [
+    "char_sherlock-holmes",
+    "char_john-watson",
+    "char_inspector-lestrade"
+  ],
+  "locations": [
+    "loc_221b-baker-street",
+    "loc_lauriston-gardens"
+  ],
+  "artifacts_involved": [],
+  "timeline_position": { "book": 1, "chapter": 1 },
+  "synopsis": "Watson, recently returned from Afghanistan, is introduced to Sherlock Holmes by Stamford and agrees to share lodgings at 221B Baker Street. Holmes is called in to investigate the murder of Enoch Drebber, found dead in an empty house in Lauriston Gardens with no apparent cause of death and the word 'RACHE' written in blood on the wall. Holmes deduces the crime was committed by Jefferson Hope, a cab driver seeking vengeance for the deaths of his beloved Lucy Ferrier and her father in the Utah Territory years before, at the hands of Mormon leaders who forced Lucy into marriage.",
+  "solution": "Enoch Drebber and his secretary Joseph Stangerson were murdered by Jefferson Hope, an American cab driver. Hope had pursued them across the Atlantic to avenge the death of Lucy Ferrier, whom he loved, and her father, both victims of Mormon elder Drebber's machinations in Utah. Hope forced Drebber to choose one of two pills — one poison, one harmless — as an act of divine justice. Hope is apprehended but dies of a ruptured aortic aneurysm before he can be tried.",
+  "notable_elements": [
+    "First appearance of Sherlock Holmes and Watson",
+    "First appearance of Lestrade and Gregson",
+    "Holmes and Watson establish their partnership at 221B Baker Street",
+    "The 'RACHE' clue — German for 'revenge', not a woman's name as the police assume",
+    "Holmes's first use of a cab driver as an informant",
+    "The novel's structure: Part 1 in London, Part 2 in Utah (backstory)"
+  ],
+  "first_mention": { "book": 1, "chapter": 1 },
+  "full_reveal": { "book": 1, "chapter": 14 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

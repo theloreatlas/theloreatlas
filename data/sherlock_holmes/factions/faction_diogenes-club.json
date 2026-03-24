@@ -1,0 +1,20 @@
+{
+  "id": "faction_diogenes-club",
+  "series": "sherlock_holmes",
+  "name": "The Diogenes Club",
+  "type": "social",
+  "alignment": "neutral — unofficially government-adjacent",
+  "key_members": ["char_mycroft-holmes"],
+  "cases_involved": [
+    "case_the-greek-interpreter",
+    "case_the-adventure-of-the-bruce-partington-plans"
+  ],
+  "active_period": "Ongoing",
+  "parent_org": null,
+  "child_orgs": [],
+  "description": "The Diogenes Club is a London gentlemen's club founded for men who dislike company and conversation. Its rules are strict: no member may take the least notice of any other, and talking is forbidden in all rooms except the Strangers' Room. Mycroft Holmes is a founding member. Despite its eccentric premise, the Club serves a deeper function: it attracts Britain's most retiring and brilliant men, many of whom hold sensitive government positions. The Strangers' Room functions as an informal intelligence clearing house. Holmes describes the Club as 'the queerest club in London' — it is also, quietly, one of the most powerful.",
+  "first_mention": { "book": 4, "chapter": 9 },
+  "full_reveal": { "book": 4, "chapter": 9 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

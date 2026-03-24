@@ -1,0 +1,22 @@
+{
+  "id": "artifact_wax-bust-of-holmes",
+  "series": "sherlock_holmes",
+  "name": "The Wax Bust of Holmes",
+  "type": "decoy prop",
+  "description": "A wax bust of Sherlock Holmes, modeled by the artist Monsieur Oscar Meunier of Grenoble at Holmes's request. The bust is mounted on a pedestal and placed in the Baker Street window to simulate Holmes's silhouette. Mrs. Hudson moves it periodically to create the impression of Holmes moving about his rooms. The bust serves as bait to draw out Colonel Sebastian Moran, who fires an expanding revolver bullet at it from the empty house across the street, believing he is shooting the real Holmes.",
+  "ownership_chain": [
+    {
+      "character_id": "char_sherlock-holmes",
+      "from": { "book": 6, "chapter": 1 },
+      "to": { "book": 6, "chapter": 1 }
+    }
+  ],
+  "appearance_history": [
+    "case_the-adventure-of-the-empty-house"
+  ],
+  "significance": "One of the canon's most theatrical objects. Holmes's use of the bust demonstrates his theatrical flair and methodical planning — he had the bust commissioned specifically for this trap, anticipating that Moran would attempt to assassinate him upon his return to London. The bust is destroyed by Moran's air gun bullet, providing the evidence needed to convict him.",
+  "first_mention": { "book": 6, "chapter": 1 },
+  "full_reveal": { "book": 6, "chapter": 1 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

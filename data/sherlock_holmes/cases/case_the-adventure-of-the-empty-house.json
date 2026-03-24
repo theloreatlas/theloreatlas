@@ -1,0 +1,34 @@
+{
+  "id": "case_the-adventure-of-the-empty-house",
+  "series": "sherlock_holmes",
+  "title": "The Adventure of the Empty House",
+  "case_nickname": "The Return",
+  "source_book": "book_the-return-of-sherlock-holmes",
+  "characters_involved": [
+    "char_sherlock-holmes",
+    "char_john-watson",
+    "char_inspector-lestrade"
+  ],
+  "locations": [
+    "loc_221b-baker-street",
+    "loc_camden-house"
+  ],
+  "artifacts_involved": [
+    "artifact_wax-bust-of-holmes"
+  ],
+  "timeline_position": { "book": 6, "chapter": 1 },
+  "synopsis": "Three years after the events at Reichenbach Falls, Holmes reappears to Watson, very much alive. He reveals that he survived by using Baritsu to throw Moriarty over the falls while clinging to the cliff, then spent three years traveling under the alias Sigerson to allow Moriarty's surviving associates to believe him dead. The immediate threat now is Colonel Sebastian Moran, Moriarty's chief of staff, who is responsible for the recent murder of Ronald Adair. Holmes and Watson set a trap using a wax bust of Holmes in the Baker Street window, catching Moran red-handed as he attempts to shoot the decoy.",
+  "solution": "Colonel Sebastian Moran is arrested after firing an air gun at a wax bust of Holmes placed in the Baker Street window. He is convicted for the murder of Ronald Adair. Holmes explains his three-year disappearance and the Baritsu technique that saved his life at Reichenbach. His return to Baker Street is confirmed.",
+  "notable_elements": [
+    "Holmes's return after three years — Doyle's response to public demand",
+    "Reveals Holmes survived Reichenbach using Baritsu (a Japanese system of wrestling)",
+    "Introduces Colonel Sebastian Moran and his custom air gun",
+    "The wax bust of Holmes — one of the canon's most theatrical set-pieces",
+    "Watson faints upon Holmes's reveal — among his more dramatic reactions",
+    "The 'empty house' of Camden House, across from 221B"
+  ],
+  "first_mention": { "book": 6, "chapter": 1 },
+  "full_reveal": { "book": 6, "chapter": 1 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

@@ -1,0 +1,96 @@
+[
+  {
+    "id": "case_a-study-in-scarlet",
+    "series": "sherlock_holmes",
+    "title": "A Study in Scarlet",
+    "case_nickname": "The Lauriston Gardens Murder",
+    "source_book": "book_a-study-in-scarlet",
+    "characters_involved": ["char_sherlock-holmes", "char_john-watson", "char_inspector-lestrade"],
+    "locations": ["loc_221b-baker-street", "loc_lauriston-gardens"],
+    "artifacts_involved": [],
+    "timeline_position": { "book": 1, "chapter": 1 },
+    "synopsis": "Watson, recently returned from Afghanistan, meets Sherlock Holmes and agrees to share lodgings at 221B Baker Street. Holmes investigates the murder of Enoch Drebber, found dead in an empty house with the word 'RACHE' written in blood on the wall. Holmes deduces the crime was committed by Jefferson Hope, a cab driver seeking vengeance for the deaths of his beloved Lucy Ferrier and her father at the hands of Mormon leaders in Utah.",
+    "solution": "Enoch Drebber and his secretary were murdered by Jefferson Hope, an American cab driver avenging the death of Lucy Ferrier. Hope forced Drebber to choose one of two pills — one poison, one harmless — as an act of divine justice. Hope is apprehended but dies of an aortic aneurysm before trial.",
+    "notable_elements": [
+      "First appearance of Sherlock Holmes and Watson",
+      "First appearance of Lestrade and Gregson",
+      "Holmes and Watson establish their partnership at 221B Baker Street",
+      "The 'RACHE' clue — German for 'revenge'",
+      "Novel structure: Part 1 in London, Part 2 in Utah (backstory)"
+    ],
+    "first_mention": { "book": 1, "chapter": 1 },
+    "full_reveal": { "book": 1, "chapter": 14 },
+    "created_by": "theloreatlas",
+    "last_edited_by": "theloreatlas"
+  },
+  {
+    "id": "case_a-scandal-in-bohemia",
+    "series": "sherlock_holmes",
+    "title": "A Scandal in Bohemia",
+    "case_nickname": "The Irene Adler Case",
+    "source_book": "book_the-adventures-of-sherlock-holmes",
+    "characters_involved": ["char_sherlock-holmes", "char_john-watson", "char_irene-adler"],
+    "locations": ["loc_221b-baker-street", "loc_briony-lodge"],
+    "artifacts_involved": ["artifact_bohemia-photograph"],
+    "timeline_position": { "book": 3, "chapter": 1 },
+    "synopsis": "The King of Bohemia hires Holmes to recover a compromising photograph held by Irene Adler. Holmes investigates and stages a fake fire at Adler's home to discover where she has hidden it — but Adler has recognized Holmes's disguise and departs England with her husband before the photograph can be recovered.",
+    "solution": "Irene Adler outmaneuvers Holmes entirely. She identifies him despite his disguise, leaves England with her husband, and keeps the photograph — but assures the King she has no intention of using it. Holmes asks for and receives only a photograph of Adler as payment.",
+    "notable_elements": [
+      "First and only major appearance of Irene Adler",
+      "The only case in which Holmes is decisively outsmarted",
+      "Origin of Holmes referring to Adler as 'The Woman'",
+      "One of the few cases where Holmes does not solve the problem he was hired to solve"
+    ],
+    "first_mention": { "book": 3, "chapter": 1 },
+    "full_reveal": { "book": 3, "chapter": 1 },
+    "created_by": "theloreatlas",
+    "last_edited_by": "theloreatlas"
+  },
+  {
+    "id": "case_the-final-problem",
+    "series": "sherlock_holmes",
+    "title": "The Final Problem",
+    "case_nickname": "Reichenbach",
+    "source_book": "book_the-memoirs-of-sherlock-holmes",
+    "characters_involved": ["char_sherlock-holmes", "char_john-watson", "char_professor-moriarty"],
+    "locations": ["loc_221b-baker-street", "loc_reichenbach-falls"],
+    "artifacts_involved": [],
+    "timeline_position": { "book": 4, "chapter": 10 },
+    "synopsis": "Holmes reveals he has dismantled Moriarty's criminal network and flees to the Continent as Moriarty pursues him. Near Meiringen, Switzerland, Holmes sends Watson away on a false errand at the Reichenbach Falls. When Watson returns, Holmes is gone — only a farewell note and two sets of footprints leading to the precipice remain.",
+    "solution": "Holmes and Moriarty struggle at the edge of the Reichenbach Falls and both apparently plunge to their deaths. The true outcome — Holmes survived using Baritsu — is not revealed until The Adventure of the Empty House (book 6).",
+    "notable_elements": [
+      "First introduction of Professor Moriarty as arch-nemesis",
+      "Apparent death of Sherlock Holmes — Doyle intended this to end the series",
+      "Watson's narration is written as a memorial to Holmes",
+      "Introduces Colonel Sebastian Moran",
+      "Holmes's farewell letter to Watson"
+    ],
+    "first_mention": { "book": 4, "chapter": 10 },
+    "full_reveal": { "book": 6, "chapter": 1 },
+    "created_by": "theloreatlas",
+    "last_edited_by": "theloreatlas"
+  },
+  {
+    "id": "case_the-adventure-of-the-empty-house",
+    "series": "sherlock_holmes",
+    "title": "The Adventure of the Empty House",
+    "case_nickname": "The Return",
+    "source_book": "book_the-return-of-sherlock-holmes",
+    "characters_involved": ["char_sherlock-holmes", "char_john-watson", "char_inspector-lestrade"],
+    "locations": ["loc_221b-baker-street", "loc_camden-house"],
+    "artifacts_involved": ["artifact_wax-bust-of-holmes"],
+    "timeline_position": { "book": 6, "chapter": 1 },
+    "synopsis": "Three years after Reichenbach, Holmes reappears to Watson, alive. He reveals he survived using Baritsu and spent three years traveling under an alias. The immediate threat is Colonel Moran, responsible for the murder of Ronald Adair. Holmes and Watson trap Moran using a wax bust of Holmes as decoy in the Baker Street window.",
+    "solution": "Colonel Sebastian Moran is arrested after firing an air gun at a wax bust of Holmes. Holmes explains his three-year disappearance and returns to Baker Street.",
+    "notable_elements": [
+      "Holmes's return after three years",
+      "Reveals Holmes survived Reichenbach using Baritsu",
+      "Introduces Colonel Sebastian Moran and his custom air gun",
+      "The wax bust of Holmes — one of the canon's most theatrical set-pieces"
+    ],
+    "first_mention": { "book": 6, "chapter": 1 },
+    "full_reveal": { "book": 6, "chapter": 1 },
+    "created_by": "theloreatlas",
+    "last_edited_by": "theloreatlas"
+  }
+]

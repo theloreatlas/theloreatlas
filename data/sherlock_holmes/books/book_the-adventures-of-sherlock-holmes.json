@@ -1,0 +1,25 @@
+{
+  "id": "book_the-adventures-of-sherlock-holmes",
+  "series": "sherlock_holmes",
+  "title": "The Adventures of Sherlock Holmes",
+  "publication_year": 1892,
+  "type": "short_story_collection",
+  "chronological_order": 3,
+  "stories_contained": [
+    "case_a-scandal-in-bohemia",
+    "case_the-red-headed-league",
+    "case_a-case-of-identity",
+    "case_the-boscombe-valley-mystery",
+    "case_the-five-orange-pips",
+    "case_the-man-with-the-twisted-lip",
+    "case_the-adventure-of-the-blue-carbuncle",
+    "case_the-adventure-of-the-speckled-band",
+    "case_the-adventure-of-the-engineers-thumb",
+    "case_the-adventure-of-the-noble-bachelor",
+    "case_the-adventure-of-the-beryl-coronet",
+    "case_the-adventure-of-the-copper-beeches"
+  ],
+  "description": "The first short story collection, containing 12 cases. Originally published in The Strand Magazine. Introduces several iconic cases including A Scandal in Bohemia (Irene Adler), The Red-Headed League, and The Adventure of the Speckled Band.",
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

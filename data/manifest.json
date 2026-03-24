@@ -1,0 +1,20 @@
+{
+  "version": "1.0",
+  "series": [
+    {
+      "id": "sherlock_holmes",
+      "name": "Sherlock Holmes",
+      "description": "The complete works of Arthur Conan Doyle featuring Sherlock Holmes and Dr. John Watson. 60 stories across 4 novels and 5 short story collections, published 1887–1927.",
+      "entity_indexes": {
+        "books":         "data/sherlock_holmes/books/_index.json",
+        "characters":    "data/sherlock_holmes/characters/_index.json",
+        "cases":         "data/sherlock_holmes/cases/_index.json",
+        "factions":      "data/sherlock_holmes/factions/_index.json",
+        "locations":     "data/sherlock_holmes/locations/_index.json",
+        "artifacts":     "data/sherlock_holmes/artifacts/_index.json",
+        "events":        "data/sherlock_holmes/events/_index.json",
+        "relationships": "data/sherlock_holmes/relationships/_index.json"
+      }
+    }
+  ]
+}

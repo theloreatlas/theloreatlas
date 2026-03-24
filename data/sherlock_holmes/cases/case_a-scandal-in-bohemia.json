@@ -1,0 +1,33 @@
+{
+  "id": "case_a-scandal-in-bohemia",
+  "series": "sherlock_holmes",
+  "title": "A Scandal in Bohemia",
+  "case_nickname": "The Irene Adler Case",
+  "source_book": "book_the-adventures-of-sherlock-holmes",
+  "characters_involved": [
+    "char_sherlock-holmes",
+    "char_john-watson",
+    "char_irene-adler"
+  ],
+  "locations": [
+    "loc_221b-baker-street",
+    "loc_briony-lodge"
+  ],
+  "artifacts_involved": [
+    "artifact_bohemia-photograph"
+  ],
+  "timeline_position": { "book": 3, "chapter": 1 },
+  "synopsis": "Wilhelm Gottsreich Sigismond von Ormstein, King of Bohemia, visits Holmes in disguise. He has been conducting a secret correspondence with Irene Adler, an opera singer, and fears she will use a compromising photograph of the two together to block his upcoming marriage to a Scandinavian princess. Holmes investigates, disguises himself as a groom and then a clergyman, and stages a fake fire at Irene's home to discover where she has hidden the photograph. But Adler has recognized Holmes's disguise, followed him home, and departed England with her new husband Godfrey Norton — leaving behind a letter to Holmes and a photograph of herself alone.",
+  "solution": "Irene Adler outmaneuvers Holmes entirely. She identifies him despite his disguise, realizes the photograph's hiding place has been discovered, and leaves England with her husband before Holmes can recover the photograph. She keeps the photograph but assures the King she has no intention of using it, given her own happy marriage. Holmes asks for and receives only the photograph of Adler as payment. The King's marriage proceeds unimpeded.",
+  "notable_elements": [
+    "First and only major appearance of Irene Adler",
+    "The only case in which Holmes is decisively outsmarted",
+    "Origin of Holmes's habit of referring to Adler simply as 'The Woman'",
+    "Watson's account opens with Holmes's opinion that women are not to be trusted — which Adler immediately refutes",
+    "One of the few cases where Holmes does not solve the problem he was hired to solve"
+  ],
+  "first_mention": { "book": 3, "chapter": 1 },
+  "full_reveal": { "book": 3, "chapter": 1 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

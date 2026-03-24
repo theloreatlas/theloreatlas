@@ -1,0 +1,20 @@
+{
+  "id": "event_holmes-return-to-london",
+  "series": "sherlock_holmes",
+  "name": "Holmes's Return to London",
+  "date_or_position": "April 1894 (estimated)",
+  "characters_involved": [
+    "char_sherlock-holmes",
+    "char_john-watson"
+  ],
+  "cases_linked": [
+    "case_the-adventure-of-the-empty-house"
+  ],
+  "location": "loc_221b-baker-street",
+  "description": "Three years after the Reichenbach Falls, Sherlock Holmes returns to London, revealing himself to Watson in disguise before disclosing his identity. Holmes explains he has spent three years traveling as Sigerson — through Tibet (visiting the head lama at Lhasa), Persia, Mecca, and France — waiting until enough of Moriarty's surviving network had been captured or scattered to make his return safe. Watson faints upon the revelation. Holmes's immediate purpose in returning is to deal with Colonel Sebastian Moran, the last significant threat remaining from Moriarty's organization.",
+  "event_type": "canonical",
+  "first_mention": { "book": 6, "chapter": 1 },
+  "full_reveal": { "book": 6, "chapter": 1 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

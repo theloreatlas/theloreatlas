@@ -1,0 +1,25 @@
+{
+  "id": "book_the-case-book-of-sherlock-holmes",
+  "series": "sherlock_holmes",
+  "title": "The Case-Book of Sherlock Holmes",
+  "publication_year": 1927,
+  "type": "short_story_collection",
+  "chronological_order": 9,
+  "stories_contained": [
+    "case_the-adventure-of-the-illustrious-client",
+    "case_the-adventure-of-the-blanched-soldier",
+    "case_the-adventure-of-the-mazarin-stone",
+    "case_the-adventure-of-the-three-gables",
+    "case_the-adventure-of-the-sussex-vampire",
+    "case_the-adventure-of-the-three-garridebs",
+    "case_the-problem-of-thor-bridge",
+    "case_the-adventure-of-the-creeping-man",
+    "case_the-adventure-of-the-lions-mane",
+    "case_the-adventure-of-the-veiled-lodger",
+    "case_the-adventure-of-shoscombe-old-place",
+    "case_the-adventure-of-the-retired-colourman"
+  ],
+  "description": "The fifth and final short story collection, containing 12 cases. The last Holmes stories published by Doyle. Two stories (The Adventure of the Blanched Soldier and The Adventure of the Lion's Mane) are narrated by Holmes himself rather than Watson.",
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

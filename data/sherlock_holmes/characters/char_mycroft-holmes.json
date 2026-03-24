@@ -1,0 +1,24 @@
+{
+  "id": "char_mycroft-holmes",
+  "series": "sherlock_holmes",
+  "name": "Mycroft Holmes",
+  "aliases": ["Mycroft"],
+  "role": "supporting",
+  "status": "active",
+  "first_mention": { "book": 4, "chapter": 9 },
+  "full_reveal": { "book": 4, "chapter": 9 },
+  "affiliations": [
+    "faction_diogenes-club"
+  ],
+  "relationships": [
+    "rel_holmes-mycroft-family"
+  ],
+  "cases": [
+    "case_the-greek-interpreter",
+    "case_the-adventure-of-the-bruce-partington-plans"
+  ],
+  "biography": "Mycroft Holmes is Sherlock's older brother and, by Holmes's own admission, an even more gifted reasoner. Where Sherlock applies his intellect actively in the field, Mycroft is entirely sedentary — his powers of observation and synthesis are unmatched, but he lacks the energy or inclination to act on his conclusions. He holds a unique and deliberately vague position in the British government: nominally an auditor of departmental accounts, in practice he is the clearing house for all government intelligence, indispensable and irreplaceable. Mycroft is a founding member of the Diogenes Club — a club for men who dislike company — where conversation is forbidden in all rooms but one.",
+  "tags": ["government", "Diogenes Club", "brother", "intelligence", "sedentary"],
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

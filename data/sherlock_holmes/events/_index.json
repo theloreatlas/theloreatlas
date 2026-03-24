@@ -1,0 +1,47 @@
+[
+  {
+    "id": "event_holmes-watson-first-meeting",
+    "series": "sherlock_holmes",
+    "name": "Holmes and Watson First Meeting",
+    "date_or_position": "January 1881 (estimated)",
+    "characters_involved": ["char_sherlock-holmes", "char_john-watson"],
+    "cases_linked": ["case_a-study-in-scarlet"],
+    "location": "loc_221b-baker-street",
+    "description": "Stamford introduces Watson to Holmes in the chemical laboratory at St. Bartholomew's Hospital. Holmes immediately deduces Watson has been in Afghanistan. Both are looking for lodgings; Holmes proposes 221B Baker Street. This meeting sets in motion the entire Holmes canon.",
+    "event_type": "canonical",
+    "first_mention": { "book": 1, "chapter": 1 },
+    "full_reveal": { "book": 1, "chapter": 1 },
+    "created_by": "theloreatlas",
+    "last_edited_by": "theloreatlas"
+  },
+  {
+    "id": "event_reichenbach-falls-confrontation",
+    "series": "sherlock_holmes",
+    "name": "The Reichenbach Falls Confrontation",
+    "date_or_position": "4 May 1891",
+    "characters_involved": ["char_sherlock-holmes", "char_professor-moriarty", "char_john-watson"],
+    "cases_linked": ["case_the-final-problem", "case_the-adventure-of-the-empty-house"],
+    "location": "loc_reichenbach-falls",
+    "description": "Holmes and Moriarty struggle at the edge of the Reichenbach Falls. Holmes sends Watson away on a false errand; when Watson returns, both men are gone. The world believes both dead. Holmes later reveals he survived using Baritsu, spent three years traveling under the alias Sigerson.",
+    "event_type": "canonical",
+    "first_mention": { "book": 4, "chapter": 10 },
+    "full_reveal": { "book": 6, "chapter": 1 },
+    "created_by": "theloreatlas",
+    "last_edited_by": "theloreatlas"
+  },
+  {
+    "id": "event_holmes-return-to-london",
+    "series": "sherlock_holmes",
+    "name": "Holmes's Return to London",
+    "date_or_position": "April 1894 (estimated)",
+    "characters_involved": ["char_sherlock-holmes", "char_john-watson"],
+    "cases_linked": ["case_the-adventure-of-the-empty-house"],
+    "location": "loc_221b-baker-street",
+    "description": "Three years after Reichenbach, Holmes returns to London and reveals himself to Watson in disguise. He explains he traveled as Sigerson — through Tibet, Persia, Mecca, and France — waiting for Moriarty's network to be neutralized. Watson faints upon the revelation. Holmes's immediate purpose is to deal with Colonel Moran.",
+    "event_type": "canonical",
+    "first_mention": { "book": 6, "chapter": 1 },
+    "full_reveal": { "book": 6, "chapter": 1 },
+    "created_by": "theloreatlas",
+    "last_edited_by": "theloreatlas"
+  }
+]

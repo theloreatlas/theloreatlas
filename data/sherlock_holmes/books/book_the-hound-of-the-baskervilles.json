@@ -1,0 +1,14 @@
+{
+  "id": "book_the-hound-of-the-baskervilles",
+  "series": "sherlock_holmes",
+  "title": "The Hound of the Baskervilles",
+  "publication_year": 1902,
+  "type": "novel",
+  "chronological_order": 5,
+  "stories_contained": [
+    "case_the-hound-of-the-baskervilles"
+  ],
+  "description": "The third Holmes novel, set during Holmes's apparent death period and narrated partly in retrospect. Sir Charles Baskerville is found dead on the moor, and Holmes is called in to protect his heir, Sir Henry. The case centers on a legendary spectral hound and the curse of the Baskerville family.",
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

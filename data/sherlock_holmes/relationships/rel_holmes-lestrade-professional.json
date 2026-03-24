@@ -1,0 +1,13 @@
+{
+  "id": "rel_holmes-lestrade-professional",
+  "series": "sherlock_holmes",
+  "character_a": "char_sherlock-holmes",
+  "character_b": "char_inspector-lestrade",
+  "relationship_type": "professional",
+  "first_established": "case_a-study-in-scarlet",
+  "notes": "Holmes and Lestrade maintain a long professional relationship built on grudging mutual respect. Lestrade represents the best of the official police — tenacious, hardworking, honest — but lacks the imaginative leap Holmes makes effortlessly. He frequently consults Holmes on difficult cases while publicly maintaining skepticism about his methods. Holmes, for his part, regards Lestrade as the best of the official detectives and frequently allows him to take public credit for Holmes's solutions, understanding that Lestrade's career depends on visible results. Over the years the dynamic mellows: by the later stories Lestrade's skepticism has been replaced by genuine admiration, even if he still cannot follow Holmes's reasoning.",
+  "first_mention": { "book": 1, "chapter": 3 },
+  "full_reveal": { "book": 1, "chapter": 3 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

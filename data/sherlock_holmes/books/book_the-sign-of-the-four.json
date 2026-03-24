@@ -1,0 +1,14 @@
+{
+  "id": "book_the-sign-of-the-four",
+  "series": "sherlock_holmes",
+  "title": "The Sign of the Four",
+  "publication_year": 1890,
+  "type": "novel",
+  "chronological_order": 2,
+  "stories_contained": [
+    "case_the-sign-of-the-four"
+  ],
+  "description": "The second Holmes novel. Mary Morstan engages Holmes to investigate a mysterious summons she has received. The case unravels a tale of stolen treasure, betrayal, and murder connected to the Agra Treasure and a secret pact between four convicts. Watson meets and falls in love with Mary Morstan.",
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

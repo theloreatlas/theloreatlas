@@ -1,0 +1,82 @@
+[
+  {
+    "id": "artifact_agra-treasure",
+    "series": "sherlock_holmes",
+    "name": "The Agra Treasure",
+    "type": "treasure cache",
+    "description": "A vast cache of jewels and precious stones looted from an Indian raja's palace during the Indian Mutiny of 1857. Concealed by the 'Sign of Four' — four men who made a pact to share it equally. Jonathan Small was transported to the Andaman Islands before the treasure could be retrieved. The chest is ultimately found empty — Small threw the treasure into the Thames rather than allow it to fall into others' hands.",
+    "ownership_chain": [
+      {
+        "character_id": "char_john-watson",
+        "from": { "book": 2, "chapter": 1 },
+        "to": { "book": 2, "chapter": 12 }
+      }
+    ],
+    "appearance_history": ["case_the-sign-of-the-four"],
+    "significance": "The central MacGuffin of The Sign of the Four. Its disposal into the Thames is both plot resolution and thematic statement about ill-gotten wealth. Mary Morstan loses her expected inheritance but gains Watson as a husband.",
+    "first_mention": { "book": 2, "chapter": 2 },
+    "full_reveal": { "book": 2, "chapter": 12 },
+    "created_by": "theloreatlas",
+    "last_edited_by": "theloreatlas"
+  },
+  {
+    "id": "artifact_blue-carbuncle",
+    "series": "sherlock_holmes",
+    "name": "The Blue Carbuncle",
+    "type": "gemstone",
+    "description": "A brilliant blue carbuncle of extraordinary value, stolen from the Countess of Morcar. It passes through a remarkable chain of hands before being found concealed inside a Christmas goose at 221B Baker Street.",
+    "ownership_chain": [
+      {
+        "character_id": "char_sherlock-holmes",
+        "from": { "book": 3, "chapter": 7 },
+        "to": { "book": 3, "chapter": 7 }
+      }
+    ],
+    "appearance_history": ["case_the-adventure-of-the-blue-carbuncle"],
+    "significance": "A priceless gem discovered inside a Christmas goose. Holmes releases the actual thief rather than prosecute him. A comic chain-of-custody mystery with the carbuncle as MacGuffin.",
+    "first_mention": { "book": 3, "chapter": 7 },
+    "full_reveal": { "book": 3, "chapter": 7 },
+    "created_by": "theloreatlas",
+    "last_edited_by": "theloreatlas"
+  },
+  {
+    "id": "artifact_wax-bust-of-holmes",
+    "series": "sherlock_holmes",
+    "name": "The Wax Bust of Holmes",
+    "type": "decoy prop",
+    "description": "A wax bust of Sherlock Holmes modeled by Monsieur Oscar Meunier, placed in the Baker Street window to simulate Holmes's silhouette and bait Colonel Moran into firing at it.",
+    "ownership_chain": [
+      {
+        "character_id": "char_sherlock-holmes",
+        "from": { "book": 6, "chapter": 1 },
+        "to": { "book": 6, "chapter": 1 }
+      }
+    ],
+    "appearance_history": ["case_the-adventure-of-the-empty-house"],
+    "significance": "Holmes had the bust commissioned specifically for this trap. It is destroyed by Moran's air gun bullet, providing the evidence needed to convict him.",
+    "first_mention": { "book": 6, "chapter": 1 },
+    "full_reveal": { "book": 6, "chapter": 1 },
+    "created_by": "theloreatlas",
+    "last_edited_by": "theloreatlas"
+  },
+  {
+    "id": "artifact_bohemia-photograph",
+    "series": "sherlock_holmes",
+    "name": "The Bohemia Photograph",
+    "type": "photograph",
+    "description": "A compromising photograph showing Irene Adler with the King of Bohemia. Hidden in a concealed recess at Briony Lodge. Adler departs England with it intact but leaves a letter promising never to use it.",
+    "ownership_chain": [
+      {
+        "character_id": "char_irene-adler",
+        "from": { "book": 3, "chapter": 1 },
+        "to": { "book": 3, "chapter": 1 }
+      }
+    ],
+    "appearance_history": ["case_a-scandal-in-bohemia"],
+    "significance": "Central object of A Scandal in Bohemia. Its power is entirely reputational. Adler's decision not to use it is the resolution of the case and the basis for Holmes's lasting respect for her.",
+    "first_mention": { "book": 3, "chapter": 1 },
+    "full_reveal": { "book": 3, "chapter": 1 },
+    "created_by": "theloreatlas",
+    "last_edited_by": "theloreatlas"
+  }
+]

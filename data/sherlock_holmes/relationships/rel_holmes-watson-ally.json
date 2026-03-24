@@ -1,0 +1,13 @@
+{
+  "id": "rel_holmes-watson-ally",
+  "series": "sherlock_holmes",
+  "character_a": "char_sherlock-holmes",
+  "character_b": "char_john-watson",
+  "relationship_type": "ally",
+  "first_established": "case_a-study-in-scarlet",
+  "notes": "The central relationship of the entire canon. Holmes and Watson meet in early 1881 and share lodgings at 221B Baker Street. Watson serves as Holmes's companion, assistant, and chronicler — his admiring but honest narration is the frame through which the world knows Holmes. The relationship is asymmetrical: Holmes is the genius, Watson the capable everyman. But Watson's warmth, loyalty, and willingness to follow Holmes into danger make him irreplaceable. Holmes, characteristically, expresses his regard obliquely — through trust, through inclusion, through the fact that Watson is the only person Holmes consistently chooses to have near him. Watson's marriages interrupt but never permanently sever the partnership.",
+  "first_mention": { "book": 1, "chapter": 1 },
+  "full_reveal": { "book": 1, "chapter": 2 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

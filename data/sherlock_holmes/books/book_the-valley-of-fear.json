@@ -1,0 +1,14 @@
+{
+  "id": "book_the-valley-of-fear",
+  "series": "sherlock_holmes",
+  "title": "The Valley of Fear",
+  "publication_year": 1915,
+  "type": "novel",
+  "chronological_order": 7,
+  "stories_contained": [
+    "case_the-valley-of-fear"
+  ],
+  "description": "The fourth and final Holmes novel. A cipher message warns Holmes of a murder at Birlstone Manor. The investigation reveals a complex plot with roots in a brutal American mining community known as the Valley of Fear, and the long reach of Professor Moriarty.",
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

@@ -1,0 +1,22 @@
+{
+  "id": "artifact_agra-treasure",
+  "series": "sherlock_holmes",
+  "name": "The Agra Treasure",
+  "type": "treasure cache",
+  "description": "A vast cache of jewels and precious stones — rubies, emeralds, diamonds, and pearls — looted from an Indian raja's palace during the Indian Mutiny of 1857. The treasure was concealed by four men (Jonathan Small, Mahomet Singh, Abdullah Khan, and Dost Akbar — the 'Sign of Four') who made a pact to share it equally. Small was later transported to the Andaman Islands penal colony before the treasure could be retrieved, spending decades plotting to recover it. The treasure chest is ironically found to contain only a note from Small, who threw the treasure into the Thames rather than allow it to fall into others' hands.",
+  "ownership_chain": [
+    {
+      "character_id": "char_john-watson",
+      "from": { "book": 2, "chapter": 1 },
+      "to": { "book": 2, "chapter": 12 }
+    }
+  ],
+  "appearance_history": [
+    "case_the-sign-of-the-four"
+  ],
+  "significance": "The central MacGuffin of The Sign of the Four. Its ultimate disposal — thrown into the Thames by Jonathan Small — is both a plot resolution and a thematic statement about the corrupting nature of ill-gotten wealth. Mary Morstan, whose inheritance depended on the treasure, is left with nothing material — but gains Watson as a husband instead.",
+  "first_mention": { "book": 2, "chapter": 2 },
+  "full_reveal": { "book": 2, "chapter": 12 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

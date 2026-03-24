@@ -1,0 +1,19 @@
+{
+  "id": "loc_reichenbach-falls",
+  "series": "sherlock_holmes",
+  "name": "The Reichenbach Falls",
+  "type": "natural landmark",
+  "real_world_basis": "Reichenbach Falls, Meiringen, Bern Oberland, Switzerland (real location; tourist site today)",
+  "characters_associated": [
+    "char_sherlock-holmes",
+    "char_professor-moriarty"
+  ],
+  "cases_occurring_here": [
+    "case_the-final-problem"
+  ],
+  "description": "A dramatic waterfall near Meiringen in the Swiss Alps, and the site of the most famous confrontation in the Holmes canon. Holmes and Professor Moriarty struggle here in May 1891, both apparently plunging to their deaths in the falls below. Watson finds only Holmes's farewell note and two sets of footprints leading to the precipice. The Falls are described as a fearful place — a tremendous abyss with the green water boiling below. Holmes later reveals he survived using Baritsu, clinging to the cliff face while Moriarty fell. The location has become synonymous with apparent death, sacrifice, and the lengths to which Holmes will go to protect the public from Moriarty's network.",
+  "first_mention": { "book": 4, "chapter": 10 },
+  "full_reveal": { "book": 6, "chapter": 1 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

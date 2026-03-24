@@ -1,0 +1,19 @@
+{
+  "id": "loc_baskerville-hall",
+  "series": "sherlock_holmes",
+  "name": "Baskerville Hall",
+  "type": "estate",
+  "real_world_basis": "Dartmoor, Devon, England (fictional hall in a real landscape; Fox Tor Mire is believed to be the basis for the Great Grimpen Mire)",
+  "characters_associated": [
+    "char_sherlock-holmes",
+    "char_john-watson"
+  ],
+  "cases_occurring_here": [
+    "case_the-hound-of-the-baskervilles"
+  ],
+  "description": "Baskerville Hall is the ancestral seat of the Baskerville family on the edge of Dartmoor in Devon. It is a large, ancient, gloomy building of grey stone, surrounded by the wild and desolate moor. The Hall is the center of the Baskerville curse — the legend of a spectral hound that has haunted the family for generations following the sins of Hugo Baskerville. Sir Henry Baskerville arrives to take up his inheritance following his uncle Sir Charles's death, only to find himself in danger. Watson is stationed at the Hall while Holmes secretly investigates from the moor. The Great Grimpen Mire — a dangerous bog nearby — plays a crucial role in the resolution of the case.",
+  "first_mention": { "book": 5, "chapter": 1 },
+  "full_reveal": { "book": 5, "chapter": 15 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

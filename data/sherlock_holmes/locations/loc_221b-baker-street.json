@@ -1,0 +1,22 @@
+{
+  "id": "loc_221b-baker-street",
+  "series": "sherlock_holmes",
+  "name": "221B Baker Street",
+  "type": "residence",
+  "real_world_basis": "Baker Street, Marylebone, London (the specific number did not exist in Doyle's time; now commemorated at the Sherlock Holmes Museum)",
+  "characters_associated": [
+    "char_sherlock-holmes",
+    "char_john-watson"
+  ],
+  "cases_occurring_here": [
+    "case_a-study-in-scarlet",
+    "case_a-scandal-in-bohemia",
+    "case_the-final-problem",
+    "case_the-adventure-of-the-empty-house"
+  ],
+  "description": "221B Baker Street is the shared lodging of Sherlock Holmes and Dr. John Watson, and the operational base for nearly all of Holmes's cases. The rooms on the first floor above Mrs. Hudson's ground-floor quarters are famous for their organized chaos: chemical experiments on the table, correspondence pinned to the mantelpiece with a jack-knife, stacks of papers, Holmes's violin, and the initials V.R. shot into the wall with a revolver. Clients arrive here; Holmes receives telegrams and letters here; and it is here that he does the bulk of his thinking. The address has become the most iconic in English fiction.",
+  "first_mention": { "book": 1, "chapter": 2 },
+  "full_reveal": { "book": 1, "chapter": 2 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}
