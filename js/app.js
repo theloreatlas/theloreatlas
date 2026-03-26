@@ -64,6 +64,8 @@ async function onRouteChange() {
     renderHome(content);
   } else if (parts.length === 1 && parts[0] === 'series') {
     renderHome(content);
+  } else if (parts.length >= 1 && parts[0].split('?')[0] === 'search') {
+    renderSearch(content);
   } else if (parts.length === 2) {
     const [seriesId, entityType] = parts;
     renderEntityList(content, seriesId, entityType);
@@ -404,6 +406,149 @@ function renderNotFound(container) {
       <a href="#/">← Back to home</a>
     </p>
   `;
+}
+
+// ── Search ────────────────────────────────────────────────────────────────────
+
+function getSearchQuery() {
+  const hash = window.location.hash;
+  const qIndex = hash.indexOf('?q=');
+  if (qIndex === -1) return '';
+  return decodeURIComponent(hash.substring(qIndex + 3));
+}
+
+function renderSearch(container) {
+  const query = getSearchQuery();
+
+  container.innerHTML = `
+    <div class="page-header">
+      <h1>Search</h1>
+    </div>
+    <div class="search-container">
+      <input type="text" id="search-input" class="search-input"
+             placeholder="Search characters, cases, locations…">
+    </div>
+    <div id="search-results"></div>
+  `;
+
+  const input = document.getElementById('search-input');
+  input.value = query;  // Set via DOM property — handles all characters safely
+  input.focus();
+
+  let debounceTimer = null;
+  input.addEventListener('input', () => {
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(() => {
+      const q = input.value.trim();
+      const newHash = q ? '#/search?q=' + encodeURIComponent(q) : '#/search';
+      if (window.location.hash !== newHash) {
+        history.replaceState(null, '', newHash);
+      }
+      renderSearchResults(q);
+    }, 250);
+  });
+
+  if (query) {
+    renderSearchResults(query);
+  } else {
+    renderSearchResults('');
+  }
+}
+
+function entityMatchesQuery(entity, entityType, q) {
+  const fields = [
+    entity.name,
+    entity.title,
+    entity.case_nickname,
+    entity.biography,
+    entity.synopsis,
+    entity.description,
+    entity.significance,
+    entity.notes,
+    entity.relationship_type,
+  ];
+
+  for (const f of fields) {
+    if (typeof f === 'string' && f.toLowerCase().includes(q)) return true;
+  }
+
+  const arrays = [entity.aliases, entity.tags];
+  for (const arr of arrays) {
+    if (Array.isArray(arr)) {
+      for (const item of arr) {
+        if (typeof item === 'string' && item.toLowerCase().includes(q)) return true;
+      }
+    }
+  }
+
+  // For relationships, also check resolved character names
+  if (entityType === 'relationships') {
+    const charA = LoreLoader.getById(entity.character_a);
+    const charB = LoreLoader.getById(entity.character_b);
+    if (charA && charA.name && charA.name.toLowerCase().includes(q)) return true;
+    if (charB && charB.name && charB.name.toLowerCase().includes(q)) return true;
+  }
+
+  return false;
+}
+
+function searchEntities(query) {
+  if (!query) return [];
+  const q = query.toLowerCase();
+  const results = [];
+
+  for (const series of LoreLoader.getSeries()) {
+    for (const et of ENTITY_TYPES) {
+      const entities = LoreLoader.getAll(series.id, et.key);
+      for (const entity of entities) {
+        if (entityMatchesQuery(entity, et.key, q)) {
+          results.push({ entity, entityType: et.key, seriesId: series.id });
+        }
+      }
+    }
+  }
+
+  return results;
+}
+
+function renderSearchResults(query) {
+  const resultsContainer = document.getElementById('search-results');
+  if (!resultsContainer) return;
+
+  if (!query) {
+    resultsContainer.innerHTML = '<p class="search-prompt">Enter a search term to find characters, cases, locations, and more.</p>';
+    return;
+  }
+
+  const results = searchEntities(query);
+
+  if (results.length === 0) {
+    resultsContainer.innerHTML = `<p class="search-no-results">No results found for &ldquo;${esc(query)}&rdquo;</p>`;
+    return;
+  }
+
+  const grouped = {};
+  for (const r of results) {
+    if (!grouped[r.entityType]) grouped[r.entityType] = [];
+    grouped[r.entityType].push(r);
+  }
+
+  let html = `<p class="search-count">${results.length} result${results.length === 1 ? '' : 's'} for &ldquo;${esc(query)}&rdquo;</p>`;
+
+  for (const et of ENTITY_TYPES) {
+    const group = grouped[et.key];
+    if (!group || group.length === 0) continue;
+
+    html += `<div class="search-group">`;
+    html += `<h2 class="search-group-heading">${et.label}</h2>`;
+    html += `<div class="entity-list">`;
+    for (const r of group) {
+      html += renderEntityListItem(r.entity, r.entityType, r.seriesId);
+    }
+    html += `</div></div>`;
+  }
+
+  resultsContainer.innerHTML = html;
 }
 
 // ── Display helpers ───────────────────────────────────────────────────────────
