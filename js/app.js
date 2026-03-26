@@ -106,7 +106,7 @@ function renderHome(container) {
       const entities = LoreLoader.getAll(s.id, et.key);
       if (entities.length === 0) continue;
       html += `
-        <a class="entity-type-card" href="#/${s.id}/${et.key}">
+        <a class="entity-type-card" href="#/${encodeURIComponent(s.id)}/${encodeURIComponent(et.key)}">
           <div class="card-label">Browse</div>
           <div class="card-title">${et.label}</div>
           <div class="card-count">${entities.length} ${entities.length === 1 ? et.singular : et.label}</div>
@@ -154,7 +154,7 @@ function renderEntityList(container, seriesId, entityType) {
 }
 
 function renderEntityListItem(entity, entityType, seriesId) {
-  const href = `#/${seriesId}/${entityType}/${entity.id}`;
+  const href = `#/${encodeURIComponent(seriesId)}/${encodeURIComponent(entityType)}/${encodeURIComponent(entity.id)}`;
   const name = getEntityName(entity, entityType);
   const meta = getEntityMeta(entity, entityType);
   const badge = getEntityBadge(entity, entityType);
@@ -182,7 +182,7 @@ function renderEntityDetail(container, seriesId, entityType, id) {
     <div class="page-header">
       <div class="breadcrumb">
         <a href="#/">Home</a> &rsaquo;
-        <a href="#/${seriesId}/${entityType}">${etConfig ? etConfig.label : entityType}</a> &rsaquo;
+        <a href="#/${encodeURIComponent(seriesId)}/${encodeURIComponent(entityType)}">${etConfig ? etConfig.label : entityType}</a> &rsaquo;
         ${esc(getEntityName(entity, entityType))}
       </div>
       <h1>${esc(getEntityName(entity, entityType))}</h1>
@@ -190,7 +190,7 @@ function renderEntityDetail(container, seriesId, entityType, id) {
     <p style="color:#888;font-style:italic;font-family:sans-serif;font-size:0.95rem;">
       Full entity detail pages are coming in the next session.
     </p>
-    <pre style="background:#f0ede8;padding:1.5rem;border-radius:4px;font-size:0.8rem;overflow-x:auto;margin-top:1.5rem;">${JSON.stringify(entity, null, 2)}</pre>
+    <pre style="background:#f0ede8;padding:1.5rem;border-radius:4px;font-size:0.8rem;overflow-x:auto;margin-top:1.5rem;">${esc(JSON.stringify(entity, null, 2))}</pre>
   `;
 }
 
