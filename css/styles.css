@@ -269,6 +269,181 @@ a:hover {
   padding: 2rem 0;
 }
 
+/* --- Entity Detail Pages --- */
+.entity-detail {
+  max-width: 720px;
+}
+
+.detail-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.detail-meta-item {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 0.85rem;
+  color: #666;
+}
+
+.detail-nickname {
+  font-style: italic;
+  color: #888;
+}
+
+.detail-real-world {
+  font-size: 0.8rem;
+  color: #999;
+}
+
+.detail-section {
+  margin-bottom: 2rem;
+}
+
+.detail-section h2 {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #c9a96e;
+  margin-bottom: 0.6rem;
+  padding-bottom: 0.3rem;
+  border-bottom: 1px solid #e0dbd3;
+}
+
+.detail-prose {
+  line-height: 1.75;
+  color: #2a2a2a;
+}
+
+.detail-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.detail-link-item {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 0.9rem;
+}
+
+.detail-link-item a {
+  color: #5c3d1e;
+}
+
+.detail-link-item a:hover {
+  text-decoration: underline;
+}
+
+.detail-none {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 0.85rem;
+  color: #aaa;
+  font-style: italic;
+}
+
+.detail-list {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 0.9rem;
+  padding-left: 1.25rem;
+  color: #2a2a2a;
+  line-height: 1.8;
+}
+
+.detail-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.detail-tag {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 0.75rem;
+  background: #f0ede8;
+  color: #6b5a3a;
+  padding: 0.2em 0.65em;
+  border-radius: 3px;
+  letter-spacing: 0.02em;
+}
+
+.spoiler-box {
+  border: 1px solid #e0dbd3;
+  border-radius: 4px;
+  background: #fff;
+  padding: 0;
+  overflow: hidden;
+}
+
+.spoiler-box summary {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 0.85rem;
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+  color: #5c3d1e;
+  user-select: none;
+}
+
+.spoiler-box summary:hover {
+  background: #f9f7f4;
+}
+
+.spoiler-box .detail-prose {
+  padding: 0 1rem 1rem;
+  border-top: 1px solid #e0dbd3;
+  margin-top: 0;
+}
+
+.spoiler-warning {
+  color: #a05020;
+  font-size: 0.8rem;
+}
+
+.spoiler-thresholds {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e0dbd3;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 0.78rem;
+  color: #aaa;
+  letter-spacing: 0.02em;
+}
+
+.ownership-chain {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.ownership-entry {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 0.9rem;
+}
+
+.ownership-period {
+  font-size: 0.78rem;
+  color: #aaa;
+}
+
+.badge-faction         { background: #f0ede8; color: #6b5a3a; }
+.badge-event-canonical { background: #e8f0e8; color: #3a6b3a; }
+.badge-event-implied   { background: #f0ede8; color: #6b5a3a; }
+.badge-event-disputed  { background: #f0e8e8; color: #7a2a2a; }
+.badge-rel-ally        { background: #e8f0e8; color: #3a6b3a; }
+.badge-rel-enemy       { background: #f0e8e8; color: #7a2a2a; }
+.badge-rel-family      { background: #e8eaf0; color: #3a4a7a; }
+.badge-rel-romantic    { background: #f0e8f0; color: #6a3a6a; }
+.badge-rel-mentor      { background: #f0ede8; color: #6b5a3a; }
+.badge-rel-professional{ background: #ececec; color: #555; }
+.badge-rel-other       { background: #ececec; color: #666; }
+
 /* --- Utility --- */
 .series-label {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
