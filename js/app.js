@@ -21,6 +21,14 @@ const ENTITY_TYPES = [
   { key: 'relationships', label: 'Relationships', singular: 'Relationship'},
 ];
 
+// ── HTML escape utility ───────────────────────────────────────────────────────
+
+function esc(s) {
+  const d = document.createElement('div');
+  d.textContent = s;
+  return d.innerHTML;
+}
+
 // ── Routing ──────────────────────────────────────────────────────────────────
 
 function parseRoute() {
@@ -44,7 +52,8 @@ async function onRouteChange() {
   try {
     await LoreLoader.load();
   } catch (err) {
-    content.innerHTML = `<p class="state-error">Failed to load data: ${err.message}</p>`;
+    console.error('Data load failed:', err);
+    content.innerHTML = '<p class="state-error">Failed to load data. Please try refreshing the page.</p>';
     return;
   }
 
@@ -89,8 +98,8 @@ function renderHome(container) {
 
   for (const s of series) {
     html += `<div class="series-section">`;
-    html += `<h2><span class="series-label">Universe</span> &nbsp;${s.name}</h2>`;
-    html += `<p style="font-size:0.9rem;color:#666;margin-bottom:1.25rem;font-family:sans-serif;">${s.description}</p>`;
+    html += `<h2><span class="series-label">Universe</span> &nbsp;${esc(s.name)}</h2>`;
+    html += `<p style="font-size:0.9rem;color:#666;margin-bottom:1.25rem;font-family:sans-serif;">${esc(s.description)}</p>`;
     html += `<div class="entity-type-grid">`;
 
     for (const et of ENTITY_TYPES) {
@@ -125,7 +134,7 @@ function renderEntityList(container, seriesId, entityType) {
   let html = `
     <div class="page-header">
       <div class="breadcrumb">
-        <a href="#/">Home</a> &rsaquo; <span class="series-label">${series.name}</span> &rsaquo; ${etConfig.label}
+        <a href="#/">Home</a> &rsaquo; <span class="series-label">${esc(series.name)}</span> &rsaquo; ${etConfig.label}
       </div>
       <h1>${etConfig.label}</h1>
     </div>
@@ -152,8 +161,8 @@ function renderEntityListItem(entity, entityType, seriesId) {
 
   return `
     <a class="entity-list-item" href="${href}">
-      <span class="item-name">${name}${badge}</span>
-      <span class="item-meta">${meta}</span>
+      <span class="item-name">${esc(name)}${badge}</span>
+      <span class="item-meta">${esc(meta)}</span>
     </a>
   `;
 }
@@ -174,9 +183,9 @@ function renderEntityDetail(container, seriesId, entityType, id) {
       <div class="breadcrumb">
         <a href="#/">Home</a> &rsaquo;
         <a href="#/${seriesId}/${entityType}">${etConfig ? etConfig.label : entityType}</a> &rsaquo;
-        ${getEntityName(entity, entityType)}
+        ${esc(getEntityName(entity, entityType))}
       </div>
-      <h1>${getEntityName(entity, entityType)}</h1>
+      <h1>${esc(getEntityName(entity, entityType))}</h1>
     </div>
     <p style="color:#888;font-style:italic;font-family:sans-serif;font-size:0.95rem;">
       Full entity detail pages are coming in the next session.
@@ -215,7 +224,7 @@ function formatRelationship(entity) {
   const b = LoreLoader.getById(entity.character_b);
   const nameA = a ? a.name : entity.character_a;
   const nameB = b ? b.name : entity.character_b;
-  return `${nameA} &amp; ${nameB}`;
+  return `${esc(nameA)} &amp; ${esc(nameB)}`;
 }
 
 function getEntityMeta(entity, entityType) {
@@ -245,7 +254,7 @@ function getEntityBadge(entity, entityType) {
   if (entityType === 'characters') {
     if (entity.role) {
       const cls = `badge-${entity.role.replace(/_/g, '-')}`;
-      return `<span class="badge ${cls}">${entity.role.replace(/_/g, ' ')}</span>`;
+      return `<span class="badge ${cls}">${esc(entity.role.replace(/_/g, ' '))}</span>`;
     }
     if (entity.status === 'deceased') {
       return `<span class="badge badge-deceased">deceased</span>`;
