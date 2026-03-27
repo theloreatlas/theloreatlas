@@ -572,7 +572,7 @@ function formatRelationship(entity) {
   const b = LoreLoader.getById(entity.character_b);
   const nameA = a ? a.name : entity.character_a;
   const nameB = b ? b.name : entity.character_b;
-  return `${esc(nameA)} &amp; ${esc(nameB)}`;
+  return `${nameA} & ${nameB}`;
 }
 
 function getEntityMeta(entity, entityType) {
