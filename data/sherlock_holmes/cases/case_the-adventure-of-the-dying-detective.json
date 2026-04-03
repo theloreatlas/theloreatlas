@@ -1,0 +1,23 @@
+{
+  "id": "case_the-adventure-of-the-dying-detective",
+  "series": "sherlock_holmes",
+  "title": "The Adventure of the Dying Detective",
+  "case_nickname": "The Dying Detective",
+  "source_book": "book_his-last-bow",
+  "characters_involved": ["char_sherlock-holmes", "char_john-watson"],
+  "locations": ["loc_221b-baker-street"],
+  "artifacts_involved": [],
+  "timeline_position": { "book": 8, "chapter": 5 },
+  "synopsis": "Mrs. Hudson fetches Watson because Holmes appears to be dying of a rare Asiatic disease contracted during a case in Rotherhithe. Holmes seems delirious, refuses Watson's medical attention, and insists on summoning a specialist named Culverton Smith. Watson is mystified by Holmes's erratic behaviour and curious instructions.",
+  "solution": "Holmes has been feigning illness to lure Culverton Smith, who had murdered his nephew Victor Savage with a poisoned device concealed in a box; Holmes tricks Smith into a confession by allowing him to believe Holmes is dying, while Watson and Inspector Morton are hidden in the room to make the arrest.",
+  "notable_elements": [
+    "Holmes fasts for three days and uses cosmetics — belladonna, rouge, and beeswax — to simulate a dying man",
+    "He deliberately keeps Watson ignorant because Watson cannot dissimulate convincingly",
+    "The trap springs when Smith gloats over Holmes's presumed dying state and confesses",
+    "Features detailed description of Holmes's Baker Street domestic habits and Mrs. Hudson's loyalty"
+  ],
+  "first_mention": { "book": 8, "chapter": 5 },
+  "full_reveal": { "book": 8, "chapter": 5 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

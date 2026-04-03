@@ -1,0 +1,23 @@
+{
+  "id": "case_the-adventure-of-the-norwood-builder",
+  "series": "sherlock_holmes",
+  "title": "The Adventure of the Norwood Builder",
+  "case_nickname": "The Norwood Builder",
+  "source_book": "book_the-return-of-sherlock-holmes",
+  "characters_involved": ["char_sherlock-holmes", "char_john-watson", "char_inspector-lestrade"],
+  "locations": ["loc_221b-baker-street"],
+  "artifacts_involved": [],
+  "timeline_position": { "book": 6, "chapter": 2 },
+  "synopsis": "John Hector McFarlane rushes to Baker Street convinced he is about to be arrested for the murder of Jonas Oldacre, a Norwood builder who had recently made a will in McFarlane's favour. The evidence against McFarlane is overwhelming — blood, a charred mass of remains, and his thumbprint found at the scene — but Holmes suspects a frame-up.",
+  "solution": "Jonas Oldacre faked his own murder to ruin McFarlane, the son of a woman who had once rejected him, and to defraud his creditors; Oldacre had been hiding in a secret room in his own house, and Holmes exposes him by faking a fire alarm that drives him out of hiding.",
+  "notable_elements": [
+    "Holmes deduces that a fresh thumbprint on the wall was planted after the original investigation",
+    "Features Lestrade's premature certainty of McFarlane's guilt contrasted with Holmes's scepticism",
+    "Oldacre is one of the more coldly vindictive villains in the Canon",
+    "The fake murder-suicide scheme anticipates similar plot devices in later detective fiction"
+  ],
+  "first_mention": { "book": 6, "chapter": 2 },
+  "full_reveal": { "book": 6, "chapter": 2 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

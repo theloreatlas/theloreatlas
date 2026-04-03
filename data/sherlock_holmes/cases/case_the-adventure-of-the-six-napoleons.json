@@ -1,0 +1,23 @@
+{
+  "id": "case_the-adventure-of-the-six-napoleons",
+  "series": "sherlock_holmes",
+  "title": "The Adventure of the Six Napoleons",
+  "case_nickname": "The Six Napoleons",
+  "source_book": "book_the-return-of-sherlock-holmes",
+  "characters_involved": ["char_sherlock-holmes", "char_john-watson", "char_inspector-lestrade"],
+  "locations": ["loc_221b-baker-street"],
+  "artifacts_involved": [],
+  "timeline_position": { "book": 6, "chapter": 8 },
+  "synopsis": "Lestrade reports a bizarre case of someone systematically seeking out and smashing plaster busts of Napoleon across London, a crime initially attributed to madness. When the crime escalates to murder — a man found stabbed beside a broken bust — Holmes realises the vandal has a specific purpose and traces the busts to their source.",
+  "solution": "An Italian criminal named Beppo hid the famous Borgia black pearl inside one of six Napoleon busts while they were still drying at the factory; he was imprisoned before he could retrieve it, and upon release he tracked down each bust to find the right one; the murdered man was his confederate who held him responsible for the lost pearl.",
+  "notable_elements": [
+    "Features Lestrade's rare public tribute to Holmes at the story's end",
+    "The Borgia black pearl is a famous gem of historical significance used as a MacGuffin",
+    "Holmes narrows down which bust contains the pearl by systematic elimination",
+    "One of the most celebrated short stories in the Canon for its logical structure"
+  ],
+  "first_mention": { "book": 6, "chapter": 8 },
+  "full_reveal": { "book": 6, "chapter": 8 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

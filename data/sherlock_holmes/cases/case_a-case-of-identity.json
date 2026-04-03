@@ -1,0 +1,23 @@
+{
+  "id": "case_a-case-of-identity",
+  "series": "sherlock_holmes",
+  "title": "A Case of Identity",
+  "case_nickname": null,
+  "source_book": "book_the-adventures-of-sherlock-holmes",
+  "characters_involved": ["char_sherlock-holmes", "char_john-watson"],
+  "locations": ["loc_221b-baker-street"],
+  "artifacts_involved": [],
+  "timeline_position": { "book": 3, "chapter": 3 },
+  "synopsis": "Mary Sutherland consults Holmes about the mysterious disappearance of her fiancé Hosmer Angel, who vanished on their wedding morning. Holmes discerns almost immediately that the courtship and disappearance are entirely contrived, but listens patiently to the full account before revealing his conclusion.",
+  "solution": "Hosmer Angel does not exist — he is Mary's stepfather James Windibank in heavy disguise. Windibank invented the suitor to keep Mary and her income under his control, then staged the disappearance to prevent her from forming any real attachment. Holmes exposes the scheme but cannot legally charge Windibank, whom he sends away with a threat of horsewhipping.",
+  "notable_elements": [
+    "Holmes solves the case entirely by reasoning, without leaving Baker Street",
+    "The villain goes unpunished — one of the few cases with no legal resolution",
+    "Holmes deliberately withholds the solution from the client to spare her feelings",
+    "Features Holmes's typewriter-analysis deduction identifying disguised correspondence"
+  ],
+  "first_mention": { "book": 3, "chapter": 3 },
+  "full_reveal": { "book": 3, "chapter": 3 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

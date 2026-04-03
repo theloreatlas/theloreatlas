@@ -1,0 +1,24 @@
+{
+  "id": "case_the-red-headed-league",
+  "series": "sherlock_holmes",
+  "title": "The Red-Headed League",
+  "case_nickname": "The Red-Headed League",
+  "source_book": "book_the-adventures-of-sherlock-holmes",
+  "characters_involved": ["char_sherlock-holmes", "char_john-watson"],
+  "locations": ["loc_221b-baker-street"],
+  "artifacts_involved": [],
+  "timeline_position": { "book": 3, "chapter": 2 },
+  "synopsis": "Jabez Wilson, a red-headed pawnbroker, consults Holmes about a peculiar organization called the Red-Headed League, which paid him handsomely to copy out the Encyclopaedia Britannica in a Fleet Street office — until it dissolved overnight without explanation. Holmes quickly recognizes the scheme as a ruse designed to keep Wilson away from his shop while his assistant and accomplices tunnel into a nearby bank vault.",
+  "solution": "John Clay and his confederate used the Red-Headed League to occupy Wilson and dig a tunnel from his cellar into the vault of the City and Suburban Bank. Holmes ambushes them in the vault and Clay is arrested, while his confederate escapes. Holmes notes that Clay is the grandson of a royal duke.",
+  "notable_elements": [
+    "One of the most celebrated Holmes short stories",
+    "The elaborate deception of the Red-Headed League as a distraction from a bank robbery",
+    "Holmes deduces the scheme purely from the details of Wilson's account",
+    "Features Holmes's love of music — he attends a Sarasate concert between deductions",
+    "Introduction of John Clay, a gentleman-criminal"
+  ],
+  "first_mention": { "book": 3, "chapter": 2 },
+  "full_reveal": { "book": 3, "chapter": 2 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

@@ -1,0 +1,23 @@
+{
+  "id": "case_the-adventure-of-the-blanched-soldier",
+  "series": "sherlock_holmes",
+  "title": "The Adventure of the Blanched Soldier",
+  "case_nickname": "The Blanched Soldier",
+  "source_book": "book_the-case-book-of-sherlock-holmes",
+  "characters_involved": ["char_sherlock-holmes"],
+  "locations": ["loc_221b-baker-street"],
+  "artifacts_involved": [],
+  "timeline_position": { "book": 9, "chapter": 2 },
+  "synopsis": "James M. Dodd consults Holmes about his friend Godfrey Emsworth, a fellow soldier he served with in the Boer War, who has mysteriously vanished from his family's estate at Tuxbury Old Park. When Dodd visits the estate, he catches a glimpse of a ghostly pale figure — apparently Godfrey — but the family refuses to explain his whereabouts or condition.",
+  "solution": "Godfrey contracted a skin disease resembling leprosy while in South Africa and has been kept in isolation by his family out of shame and fear; a specialist confirms it is not true leprosy but a closely related condition, ichthyosis, which is treatable, resolving the situation.",
+  "notable_elements": [
+    "One of only two stories narrated by Holmes himself rather than Watson",
+    "Holmes opens by praising Watson's usefulness as a sounding board even while gently mocking his literary style",
+    "The story hinges on the fear and stigma of leprosy in Edwardian England",
+    "Features a medical resolution rather than criminal — no villain, only a frightened family"
+  ],
+  "first_mention": { "book": 9, "chapter": 2 },
+  "full_reveal": { "book": 9, "chapter": 2 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

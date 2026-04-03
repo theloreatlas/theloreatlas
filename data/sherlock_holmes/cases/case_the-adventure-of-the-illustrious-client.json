@@ -1,0 +1,23 @@
+{
+  "id": "case_the-adventure-of-the-illustrious-client",
+  "series": "sherlock_holmes",
+  "title": "The Adventure of the Illustrious Client",
+  "case_nickname": "The Illustrious Client",
+  "source_book": "book_the-case-book-of-sherlock-holmes",
+  "characters_involved": ["char_sherlock-holmes", "char_john-watson"],
+  "locations": ["loc_221b-baker-street"],
+  "artifacts_involved": [],
+  "timeline_position": { "book": 9, "chapter": 1 },
+  "synopsis": "A mysterious client acting through an intermediary, Sir James Damery, asks Holmes to prevent the marriage of an English noblewoman, Violet de Merville, to the notorious Austrian adventurer Baron Adelbert Gruner, known to have murdered a previous wife. Holmes must find a way to open Violet's eyes to Gruner's true nature before she marries him.",
+  "solution": "Holmes obtains Gruner's personal diary of his conquests from his Chinese pottery collection with the help of a woman named Kitty Winter, after Holmes is badly beaten by Gruner's thugs; Gruner is disfigured by Kitty Winter who throws vitriol at him; the diary is shown to Violet, breaking her infatuation; Holmes's illustrious client is revealed to be the King himself.",
+  "notable_elements": [
+    "Holmes is seriously assaulted and hospitalised during the investigation",
+    "Features Kitty Winter, one of Gruner's discarded victims, as a key accomplice",
+    "The illustrious client is deliberately kept unnamed, though Watson glimpses a royal crest",
+    "Holmes uses a decoy conversation about Chinese pottery to give himself time to steal the diary"
+  ],
+  "first_mention": { "book": 9, "chapter": 1 },
+  "full_reveal": { "book": 9, "chapter": 1 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

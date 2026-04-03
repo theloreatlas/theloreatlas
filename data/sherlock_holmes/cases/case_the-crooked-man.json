@@ -1,0 +1,24 @@
+{
+  "id": "case_the-crooked-man",
+  "series": "sherlock_holmes",
+  "title": "The Crooked Man",
+  "case_nickname": "The Crooked Man",
+  "source_book": "book_the-memoirs-of-sherlock-holmes",
+  "characters_involved": ["char_sherlock-holmes", "char_john-watson"],
+  "locations": [],
+  "artifacts_involved": [],
+  "timeline_position": { "book": 4, "chapter": 7 },
+  "synopsis": "Holmes investigates the suspicious death of Colonel James Barclay at Aldershot, whose wife Nancy was found in a state of catalepsy beside his body in a locked room. Mrs. Barclay had been seen arguing violently with her husband the same evening after a chance encounter with a mysterious crippled stranger who had followed her home.",
+  "solution": "The crippled stranger is Henry Wood, who served with Barclay in India thirty years earlier; Barclay had betrayed Wood to the enemy to win Nancy for himself, and Wood was enslaved and physically ruined; when Barclay saw Wood alive, he died of apoplexy from shock and guilt; the inquest rules the death natural, and Wood goes free.",
+  "notable_elements": [
+    "The locked-room mystery is solved by a window left open — Wood had escaped that way",
+    "Features a trained mongoose named Teddy as a plot element",
+    "The backstory involves betrayal during the Indian Mutiny",
+    "The allusion to the biblical story of David and Uriah the Hittite runs through the tale",
+    "Ends with no criminal prosecution — Barclay's own guilty conscience was his punishment"
+  ],
+  "first_mention": { "book": 4, "chapter": 7 },
+  "full_reveal": { "book": 4, "chapter": 7 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

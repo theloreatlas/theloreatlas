@@ -1,0 +1,24 @@
+{
+  "id": "case_the-residents-patient",
+  "series": "sherlock_holmes",
+  "title": "The Resident Patient",
+  "case_nickname": "The Resident Patient",
+  "source_book": "book_the-memoirs-of-sherlock-holmes",
+  "characters_involved": ["char_sherlock-holmes", "char_john-watson"],
+  "locations": ["loc_221b-baker-street"],
+  "artifacts_involved": [],
+  "timeline_position": { "book": 4, "chapter": 8 },
+  "synopsis": "Dr. Percy Trevelyan consults Holmes about his strange arrangement with his financial backer, a reclusive man named Blessington who lives as his resident patient. Blessington has been in a state of terror following a break-in at his rooms, and refuses to explain the cause of his fear. When Blessington is found hanged in his room, Holmes must determine whether it is suicide or murder.",
+  "solution": "Blessington was really a criminal named Sutton who had turned informer on the Worthingdon bank gang, sending three men to prison and one to the gallows; the three released convicts — Biddle, Hayward, and Moffat — had tracked him down, held a mock trial in his room, and murdered him to avenge their dead comrade.",
+  "notable_elements": [
+    "A murder staged to look like suicide in a locked room",
+    "Holmes deduces that multiple visitors entered the room by analysing cigar ash and footprints",
+    "The case turns on the concept of criminal vengeance for an informer's betrayal",
+    "Blessington's terror is explained only after his death",
+    "The three killers are presumed to have perished at sea before justice could reach them"
+  ],
+  "first_mention": { "book": 4, "chapter": 8 },
+  "full_reveal": { "book": 4, "chapter": 8 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

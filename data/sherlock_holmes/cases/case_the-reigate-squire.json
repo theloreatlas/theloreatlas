@@ -1,0 +1,23 @@
+{
+  "id": "case_the-reigate-squire",
+  "series": "sherlock_holmes",
+  "title": "The Reigate Squire",
+  "case_nickname": "The Reigate Squire",
+  "source_book": "book_the-memoirs-of-sherlock-holmes",
+  "characters_involved": ["char_sherlock-holmes", "char_john-watson"],
+  "locations": ["loc_221b-baker-street"],
+  "artifacts_involved": [],
+  "timeline_position": { "book": 4, "chapter": 6 },
+  "synopsis": "While recovering from exhaustion at the Surrey home of Watson's friend Colonel Hayter, Holmes is drawn into a local mystery involving a burglary at the house of squire Acton and the subsequent murder of coachman William Kirwan at the Cunningham estate. The torn fragment of a note found clutched in the dead man's hand becomes the key to unravelling the crime.",
+  "solution": "Old Cunningham and his son Alec are responsible; Kirwan had witnessed the Cunninghams committing the burglary at Acton's house and was blackmailing them, so they murdered him under cover of the widespread burglary scare; Holmes exposes them by analysing the handwriting of the note and provoking them into an attack on him.",
+  "notable_elements": [
+    "Holmes solves the case while supposedly recuperating from nervous exhaustion",
+    "Innovative use of handwriting analysis to match the torn note to the Cunninghams",
+    "Holmes feigns a physical fit as a ruse to buy time and redirect suspicion",
+    "The Cunninghams nearly murder Holmes when he retrieves the incriminating note"
+  ],
+  "first_mention": { "book": 4, "chapter": 6 },
+  "full_reveal": { "book": 4, "chapter": 6 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

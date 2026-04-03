@@ -1,0 +1,24 @@
+{
+  "id": "case_the-hound-of-the-baskervilles",
+  "series": "sherlock_holmes",
+  "title": "The Hound of the Baskervilles",
+  "case_nickname": "The Hound",
+  "source_book": "book_the-hound-of-the-baskervilles",
+  "characters_involved": ["char_sherlock-holmes", "char_john-watson"],
+  "locations": ["loc_221b-baker-street", "loc_baskerville-hall"],
+  "artifacts_involved": [],
+  "timeline_position": { "book": 5, "chapter": 1 },
+  "synopsis": "Dr. Mortimer brings Holmes the case of Sir Charles Baskerville, found dead on the moor near his estate with an expression of horror on his face. A legend holds that the Baskerville family is cursed by a spectral hound. Holmes sends Watson to accompany the new heir Sir Henry to Dartmoor while secretly conducting his own investigation on the moor.",
+  "solution": "The hound is real — a large dog painted with phosphorus — and is deployed by Jack Stapleton, a naturalist who is secretly a Baskerville heir seeking to claim the estate. Stapleton starves and controls the hound and drives Sir Charles to a fatal heart attack. Holmes and Watson shoot the hound as it attacks Sir Henry; Stapleton flees into the Grimpen Mire and perishes.",
+  "notable_elements": [
+    "The most celebrated and widely read Sherlock Holmes novel",
+    "Watson acts as the primary field investigator while Holmes operates covertly",
+    "Set largely on Dartmoor amid the Grimpen Mire",
+    "The phosphorus-painted hound — a legendary villain's device",
+    "15 chapters — the longest of the Holmes novels"
+  ],
+  "first_mention": { "book": 5, "chapter": 1 },
+  "full_reveal": { "book": 5, "chapter": 15 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

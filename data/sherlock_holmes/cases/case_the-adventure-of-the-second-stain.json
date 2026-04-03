@@ -1,0 +1,24 @@
+{
+  "id": "case_the-adventure-of-the-second-stain",
+  "series": "sherlock_holmes",
+  "title": "The Adventure of the Second Stain",
+  "case_nickname": "The Second Stain",
+  "source_book": "book_the-return-of-sherlock-holmes",
+  "characters_involved": ["char_sherlock-holmes", "char_john-watson", "char_inspector-lestrade"],
+  "locations": ["loc_221b-baker-street"],
+  "artifacts_involved": [],
+  "timeline_position": { "book": 6, "chapter": 13 },
+  "synopsis": "The Prime Minister and the Secretary for European Affairs consult Holmes in the utmost secrecy: a sensitive diplomatic letter has been stolen from a locked despatch-box, and its publication could provoke a war. The spy Eduardo Lucas is murdered the same night, leading Holmes to investigate both crimes simultaneously.",
+  "solution": "Lady Hilda Trelawney Hope, the Secretary's wife, stole the letter under blackmail by Lucas, who held an incriminating letter from her past; after Lucas was killed by his wife, Lady Hilda secretly recovered the diplomatic letter from his room and hid it under her drawing-room carpet; Holmes confronts her and replaces the letter before her husband discovers the theft.",
+  "notable_elements": [
+    "One of the Canon's great international espionage cases involving a threat of war",
+    "Watson notes this was originally considered too sensitive to publish",
+    "The second stain on the carpet shows where the letter was hidden, giving the case its title",
+    "Holmes protects Lady Hilda's secret to preserve her marriage, a quietly compassionate act",
+    "Intended by Watson as a fitting final adventure for the Return collection"
+  ],
+  "first_mention": { "book": 6, "chapter": 13 },
+  "full_reveal": { "book": 6, "chapter": 13 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

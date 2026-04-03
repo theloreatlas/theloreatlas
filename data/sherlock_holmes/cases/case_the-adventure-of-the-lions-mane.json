@@ -1,0 +1,23 @@
+{
+  "id": "case_the-adventure-of-the-lions-mane",
+  "series": "sherlock_holmes",
+  "title": "The Adventure of the Lion's Mane",
+  "case_nickname": "The Lion's Mane",
+  "source_book": "book_the-case-book-of-sherlock-holmes",
+  "characters_involved": ["char_sherlock-holmes"],
+  "locations": [],
+  "artifacts_involved": [],
+  "timeline_position": { "book": 9, "chapter": 9 },
+  "synopsis": "Holmes, now retired to the Sussex Downs and keeping bees, witnesses the death of science master Fitzroy McPherson, who staggers to the top of a cliff crying 'Lion's Mane' before dying of mysterious whip-like wounds. When a second man is found similarly injured, Holmes must solve the case without Watson's assistance.",
+  "solution": "The killer is Cyanea capillata — the lion's mane jellyfish — whose tentacles leave precisely the pattern of welts found on the victims; McPherson and the dog that also died had both swum in a pool where a large specimen was lurking; the jellyfish is found and destroyed in the pool.",
+  "notable_elements": [
+    "The second story narrated by Holmes himself (with Watson absent in retirement)",
+    "Set after Holmes has retired to the Sussex Downs — one of the latest-set stories in the Canon",
+    "Features a non-human, non-criminal 'culprit' — a rare example of a fatal natural cause",
+    "Holmes blames himself for not recognising the clue sooner, despite its obscure nature"
+  ],
+  "first_mention": { "book": 9, "chapter": 9 },
+  "full_reveal": { "book": 9, "chapter": 9 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

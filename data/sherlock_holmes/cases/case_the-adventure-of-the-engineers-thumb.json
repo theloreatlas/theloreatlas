@@ -1,0 +1,23 @@
+{
+  "id": "case_the-adventure-of-the-engineers-thumb",
+  "series": "sherlock_holmes",
+  "title": "The Adventure of the Engineer's Thumb",
+  "case_nickname": "The Engineer's Thumb",
+  "source_book": "book_the-adventures-of-sherlock-holmes",
+  "characters_involved": ["char_sherlock-holmes", "char_john-watson", "char_inspector-lestrade"],
+  "locations": ["loc_221b-baker-street"],
+  "artifacts_involved": [],
+  "timeline_position": { "book": 3, "chapter": 9 },
+  "synopsis": "Watson brings a new client to Holmes: hydraulic engineer Victor Hatherley, who has just had his thumb severed and escaped from a remote country house. Hatherley was hired at suspiciously high pay to repair a hydraulic press, only to discover it was part of a counterfeiting operation. When he threatened to expose them, the gang tried to kill him using the press itself.",
+  "solution": "The gang was using a large hydraulic press to coin counterfeit currency. Colonel Lysander Stark led the operation, assisted by a German confederate. They attempt to crush Hatherley in the press, but a woman in the house helps him escape through a window — at the cost of his thumb. The gang escapes and the house burns down, leaving no arrests.",
+  "notable_elements": [
+    "One of the rare Holmes stories narrated through a third-party client's adventure",
+    "A hydraulic press as the murder weapon",
+    "The villains escape entirely — another incomplete resolution",
+    "A sympathetic female accomplice helps the victim escape"
+  ],
+  "first_mention": { "book": 3, "chapter": 9 },
+  "full_reveal": { "book": 3, "chapter": 9 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

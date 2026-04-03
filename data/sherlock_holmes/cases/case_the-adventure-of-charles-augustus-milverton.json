@@ -1,0 +1,23 @@
+{
+  "id": "case_the-adventure-of-charles-augustus-milverton",
+  "series": "sherlock_holmes",
+  "title": "The Adventure of Charles Augustus Milverton",
+  "case_nickname": "Charles Augustus Milverton",
+  "source_book": "book_the-return-of-sherlock-holmes",
+  "characters_involved": ["char_sherlock-holmes", "char_john-watson"],
+  "locations": ["loc_221b-baker-street"],
+  "artifacts_involved": [],
+  "timeline_position": { "book": 6, "chapter": 7 },
+  "synopsis": "Charles Augustus Milverton, described by Holmes as the worst man in London, is a blackmailer who holds compromising letters belonging to a young noblewoman. When negotiations fail and Holmes cannot recover the letters by legitimate means, he and Watson disguise themselves and burgle Milverton's house — only to witness an unexpected killing.",
+  "solution": "While Holmes and Watson hide in Milverton's study during their burglary, a woman whose husband was ruined by Milverton arrives and shoots him dead; Holmes refuses to assist the police investigation, considering Milverton's death a justified act of private vengeance; the woman's identity is hinted at by her resemblance to a famous noblewoman's portrait.",
+  "notable_elements": [
+    "Holmes and Watson commit an actual burglary — one of the most morally complex acts in the Canon",
+    "Holmes becomes secretly engaged to Milverton's housemaid to gather intelligence, which Watson finds distasteful",
+    "The true killer is never named — Holmes refuses to hand her to the police",
+    "Holmes describes Milverton as worse than any murderer, as blackmailers cause indirect deaths"
+  ],
+  "first_mention": { "book": 6, "chapter": 7 },
+  "full_reveal": { "book": 6, "chapter": 7 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

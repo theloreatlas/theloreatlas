@@ -1,0 +1,24 @@
+{
+  "id": "case_the-valley-of-fear",
+  "series": "sherlock_holmes",
+  "title": "The Valley of Fear",
+  "case_nickname": "The Birlstone Mystery",
+  "source_book": "book_the-valley-of-fear",
+  "characters_involved": ["char_sherlock-holmes", "char_john-watson", "char_inspector-lestrade", "char_professor-moriarty"],
+  "locations": ["loc_221b-baker-street"],
+  "artifacts_involved": [],
+  "timeline_position": { "book": 7, "chapter": 1 },
+  "synopsis": "Holmes receives a coded warning from a Moriarty agent and investigates the apparent murder of John Douglas at Birlstone Manor — the victim found shot and disfigured beyond recognition. Part Two reveals Douglas's American past as Birdy Edwards, a Pinkerton detective who infiltrated the violent Scowrers gang in the Pennsylvania coalfields and faked his own death to escape them.",
+  "solution": "John Douglas is not dead — he killed his would-be assassin Ted Baldwin, substituted the body, and hid in the manor. Holmes deduces the substitution but allows Douglas to disappear. The epilogue reveals Douglas was later tracked down by Moriarty's agents and killed at sea, and that Moriarty was behind the Scowrers all along.",
+  "notable_elements": [
+    "Two-part structure: Part I in England, Part II in Pennsylvania coal country",
+    "Moriarty mentioned as the spider behind the plot, though never appearing directly",
+    "Based partly on the real Molly Maguires labor conflicts",
+    "Holmes solves the case but cannot save Douglas in the end",
+    "The last Holmes novel Doyle completed"
+  ],
+  "first_mention": { "book": 7, "chapter": 1 },
+  "full_reveal": { "book": 7, "chapter": 7 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

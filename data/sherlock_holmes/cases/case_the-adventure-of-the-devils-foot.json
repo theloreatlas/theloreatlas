@@ -1,0 +1,23 @@
+{
+  "id": "case_the-adventure-of-the-devils-foot",
+  "series": "sherlock_holmes",
+  "title": "The Adventure of the Devil's Foot",
+  "case_nickname": "The Devil's Foot",
+  "source_book": "book_his-last-bow",
+  "characters_involved": ["char_sherlock-holmes", "char_john-watson"],
+  "locations": [],
+  "artifacts_involved": [],
+  "timeline_position": { "book": 8, "chapter": 7 },
+  "synopsis": "While Holmes is recuperating in Cornwall on doctor's orders, he is drawn into a local tragedy: the Tregennis family is found in their sitting room in a state of madness or death, having apparently been terrified into insanity overnight. The only substance found at the scene is the remains of some burned powder in the lamp.",
+  "solution": "Mortimer Tregennis poisoned his siblings using devil's-foot root, a rare West African drug that induces terror and madness, obtained from the explorer Dr. Leon Sterndale; Tregennis wanted to gain sole control of the family property; Sterndale in turn executes Tregennis using the same poison in revenge for the death of Brenda, the woman he loved, and Holmes lets him go.",
+  "notable_elements": [
+    "Holmes and Watson nearly kill themselves when Holmes experiments with the devil's-foot powder",
+    "The Cornish setting — remote, atmospheric, with prehistoric standing stones — is atmospheric and unusual",
+    "Holmes allows a killer to go free for the second time in the Canon, citing the justice of the revenge",
+    "Features one of Holmes's most candid moments: he implies he would have done the same in Sterndale's place"
+  ],
+  "first_mention": { "book": 8, "chapter": 7 },
+  "full_reveal": { "book": 8, "chapter": 7 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

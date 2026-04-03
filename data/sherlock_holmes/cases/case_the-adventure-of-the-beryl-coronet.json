@@ -1,0 +1,23 @@
+{
+  "id": "case_the-adventure-of-the-beryl-coronet",
+  "series": "sherlock_holmes",
+  "title": "The Adventure of the Beryl Coronet",
+  "case_nickname": "The Beryl Coronet",
+  "source_book": "book_the-adventures-of-sherlock-holmes",
+  "characters_involved": ["char_sherlock-holmes", "char_john-watson"],
+  "locations": ["loc_221b-baker-street"],
+  "artifacts_involved": [],
+  "timeline_position": { "book": 3, "chapter": 11 },
+  "synopsis": "Banker Alexander Holder rushes to Baker Street in agitation: he had taken the famous Beryl Coronet as security for a large loan, but found his son Arthur bending it and breaking off three beryls. Arthur refuses to explain himself and is arrested; Holder is desperate to recover the missing stones before the scandal ruins him.",
+  "solution": "Arthur was trying to wrest the coronet from the actual thief, his cousin Sir George Burnwell, who had seduced his niece Mary into helping him steal it. Arthur's silence was to protect Mary, whom he loved. Holmes recovers the missing beryls by tracking down Burnwell, and Holder's faith in his son is entirely misplaced guilt.",
+  "notable_elements": [
+    "A wrongly accused son protected by his own silence",
+    "Holmes purchases the stolen gems back from the criminal",
+    "Themes of misplaced trust within a family",
+    "Arthur's self-sacrifice for love makes him one of the more sympathetic secondary characters"
+  ],
+  "first_mention": { "book": 3, "chapter": 11 },
+  "full_reveal": { "book": 3, "chapter": 11 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

@@ -1,0 +1,23 @@
+{
+  "id": "case_the-adventure-of-the-three-gables",
+  "series": "sherlock_holmes",
+  "title": "The Adventure of the Three Gables",
+  "case_nickname": "The Three Gables",
+  "source_book": "book_the-case-book-of-sherlock-holmes",
+  "characters_involved": ["char_sherlock-holmes", "char_john-watson"],
+  "locations": ["loc_221b-baker-street"],
+  "artifacts_involved": [],
+  "timeline_position": { "book": 9, "chapter": 4 },
+  "synopsis": "An elderly widow, Mrs. Maberley, has received an extraordinary offer to buy her house at Three Gables in Harrow, complete with all its contents. Holmes is also warned off the case by a threatening visit from a bruiser named Steve Dixie. Holmes connects the affair to a wealthy socialite, Isadora Klein, and a manuscript written by her late lover.",
+  "solution": "Isadora Klein arranged for Mrs. Maberley's house to be acquired — and her belongings to be stolen — to suppress a compromising manuscript written by her deceased young lover Douglas Maberley, who had recorded their affair; Holmes forces Klein to pay five thousand pounds to Mrs. Maberley in compensation.",
+  "notable_elements": [
+    "Holmes is threatened in his own rooms at the outset, which he dismisses with characteristic coolness",
+    "Features Holmes compelling a financial settlement rather than a criminal prosecution",
+    "Isadora Klein is one of the few antagonists to escape legal consequences entirely",
+    "The manuscript as a dangerous document echoes the theme of Milverton's compromising letters"
+  ],
+  "first_mention": { "book": 9, "chapter": 4 },
+  "full_reveal": { "book": 9, "chapter": 4 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

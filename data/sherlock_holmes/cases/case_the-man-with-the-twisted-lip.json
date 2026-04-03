@@ -1,0 +1,23 @@
+{
+  "id": "case_the-man-with-the-twisted-lip",
+  "series": "sherlock_holmes",
+  "title": "The Man with the Twisted Lip",
+  "case_nickname": "The Man with the Twisted Lip",
+  "source_book": "book_the-adventures-of-sherlock-holmes",
+  "characters_involved": ["char_sherlock-holmes", "char_john-watson"],
+  "locations": ["loc_221b-baker-street"],
+  "artifacts_involved": [],
+  "timeline_position": { "book": 3, "chapter": 6 },
+  "synopsis": "Watson is called to retrieve a friend from an opium den and encounters Holmes there in disguise, investigating the disappearance of Neville St. Clair. St. Clair was last seen at a window above a beggar's den in Upper Swandam Lane; his coat was found in the Thames weighted with coins, but his body was never recovered.",
+  "solution": "Neville St. Clair and the disfigured beggar Hugh Boone are the same person. St. Clair had discovered years ago that he could earn far more as a professional beggar than as a journalist, and has lived a double life ever since. He is found alive, having retreated into his beggar persona to avoid being seen — his wife agrees to keep the secret.",
+  "notable_elements": [
+    "Holmes in disguise in an opium den",
+    "The twist: no crime has been committed — the missing man chose his disappearance",
+    "Victorian commentary on poverty, disguise, and social class",
+    "Watson's famous confusion of Holmes in disguise among the opium smokers"
+  ],
+  "first_mention": { "book": 3, "chapter": 6 },
+  "full_reveal": { "book": 3, "chapter": 6 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

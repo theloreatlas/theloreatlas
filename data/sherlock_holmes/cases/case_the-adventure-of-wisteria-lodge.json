@@ -1,0 +1,23 @@
+{
+  "id": "case_the-adventure-of-wisteria-lodge",
+  "series": "sherlock_holmes",
+  "title": "The Adventure of Wisteria Lodge",
+  "case_nickname": "Wisteria Lodge",
+  "source_book": "book_his-last-bow",
+  "characters_involved": ["char_sherlock-holmes", "char_john-watson"],
+  "locations": ["loc_221b-baker-street"],
+  "artifacts_involved": [],
+  "timeline_position": { "book": 8, "chapter": 1 },
+  "synopsis": "John Scott Eccles consults Holmes after a bizarre experience: he spent the night at Wisteria Lodge near Esher at the invitation of an acquaintance named Garcia, only to wake and find the house completely deserted. Holmes links this to the discovery of Garcia's murdered body on Oxshott Common, and Inspector Baynes of the Surrey police becomes an unexpectedly capable collaborator.",
+  "solution": "Garcia was plotting revenge against Don Murillo, the Tiger of San Pedro — a deposed Central American dictator living in England under a false identity; Garcia was killed by Murillo's agents before he could strike; Holmes identifies Murillo at High Gable, but the villain escapes to Spain where he is eventually murdered.",
+  "notable_elements": [
+    "Features a gruesome voodoo kitchen with animal sacrifices that provide key evidence",
+    "Inspector Baynes is one of the few police officers portrayed as a genuine peer to Holmes",
+    "Holmes admits the case is chaotic and unusually difficult to wrap into a neat solution",
+    "The story is set partly in the Caribbean and South American political backstory"
+  ],
+  "first_mention": { "book": 8, "chapter": 1 },
+  "full_reveal": { "book": 8, "chapter": 1 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

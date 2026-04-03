@@ -1,0 +1,23 @@
+{
+  "id": "case_the-adventure-of-black-peter",
+  "series": "sherlock_holmes",
+  "title": "The Adventure of Black Peter",
+  "case_nickname": "Black Peter",
+  "source_book": "book_the-return-of-sherlock-holmes",
+  "characters_involved": ["char_sherlock-holmes", "char_john-watson"],
+  "locations": ["loc_221b-baker-street"],
+  "artifacts_involved": [],
+  "timeline_position": { "book": 6, "chapter": 6 },
+  "synopsis": "Captain Peter Carey, known as Black Peter for his violent temper, is found harpooned through the chest in his isolated outhouse in Woodman's Lee. A young stockbroker named John Neligan is found lurking near the scene, apparently connected to a missing notebook, and is arrested. Holmes works the case in disguise under the alias Captain Basil.",
+  "solution": "Patrick Cairns, a harpooner who had served on the Sea Unicorn with Black Peter, killed Carey when Carey refused to share the proceeds of a blackmail plot over the Sea Unicorn's log; Holmes baits a trap by advertising for harpooners seeking Arctic employment, luring Cairns to Baker Street where he is arrested.",
+  "notable_elements": [
+    "Holmes tests whether a man could drive a harpoon through a pig's carcass to establish the strength required",
+    "Holmes operates in disguise as Captain Basil for days before Watson realises",
+    "The Sea Unicorn log documents a murder and insurance fraud Carey had been profiting from",
+    "Neligan is cleared — he was searching for his father's bonds that Black Peter had stolen years earlier"
+  ],
+  "first_mention": { "book": 6, "chapter": 6 },
+  "full_reveal": { "book": 6, "chapter": 6 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

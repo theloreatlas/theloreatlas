@@ -1,0 +1,23 @@
+{
+  "id": "case_the-adventure-of-the-solitary-cyclist",
+  "series": "sherlock_holmes",
+  "title": "The Adventure of the Solitary Cyclist",
+  "case_nickname": "The Solitary Cyclist",
+  "source_book": "book_the-return-of-sherlock-holmes",
+  "characters_involved": ["char_sherlock-holmes", "char_john-watson"],
+  "locations": ["loc_221b-baker-street"],
+  "artifacts_involved": [],
+  "timeline_position": { "book": 6, "chapter": 4 },
+  "synopsis": "Violet Smith, a music teacher, consults Holmes about a mysterious man on a bicycle who follows her every Saturday as she rides to and from her remote teaching post at Charlington. Her employer, Mr. Carruthers, and his associate Woodley have both shown an unsettling interest in her, and she fears for her safety.",
+  "solution": "Woodley and Williamson (a defrocked clergyman posing as a farmer) conspire to kidnap Violet and force her into a sham marriage, intending to claim her inheritance from a South African uncle; Holmes and Watson arrive just in time, Woodley is beaten, and the forced marriage is declared void.",
+  "notable_elements": [
+    "The solitary cyclist following Violet turns out to be Carruthers, watching over her protectively",
+    "Features a forced marriage conducted by a defrocked clergyman — a legally invalid ceremony",
+    "Holmes sends Watson ahead and is critical of his handling of the preliminary investigation",
+    "One of the few stories where a female client is in direct physical danger throughout"
+  ],
+  "first_mention": { "book": 6, "chapter": 4 },
+  "full_reveal": { "book": 6, "chapter": 4 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

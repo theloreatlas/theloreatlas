@@ -1,0 +1,23 @@
+{
+  "id": "case_the-adventure-of-the-creeping-man",
+  "series": "sherlock_holmes",
+  "title": "The Adventure of the Creeping Man",
+  "case_nickname": "The Creeping Man",
+  "source_book": "book_the-case-book-of-sherlock-holmes",
+  "characters_involved": ["char_sherlock-holmes", "char_john-watson"],
+  "locations": ["loc_221b-baker-street"],
+  "artifacts_involved": [],
+  "timeline_position": { "book": 9, "chapter": 8 },
+  "synopsis": "Professor Presbury, a distinguished biologist at a university, has been behaving strangely since becoming engaged to a woman half his age — prowling at night, climbing the ivy on his house, and attacking his own dog. His assistant Bennett brings the case to Holmes, who traces a mysterious correspondence from Prague.",
+  "solution": "Professor Presbury has been injecting himself with a serum derived from langur monkeys — obtained from a Prague scientist named Lowenstein — in an attempt to restore his youth and vitality for his young fiancee; the injections are causing him to temporarily revert to ape-like behaviour.",
+  "notable_elements": [
+    "One of the most science-fiction-adjacent stories in the Canon, anticipating themes of body modification",
+    "Holmes links the case to his monograph on the uses of dogs — his dog Roy's behaviour was the first clue",
+    "The story is set shortly before Holmes's retirement from practice",
+    "Raises ethical questions about the limits of science in the pursuit of youth and love"
+  ],
+  "first_mention": { "book": 9, "chapter": 8 },
+  "full_reveal": { "book": 9, "chapter": 8 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

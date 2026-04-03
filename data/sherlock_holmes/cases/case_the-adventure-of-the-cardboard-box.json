@@ -1,0 +1,23 @@
+{
+  "id": "case_the-adventure-of-the-cardboard-box",
+  "series": "sherlock_holmes",
+  "title": "The Adventure of the Cardboard Box",
+  "case_nickname": "The Cardboard Box",
+  "source_book": "book_his-last-bow",
+  "characters_involved": ["char_sherlock-holmes", "char_john-watson"],
+  "locations": ["loc_221b-baker-street"],
+  "artifacts_involved": [],
+  "timeline_position": { "book": 8, "chapter": 2 },
+  "synopsis": "Miss Susan Cushing of Croydon receives a cardboard box in the post containing two severed human ears packed in salt. Inspector Lestrade suspects it is a medical students' prank directed at her from some other address, but Holmes finds the packaging and the ears themselves evidence of a more sinister crime.",
+  "solution": "Jim Browner, a sailor and Susan's brother-in-law, murdered his wife Mary and her lover Fairbairn in a fit of jealous rage during a boat trip on the Mersey, sinking the bodies and sending the ears to Susan, whom he blamed for engineering the affair; Browner confesses fully and is arrested.",
+  "notable_elements": [
+    "Contains one of Holmes's most famous demonstrations of reading Watson's unspoken thoughts",
+    "The case turns on Holmes's observation that two ears were cut from different heads — left and right — ruling out a single victim",
+    "Holmes traces the string and packaging to establish the box's origin",
+    "Originally suppressed from certain editions of the Memoirs due to its violent subject matter"
+  ],
+  "first_mention": { "book": 8, "chapter": 2 },
+  "full_reveal": { "book": 8, "chapter": 2 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

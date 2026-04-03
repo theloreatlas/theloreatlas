@@ -1,0 +1,23 @@
+{
+  "id": "case_the-adventure-of-the-three-students",
+  "series": "sherlock_holmes",
+  "title": "The Adventure of the Three Students",
+  "case_nickname": "The Three Students",
+  "source_book": "book_the-return-of-sherlock-holmes",
+  "characters_involved": ["char_sherlock-holmes", "char_john-watson"],
+  "locations": [],
+  "artifacts_involved": [],
+  "timeline_position": { "book": 6, "chapter": 9 },
+  "synopsis": "Hilton Soames, a lecturer at St. Luke's College in an unnamed university town, consults Holmes after discovering that someone has broken into his study and copied part of the forthcoming examination paper for the Fortescue Scholarship. Only three students had opportunity, and Holmes must identify the culprit before the examination takes place.",
+  "solution": "Gilchrist, the most athletic and capable of the three students, broke in and copied the paper; he was discovered because he had tracked in clay from the long-jump pit on Soames's floor, and left a distinctive scratch on a chair when jumping out; overcome with remorse, he confesses and withdraws from the examination voluntarily.",
+  "notable_elements": [
+    "A case involving academic dishonesty rather than violent crime",
+    "Holmes deduces the culprit from a small pellet of clay and a scratch on a chair",
+    "The college setting is deliberately kept vague to avoid identifying real institutions",
+    "One of only a few stories set outside London or its immediate environs"
+  ],
+  "first_mention": { "book": 6, "chapter": 9 },
+  "full_reveal": { "book": 6, "chapter": 9 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

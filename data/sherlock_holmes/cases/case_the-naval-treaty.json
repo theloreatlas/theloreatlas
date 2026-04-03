@@ -1,0 +1,24 @@
+{
+  "id": "case_the-naval-treaty",
+  "series": "sherlock_holmes",
+  "title": "The Naval Treaty",
+  "case_nickname": "The Naval Treaty",
+  "source_book": "book_the-memoirs-of-sherlock-holmes",
+  "characters_involved": ["char_sherlock-holmes", "char_john-watson"],
+  "locations": ["loc_221b-baker-street"],
+  "artifacts_involved": [],
+  "timeline_position": { "book": 4, "chapter": 10 },
+  "synopsis": "Percy Phelps, a Foreign Office clerk and Watson's old schoolfellow, appeals to Holmes after a confidential naval treaty he was charged with copying disappears from his office desk. The theft had caused Phelps to suffer a nine-week nervous breakdown, and he fears the document has fallen into foreign hands with serious consequences for England.",
+  "solution": "Joseph Harrison, the brother of Phelps's fiancée Annie, stole the treaty opportunistically when he visited the Foreign Office; he concealed it at Phelps's own house in Woking, intending to sell it to a foreign power, but Holmes tracks the hiding place, allows Harrison to retrieve it from concealment, and recovers it, restoring Phelps's career.",
+  "notable_elements": [
+    "The treaty is hidden in plain sight within the room of the victim himself",
+    "Holmes uses the ruse of a covered dish at breakfast to dramatically produce the recovered treaty",
+    "The theft was a crime of pure opportunism rather than a planned espionage operation",
+    "One of the longer stories in the Memoirs, originally published in two parts",
+    "Notable for Holmes's famous paean to the beauty of a rose as an example of natural design"
+  ],
+  "first_mention": { "book": 4, "chapter": 10 },
+  "full_reveal": { "book": 4, "chapter": 10 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

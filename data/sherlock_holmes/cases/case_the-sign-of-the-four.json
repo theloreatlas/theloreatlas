@@ -1,0 +1,24 @@
+{
+  "id": "case_the-sign-of-the-four",
+  "series": "sherlock_holmes",
+  "title": "The Sign of the Four",
+  "case_nickname": "The Agra Treasure Case",
+  "source_book": "book_the-sign-of-the-four",
+  "characters_involved": ["char_sherlock-holmes", "char_john-watson"],
+  "locations": ["loc_221b-baker-street"],
+  "artifacts_involved": ["artifact_agra-treasure"],
+  "timeline_position": { "book": 2, "chapter": 1 },
+  "synopsis": "Mary Morstan enlists Holmes after receiving a series of mysterious pearls and a note summoning her to a secret meeting. Holmes and Watson accompany her and learn of the Agra treasure — a vast hoard of Indian jewels linked to a pact between four convicts. When their contact Bartholomew Sholto is found murdered and the treasure stolen, Holmes pursues the killer across the Thames in a famous steam-launch chase.",
+  "solution": "Jonathan Small, one of the four original conspirators, committed the murder with the help of his Andaman Islander companion Tonga. Small is captured on the Thames but throws the Agra treasure into the river rather than let it fall to the Sholto family. Watson and Mary Morstan become engaged in the aftermath.",
+  "notable_elements": [
+    "Introduction of Mary Morstan, who becomes Watson's wife",
+    "The Agra treasure — jewels from an Indian mutiny-era heist",
+    "Famous Thames steam-launch chase",
+    "Holmes's cocaine use addressed directly by Watson",
+    "Jonathan Small's backstory told in a lengthy confession spanning two chapters"
+  ],
+  "first_mention": { "book": 2, "chapter": 1 },
+  "full_reveal": { "book": 2, "chapter": 12 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

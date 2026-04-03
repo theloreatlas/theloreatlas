@@ -1,0 +1,24 @@
+{
+  "id": "case_the-greek-interpreter",
+  "series": "sherlock_holmes",
+  "title": "The Greek Interpreter",
+  "case_nickname": "The Greek Interpreter",
+  "source_book": "book_the-memoirs-of-sherlock-holmes",
+  "characters_involved": ["char_sherlock-holmes", "char_john-watson", "char_mycroft-holmes"],
+  "locations": ["loc_221b-baker-street"],
+  "artifacts_involved": [],
+  "timeline_position": { "book": 4, "chapter": 9 },
+  "synopsis": "Mycroft Holmes, Sherlock's elder brother, brings a case involving a Greek interpreter named Mr. Melas who was blindfolded and taken to a country house where he was forced to interpret for a mysterious prisoner. Melas managed to pass a hidden message to the prisoner, who is being starved and coerced by two criminals into signing away property rights.",
+  "solution": "Harold Latimer and Wilson Kemp are holding a young Greek man named Paul Kratides prisoner and using his captive sister Sophy to extort his property; Holmes and Mycroft rescue Melas, who is nearly killed with charcoal fumes, though Kratides dies; the villains later perish in Europe, apparently killed by Sophy in revenge.",
+  "notable_elements": [
+    "First introduction of Mycroft Holmes to both Watson and the reader",
+    "Mycroft is described as Holmes's intellectual superior, though he lacks the energy to act on his deductions",
+    "The Diogenes Club — where members are forbidden to speak — is introduced",
+    "Features one of the canon's earliest examples of a newspaper advertisement used as a covert communication",
+    "The story ends with the villains receiving poetic justice abroad, hinted to be at Sophy's hands"
+  ],
+  "first_mention": { "book": 4, "chapter": 9 },
+  "full_reveal": { "book": 4, "chapter": 9 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

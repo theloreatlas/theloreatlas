@@ -1,0 +1,23 @@
+{
+  "id": "case_the-adventure-of-the-noble-bachelor",
+  "series": "sherlock_holmes",
+  "title": "The Adventure of the Noble Bachelor",
+  "case_nickname": "The Noble Bachelor",
+  "source_book": "book_the-adventures-of-sherlock-holmes",
+  "characters_involved": ["char_sherlock-holmes", "char_john-watson"],
+  "locations": ["loc_221b-baker-street"],
+  "artifacts_involved": [],
+  "timeline_position": { "book": 3, "chapter": 10 },
+  "synopsis": "Lord St. Simon consults Holmes after his American bride Hatty Doran vanished from their wedding reception immediately after the ceremony. A wedding guest claims to have seen the bride speaking privately with a strange man before she left; her wedding dress is found floating in the Serpentine.",
+  "solution": "Hatty Doran had secretly married Francis Moulton in America years earlier, believing him dead in a mining accident. When Moulton appeared at the wedding, she recognized him and slipped away to reunite with her lawful husband. Holmes traces the pair and arranges a meeting with Lord St. Simon, who departs indignantly rather than accepting the situation graciously.",
+  "notable_elements": [
+    "A comic tone — Holmes and Watson are amused by the aristocrat's indignation",
+    "Holmes's commentary on the difference between American and English attitudes",
+    "No crime committed — the mystery resolves through bigamy rather than villainy",
+    "Holmes arranges an unconventional dinner-table confrontation"
+  ],
+  "first_mention": { "book": 3, "chapter": 10 },
+  "full_reveal": { "book": 3, "chapter": 10 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

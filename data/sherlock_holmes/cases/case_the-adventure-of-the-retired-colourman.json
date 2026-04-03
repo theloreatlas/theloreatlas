@@ -1,0 +1,23 @@
+{
+  "id": "case_the-adventure-of-the-retired-colourman",
+  "series": "sherlock_holmes",
+  "title": "The Adventure of the Retired Colourman",
+  "case_nickname": "The Retired Colourman",
+  "source_book": "book_the-case-book-of-sherlock-holmes",
+  "characters_involved": ["char_sherlock-holmes", "char_john-watson"],
+  "locations": ["loc_221b-baker-street"],
+  "artifacts_involved": [],
+  "timeline_position": { "book": 9, "chapter": 12 },
+  "synopsis": "Josiah Amberley, a retired paint-box manufacturer, tells Holmes that his much younger wife and his chess-playing friend Dr. Ray Ernest have run off together, taking his life savings. Holmes sends Watson to Amberley's house while he pursues another angle, and the subsequent investigation reveals a far darker truth beneath the apparent case of a faithless wife.",
+  "solution": "Amberley murdered both his wife and Dr. Ernest by locking them in a secret strong-room and flooding it with gas from a concealed pipe; he had invented the story of their elopement to conceal the murders; Holmes proves the murders by finding a message scratched on the wall by one of the dying victims.",
+  "notable_elements": [
+    "Holmes deliberately sends Watson on a distracting errand to test a theory without warning him",
+    "The strong-room disguised as a hobby space is a chillingly mundane murder weapon",
+    "Features Barker, a rival private detective, who independently arrives at the same conclusion as Holmes",
+    "Holmes's opening meditation on the pathos of human existence gives the story an unusually philosophical tone"
+  ],
+  "first_mention": { "book": 9, "chapter": 12 },
+  "full_reveal": { "book": 9, "chapter": 12 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

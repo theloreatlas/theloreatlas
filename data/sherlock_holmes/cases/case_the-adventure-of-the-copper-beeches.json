@@ -1,0 +1,23 @@
+{
+  "id": "case_the-adventure-of-the-copper-beeches",
+  "series": "sherlock_holmes",
+  "title": "The Adventure of the Copper Beeches",
+  "case_nickname": "The Copper Beeches",
+  "source_book": "book_the-adventures-of-sherlock-holmes",
+  "characters_involved": ["char_sherlock-holmes", "char_john-watson"],
+  "locations": ["loc_221b-baker-street"],
+  "artifacts_involved": [],
+  "timeline_position": { "book": 3, "chapter": 12 },
+  "synopsis": "Violet Hunter consults Holmes before accepting an unusually well-paid governess post at Copper Beeches near Winchester, where the eccentric employer Mr. Rucastle demands she cut her hair short and wear specific dresses. Holmes senses danger but cannot dissuade her. When she summons him urgently later, he discovers she has been used as a decoy to keep a prisoner hidden.",
+  "solution": "Rucastle was imprisoning his own daughter Alice, whose fiancé Fowler had been seeking her. He used Violet Hunter — who resembled Alice — to appear at the window and deceive Fowler into thinking Alice was free and uninterested. Holmes and Watson arrive to find Alice has escaped with Fowler, and Rucastle is savagely mauled by his own mastiff.",
+  "notable_elements": [
+    "Closing story of The Adventures — Holmes's dark commentary on the menace of the English countryside",
+    "Violet Hunter is one of Holmes's most capable and self-possessed clients",
+    "The locked room containing Alice Rucastle",
+    "The mastiff as both instrument of terror and poetic retribution"
+  ],
+  "first_mention": { "book": 3, "chapter": 12 },
+  "full_reveal": { "book": 3, "chapter": 12 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

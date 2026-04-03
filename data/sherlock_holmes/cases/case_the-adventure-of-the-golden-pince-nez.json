@@ -1,0 +1,23 @@
+{
+  "id": "case_the-adventure-of-the-golden-pince-nez",
+  "series": "sherlock_holmes",
+  "title": "The Adventure of the Golden Pince-Nez",
+  "case_nickname": "The Golden Pince-Nez",
+  "source_book": "book_the-return-of-sherlock-holmes",
+  "characters_involved": ["char_sherlock-holmes", "char_john-watson"],
+  "locations": ["loc_221b-baker-street"],
+  "artifacts_involved": [],
+  "timeline_position": { "book": 6, "chapter": 10 },
+  "synopsis": "Inspector Stanley Hopkins summons Holmes to Yoxley Old Place in Kent, where young secretary Willoughby Smith has been found stabbed to death. The only clue is a pair of woman's golden pince-nez spectacles clutched in the victim's hand. The professor who employs him has been shut in his study all morning, but the professor's room shows signs of a recent visitor.",
+  "solution": "Professor Coram's room conceals his Russian wife, whom he had betrayed to the police years ago in St. Petersburg, causing her to be sent to Siberia; she had escaped and traced him, and Willoughby Smith died accidentally when she stabbed him after he caught her stealing papers; she takes poison before being arrested.",
+  "notable_elements": [
+    "Holmes constructs a physical description of the unknown woman from the pince-nez alone",
+    "The hidden room within the professor's study is a clever concealment device",
+    "A backstory of political betrayal in Tsarist Russia provides the motive",
+    "The woman's death by her own hand before arrest gives the story a tragic resolution"
+  ],
+  "first_mention": { "book": 6, "chapter": 10 },
+  "full_reveal": { "book": 6, "chapter": 10 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

@@ -1,0 +1,23 @@
+{
+  "id": "case_the-adventure-of-the-abbey-grange",
+  "series": "sherlock_holmes",
+  "title": "The Adventure of the Abbey Grange",
+  "case_nickname": "The Abbey Grange",
+  "source_book": "book_the-return-of-sherlock-holmes",
+  "characters_involved": ["char_sherlock-holmes", "char_john-watson"],
+  "locations": [],
+  "artifacts_involved": [],
+  "timeline_position": { "book": 6, "chapter": 12 },
+  "synopsis": "Inspector Hopkins summons Holmes to Abbey Grange in Kent, where the brutal Sir Eustace Brackenstall has been found battered to death and his wife Lady Mary tied to a chair. Lady Mary blames the Randall gang of burglars who came for her silver, but Holmes finds inconsistencies in her account — particularly the condition of the wine glasses.",
+  "solution": "Captain Crocker, a sailor who loved Lady Mary and could not bear her abuse at the hands of her alcoholic husband, had visited the house and killed Sir Eustace in a fight; Lady Mary and Crocker staged the burglary scene; Holmes acts as a one-man jury and acquits Crocker, advising him to return in a year to claim Lady Mary.",
+  "notable_elements": [
+    "Holmes notices that two of the three wine glasses have been drunk from, contradicting the story of three burglars",
+    "Features Holmes famously convening Watson as a jury and pronouncing a verdict outside the law",
+    "The victim Sir Eustace is presented as deserving of little sympathy — a brutal and drunken husband",
+    "Holmes's willingness to let a killer go free makes this one of the canon's most ethically complex resolutions"
+  ],
+  "first_mention": { "book": 6, "chapter": 12 },
+  "full_reveal": { "book": 6, "chapter": 12 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

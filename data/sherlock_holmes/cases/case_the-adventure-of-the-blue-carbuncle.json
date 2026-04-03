@@ -1,0 +1,23 @@
+{
+  "id": "case_the-adventure-of-the-blue-carbuncle",
+  "series": "sherlock_holmes",
+  "title": "The Adventure of the Blue Carbuncle",
+  "case_nickname": "The Blue Carbuncle",
+  "source_book": "book_the-adventures-of-sherlock-holmes",
+  "characters_involved": ["char_sherlock-holmes", "char_john-watson"],
+  "locations": ["loc_221b-baker-street"],
+  "artifacts_involved": ["artifact_blue-carbuncle"],
+  "timeline_position": { "book": 3, "chapter": 7 },
+  "synopsis": "Shortly after Christmas, a commissionaire brings Holmes a battered hat and a Christmas goose that he found after breaking up a street scuffle. Holmes deduces the hat's owner's history, then discovers the Countess of Morcar's stolen blue carbuncle gem lodged inside the goose. Holmes traces the gem back through a chain of geese to a plumber named Henry Baker and ultimately to the thief.",
+  "solution": "James Ryder, a hotel attendant, stole the blue carbuncle and hid it in the goose to smuggle it out. He had been tipped off by Catherine Cusack, the countess's maid, and framed a plumber for the theft. Holmes allows Ryder to go free rather than have him prosecuted, reasoning that punishment would ruin him while the chance of freedom might redeem him.",
+  "notable_elements": [
+    "Set at Christmas — one of the most festive Holmes stories",
+    "The Blue Carbuncle gem — one of the canon's most famous MacGuffins",
+    "Holmes exercises mercy rather than strict justice — allows the guilty man to flee",
+    "Chain-of-custody detective work tracing the gem through a series of geese"
+  ],
+  "first_mention": { "book": 3, "chapter": 7 },
+  "full_reveal": { "book": 3, "chapter": 7 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

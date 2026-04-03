@@ -1,0 +1,23 @@
+{
+  "id": "case_the-adventure-of-the-veiled-lodger",
+  "series": "sherlock_holmes",
+  "title": "The Adventure of the Veiled Lodger",
+  "case_nickname": "The Veiled Lodger",
+  "source_book": "book_the-case-book-of-sherlock-holmes",
+  "characters_involved": ["char_sherlock-holmes", "char_john-watson"],
+  "locations": ["loc_221b-baker-street"],
+  "artifacts_involved": [],
+  "timeline_position": { "book": 9, "chapter": 10 },
+  "synopsis": "Mrs. Merrilow informs Holmes that her veiled lodger, a woman who conceals her terribly disfigured face, wishes to confess a secret she has kept for seven years. The woman, Mrs. Ronder, was the wife of a circus proprietor and survived a lion attack that killed her husband under circumstances she says were not quite what they appeared.",
+  "solution": "Mrs. Ronder and her lover Abbas Parva contrived the death of her brutal husband using a trained lion; she was herself mauled when the plan went wrong; her lover later committed suicide; wracked by guilt for seven years, she confesses to Holmes and sends him the means of her own suicide, but ultimately chooses to live when Holmes counsels patience.",
+  "notable_elements": [
+    "One of the shortest and most melancholy stories in the Canon",
+    "No active investigation — Holmes simply listens to a woman's confession",
+    "Holmes talks a woman back from suicide with a quiet appeal to endurance",
+    "Watson opens the story with a warning that someone has been attempting to steal Holmes's case files"
+  ],
+  "first_mention": { "book": 9, "chapter": 10 },
+  "full_reveal": { "book": 9, "chapter": 10 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

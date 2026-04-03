@@ -1,0 +1,23 @@
+{
+  "id": "case_the-adventure-of-the-priory-school",
+  "series": "sherlock_holmes",
+  "title": "The Adventure of the Priory School",
+  "case_nickname": "The Priory School",
+  "source_book": "book_the-return-of-sherlock-holmes",
+  "characters_involved": ["char_sherlock-holmes", "char_john-watson"],
+  "locations": ["loc_221b-baker-street"],
+  "artifacts_involved": [],
+  "timeline_position": { "book": 6, "chapter": 5 },
+  "synopsis": "Dr. Thorneycroft Huxtable arrives at Baker Street in a state of collapse to report the disappearance of the young Lord Saltire, son of the Duke of Holdernesse, from the Priory School. A schoolmaster named Heidegger has also vanished, and Holmes must trace the boy across the wild moors of northern England.",
+  "solution": "James Wilder, the Duke's illegitimate son and secretary, arranged the kidnapping out of jealousy of Lord Saltire's inheritance; the henchman Reuben Hayes murdered Heidegger; Holmes deduces the route of the kidnappers from bicycle tyre tracks and distinctive cow-shaped horseshoes; the Duke pays a large cheque to Holmes for his silence about the family scandal.",
+  "notable_elements": [
+    "Holmes tracks the route using bicycle tyre marks across open moorland",
+    "Includes the famous detail of horses shod with iron shoes shaped like cow hooves to disguise their tracks",
+    "Holmes accepts a cheque from the Duke rather than press the full legal consequences",
+    "The Duke's complicity in concealing the kidnapper's identity is a morally ambiguous element"
+  ],
+  "first_mention": { "book": 6, "chapter": 5 },
+  "full_reveal": { "book": 6, "chapter": 5 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

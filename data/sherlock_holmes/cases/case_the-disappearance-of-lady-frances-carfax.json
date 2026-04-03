@@ -1,0 +1,23 @@
+{
+  "id": "case_the-disappearance-of-lady-frances-carfax",
+  "series": "sherlock_holmes",
+  "title": "The Disappearance of Lady Frances Carfax",
+  "case_nickname": "Lady Frances Carfax",
+  "source_book": "book_his-last-bow",
+  "characters_involved": ["char_sherlock-holmes", "char_john-watson"],
+  "locations": ["loc_221b-baker-street"],
+  "artifacts_involved": [],
+  "timeline_position": { "book": 8, "chapter": 6 },
+  "synopsis": "Holmes sends Watson to Lausanne to investigate the disappearance of Lady Frances Carfax, an English noblewoman and regular traveller who has inexplicably cut off communication with her friends. Watson traces her movements through Switzerland and southern France, discovering she had recently come under the influence of a sinister couple named Holy Peters and his wife.",
+  "solution": "Holy Peters, a fraudster posing as a missionary, had befriended Lady Frances to steal her jewellery, and had her drugged and concealed inside an oversized coffin ordered ostensibly for a dead missionary woman; Holmes realises the deception when he notices the coffin is far larger than necessary and arrives just in time to prevent Lady Frances from being buried alive.",
+  "notable_elements": [
+    "One of Holmes's closest near-failures — Lady Frances is very nearly buried alive",
+    "Watson conducts the initial investigation independently and is sent abroad — a rare extended solo assignment",
+    "Holmes criticises his own reasoning at the end for taking too long to identify the coffin scheme",
+    "Features the disturbing device of hiding a living victim inside a coffin alongside a corpse"
+  ],
+  "first_mention": { "book": 8, "chapter": 6 },
+  "full_reveal": { "book": 8, "chapter": 6 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

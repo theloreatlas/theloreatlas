@@ -1,0 +1,24 @@
+{
+  "id": "case_the-yellow-face",
+  "series": "sherlock_holmes",
+  "title": "The Yellow Face",
+  "case_nickname": "The Yellow Face",
+  "source_book": "book_the-memoirs-of-sherlock-holmes",
+  "characters_involved": ["char_sherlock-holmes", "char_john-watson"],
+  "locations": ["loc_221b-baker-street"],
+  "artifacts_involved": [],
+  "timeline_position": { "book": 4, "chapter": 2 },
+  "synopsis": "Grant Munro consults Holmes after his wife Effie has been secretive about a cottage near their home in Norbury and has made suspicious withdrawals from her bank account. Holmes deduces that she is hiding something connected to her first marriage in America. The mystery centres on a strange yellow face glimpsed at the cottage window.",
+  "solution": "Holmes is famously wrong in his deduction. The yellow face belongs to Effie's mixed-race daughter Lucy from her first marriage to John Hebron, an American man of African descent, whom Effie had kept secret from her second husband; Grant Munro, to his credit, accepts the child warmly.",
+  "notable_elements": [
+    "One of the very few cases where Holmes's deduction is entirely wrong",
+    "Holmes later asks Watson to remind him of 'Norbury' whenever he grows overconfident",
+    "Touches on themes of racial prejudice and mixed-race families in Victorian England",
+    "The child's lifelike mask creates the eerie 'yellow face' at the window",
+    "A rare example of a case with a fully benign resolution involving no crime"
+  ],
+  "first_mention": { "book": 4, "chapter": 2 },
+  "full_reveal": { "book": 4, "chapter": 2 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

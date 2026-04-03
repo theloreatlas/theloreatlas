@@ -1,0 +1,23 @@
+{
+  "id": "case_the-adventure-of-the-three-garridebs",
+  "series": "sherlock_holmes",
+  "title": "The Adventure of the Three Garridebs",
+  "case_nickname": "The Three Garridebs",
+  "source_book": "book_the-case-book-of-sherlock-holmes",
+  "characters_involved": ["char_sherlock-holmes", "char_john-watson"],
+  "locations": ["loc_221b-baker-street"],
+  "artifacts_involved": [],
+  "timeline_position": { "book": 9, "chapter": 6 },
+  "synopsis": "A man calling himself John Garrideb of Kansas arrives to enlist Holmes in finding a third person with the surname Garrideb, claiming a peculiar bequest requires three Garridebs to share a fortune. Holmes is immediately suspicious of the story, but allows the scheme to play out in order to discover what Garrideb actually wants.",
+  "solution": "John Garrideb is actually a wanted American criminal named Killer Evans; the entire Garrideb scheme was a ruse to get Nathan Garrideb out of his flat so Evans could retrieve a counterfeiting press hidden in the floor by a previous occupant; Evans shoots Watson when caught, prompting one of Holmes's most emotional moments.",
+  "notable_elements": [
+    "Contains one of Holmes's most famous emotional reactions — he shows genuine distress when Watson is shot",
+    "Watson notes that Holmes refused a knighthood the same month",
+    "The Garrideb story is an elaborate fraud designed merely to empty a single flat",
+    "The counterfeiting press hidden beneath the floorboards is the actual goal of the entire operation"
+  ],
+  "first_mention": { "book": 9, "chapter": 6 },
+  "full_reveal": { "book": 9, "chapter": 6 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

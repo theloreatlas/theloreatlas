@@ -1,0 +1,23 @@
+{
+  "id": "case_the-stockbrokers-clerk",
+  "series": "sherlock_holmes",
+  "title": "The Stockbroker's Clerk",
+  "case_nickname": "The Stockbroker's Clerk",
+  "source_book": "book_the-memoirs-of-sherlock-holmes",
+  "characters_involved": ["char_sherlock-holmes", "char_john-watson"],
+  "locations": ["loc_221b-baker-street"],
+  "artifacts_involved": [],
+  "timeline_position": { "book": 4, "chapter": 3 },
+  "synopsis": "Hall Pycroft, a recently-hired stockbroker's clerk, is lured away from his legitimate new post at Mawson & Williams by a mysterious man named Arthur Pinner who offers him a better-paying position and sends him to Birmingham. Holmes suspects fraud when he notices that Pycroft has never actually taken up his post at Mawson's, allowing an impostor to take his place.",
+  "solution": "The Pinner brothers — one posing as a financial agent, the other having assumed Pycroft's identity at Mawson & Williams — are the forger and cracksman Beddington and his brother; the real Beddington murders the office watchman and attempts to steal nearly a hundred thousand pounds in securities, while his brother attempts suicide upon learning his neck is forfeit.",
+  "notable_elements": [
+    "Identity substitution scheme where a criminal impersonates a legitimate clerk",
+    "Holmes deduces the fraud from the inconsistency of Pycroft never reporting to Mawson's",
+    "A race-against-time element as Holmes and Watson rush to Birmingham to prevent the robbery",
+    "The criminal's brother's attempted suicide adds pathos to an otherwise caper-style crime"
+  ],
+  "first_mention": { "book": 4, "chapter": 3 },
+  "full_reveal": { "book": 4, "chapter": 3 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

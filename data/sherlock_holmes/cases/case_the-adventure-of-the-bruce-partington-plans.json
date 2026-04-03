@@ -1,0 +1,23 @@
+{
+  "id": "case_the-adventure-of-the-bruce-partington-plans",
+  "series": "sherlock_holmes",
+  "title": "The Adventure of the Bruce-Partington Plans",
+  "case_nickname": "The Bruce-Partington Plans",
+  "source_book": "book_his-last-bow",
+  "characters_involved": ["char_sherlock-holmes", "char_john-watson", "char_mycroft-holmes"],
+  "locations": ["loc_221b-baker-street"],
+  "artifacts_involved": [],
+  "timeline_position": { "book": 8, "chapter": 4 },
+  "synopsis": "During a dense November fog, Mycroft Holmes arrives at Baker Street to ask his brother to investigate the disappearance of the Bruce-Partington submarine plans, seven of whose ten pages have been found on the body of young Arthur Cadogan West, whose corpse was discovered on the Underground railway. The case has grave implications for national security.",
+  "solution": "Colonel Valentine Walter, brother of the plan's custodian, stole the plans and sold them to the spy Hugo Oberstein; Cadogan West had been murdered and his body placed atop a train using the roof of an Underground signal-box as a means of disposal; Holmes lures Oberstein back to England with a forged advertisement and he is arrested with the plans.",
+  "notable_elements": [
+    "Mycroft's second appearance, and the first time he leaves his habitual route between his lodgings and the Diogenes Club",
+    "Holmes deduces the body was placed on top of a moving train by the presence of no blood on the line",
+    "Features Mycroft acknowledging his brother is essential where direct action is required",
+    "Holmes receives a gift from Queen Victoria for his service — a remarkably fine emerald tie-pin"
+  ],
+  "first_mention": { "book": 8, "chapter": 4 },
+  "full_reveal": { "book": 8, "chapter": 4 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

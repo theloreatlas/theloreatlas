@@ -1,0 +1,23 @@
+{
+  "id": "case_the-adventure-of-the-red-circle",
+  "series": "sherlock_holmes",
+  "title": "The Adventure of the Red Circle",
+  "case_nickname": "The Red Circle",
+  "source_book": "book_his-last-bow",
+  "characters_involved": ["char_sherlock-holmes", "char_john-watson"],
+  "locations": ["loc_221b-baker-street"],
+  "artifacts_involved": [],
+  "timeline_position": { "book": 8, "chapter": 3 },
+  "synopsis": "Mrs. Warren, a London landlady, consults Holmes about a lodger who has paid for a fortnight's board but remains entirely unseen, communicating only by written messages slipped under the door. Holmes realises the lodger is communicating in cipher using newspaper agony column advertisements.",
+  "solution": "The mysterious lodger is Gennaro Lucca, an Italian man whose wife Emilia is disguised as the lodger to hide her husband from the Red Circle, a Neapolitan crime society; the story ends with Holmes and Inspector Gregson witnessing the Red Circle's agent Gorgiano being killed by Gennaro in self-defence.",
+  "notable_elements": [
+    "Features communication through newspaper agony column messages in cipher",
+    "The Red Circle is a Neapolitan criminal organisation that pursues its members across continents",
+    "Holmes uses semaphore-style candle signals to communicate with the lodger",
+    "Inspector Gregson of Scotland Yard appears as a capable officer familiar with the Italian criminal underground"
+  ],
+  "first_mention": { "book": 8, "chapter": 3 },
+  "full_reveal": { "book": 8, "chapter": 3 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

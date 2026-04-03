@@ -1,0 +1,24 @@
+{
+  "id": "case_the-gloria-scott",
+  "series": "sherlock_holmes",
+  "title": "The Gloria Scott",
+  "case_nickname": "The Gloria Scott",
+  "source_book": "book_the-memoirs-of-sherlock-holmes",
+  "characters_involved": ["char_sherlock-holmes", "char_john-watson"],
+  "locations": [],
+  "artifacts_involved": [],
+  "timeline_position": { "book": 4, "chapter": 4 },
+  "synopsis": "Holmes recounts to Watson the very first case he was ever engaged upon, involving his college friend Victor Trevor and the mysterious terror that a cryptic note inspired in Trevor's father, an otherwise robust country justice of the peace. The story unravels a decades-old secret about a mutiny aboard a convict ship, the Gloria Scott.",
+  "solution": "Trevor's father was originally a convict transported on the Gloria Scott who survived a mutiny and assumed a new identity in England; Hudson the blackmailer had been a fellow convict, and the cryptic note — read by taking every third word — was a threat that destroyed the old man; he dies of the shock and the secret dies with him.",
+  "notable_elements": [
+    "Holmes's very first case, predating his meeting with Watson",
+    "Features a cipher concealed within an apparently innocent letter — every third word forms the real message",
+    "A tale of a transported convict who rebuilt his life under a false identity",
+    "The Gloria Scott mutiny is a story-within-a-story, told through Trevor's father's confession letter",
+    "Establishes Holmes's origins as a consulting detective"
+  ],
+  "first_mention": { "book": 4, "chapter": 4 },
+  "full_reveal": { "book": 4, "chapter": 4 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

@@ -1,0 +1,23 @@
+{
+  "id": "case_the-problem-of-thor-bridge",
+  "series": "sherlock_holmes",
+  "title": "The Problem of Thor Bridge",
+  "case_nickname": "Thor Bridge",
+  "source_book": "book_the-case-book-of-sherlock-holmes",
+  "characters_involved": ["char_sherlock-holmes", "char_john-watson"],
+  "locations": ["loc_221b-baker-street"],
+  "artifacts_involved": [],
+  "timeline_position": { "book": 9, "chapter": 7 },
+  "synopsis": "Neil Gibson, the Gold King and former American senator, asks Holmes to clear his governess Miss Grace Dunbar, who is charged with the murder of Gibson's wife Maria on Thor Bridge. The evidence against Miss Dunbar is strong — she was found holding a note arranging a meeting at the bridge — but Holmes finds a chip in the stone parapet that changes everything.",
+  "solution": "Maria Gibson, consumed by obsessive jealousy, murdered herself in a way designed to frame Miss Dunbar; she tied one revolver to a stone and dropped it over the bridge, so it would snap back after firing the fatal shot, then held a note from Miss Dunbar in her hand; Holmes recovers the weighted gun from the lake to prove it.",
+  "notable_elements": [
+    "One of the most ingenious suicide-as-murder-frame schemes in the Canon",
+    "Holmes identifies the crime by noticing a chip in the bridge parapet where the weighted string had been attached",
+    "Opening pages list several unsolved cases from Watson's dispatch box, including the famous Phillimore mystery",
+    "Features Holmes's reflection on the danger of assuming guilt from circumstantial evidence"
+  ],
+  "first_mention": { "book": 9, "chapter": 7 },
+  "full_reveal": { "book": 9, "chapter": 7 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

@@ -1,0 +1,23 @@
+{
+  "id": "case_the-boscombe-valley-mystery",
+  "series": "sherlock_holmes",
+  "title": "The Boscombe Valley Mystery",
+  "case_nickname": "The Boscombe Valley Mystery",
+  "source_book": "book_the-adventures-of-sherlock-holmes",
+  "characters_involved": ["char_sherlock-holmes", "char_john-watson"],
+  "locations": ["loc_221b-baker-street"],
+  "artifacts_involved": [],
+  "timeline_position": { "book": 3, "chapter": 4 },
+  "synopsis": "Holmes and Watson travel to Herefordshire to investigate the murder of Charles McCarthy near Boscombe Pool. All circumstantial evidence points to his son James, who was seen quarreling with the victim shortly before his death. Holmes suspects a deeper secret from the men's Australian past lies behind the killing.",
+  "solution": "John Turner, a wealthy landowner, killed McCarthy to protect his daughter from a blackmail scheme. Turner had been a highway robber in Australia known as Black Jack of Ballarat, and McCarthy had recognized him and extorted money for years. Holmes suppresses the truth and secures James McCarthy's acquittal, allowing the dying Turner to live out his remaining days in peace.",
+  "notable_elements": [
+    "Holmes clears a wrongly accused man through evidence rather than confession",
+    "Compassionate resolution — Holmes withholds the truth to spare an innocent family",
+    "The clue of the 'Cooee' call and Australian connections",
+    "One of the earliest examples of Holmes's flexible approach to justice over strict law"
+  ],
+  "first_mention": { "book": 3, "chapter": 4 },
+  "full_reveal": { "book": 3, "chapter": 4 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

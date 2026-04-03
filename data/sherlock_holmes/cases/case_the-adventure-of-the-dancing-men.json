@@ -1,0 +1,23 @@
+{
+  "id": "case_the-adventure-of-the-dancing-men",
+  "series": "sherlock_holmes",
+  "title": "The Adventure of the Dancing Men",
+  "case_nickname": "The Dancing Men",
+  "source_book": "book_the-return-of-sherlock-holmes",
+  "characters_involved": ["char_sherlock-holmes", "char_john-watson"],
+  "locations": ["loc_221b-baker-street"],
+  "artifacts_involved": [],
+  "timeline_position": { "book": 6, "chapter": 3 },
+  "synopsis": "Hilton Cubitt of Ridling Thorpe Manor consults Holmes about mysterious drawings of stick figures that have been appearing on his property, which are causing increasing terror to his American wife Elsie. Holmes recognises the figures as a cipher and sets about decoding them, but tragedy strikes before he can fully intervene.",
+  "solution": "The messages are from Abe Slaney, an American criminal from Chicago who was formerly betrothed to Elsie and is demanding her return; Holmes cracks the substitution cipher and lures Slaney to the manor, where Slaney had shot Cubitt and Elsie had shot Slaney; Cubitt dies, Slaney is arrested.",
+  "notable_elements": [
+    "Features one of the Canon's most famous cryptographic puzzles — a substitution cipher where each letter is represented by a stick figure",
+    "Holmes uses the decoded cipher to send a forged message and capture the criminal",
+    "A rare case with a tragic outcome — the client dies before Holmes can save him",
+    "The story is set in Norfolk and shows Holmes's skill with American criminal underworld knowledge"
+  ],
+  "first_mention": { "book": 6, "chapter": 3 },
+  "full_reveal": { "book": 6, "chapter": 3 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

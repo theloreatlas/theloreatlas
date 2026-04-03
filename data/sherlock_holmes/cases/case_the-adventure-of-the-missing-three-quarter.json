@@ -1,0 +1,23 @@
+{
+  "id": "case_the-adventure-of-the-missing-three-quarter",
+  "series": "sherlock_holmes",
+  "title": "The Adventure of the Missing Three-Quarter",
+  "case_nickname": "The Missing Three-Quarter",
+  "source_book": "book_the-return-of-sherlock-holmes",
+  "characters_involved": ["char_sherlock-holmes", "char_john-watson"],
+  "locations": ["loc_221b-baker-street"],
+  "artifacts_involved": [],
+  "timeline_position": { "book": 6, "chapter": 11 },
+  "synopsis": "Cyril Overton, captain of the Cambridge rugby team, arrives at Baker Street in a panic: Godfrey Staunton, their star three-quarter back, has vanished the night before an important varsity match. Holmes traces Staunton to a remote cottage in the Cambridgeshire countryside, where a physician named Dr. Armstrong has been obstinately shielding him.",
+  "solution": "Staunton had secretly married his landlady's daughter, concealing the marriage to protect his inheritance from a miserly uncle; his wife was dying of consumption and he had rushed to her bedside; no crime had been committed, and Holmes protects the secret from public exposure.",
+  "notable_elements": [
+    "A rare case with no crime — the mystery turns out to be a personal secret kept out of financial necessity",
+    "Dr. Armstrong's fierce loyalty to his patient creates an adversarial dynamic with Holmes",
+    "Holmes tracks Staunton by spraying aniseed on a carriage wheel and following a dog's nose",
+    "Features Holmes's candid admission that guarding secrets is sometimes more important than exposing them"
+  ],
+  "first_mention": { "book": 6, "chapter": 11 },
+  "full_reveal": { "book": 6, "chapter": 11 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

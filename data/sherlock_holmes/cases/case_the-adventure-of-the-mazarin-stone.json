@@ -1,0 +1,23 @@
+{
+  "id": "case_the-adventure-of-the-mazarin-stone",
+  "series": "sherlock_holmes",
+  "title": "The Adventure of the Mazarin Stone",
+  "case_nickname": "The Mazarin Stone",
+  "source_book": "book_the-case-book-of-sherlock-holmes",
+  "characters_involved": ["char_sherlock-holmes", "char_john-watson"],
+  "locations": ["loc_221b-baker-street"],
+  "artifacts_involved": [],
+  "timeline_position": { "book": 9, "chapter": 3 },
+  "synopsis": "The Crown diamond — known as the Mazarin Stone — has been stolen, and Holmes has been tasked with recovering it. The prime suspect is Count Negretto Sylvius, a dangerous criminal, and Holmes draws him and his confederate Sam Merton into a trap at Baker Street, using a wax dummy and a gramophone to create a convincing decoy.",
+  "solution": "Holmes tricks Count Sylvius into revealing the hiding place of the Mazarin Stone — which had been concealed in Sylvius's own hat — by using a hidden gramophone playing violin music to make Sylvius believe Holmes is busy; Holmes slips the recovered diamond into Lord Cantlemere's pocket as a prank before revealing the recovery.",
+  "notable_elements": [
+    "Written in the third person, like His Last Bow, with Watson appearing as a visitor rather than narrator",
+    "Features the wax bust of Holmes (artifact_wax-bust-of-holmes) as a decoy",
+    "The gramophone playing violin music is used to create an alibi for Holmes's movements",
+    "Lord Cantlemere finds the diamond in his own pocket in one of Holmes's characteristically theatrical reveals"
+  ],
+  "first_mention": { "book": 9, "chapter": 3 },
+  "full_reveal": { "book": 9, "chapter": 3 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

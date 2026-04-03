@@ -1,0 +1,23 @@
+{
+  "id": "case_the-adventure-of-the-sussex-vampire",
+  "series": "sherlock_holmes",
+  "title": "The Adventure of the Sussex Vampire",
+  "case_nickname": "The Sussex Vampire",
+  "source_book": "book_the-case-book-of-sherlock-holmes",
+  "characters_involved": ["char_sherlock-holmes", "char_john-watson"],
+  "locations": ["loc_221b-baker-street"],
+  "artifacts_involved": [],
+  "timeline_position": { "book": 9, "chapter": 5 },
+  "synopsis": "Robert Ferguson writes to Holmes in distress: his Peruvian wife has been observed sucking blood from their infant child's neck. The servants believe she is a vampire. Ferguson's teenage son from a first marriage, Jacky, is a cripple who seems to bear the new wife a mysterious hatred.",
+  "solution": "Jacky, the stepson, had been poisoning the baby with a dart from a Peruvian bow; the wife had seen him and was sucking out the poison to save the child's life, not harming it; she said nothing to protect her husband from the knowledge of his son's attempted murder.",
+  "notable_elements": [
+    "Holmes dismisses the supernatural explanation from the outset — 'No ghosts need apply'",
+    "Features the reference to 'the giant rat of Sumatra, a story for which the world is not yet prepared'",
+    "The true solution is revealed to be an act of maternal self-sacrifice under a false accusation",
+    "One of the most famous examples of Holmes explaining away an apparently supernatural occurrence"
+  ],
+  "first_mention": { "book": 9, "chapter": 5 },
+  "full_reveal": { "book": 9, "chapter": 5 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

@@ -1,0 +1,23 @@
+{
+  "id": "case_the-adventure-of-shoscombe-old-place",
+  "series": "sherlock_holmes",
+  "title": "The Adventure of Shoscombe Old Place",
+  "case_nickname": "Shoscombe Old Place",
+  "source_book": "book_the-case-book-of-sherlock-holmes",
+  "characters_involved": ["char_sherlock-holmes", "char_john-watson"],
+  "locations": ["loc_221b-baker-street"],
+  "artifacts_involved": [],
+  "timeline_position": { "book": 9, "chapter": 11 },
+  "synopsis": "Head trainer John Mason consults Holmes about the strange behaviour of his employer Sir Robert Norberton at Shoscombe Old Place: the squire has been sending away his sister's beloved spaniels, acting erratically, and meeting secretly at night in a crypt below the old church. Watson, a racing man, provides background on Sir Robert's desperate financial situation.",
+  "solution": "Lady Beatrice Falder, Sir Robert's sister, died a week before a critical race on which Sir Robert had bet his entire fortune; if her death were known, his creditors would have seized the estate and prevented the horse Shoscombe Prince from running; Sir Robert was concealing the body in an old coffin in the crypt and using a hired woman to impersonate his sister until after the race.",
+  "notable_elements": [
+    "Often cited as the last Holmes story written by Conan Doyle",
+    "Unusual in that Watson's knowledge of horse-racing provides crucial background",
+    "The concealment of a dead body as a financial stratagem is a macabre solution to a desperate situation",
+    "Shoscombe Prince wins the Derby and Sir Robert repays his creditors, earning a relatively lenient legal outcome"
+  ],
+  "first_mention": { "book": 9, "chapter": 11 },
+  "full_reveal": { "book": 9, "chapter": 11 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

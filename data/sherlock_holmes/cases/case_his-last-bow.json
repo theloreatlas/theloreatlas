@@ -1,0 +1,24 @@
+{
+  "id": "case_his-last-bow",
+  "series": "sherlock_holmes",
+  "title": "His Last Bow",
+  "case_nickname": "His Last Bow",
+  "source_book": "book_his-last-bow",
+  "characters_involved": ["char_sherlock-holmes", "char_john-watson"],
+  "locations": [],
+  "artifacts_involved": [],
+  "timeline_position": { "book": 8, "chapter": 8 },
+  "synopsis": "On the night of 2 August 1914 — the eve of England's entry into the First World War — the German master spy Von Bork is preparing to flee England with years of accumulated intelligence. He awaits his last agent, an Irish-American named Altamont, who arrives with a final prize: the naval signal codes.",
+  "solution": "Altamont is Sherlock Holmes in disguise, who has spent two years in deep cover penetrating German naval intelligence; Watson is also present; Holmes drugs Von Bork and turns him over to Watson, leaving with a philosophical reflection on the coming storm and England's eventual triumph.",
+  "notable_elements": [
+    "The only Holmes story told in the third person, not narrated by Watson",
+    "Set on the eve of World War One — 2 August 1914 — making it the chronologically latest canonical case",
+    "Holmes has been in deep undercover work for two years, posing as an Irish-American spy",
+    "Holmes's closing speech about the 'east wind' is one of the most quoted passages in the Canon",
+    "Reveals that Holmes had retired to the Sussex Downs to keep bees before being recalled for the war effort"
+  ],
+  "first_mention": { "book": 8, "chapter": 8 },
+  "full_reveal": { "book": 8, "chapter": 8 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

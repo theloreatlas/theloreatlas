@@ -1,0 +1,23 @@
+{
+  "id": "case_silver-blaze",
+  "series": "sherlock_holmes",
+  "title": "Silver Blaze",
+  "case_nickname": "The Silver Blaze Case",
+  "source_book": "book_the-memoirs-of-sherlock-holmes",
+  "characters_involved": ["char_sherlock-holmes", "char_john-watson"],
+  "locations": ["loc_221b-baker-street"],
+  "artifacts_involved": [],
+  "timeline_position": { "book": 4, "chapter": 1 },
+  "synopsis": "Holmes and Watson travel to Dartmoor to investigate the disappearance of the famous racehorse Silver Blaze before the Wessex Cup and the murder of its trainer John Straker. The horse has vanished and suspicion falls on a bookmaker's tout. Holmes examines the scene and notes the curious incident of the dog in the night-time.",
+  "solution": "Silver Blaze killed Straker in self-defense: Straker had been attempting to nick the horse's tendon to fix the race, and the horse lashed out and killed him. Holmes recovers Silver Blaze from a neighboring farm where it was hidden. The horse runs and wins the Wessex Cup, concealed in plain sight among the other entries.",
+  "notable_elements": [
+    "Source of the famous exchange: 'the curious incident of the dog in the night-time'",
+    "Holmes deduces the killer is the horse itself",
+    "Silver Blaze wins the race despite the investigation",
+    "The importance of a negative clue — the dog that did not bark"
+  ],
+  "first_mention": { "book": 4, "chapter": 1 },
+  "full_reveal": { "book": 4, "chapter": 1 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

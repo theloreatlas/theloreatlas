@@ -1,0 +1,24 @@
+{
+  "id": "case_the-musgrave-ritual",
+  "series": "sherlock_holmes",
+  "title": "The Musgrave Ritual",
+  "case_nickname": "The Musgrave Ritual",
+  "source_book": "book_the-memoirs-of-sherlock-holmes",
+  "characters_involved": ["char_sherlock-holmes", "char_john-watson"],
+  "locations": [],
+  "artifacts_involved": [],
+  "timeline_position": { "book": 4, "chapter": 5 },
+  "synopsis": "Holmes relates another early case to Watson, this one involving Reginald Musgrave and an ancient family catechism called the Musgrave Ritual, which has been recited by Musgraves for generations without anyone understanding its meaning. When the butler Brunton disappears and a maid is found in a state of shock, Holmes deduces that the ritual is in fact a map leading to buried treasure.",
+  "solution": "Brunton had decoded the ritual and discovered the hiding place of the ancient crown of the Kings of England; he enlisted the maid Rachel Howells to help him retrieve it, but she trapped him in the vault to die and threw the treasure into the lake, later vanishing herself; Holmes recovers the ancient relic.",
+  "notable_elements": [
+    "One of Holmes's early cases before he met Watson",
+    "The Musgrave Ritual is a centuries-old catechism that functions as an elaborate treasure map",
+    "The recovered treasure is identified as the crown of the Kings of England, hidden during the Civil War",
+    "Features Holmes's characteristic method of physically acting out the steps of the ritual",
+    "The butler Brunton's death by entombment is one of the more grim resolutions in the Canon"
+  ],
+  "first_mention": { "book": 4, "chapter": 5 },
+  "full_reveal": { "book": 4, "chapter": 5 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}
