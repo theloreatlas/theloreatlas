@@ -48,6 +48,7 @@ async function onRouteChange() {
 
   // Show loading state
   content.innerHTML = '<p class="state-loading">Loading…</p>';
+  content.classList.remove('page-enter');
 
   try {
     await LoreLoader.load();
@@ -75,6 +76,10 @@ async function onRouteChange() {
   } else {
     renderNotFound(content);
   }
+
+  // Trigger entrance animation after render
+  void content.offsetWidth; // force reflow
+  content.classList.add('page-enter');
 }
 
 // ── Nav active state ─────────────────────────────────────────────────────────
@@ -100,8 +105,11 @@ function renderHome(container) {
 
   for (const s of series) {
     html += `<div class="series-section">`;
-    html += `<h2><span class="series-label">Universe</span> &nbsp;${esc(s.name)}</h2>`;
-    html += `<p style="font-size:0.9rem;color:#666;margin-bottom:1.25rem;font-family:sans-serif;">${esc(s.description)}</p>`;
+    html += `<h2><span class="series-label">Universe</span></h2>`;
+    html += `<p class="series-universe-name">${esc(s.name)}</p>`;
+    if (s.description) {
+      html += `<p class="series-description">${esc(s.description)}</p>`;
+    }
     html += `<div class="entity-type-grid">`;
 
     for (const et of ENTITY_TYPES) {
