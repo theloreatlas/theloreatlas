@@ -196,6 +196,114 @@ a:hover {
   width: calc(100% - 1rem);
 }
 
+/* --- Reader Position Bar --- */
+#reader-position-bar {
+  background: var(--header-mid);
+  border-bottom: 1px solid rgba(201, 165, 90, 0.15);
+  padding: 0 2.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  height: 42px;
+  position: sticky;
+  top: 62px;
+  z-index: 99;
+}
+
+#reader-position-bar[hidden] {
+  display: none;
+}
+
+.rp-label {
+  font-family: var(--font-display);
+  font-size: 0.57rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: rgba(242, 237, 224, 0.38);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.rp-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+#rp-book,
+#rp-chapter {
+  background: rgba(255, 252, 244, 0.05);
+  border: 1px solid rgba(201, 165, 90, 0.2);
+  border-radius: var(--radius);
+  color: rgba(242, 237, 224, 0.7);
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  padding: 0.28rem 1.8rem 0.28rem 0.65rem;
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23c9a55a' opacity='.45'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.55rem center;
+  background-size: 8px 5px;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+
+#rp-book {
+  min-width: 17rem;
+}
+
+#rp-chapter {
+  min-width: 6rem;
+}
+
+#rp-book:focus,
+#rp-chapter:focus {
+  border-color: var(--gold-dim);
+}
+
+#rp-book option,
+#rp-chapter option {
+  background: var(--header-mid);
+  color: var(--parchment);
+}
+
+#rp-chapter:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.rp-clear-btn {
+  background: transparent;
+  border: 1px solid rgba(201, 165, 90, 0.2);
+  border-radius: var(--radius);
+  color: rgba(242, 237, 224, 0.45);
+  font-family: var(--font-display);
+  font-size: 0.54rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 0.3rem 0.7rem;
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
+}
+
+.rp-clear-btn:hover {
+  border-color: var(--gold-dim);
+  color: var(--gold);
+  background: rgba(201, 165, 90, 0.08);
+}
+
+.rp-status {
+  font-family: var(--font-display);
+  font-size: 0.54rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--gold-dim);
+  margin-left: auto;
+  white-space: nowrap;
+}
+
 /* --- Layout --- */
 #main-content {
   max-width: 980px;
@@ -862,6 +970,62 @@ a:hover {
   content: '◆';
   font-size: 0.45rem;
   color: var(--gold-dim);
+}
+
+/* --- Spoiler Gating --- */
+
+/* Inline redaction placeholder replacing gated prose */
+.spoiler-redacted {
+  font-family: var(--font-display);
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-subtle);
+  background: rgba(201, 165, 90, 0.06);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.25em 0.8em;
+  display: inline-block;
+  font-style: normal;
+}
+
+/* Full-page block for hidden-entity detail pages */
+.spoiler-blocked {
+  padding: 3rem 0;
+  max-width: 520px;
+}
+
+.spoiler-blocked .detail-prose {
+  color: var(--text-muted);
+  margin-bottom: 0.75rem;
+}
+
+/* Inline placeholder for cross-reference links to hidden entities */
+.link-gated {
+  font-family: var(--font-display);
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-subtle);
+  font-style: normal;
+}
+
+/* Badge for partially-revealed list items */
+.badge-gated {
+  background: rgba(201, 165, 90, 0.08);
+  color: var(--gold-dim);
+  border-color: rgba(201, 165, 90, 0.2);
+}
+
+/* Footer note when entries are hidden by reading position */
+.list-gated-note {
+  font-family: var(--font-display);
+  font-size: 0.58rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-subtle);
+  margin-top: 1.25rem;
+  font-style: normal;
 }
 
 /* --- Utility --- */

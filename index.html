@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>The Lore Atlas</title>
   <meta name="description" content="The interactive encyclopedia for public domain literary universes. Structured relational data, relationship graphs, and chapter-level spoiler controls.">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' https:; connect-src 'self'">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self'">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cinzel:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -37,6 +37,20 @@
     </nav>
   </header>
 
+  <div id="reader-position-bar" hidden aria-label="Reading position filter">
+    <span class="rp-label">Reading position</span>
+    <div class="rp-controls">
+      <select id="rp-book" aria-label="Select book">
+        <option value="">— Select a book —</option>
+      </select>
+      <select id="rp-chapter" aria-label="Select chapter" disabled>
+        <option value="">Ch. —</option>
+      </select>
+      <button id="rp-clear" type="button" class="rp-clear-btn">Clear</button>
+    </div>
+    <span id="rp-status" class="rp-status" aria-live="polite"></span>
+  </div>
+
   <main id="main-content">
     <p class="state-loading">Loading…</p>
   </main>
@@ -46,6 +60,7 @@
     <p>An encyclopedia of public domain literary universes</p>
   </footer>
 
+  <script src="js/spoiler.js"></script>
   <script src="js/loader.js"></script>
   <script src="js/app.js"></script>
 

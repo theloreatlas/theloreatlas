@@ -58,6 +58,7 @@ async function onRouteChange() {
     return;
   }
 
+  initReaderPositionPicker();
   updateNavActive(parts);
 
   // Route dispatch
@@ -141,6 +142,10 @@ function renderEntityList(container, seriesId, entityType) {
 
   const entities = LoreLoader.getAll(seriesId, entityType);
 
+  // Filter out entities the reader hasn't reached yet.
+  const visible = entities.filter(e => SpoilerGate.isRevealed(e, seriesId));
+  const hiddenCount = entities.length - visible.length;
+
   let html = `
     <div class="page-header">
       <div class="breadcrumb">
@@ -151,27 +156,37 @@ function renderEntityList(container, seriesId, entityType) {
     <div class="entity-list">
   `;
 
-  if (entities.length === 0) {
+  if (visible.length === 0 && hiddenCount > 0) {
+    html += `<p class="state-loading">No entries visible at your current reading position.</p>`;
+  } else if (visible.length === 0) {
     html += `<p class="state-loading">No entries yet.</p>`;
   } else {
-    for (const entity of entities) {
-      html += renderEntityListItem(entity, entityType, seriesId);
+    for (const entity of visible) {
+      const status = SpoilerGate.getRevealStatus(entity, seriesId);
+      html += renderEntityListItem(entity, entityType, seriesId, status);
     }
   }
 
   html += `</div>`;
+
+  if (hiddenCount > 0) {
+    html += `<p class="list-gated-note">${hiddenCount} entr${hiddenCount === 1 ? 'y' : 'ies'} hidden by your reading position.</p>`;
+  }
   container.innerHTML = html;
 }
 
-function renderEntityListItem(entity, entityType, seriesId) {
+function renderEntityListItem(entity, entityType, seriesId, status) {
   const href = `#/${encodeURIComponent(seriesId)}/${encodeURIComponent(entityType)}/${encodeURIComponent(entity.id)}`;
   const name = getEntityName(entity, entityType);
   const meta = getEntityMeta(entity, entityType);
   const badge = getEntityBadge(entity, entityType);
+  const gatedBadge = (status === 'partial')
+    ? `<span class="badge badge-gated">partial</span>`
+    : '';
 
   return `
     <a class="entity-list-item" href="${href}">
-      <span class="item-name">${esc(name)}${badge}</span>
+      <span class="item-name">${esc(name)}${badge}${gatedBadge}</span>
       <span class="item-meta">${esc(meta)}</span>
     </a>
   `;
@@ -188,11 +203,19 @@ function guessEntityType(id) {
 function entityLink(id) {
   const entity = LoreLoader.getById(id);
   if (!entity) return esc(id);
+
+  const seriesId = entity.series || '';
+  const status = seriesId ? SpoilerGate.getRevealStatus(entity, seriesId) : 'full';
+
+  // Entity is before the reader's position — the name itself is a spoiler.
+  if (status === 'hidden') {
+    return `<span class="link-gated">[not yet revealed]</span>`;
+  }
+
   const name = getEntityName(entity, guessEntityType(id));
-  const series = entity.series || '';
   const type = guessEntityType(id);
   const displayName = typeof name === 'string' ? name : id;
-  return `<a href="#/${encodeURIComponent(series)}/${encodeURIComponent(type)}/${encodeURIComponent(id)}">${esc(displayName)}</a>`;
+  return `<a href="#/${encodeURIComponent(seriesId)}/${encodeURIComponent(type)}/${encodeURIComponent(id)}">${esc(displayName)}</a>`;
 }
 
 function formatSpoiler(threshold) {
@@ -205,11 +228,45 @@ function renderLinkedList(ids) {
   return ids.map(id => `<span class="detail-link-item">${entityLink(id)}</span>`).join('');
 }
 
+// ── Spoiler helpers ───────────────────────────────────────────────────────────
+
+/**
+ * Returns the HTML string to display in place of a redacted prose field.
+ * Uses the entity's full_reveal threshold to tell the reader where to look.
+ */
+function redactedProse(entity) {
+  const t = entity.full_reveal;
+  const where = t ? `Book ${t.book}, Ch. ${t.chapter}` : 'a later point';
+  return `<span class="spoiler-redacted">[Spoilers past ${where}]</span>`;
+}
+
 // ── Entity detail ─────────────────────────────────────────────────────────────
 
 function renderEntityDetail(container, seriesId, entityType, id) {
   const entity = LoreLoader.getById(id);
   if (!entity) { renderNotFound(container); return; }
+
+  const status = SpoilerGate.getRevealStatus(entity, seriesId);
+
+  // Entity is before the reader's current position — don't reveal anything.
+  if (status === 'hidden') {
+    const etConfig = ENTITY_TYPES.find(e => e.key === entityType);
+    container.innerHTML = `
+      <div class="page-header">
+        <div class="breadcrumb">
+          <a href="#/">Home</a> &rsaquo;
+          <a href="#/${encodeURIComponent(seriesId)}/${encodeURIComponent(entityType)}">${etConfig ? etConfig.label : esc(entityType)}</a>
+        </div>
+        <h1>Entry not yet reached</h1>
+      </div>
+      <div class="spoiler-blocked">
+        <p class="detail-prose">This entry contains spoilers beyond your current reading position.</p>
+        <p class="detail-prose">Adjust the reading position bar above to reveal it.</p>
+      </div>
+    `;
+    return;
+  }
+
   const etConfig = ENTITY_TYPES.find(e => e.key === entityType);
 
   const breadcrumb = `
@@ -225,21 +282,21 @@ function renderEntityDetail(container, seriesId, entityType, id) {
 
   let body = '';
   switch (entityType) {
-    case 'characters':    body = renderCharacterDetail(entity); break;
-    case 'cases':         body = renderCaseDetail(entity); break;
-    case 'books':         body = renderBookDetail(entity); break;
-    case 'factions':      body = renderFactionDetail(entity); break;
-    case 'locations':     body = renderLocationDetail(entity); break;
-    case 'artifacts':     body = renderArtifactDetail(entity); break;
-    case 'events':        body = renderEventDetail(entity); break;
-    case 'relationships': body = renderRelationshipDetail(entity); break;
+    case 'characters':    body = renderCharacterDetail(entity, status); break;
+    case 'cases':         body = renderCaseDetail(entity, status); break;
+    case 'books':         body = renderBookDetail(entity, status); break;
+    case 'factions':      body = renderFactionDetail(entity, status); break;
+    case 'locations':     body = renderLocationDetail(entity, status); break;
+    case 'artifacts':     body = renderArtifactDetail(entity, status); break;
+    case 'events':        body = renderEventDetail(entity, status); break;
+    case 'relationships': body = renderRelationshipDetail(entity, status); break;
     default:              body = '<p>Unknown entity type.</p>';
   }
 
   container.innerHTML = breadcrumb + `<div class="entity-detail">${body}</div>`;
 }
 
-function renderCharacterDetail(entity) {
+function renderCharacterDetail(entity, status) {
   const aliases = entity.aliases && entity.aliases.length
     ? entity.aliases.map(a => esc(a)).join(', ')
     : '<span class="detail-none">None</span>';
@@ -248,12 +305,14 @@ function renderCharacterDetail(entity) {
     ? `<div class="detail-tags">${entity.tags.map(t => `<span class="detail-tag">${esc(t)}</span>`).join('')}</div>`
     : '';
 
+  const biographyContent = status === 'partial' ? redactedProse(entity) : esc(entity.biography);
+
   return `
     <div class="detail-meta">
       ${entity.role ? `<span class="badge badge-${esc(entity.role.replace(/_/g, '-'))}">${esc(entity.role.replace(/_/g, ' '))}</span>` : ''}
       ${entity.status === 'deceased' ? '<span class="badge badge-deceased">deceased</span>' : ''}
     </div>
-    ${entity.biography ? `<div class="detail-section"><h2>Biography</h2><p class="detail-prose">${esc(entity.biography)}</p></div>` : ''}
+    ${entity.biography ? `<div class="detail-section"><h2>Biography</h2><p class="detail-prose">${biographyContent}</p></div>` : ''}
     <div class="detail-section"><h2>Also Known As</h2><p class="detail-prose">${aliases}</p></div>
     <div class="detail-section"><h2>Affiliations</h2><div class="detail-links">${renderLinkedList(entity.affiliations)}</div></div>
     <div class="detail-section"><h2>Cases</h2><div class="detail-links">${renderLinkedList(entity.cases)}</div></div>
@@ -266,25 +325,41 @@ function renderCharacterDetail(entity) {
   `;
 }
 
-function renderCaseDetail(entity) {
+function renderCaseDetail(entity, status) {
   const notableElements = entity.notable_elements && entity.notable_elements.length
     ? `<ul class="detail-list">${entity.notable_elements.map(e => `<li>${esc(e)}</li>`).join('')}</ul>`
     : '<span class="detail-none">None</span>';
+
+  const synopsisContent = status === 'partial' ? redactedProse(entity) : esc(entity.synopsis);
+
+  // Solution is always gated at full_reveal. When partial: redact. When full: keep <details>.
+  let solutionSection = '';
+  if (entity.solution) {
+    if (status === 'partial') {
+      solutionSection = `
+        <div class="detail-section">
+          <h2>Solution</h2>
+          <p class="detail-prose">${redactedProse(entity)}</p>
+        </div>`;
+    } else {
+      solutionSection = `
+        <div class="detail-section">
+          <h2>Solution</h2>
+          <details class="spoiler-box">
+            <summary>Reveal solution <span class="spoiler-warning">— contains spoilers</span></summary>
+            <p class="detail-prose">${esc(entity.solution)}</p>
+          </details>
+        </div>`;
+    }
+  }
 
   return `
     <div class="detail-meta">
       ${entity.source_book ? `<span class="detail-meta-item">Source: ${entityLink(entity.source_book)}</span>` : ''}
       ${entity.case_nickname ? `<span class="detail-meta-item detail-nickname">&ldquo;${esc(entity.case_nickname)}&rdquo;</span>` : ''}
     </div>
-    ${entity.synopsis ? `<div class="detail-section"><h2>Synopsis</h2><p class="detail-prose">${esc(entity.synopsis)}</p></div>` : ''}
-    ${entity.solution ? `
-    <div class="detail-section">
-      <h2>Solution</h2>
-      <details class="spoiler-box">
-        <summary>Reveal solution <span class="spoiler-warning">— contains spoilers</span></summary>
-        <p class="detail-prose">${esc(entity.solution)}</p>
-      </details>
-    </div>` : ''}
+    ${entity.synopsis ? `<div class="detail-section"><h2>Synopsis</h2><p class="detail-prose">${synopsisContent}</p></div>` : ''}
+    ${solutionSection}
     <div class="detail-section"><h2>Characters Involved</h2><div class="detail-links">${renderLinkedList(entity.characters_involved)}</div></div>
     <div class="detail-section"><h2>Locations</h2><div class="detail-links">${renderLinkedList(entity.locations)}</div></div>
     <div class="detail-section"><h2>Artifacts</h2><div class="detail-links">${renderLinkedList(entity.artifacts_involved)}</div></div>
@@ -297,7 +372,9 @@ function renderCaseDetail(entity) {
   `;
 }
 
-function renderBookDetail(entity) {
+function renderBookDetail(entity, status) {
+  const descriptionContent = status === 'partial' ? redactedProse(entity) : esc(entity.description);
+
   return `
     <div class="detail-meta">
       ${entity.type === 'novel' ? '<span class="badge badge-novel">novel</span>' : ''}
@@ -305,19 +382,21 @@ function renderBookDetail(entity) {
       ${entity.publication_year ? `<span class="detail-meta-item">${esc(String(entity.publication_year))}</span>` : ''}
       ${entity.chronological_order ? `<span class="detail-meta-item">Vol. ${esc(String(entity.chronological_order))}</span>` : ''}
     </div>
-    ${entity.description ? `<div class="detail-section"><h2>Description</h2><p class="detail-prose">${esc(entity.description)}</p></div>` : ''}
+    ${entity.description ? `<div class="detail-section"><h2>Description</h2><p class="detail-prose">${descriptionContent}</p></div>` : ''}
     <div class="detail-section"><h2>Stories Contained</h2><div class="detail-links">${renderLinkedList(entity.stories_contained)}</div></div>
   `;
 }
 
-function renderFactionDetail(entity) {
+function renderFactionDetail(entity, status) {
+  const descriptionContent = status === 'partial' ? redactedProse(entity) : esc(entity.description);
+
   return `
     <div class="detail-meta">
       ${entity.type ? `<span class="badge badge-faction">${esc(entity.type.replace(/_/g, ' '))}</span>` : ''}
       ${entity.alignment ? `<span class="detail-meta-item">${esc(entity.alignment)}</span>` : ''}
       ${entity.active_period ? `<span class="detail-meta-item">${esc(entity.active_period)}</span>` : ''}
     </div>
-    ${entity.description ? `<div class="detail-section"><h2>Description</h2><p class="detail-prose">${esc(entity.description)}</p></div>` : ''}
+    ${entity.description ? `<div class="detail-section"><h2>Description</h2><p class="detail-prose">${descriptionContent}</p></div>` : ''}
     <div class="detail-section"><h2>Key Members</h2><div class="detail-links">${renderLinkedList(entity.key_members)}</div></div>
     <div class="detail-section"><h2>Cases Involved</h2><div class="detail-links">${renderLinkedList(entity.cases_involved)}</div></div>
     ${entity.parent_org ? `<div class="detail-section"><h2>Parent Organization</h2><div class="detail-links"><span class="detail-link-item">${entityLink(entity.parent_org)}</span></div></div>` : ''}
@@ -329,13 +408,15 @@ function renderFactionDetail(entity) {
   `;
 }
 
-function renderLocationDetail(entity) {
+function renderLocationDetail(entity, status) {
+  const descriptionContent = status === 'partial' ? redactedProse(entity) : esc(entity.description);
+
   return `
     <div class="detail-meta">
       ${entity.type ? `<span class="detail-meta-item">${esc(entity.type)}</span>` : ''}
       ${entity.real_world_basis ? `<span class="detail-meta-item detail-real-world">Real world: ${esc(entity.real_world_basis)}</span>` : ''}
     </div>
-    ${entity.description ? `<div class="detail-section"><h2>Description</h2><p class="detail-prose">${esc(entity.description)}</p></div>` : ''}
+    ${entity.description ? `<div class="detail-section"><h2>Description</h2><p class="detail-prose">${descriptionContent}</p></div>` : ''}
     <div class="detail-section"><h2>Associated Characters</h2><div class="detail-links">${renderLinkedList(entity.characters_associated)}</div></div>
     <div class="detail-section"><h2>Cases Occurring Here</h2><div class="detail-links">${renderLinkedList(entity.cases_occurring_here)}</div></div>
     <div class="spoiler-thresholds">
@@ -345,7 +426,7 @@ function renderLocationDetail(entity) {
   `;
 }
 
-function renderArtifactDetail(entity) {
+function renderArtifactDetail(entity, status) {
   const ownershipChain = entity.ownership_chain && entity.ownership_chain.length
     ? entity.ownership_chain.map(o => `
         <div class="ownership-entry">
@@ -354,12 +435,15 @@ function renderArtifactDetail(entity) {
         </div>`).join('')
     : '<span class="detail-none">No ownership data</span>';
 
+  const descriptionContent   = status === 'partial' ? redactedProse(entity) : esc(entity.description);
+  const significanceContent  = status === 'partial' ? redactedProse(entity) : esc(entity.significance);
+
   return `
     <div class="detail-meta">
       ${entity.type ? `<span class="detail-meta-item">${esc(entity.type)}</span>` : ''}
     </div>
-    ${entity.description ? `<div class="detail-section"><h2>Description</h2><p class="detail-prose">${esc(entity.description)}</p></div>` : ''}
-    ${entity.significance ? `<div class="detail-section"><h2>Significance</h2><p class="detail-prose">${esc(entity.significance)}</p></div>` : ''}
+    ${entity.description ? `<div class="detail-section"><h2>Description</h2><p class="detail-prose">${descriptionContent}</p></div>` : ''}
+    ${entity.significance ? `<div class="detail-section"><h2>Significance</h2><p class="detail-prose">${significanceContent}</p></div>` : ''}
     <div class="detail-section"><h2>Ownership Chain</h2><div class="ownership-chain">${ownershipChain}</div></div>
     <div class="detail-section"><h2>Appears In</h2><div class="detail-links">${renderLinkedList(entity.appearance_history)}</div></div>
     <div class="spoiler-thresholds">
@@ -369,13 +453,15 @@ function renderArtifactDetail(entity) {
   `;
 }
 
-function renderEventDetail(entity) {
+function renderEventDetail(entity, status) {
+  const descriptionContent = status === 'partial' ? redactedProse(entity) : esc(entity.description);
+
   return `
     <div class="detail-meta">
       ${entity.event_type ? `<span class="badge badge-event-${esc(entity.event_type)}">${esc(entity.event_type)}</span>` : ''}
       ${entity.date_or_position ? `<span class="detail-meta-item">${esc(entity.date_or_position)}</span>` : ''}
     </div>
-    ${entity.description ? `<div class="detail-section"><h2>Description</h2><p class="detail-prose">${esc(entity.description)}</p></div>` : ''}
+    ${entity.description ? `<div class="detail-section"><h2>Description</h2><p class="detail-prose">${descriptionContent}</p></div>` : ''}
     <div class="detail-section"><h2>Characters Involved</h2><div class="detail-links">${renderLinkedList(entity.characters_involved)}</div></div>
     <div class="detail-section"><h2>Cases Linked</h2><div class="detail-links">${renderLinkedList(entity.cases_linked)}</div></div>
     ${entity.location ? `<div class="detail-section"><h2>Location</h2><div class="detail-links"><span class="detail-link-item">${entityLink(entity.location)}</span></div></div>` : ''}
@@ -386,7 +472,9 @@ function renderEventDetail(entity) {
   `;
 }
 
-function renderRelationshipDetail(entity) {
+function renderRelationshipDetail(entity, status) {
+  const notesContent = status === 'partial' ? redactedProse(entity) : esc(entity.notes);
+
   return `
     <div class="detail-meta">
       ${entity.relationship_type ? `<span class="badge badge-rel-${esc(entity.relationship_type)}">${esc(entity.relationship_type)}</span>` : ''}
@@ -399,7 +487,7 @@ function renderRelationshipDetail(entity) {
       </div>
     </div>
     ${entity.first_established ? `<div class="detail-section"><h2>First Established</h2><div class="detail-links"><span class="detail-link-item">${entityLink(entity.first_established)}</span></div></div>` : ''}
-    ${entity.notes ? `<div class="detail-section"><h2>Notes</h2><p class="detail-prose">${esc(entity.notes)}</p></div>` : ''}
+    ${entity.notes ? `<div class="detail-section"><h2>Notes</h2><p class="detail-prose">${notesContent}</p></div>` : ''}
     <div class="spoiler-thresholds">
       <span>First appears: ${esc(formatSpoiler(entity.first_mention))}</span>
       <span>Full reveal: ${esc(formatSpoiler(entity.full_reveal))}</span>
@@ -410,9 +498,7 @@ function renderRelationshipDetail(entity) {
 function renderNotFound(container) {
   container.innerHTML = `
     <div class="page-header"><h1>Page not found</h1></div>
-    <p style="font-family:sans-serif;color:#666;">
-      <a href="#/">← Back to home</a>
-    </p>
+    <p><a href="#/">← Back to home</a></p>
   `;
 }
 
@@ -463,18 +549,24 @@ function renderSearch(container) {
   }
 }
 
-function entityMatchesQuery(entity, entityType, q) {
+function entityMatchesQuery(entity, entityType, q, seriesId) {
+  const status = SpoilerGate.getRevealStatus(entity, seriesId);
+
+  // Hidden entities are never surfaced in search.
+  if (status === 'hidden') return false;
+
+  // Non-prose fields — always searchable.
   const fields = [
     entity.name,
     entity.title,
     entity.case_nickname,
-    entity.biography,
-    entity.synopsis,
-    entity.description,
-    entity.significance,
-    entity.notes,
     entity.relationship_type,
   ];
+
+  // Prose fields — only searchable when fully revealed.
+  if (status === 'full') {
+    fields.push(entity.biography, entity.synopsis, entity.description, entity.significance, entity.notes);
+  }
 
   for (const f of fields) {
     if (typeof f === 'string' && f.toLowerCase().includes(q)) return true;
@@ -489,7 +581,7 @@ function entityMatchesQuery(entity, entityType, q) {
     }
   }
 
-  // For relationships, also check resolved character names
+  // For relationships, also check resolved character names.
   if (entityType === 'relationships') {
     const charA = LoreLoader.getById(entity.character_a);
     const charB = LoreLoader.getById(entity.character_b);
@@ -509,7 +601,7 @@ function searchEntities(query) {
     for (const et of ENTITY_TYPES) {
       const entities = LoreLoader.getAll(series.id, et.key);
       for (const entity of entities) {
-        if (entityMatchesQuery(entity, et.key, q)) {
+        if (entityMatchesQuery(entity, et.key, q, series.id)) {
           results.push({ entity, entityType: et.key, seriesId: series.id });
         }
       }
@@ -551,7 +643,8 @@ function renderSearchResults(query) {
     html += `<h2 class="search-group-heading">${et.label}</h2>`;
     html += `<div class="entity-list">`;
     for (const r of group) {
-      html += renderEntityListItem(r.entity, r.entityType, r.seriesId);
+      const status = SpoilerGate.getRevealStatus(r.entity, r.seriesId);
+      html += renderEntityListItem(r.entity, r.entityType, r.seriesId, status);
     }
     html += `</div></div>`;
   }
@@ -625,6 +718,108 @@ function getEntityBadge(entity, entityType) {
     }
   }
   return '';
+}
+
+// ── Reader Position Picker ────────────────────────────────────────────────────
+
+let readerPickerInitialized = false;
+
+function initReaderPositionPicker() {
+  if (readerPickerInitialized) return;
+
+  const series = LoreLoader.getSeries();
+  if (!series.length) return;
+
+  // Single-series for now; multi-series support can be added later.
+  const seriesId = series[0].id;
+  const books = LoreLoader.getAll(seriesId, 'books')
+    .slice()
+    .sort((a, b) => (a.chronological_order || 0) - (b.chronological_order || 0));
+
+  if (!books.length) return;
+
+  const bar         = document.getElementById('reader-position-bar');
+  const bookSelect  = document.getElementById('rp-book');
+  const chapSelect  = document.getElementById('rp-chapter');
+  const clearBtn    = document.getElementById('rp-clear');
+  const statusEl    = document.getElementById('rp-status');
+
+  if (!bar || !bookSelect || !chapSelect || !clearBtn || !statusEl) return;
+
+  // Populate book dropdown
+  bookSelect.innerHTML = '<option value="">— Select a book —</option>';
+  for (const book of books) {
+    const opt = document.createElement('option');
+    opt.value = String(book.chronological_order);
+    opt.textContent = `${book.chronological_order}. ${book.title}`;
+    bookSelect.appendChild(opt);
+  }
+
+  // Restore saved position
+  const saved = SpoilerGate.getPosition(seriesId);
+  if (saved) {
+    bookSelect.value = String(saved.book);
+    populateChapters(saved.book, books, chapSelect);
+    chapSelect.disabled = false;
+    chapSelect.value = String(saved.chapter);
+    rpUpdateStatus(saved, books, statusEl);
+  }
+
+  // Book change → repopulate chapters, auto-set ch. 1, save
+  bookSelect.addEventListener('change', () => {
+    const bookNum = parseInt(bookSelect.value, 10);
+    if (isNaN(bookNum)) {
+      chapSelect.innerHTML = '<option value="">Ch. —</option>';
+      chapSelect.disabled = true;
+      SpoilerGate.clearPosition(seriesId);
+      statusEl.textContent = '';
+      return;
+    }
+    populateChapters(bookNum, books, chapSelect);
+    chapSelect.disabled = false;
+    chapSelect.value = '1';
+    SpoilerGate.setPosition(seriesId, bookNum, 1);
+    rpUpdateStatus({ book: bookNum, chapter: 1 }, books, statusEl);
+  });
+
+  // Chapter change → save
+  chapSelect.addEventListener('change', () => {
+    const bookNum    = parseInt(bookSelect.value, 10);
+    const chapterNum = parseInt(chapSelect.value, 10);
+    if (isNaN(bookNum) || isNaN(chapterNum)) return;
+    SpoilerGate.setPosition(seriesId, bookNum, chapterNum);
+    rpUpdateStatus({ book: bookNum, chapter: chapterNum }, books, statusEl);
+  });
+
+  // Clear → reset to ungated
+  clearBtn.addEventListener('click', () => {
+    SpoilerGate.clearPosition(seriesId);
+    bookSelect.value = '';
+    chapSelect.innerHTML = '<option value="">Ch. —</option>';
+    chapSelect.disabled = true;
+    statusEl.textContent = '';
+  });
+
+  bar.hidden = false;
+  readerPickerInitialized = true;
+}
+
+function populateChapters(bookNum, books, chapSelect) {
+  const book  = books.find(b => b.chronological_order === bookNum);
+  const count = book ? SpoilerGate.getChapterCount(book) : 20;
+  chapSelect.innerHTML = '';
+  for (let i = 1; i <= count; i++) {
+    const opt = document.createElement('option');
+    opt.value = String(i);
+    opt.textContent = `Ch. ${i}`;
+    chapSelect.appendChild(opt);
+  }
+}
+
+function rpUpdateStatus(pos, books, statusEl) {
+  const book = books.find(b => b.chronological_order === pos.book);
+  const title = book ? book.title : `Book ${pos.book}`;
+  statusEl.textContent = `Gating: ${title}, Ch. ${pos.chapter}`;
 }
 
 // ── Init ─────────────────────────────────────────────────────────────────────
