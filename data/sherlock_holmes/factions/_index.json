@@ -22,16 +22,24 @@
     "name": "Scotland Yard",
     "type": "law_enforcement",
     "alignment": "law",
-    "key_members": ["char_inspector-lestrade"],
+    "key_members": [
+      "char_inspector-lestrade",
+      "char_inspector-gregson",
+      "char_inspector-stanley-hopkins",
+      "char_inspector-athelney-jones"
+    ],
     "cases_involved": [
       "case_a-study-in-scarlet",
+      "case_the-sign-of-the-four",
       "case_the-adventure-of-the-empty-house",
-      "case_the-adventure-of-the-six-napoleons"
+      "case_the-adventure-of-the-six-napoleons",
+      "case_the-adventure-of-black-peter",
+      "case_the-adventure-of-the-abbey-grange"
     ],
     "active_period": "Ongoing",
     "parent_org": null,
     "child_orgs": [],
-    "description": "The Metropolitan Police Service's Criminal Investigation Department. The official investigative arm of London's police force and Holmes's most frequent institutional contact. Lestrade and Gregson regularly consult Holmes on cases that exceed their conventional methods. Holmes regularly solves cases the Yard cannot, often allowing them to take public credit.",
+    "description": "The Metropolitan Police Service's Criminal Investigation Department. The official investigative arm of London's police force and Holmes's most frequent institutional contact. Lestrade, Gregson, Hopkins, and Athelney Jones all consult Holmes on cases that exceed their conventional methods. Holmes regularly solves cases the Yard cannot, often allowing them to take public credit for his solutions.",
     "first_mention": { "book": 1, "chapter": 3 },
     "full_reveal": { "book": 1, "chapter": 3 },
     "created_by": "theloreatlas",
@@ -43,16 +51,19 @@
     "name": "Moriarty's Criminal Network",
     "type": "criminal",
     "alignment": "criminal",
-    "key_members": ["char_professor-moriarty"],
+    "key_members": [
+      "char_professor-moriarty",
+      "char_colonel-sebastian-moran"
+    ],
     "cases_involved": [
       "case_the-final-problem",
       "case_the-valley-of-fear",
       "case_the-adventure-of-the-empty-house"
     ],
-    "active_period": "c.1875–1891",
+    "active_period": "c.1875–1894",
     "parent_org": null,
     "child_orgs": [],
-    "description": "The vast criminal organization built and controlled by Professor Moriarty. Holmes describes it as a spider's web — Moriarty at the center, coordinating every major crime in England without ever personally committing any. Holmes dismantles the bulk of the network in 1891. Colonel Sebastian Moran continues operations in a diminished capacity until his arrest following Holmes's return.",
+    "description": "The vast criminal organization built and controlled by Professor Moriarty. Holmes describes it as a spider's web — Moriarty at the center, coordinating every major crime in England without ever personally committing any. Holmes dismantles the bulk of the network in 1891. Colonel Sebastian Moran continues operations in a diminished capacity after Reichenbach until his arrest following Holmes's return in 1894.",
     "first_mention": { "book": 4, "chapter": 1 },
     "full_reveal": { "book": 4, "chapter": 10 },
     "created_by": "theloreatlas",
@@ -75,6 +86,44 @@
     "description": "A London gentlemen's club founded for men who dislike company. Talking is forbidden in all rooms except the Strangers' Room. Mycroft Holmes is a founding member. Despite its eccentric premise, the Club attracts Britain's most retiring and brilliant men, many holding sensitive government positions — making it an informal intelligence clearing house.",
     "first_mention": { "book": 4, "chapter": 9 },
     "full_reveal": { "book": 4, "chapter": 9 },
+    "created_by": "theloreatlas",
+    "last_edited_by": "theloreatlas"
+  },
+  {
+    "id": "faction_scowrers",
+    "series": "sherlock_holmes",
+    "name": "The Scowrers",
+    "type": "criminal",
+    "alignment": "criminal — violent labor terrorism",
+    "key_members": [],
+    "cases_involved": [
+      "case_the-valley-of-fear"
+    ],
+    "active_period": "c.1870s–1880s (Vermissa Valley, Pennsylvania)",
+    "parent_org": null,
+    "child_orgs": [],
+    "description": "The Scowrers are the criminal wing of Lodge 341 of the Ancient Order of Freemen — a fraternal organization used as cover for a campaign of murder, arson, and extortion in the Vermissa Valley coalfields of Pennsylvania. Under their Bodymaster, Jack McGinty, they terrorize the region's mine owners and anyone who opposes them, operating with near-total impunity because their lodge membership protects them from testimony. Birdy Edwards (John Douglas), a Pinkerton agent, infiltrates the lodge at great personal risk and eventually brings the organization down from within. Their reach extends across the Atlantic: the opening of The Valley of Fear reveals that Moriarty himself has a financial connection to the Scowrers' operations, establishing the novel's link between Victorian London and the American coalfields.",
+    "first_mention": { "book": 7, "chapter": 8 },
+    "full_reveal": { "book": 7, "chapter": 14 },
+    "created_by": "theloreatlas",
+    "last_edited_by": "theloreatlas"
+  },
+  {
+    "id": "faction_afghan-campaign-veterans",
+    "series": "sherlock_holmes",
+    "name": "Second Afghan War Veterans",
+    "type": "other",
+    "alignment": "neutral — shared military service",
+    "key_members": [
+      "char_john-watson"
+    ],
+    "cases_involved": [],
+    "active_period": "1878–1880 (Second Anglo-Afghan War)",
+    "parent_org": null,
+    "child_orgs": [],
+    "description": "The informal grouping of British officers and soldiers who served in the Second Anglo-Afghan War (1878–1880), including the disastrous Battle of Maiwand in July 1880. Watson was wounded at Maiwand while attached to the Fifth Northumberland Fusiliers and then the Berkshire Regiment, receiving a jezail bullet in the shoulder (or leg — Watson is inconsistent). He was invalided home to England and, soon after recovering enough to circulate in London, encountered his old acquaintance Stamford at the Criterion Bar. The shared experience of the Afghan campaign forms part of Watson's identity throughout the canon: it explains his steadiness under fire, his medical skills in crisis situations, and the quiet fatalism that makes him so useful a companion to Holmes.",
+    "first_mention": { "book": 1, "chapter": 1 },
+    "full_reveal": { "book": 1, "chapter": 1 },
     "created_by": "theloreatlas",
     "last_edited_by": "theloreatlas"
   }

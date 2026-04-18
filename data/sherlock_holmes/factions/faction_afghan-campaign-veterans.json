@@ -1,0 +1,19 @@
+{
+  "id": "faction_afghan-campaign-veterans",
+  "series": "sherlock_holmes",
+  "name": "Second Afghan War Veterans",
+  "type": "other",
+  "alignment": "neutral — shared military service",
+  "key_members": [
+    "char_john-watson"
+  ],
+  "cases_involved": [],
+  "active_period": "1878–1880 (Second Anglo-Afghan War)",
+  "parent_org": null,
+  "child_orgs": [],
+  "description": "The informal grouping of British officers and soldiers who served in the Second Anglo-Afghan War (1878–1880), including the disastrous Battle of Maiwand in July 1880. Watson was wounded at Maiwand while attached to the Fifth Northumberland Fusiliers and then the Berkshire Regiment, receiving a jezail bullet in the shoulder (or leg — Watson is inconsistent). He was invalided home to England and, soon after recovering enough to circulate in London, encountered his old acquaintance Stamford at the Criterion Bar. The shared experience of the Afghan campaign forms part of Watson's identity throughout the canon: it explains his steadiness under fire, his medical skills in crisis situations, and the quiet fatalism that makes him so useful a companion to Holmes.",
+  "first_mention": { "book": 1, "chapter": 1 },
+  "full_reveal": { "book": 1, "chapter": 1 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

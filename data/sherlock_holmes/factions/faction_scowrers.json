@@ -1,0 +1,19 @@
+{
+  "id": "faction_scowrers",
+  "series": "sherlock_holmes",
+  "name": "The Scowrers",
+  "type": "criminal",
+  "alignment": "criminal — violent labor terrorism",
+  "key_members": [],
+  "cases_involved": [
+    "case_the-valley-of-fear"
+  ],
+  "active_period": "c.1870s–1880s (Vermissa Valley, Pennsylvania)",
+  "parent_org": null,
+  "child_orgs": [],
+  "description": "The Scowrers are the criminal wing of Lodge 341 of the Ancient Order of Freemen — a fraternal organization used as cover for a campaign of murder, arson, and extortion in the Vermissa Valley coalfields of Pennsylvania. Under their Bodymaster, Jack McGinty, they terrorize the region's mine owners and anyone who opposes them, operating with near-total impunity because their lodge membership protects them from testimony. Birdy Edwards (John Douglas), a Pinkerton agent, infiltrates the lodge at great personal risk and eventually brings the organization down from within. Their reach extends across the Atlantic: the opening of The Valley of Fear reveals that Moriarty himself has a financial connection to the Scowrers' operations, establishing the novel's link between Victorian London and the American coalfields.",
+  "first_mention": { "book": 7, "chapter": 8 },
+  "full_reveal": { "book": 7, "chapter": 14 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}
