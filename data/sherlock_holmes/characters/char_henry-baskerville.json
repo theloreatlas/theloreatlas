@@ -1,0 +1,22 @@
+{
+  "id": "char_henry-baskerville",
+  "series": "sherlock_holmes",
+  "name": "Sir Henry Baskerville",
+  "aliases": ["Henry Baskerville", "Sir Henry"],
+  "role": "supporting",
+  "status": "active",
+  "first_mention": { "book": 5, "chapter": 3 },
+  "full_reveal": { "book": 5, "chapter": 4 },
+  "affiliations": [],
+  "relationships": [
+    "rel_holmes-henry-baskerville-professional",
+    "rel_watson-henry-baskerville-professional"
+  ],
+  "cases": [
+    "case_the-hound-of-the-baskervilles"
+  ],
+  "biography": "Sir Henry Baskerville is the last surviving heir to the Baskerville estate on Dartmoor, and the client at the center of Holmes's most famous case. A Canadian by upbringing, Henry knows little of the Baskerville legend until Dr. Mortimer brings him to Baker Street after his uncle Sir Charles dies under mysterious circumstances. He is robust, straightforward, and courageous — qualities that make him an appealing client but also a dangerous one to protect, since his stubbornness leads him to walk the moor at night against Holmes's instructions. His arrival in England is immediately marked by strange occurrences: a warning note, a stolen boot, and the sense of being watched. He eventually marries and settles abroad after the case is resolved, the estate's curse finally lifted.",
+  "tags": ["Baskerville", "Dartmoor", "heir", "baronet", "Canada"],
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

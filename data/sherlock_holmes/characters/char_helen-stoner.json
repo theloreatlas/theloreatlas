@@ -1,0 +1,21 @@
+{
+  "id": "char_helen-stoner",
+  "series": "sherlock_holmes",
+  "name": "Helen Stoner",
+  "aliases": ["Miss Stoner"],
+  "role": "supporting",
+  "status": "active",
+  "first_mention": { "book": 3, "chapter": 8 },
+  "full_reveal": { "book": 3, "chapter": 8 },
+  "affiliations": [],
+  "relationships": [
+    "rel_holmes-helen-stoner-professional"
+  ],
+  "cases": [
+    "case_the-adventure-of-the-speckled-band"
+  ],
+  "biography": "Helen Stoner is the client who brings Holmes the case in The Adventure of the Speckled Band. She arrives at Baker Street at dawn, visibly frightened, having heard the same mysterious whistle and metallic clang that preceded her twin sister Julia's death two years earlier. Julia died on the night before her wedding, uttering the phrase 'the speckled band.' Helen is now engaged herself and has been moved into Julia's old room — the same room where Julia died. She is courageous in seeking help but trapped in Stoke Moran by her stepfather's violence and the isolation of the estate. Holmes solves the case and breaks Roylott's method. Helen is the archetypal Holmes client: a woman in genuine danger, intelligent enough to seek help, and brave enough to follow through.",
+  "tags": ["client", "Speckled Band", "Stoke Moran", "stepdaughter", "twin"],
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

@@ -1,0 +1,21 @@
+{
+  "id": "char_violet-hunter",
+  "series": "sherlock_holmes",
+  "name": "Violet Hunter",
+  "aliases": ["Miss Hunter"],
+  "role": "supporting",
+  "status": "active",
+  "first_mention": { "book": 3, "chapter": 12 },
+  "full_reveal": { "book": 3, "chapter": 12 },
+  "affiliations": [],
+  "relationships": [
+    "rel_holmes-violet-hunter-professional"
+  ],
+  "cases": [
+    "case_the-adventure-of-the-copper-beeches"
+  ],
+  "biography": "Violet Hunter is the client in The Adventure of the Copper Beeches — a governess who consults Holmes about a peculiar job offer that comes with unusual conditions: she must cut her hair short, wear a particular electric-blue dress, and sit in a specific chair at a certain time of day. The pay is exceptional. Holmes advises against taking it, but she does, and soon writes for help. The truth behind the conditions, the locked wing of the house, and the family's strange behaviour forms the case. Watson notes that Holmes showed genuine interest in Miss Hunter — an unusual attentiveness — though nothing comes of it. She goes on to become headmistress of a private school, one of the few Holmes clients whose subsequent career is noted.",
+  "tags": ["client", "governess", "Copper Beeches", "Hampshire", "hair"],
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

@@ -10,7 +10,9 @@
   "affiliations": [],
   "relationships": [
     "rel_holmes-watson-ally",
-    "rel_watson-mary-morstan-romantic"
+    "rel_watson-mary-morstan-romantic",
+    "rel_watson-mrs-hudson-professional",
+    "rel_watson-henry-baskerville-professional"
   ],
   "cases": [
     "case_a-study-in-scarlet",

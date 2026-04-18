@@ -1,0 +1,21 @@
+{
+  "id": "char_jonathan-small",
+  "series": "sherlock_holmes",
+  "name": "Jonathan Small",
+  "aliases": ["The Wooden-Legged Man"],
+  "role": "antagonist",
+  "status": "active",
+  "first_mention": { "book": 2, "chapter": 6 },
+  "full_reveal": { "book": 2, "chapter": 12 },
+  "affiliations": [],
+  "relationships": [
+    "rel_holmes-jonathan-small-enemy"
+  ],
+  "cases": [
+    "case_the-sign-of-the-four"
+  ],
+  "biography": "Jonathan Small is the antagonist of The Sign of the Four — a one-legged ex-soldier who has spent decades in pursuit of the Agra Treasure he believes is rightfully his. Holmes identifies him from the crime scene at Pondicherry Lodge by the distinctive footprint of a wooden leg. Small's full story emerges in chapter 12 when he is captured after the Thames boat chase: as a young soldier in India he lost his leg to a crocodile, fell in with the wrong company during the Indian Mutiny, and became one of the 'Sign of Four' — a pact between Small and three Sikh soldiers to share the Agra treasure equally. He spent years in the Andaman Islands penal colony while the treasure sat unclaimed. He escaped with Tonga, his Andaman Islander companion, and returned to England to claim what he saw as his. Rather than let the treasure fall to others, he throws it into the Thames. Holmes regards him as a man more wronged than wrong.",
+  "tags": ["villain", "Sign of Four", "Agra Treasure", "wooden leg", "Andaman Islands", "India"],
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

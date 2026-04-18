@@ -1,0 +1,21 @@
+{
+  "id": "char_mary-sutherland",
+  "series": "sherlock_holmes",
+  "name": "Mary Sutherland",
+  "aliases": ["Miss Sutherland"],
+  "role": "supporting",
+  "status": "active",
+  "first_mention": { "book": 3, "chapter": 3 },
+  "full_reveal": { "book": 3, "chapter": 3 },
+  "affiliations": [],
+  "relationships": [
+    "rel_holmes-mary-sutherland-professional"
+  ],
+  "cases": [
+    "case_a-case-of-identity"
+  ],
+  "biography": "Mary Sutherland is the client in A Case of Identity — a large, good-natured woman with short sight who consults Holmes about the disappearance of her fiancé, Hosmer Angel, who vanished on the morning of their wedding. She is a typist with a small income and naive trust. Holmes deduces almost immediately that Hosmer Angel is a fiction created by her stepfather Windibank to keep her at home and prevent her from marrying and taking her income with her. Holmes solves the case but, in a departure from his usual practice, chooses not to tell Mary the truth — concluding she would not believe him and would be happier without knowing. The case is a study in Holmes's ambivalence about what solving a case actually owes to a client.",
+  "tags": ["client", "Case of Identity", "typist", "Hosmer Angel", "stepfather"],
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

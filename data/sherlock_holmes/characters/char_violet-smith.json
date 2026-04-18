@@ -1,0 +1,21 @@
+{
+  "id": "char_violet-smith",
+  "series": "sherlock_holmes",
+  "name": "Violet Smith",
+  "aliases": ["Miss Smith", "Miss Violet Smith"],
+  "role": "supporting",
+  "status": "active",
+  "first_mention": { "book": 6, "chapter": 4 },
+  "full_reveal": { "book": 6, "chapter": 4 },
+  "affiliations": [],
+  "relationships": [
+    "rel_holmes-violet-smith-professional"
+  ],
+  "cases": [
+    "case_the-adventure-of-the-solitary-cyclist"
+  ],
+  "biography": "Violet Smith is the client in The Adventure of the Solitary Cyclist — a music teacher who has taken a position in Surrey and has begun to notice a mysterious bearded cyclist who follows her every Saturday on her ride to the station. She consults Holmes after the experience becomes unnerving. The case connects to her family's past in South Africa and to men who have designs on her fortune. She is described as a beautiful young woman of considerable spirit, and Watson is visibly taken by her. Holmes handles the case somewhat carelessly — he fails to prevent a forced marriage — but ultimately resolves the situation. She and her fiancé Cyril Morton marry shortly after.",
+  "tags": ["client", "Solitary Cyclist", "Surrey", "cyclist", "music teacher"],
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

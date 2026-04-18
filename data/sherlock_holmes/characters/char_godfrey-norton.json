@@ -1,0 +1,22 @@
+{
+  "id": "char_godfrey-norton",
+  "series": "sherlock_holmes",
+  "name": "Godfrey Norton",
+  "aliases": ["Mr. Norton"],
+  "role": "supporting",
+  "status": "active",
+  "first_mention": { "book": 3, "chapter": 1 },
+  "full_reveal": { "book": 3, "chapter": 1 },
+  "affiliations": [],
+  "relationships": [
+    "rel_adler-norton-romantic",
+    "rel_holmes-godfrey-norton-other"
+  ],
+  "cases": [
+    "case_a-scandal-in-bohemia"
+  ],
+  "biography": "Godfrey Norton is a barrister and the husband of Irene Adler. He plays a minor but consequential role in A Scandal in Bohemia: Holmes, tailing Adler, observes her in conversation with Norton, follows them to a church, and is pressed into service as a witness to their marriage. Norton is described as dark, sharp-featured, and quick-moving — a man of considerable energy and obvious purpose. He departs for the Continent with Adler immediately after the wedding, rendering Holmes's mission moot. He has no role in any other canonical story but is the reason Irene Adler becomes Mrs. Norton — a detail Holmes notes pointedly in his memoirs.",
+  "tags": ["barrister", "Bohemia", "Irene Adler", "husband"],
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

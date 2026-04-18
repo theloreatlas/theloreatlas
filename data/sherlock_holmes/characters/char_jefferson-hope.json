@@ -1,0 +1,21 @@
+{
+  "id": "char_jefferson-hope",
+  "series": "sherlock_holmes",
+  "name": "Jefferson Hope",
+  "aliases": ["The Cabman"],
+  "role": "antagonist",
+  "status": "deceased",
+  "first_mention": { "book": 1, "chapter": 7 },
+  "full_reveal": { "book": 1, "chapter": 13 },
+  "affiliations": [],
+  "relationships": [
+    "rel_holmes-jefferson-hope-enemy"
+  ],
+  "cases": [
+    "case_a-study-in-scarlet"
+  ],
+  "biography": "Jefferson Hope is the killer at the heart of A Study in Scarlet and, in many respects, the most sympathetically drawn of Holmes's antagonists. He is captured by Holmes in chapter 7 when he comes to Baker Street disguised as a cab driver to collect a ring — Holmes's trap. Part 2 of the novel reveals his full story: an American frontiersman who loved Lucy Ferrier, who was seized by Mormon elders and forced to marry Enoch Drebber. Lucy died within a month; Hope spent decades pursuing Drebber and his accomplice Stangerson across two continents. By the time he catches them in London, he is dying of an aortic aneurysm. He forces each victim to choose between two pills — one lethal, one harmless — placing the outcome in the hands of Providence. He dies in custody the night before his trial, his aneurysm finally claiming him. Holmes regards him with respect as a man driven by genuine grievance rather than greed.",
+  "tags": ["villain", "frontiersman", "Mormon", "Utah", "avenging", "cab driver", "Study in Scarlet"],
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

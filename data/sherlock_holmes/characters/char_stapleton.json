@@ -1,0 +1,21 @@
+{
+  "id": "char_stapleton",
+  "series": "sherlock_holmes",
+  "name": "Jack Stapleton",
+  "aliases": ["Rodger Baskerville", "Mr. Vandeleur", "The Naturalist"],
+  "role": "antagonist",
+  "status": "deceased",
+  "first_mention": { "book": 5, "chapter": 7 },
+  "full_reveal": { "book": 5, "chapter": 14 },
+  "affiliations": [],
+  "relationships": [
+    "rel_holmes-stapleton-enemy"
+  ],
+  "cases": [
+    "case_the-hound-of-the-baskervilles"
+  ],
+  "biography": "Jack Stapleton is the villain of The Hound of the Baskervilles — a naturalist living near Baskerville Hall whose true identity is the central twist of the novel. He presents himself as a genial neighbour and amateur entomologist, deeply knowledgeable about Dartmoor's flora and fauna. In reality he is Rodger Baskerville, a descendant of the family line who has engineered the deaths of Charles Baskerville and now plots to kill Henry in order to inherit the estate. He has trained a large dog — painted with phosphorus to create a hellish appearance — to serve as the legendary Hound. Holmes deduces his identity partly from a family portrait resemblance. When Holmes springs the trap in chapter 14, Stapleton flees into Grimpen Mire and is presumed drowned. The full account of his true identity and methods is laid out in chapter 15.",
+  "tags": ["villain", "naturalist", "Dartmoor", "Grimpen Mire", "Baskerville", "hound", "phosphorus"],
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}
