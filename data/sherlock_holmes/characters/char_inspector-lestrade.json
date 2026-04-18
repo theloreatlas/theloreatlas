@@ -11,7 +11,9 @@
     "faction_scotland-yard"
   ],
   "relationships": [
-    "rel_holmes-lestrade-professional"
+    "rel_holmes-lestrade-professional",
+    "rel_lestrade-gregson-professional",
+    "rel_lestrade-hopkins-professional"
   ],
   "cases": [
     "case_a-study-in-scarlet",

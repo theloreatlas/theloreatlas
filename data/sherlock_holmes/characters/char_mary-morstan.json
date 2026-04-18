@@ -1,0 +1,21 @@
+{
+  "id": "char_mary-morstan",
+  "series": "sherlock_holmes",
+  "name": "Mary Morstan",
+  "aliases": ["Mrs. Watson", "Mary Watson"],
+  "role": "supporting",
+  "status": "deceased",
+  "first_mention": { "book": 2, "chapter": 2 },
+  "full_reveal": { "book": 2, "chapter": 2 },
+  "affiliations": [],
+  "relationships": [
+    "rel_watson-mary-morstan-romantic"
+  ],
+  "cases": [
+    "case_the-sign-of-the-four"
+  ],
+  "biography": "Mary Morstan is the client who brings Watson and Holmes the case in The Sign of the Four, and subsequently becomes Watson's wife. She arrives at 221B seeking Holmes's help: her father, Captain Morstan, disappeared years earlier, and she has been receiving annual gifts of pearls from an anonymous sender. She is intelligent, composed under pressure, and strikes Watson immediately as a woman of refinement and courage. The case resolves around the Agra Treasure, which would have made her wealthy — but Jonathan Small throws it into the Thames, leaving her with nothing material. She and Watson marry shortly after. She is mentioned in later stories as deceased, her passing between canons explaining Watson's return to Baker Street.",
+  "tags": ["client", "Watson's wife", "Sign of Four", "Agra Treasure", "pearls"],
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

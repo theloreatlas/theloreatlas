@@ -1,0 +1,25 @@
+{
+  "id": "char_colonel-sebastian-moran",
+  "series": "sherlock_holmes",
+  "name": "Colonel Sebastian Moran",
+  "aliases": ["The Tiger of San Pedro", "Moran"],
+  "role": "antagonist",
+  "status": "active",
+  "first_mention": { "book": 6, "chapter": 1 },
+  "full_reveal": { "book": 6, "chapter": 1 },
+  "affiliations": [
+    "faction_moriarty-criminal-network"
+  ],
+  "relationships": [
+    "rel_holmes-moran-enemy",
+    "rel_moriarty-moran-ally"
+  ],
+  "cases": [
+    "case_the-adventure-of-the-empty-house",
+    "case_the-final-problem"
+  ],
+  "biography": "Colonel Sebastian Moran is Moriarty's chief of staff and the most dangerous man in London after the Professor himself. Holmes describes him as the best heavy-game shot in the Indian Empire — a decorated soldier turned hired killer. He served in the Indian Army before his undisclosed crimes forced him into Moriarty's criminal organization, where he became the network's most lethal operative. After Moriarty's death at Reichenbach, Moran continues to hunt Holmes, eventually attempting to kill him from Camden House using an air-gun designed by the blind mechanic Von Herder. Holmes sets a trap using a wax bust as bait, and Moran is arrested. His dossier in Holmes's records notes he is the second most dangerous man in London.",
+  "tags": ["villain", "assassin", "Moriarty network", "shikari", "airgun", "Empty House"],
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

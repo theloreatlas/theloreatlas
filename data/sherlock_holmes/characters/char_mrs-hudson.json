@@ -1,0 +1,26 @@
+{
+  "id": "char_mrs-hudson",
+  "series": "sherlock_holmes",
+  "name": "Mrs. Hudson",
+  "aliases": ["Martha Hudson", "The Landlady"],
+  "role": "supporting",
+  "status": "active",
+  "first_mention": { "book": 1, "chapter": 2 },
+  "full_reveal": { "book": 1, "chapter": 2 },
+  "affiliations": [],
+  "relationships": [
+    "rel_holmes-mrs-hudson-professional",
+    "rel_watson-mrs-hudson-professional"
+  ],
+  "cases": [
+    "case_a-study-in-scarlet",
+    "case_a-scandal-in-bohemia",
+    "case_the-final-problem",
+    "case_the-adventure-of-the-empty-house",
+    "case_the-adventure-of-the-dying-detective"
+  ],
+  "biography": "Mrs. Hudson is the long-suffering landlady of 221B Baker Street and one of the most constant presences in the Holmes canon. She rents the first-floor rooms to Holmes and Watson, endures Holmes's eccentric habits — chemistry experiments at all hours, revolver shots into the wainscoting, the smell of tobacco, and an unrelenting parade of strange visitors — without complaint. She brings up callers, delivers telegrams, and maintains the domestic infrastructure of 221B with quiet competence. Holmes, who rarely expresses sentiment, clearly values her: in The Adventure of the Empty House he uses a wax bust of himself to deceive Moran, and Mrs. Hudson's role in manipulating it shows her willingness to place herself in danger for him. Her first name is given as Martha in His Last Bow.",
+  "tags": ["landlady", "Baker Street", "221B", "housekeeper"],
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

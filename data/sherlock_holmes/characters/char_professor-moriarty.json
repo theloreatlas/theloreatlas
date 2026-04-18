@@ -11,7 +11,8 @@
     "faction_moriarty-criminal-network"
   ],
   "relationships": [
-    "rel_holmes-moriarty-enemy"
+    "rel_holmes-moriarty-enemy",
+    "rel_moriarty-moran-ally"
   ],
   "cases": [
     "case_the-final-problem",

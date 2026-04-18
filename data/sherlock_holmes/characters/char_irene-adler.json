@@ -9,7 +9,8 @@
   "full_reveal": { "book": 3, "chapter": 1 },
   "affiliations": [],
   "relationships": [
-    "rel_holmes-irene-adler-other"
+    "rel_holmes-irene-adler-other",
+    "rel_adler-norton-romantic"
   ],
   "cases": [
     "case_a-scandal-in-bohemia"

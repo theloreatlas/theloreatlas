@@ -1,0 +1,23 @@
+{
+  "id": "char_inspector-athelney-jones",
+  "series": "sherlock_holmes",
+  "name": "Inspector Athelney Jones",
+  "aliases": ["Jones", "Inspector Jones"],
+  "role": "supporting",
+  "status": "active",
+  "first_mention": { "book": 2, "chapter": 5 },
+  "full_reveal": { "book": 2, "chapter": 5 },
+  "affiliations": [
+    "faction_scotland-yard"
+  ],
+  "relationships": [
+    "rel_holmes-athelney-jones-professional"
+  ],
+  "cases": [
+    "case_the-sign-of-the-four"
+  ],
+  "biography": "Inspector Athelney Jones is the Scotland Yard detective assigned to the Pondicherry Lodge murder in The Sign of the Four. He arrives at the crime scene with great confidence, immediately theorizing about the case and making an early arrest based on circumstantial evidence — only to find himself wrong. He is not unintelligent but is prone to the same over-hasty conclusions Holmes criticizes in all Yarders. He proves adaptable enough to partner with Holmes on the Thames boat chase that ends the case, showing practical competence even when his deductive theories have been dismantled. He is portrayed with a degree of self-deprecating humor absent from Lestrade and Gregson.",
+  "tags": ["Scotland Yard", "inspector", "detective", "police", "Sign of Four"],
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

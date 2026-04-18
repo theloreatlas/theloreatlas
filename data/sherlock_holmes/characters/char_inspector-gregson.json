@@ -1,0 +1,26 @@
+{
+  "id": "char_inspector-gregson",
+  "series": "sherlock_holmes",
+  "name": "Inspector Tobias Gregson",
+  "aliases": ["Gregson", "Inspector Gregson"],
+  "role": "supporting",
+  "status": "active",
+  "first_mention": { "book": 1, "chapter": 3 },
+  "full_reveal": { "book": 1, "chapter": 3 },
+  "affiliations": [
+    "faction_scotland-yard"
+  ],
+  "relationships": [
+    "rel_holmes-gregson-professional",
+    "rel_lestrade-gregson-professional"
+  ],
+  "cases": [
+    "case_a-study-in-scarlet",
+    "case_the-five-orange-pips",
+    "case_the-adventure-of-wisteria-lodge"
+  ],
+  "biography": "Inspector Tobias Gregson is one of Scotland Yard's ablest detectives and, along with Lestrade, Holmes's most frequent official contact. Holmes considers him and Lestrade the pick of a bad lot — smart within limits, energetic, but chained to conventional procedure. Gregson appears in A Study in Scarlet as the Yard's lead investigator on the Lauriston Gardens murder, where he and Lestrade compete as much with each other as with the case. He is described as tall and flaxen-haired, with a self-satisfied manner that Holmes finds mildly amusing. He recurs in Five Orange Pips and Wisteria Lodge, always following the facts further than the average officer but stopping short of Holmes's leaps of inference.",
+  "tags": ["Scotland Yard", "inspector", "detective", "police", "official force"],
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

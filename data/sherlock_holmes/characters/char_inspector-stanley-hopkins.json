@@ -1,0 +1,26 @@
+{
+  "id": "char_inspector-stanley-hopkins",
+  "series": "sherlock_holmes",
+  "name": "Inspector Stanley Hopkins",
+  "aliases": ["Hopkins", "Inspector Hopkins"],
+  "role": "supporting",
+  "status": "active",
+  "first_mention": { "book": 6, "chapter": 6 },
+  "full_reveal": { "book": 6, "chapter": 6 },
+  "affiliations": [
+    "faction_scotland-yard"
+  ],
+  "relationships": [
+    "rel_holmes-hopkins-mentor",
+    "rel_lestrade-hopkins-professional"
+  ],
+  "cases": [
+    "case_the-adventure-of-black-peter",
+    "case_the-adventure-of-the-golden-pince-nez",
+    "case_the-adventure-of-the-abbey-grange"
+  ],
+  "biography": "Inspector Stanley Hopkins is a young Scotland Yard detective who appears in three Return-era cases and is distinctive for being the one officer Holmes takes a genuine professional interest in. Holmes regards him as possessing real ability and several times suggests he has the makings of a great detective — though Hopkins repeatedly makes the same error of jumping to a conclusion too early and being reluctant to revise it. Holmes acts as an explicit mentor across their cases together, correcting his reasoning and demonstrating the methods Hopkins has not yet mastered. He is energetic, earnest, and not too proud to ask for help, which earns him more warmth from Holmes than most Yarders receive.",
+  "tags": ["Scotland Yard", "inspector", "detective", "police", "Holmes protégé"],
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

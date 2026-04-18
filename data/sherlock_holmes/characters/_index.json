@@ -14,7 +14,12 @@
       "rel_holmes-moriarty-enemy",
       "rel_holmes-irene-adler-other",
       "rel_holmes-mycroft-family",
-      "rel_holmes-lestrade-professional"
+      "rel_holmes-lestrade-professional",
+      "rel_holmes-mrs-hudson-professional",
+      "rel_holmes-moran-enemy",
+      "rel_holmes-gregson-professional",
+      "rel_holmes-hopkins-mentor",
+      "rel_holmes-athelney-jones-professional"
     ],
     "cases": [
       "case_a-study-in-scarlet",
@@ -95,7 +100,8 @@
     "affiliations": [],
     "relationships": [
       "rel_holmes-watson-ally",
-      "rel_watson-mary-morstan-romantic"
+      "rel_watson-mary-morstan-romantic",
+      "rel_watson-mrs-hudson-professional"
     ],
     "cases": [
       "case_a-study-in-scarlet",
@@ -172,7 +178,10 @@
     "first_mention": { "book": 4, "chapter": 1 },
     "full_reveal": { "book": 4, "chapter": 10 },
     "affiliations": ["faction_moriarty-criminal-network"],
-    "relationships": ["rel_holmes-moriarty-enemy"],
+    "relationships": [
+      "rel_holmes-moriarty-enemy",
+      "rel_moriarty-moran-ally"
+    ],
     "cases": [
       "case_the-final-problem",
       "case_the-valley-of-fear",
@@ -193,9 +202,12 @@
     "first_mention": { "book": 3, "chapter": 1 },
     "full_reveal": { "book": 3, "chapter": 1 },
     "affiliations": [],
-    "relationships": ["rel_holmes-irene-adler-other"],
+    "relationships": [
+      "rel_holmes-irene-adler-other",
+      "rel_adler-norton-romantic"
+    ],
     "cases": ["case_a-scandal-in-bohemia"],
-    "biography": "Irene Adler is an American opera singer and the only woman who ever truly outwitted Sherlock Holmes. She appears in a single canonical story — A Scandal in Bohemia — in which she outmaneuvers Holmes completely, discerning his disguise and departing England before he can retrieve a compromising photograph. Watson records that Holmes thereafter refers to her simply as 'The Woman.'",
+    "biography": "Irene Adler is an American opera singer and the only woman who ever truly outwitted Sherlock Holmes. Born in New Jersey, she achieved fame as a contralto in opera across Europe. She appears in a single canonical story — A Scandal in Bohemia — in which the King of Bohemia hires Holmes to recover a compromising photograph she holds. Adler outmaneuvers Holmes completely, discerning his disguise and departing England with her husband Godfrey Norton before Holmes can retrieve the photograph. Watson records that Holmes thereafter refers to her simply as 'The Woman' — the one person to have bested him. She appears in no other canonical story.",
     "tags": ["opera singer", "The Woman", "American", "Bohemia", "photograph"],
     "created_by": "theloreatlas",
     "last_edited_by": "theloreatlas"
@@ -210,7 +222,11 @@
     "first_mention": { "book": 1, "chapter": 3 },
     "full_reveal": { "book": 1, "chapter": 3 },
     "affiliations": ["faction_scotland-yard"],
-    "relationships": ["rel_holmes-lestrade-professional"],
+    "relationships": [
+      "rel_holmes-lestrade-professional",
+      "rel_lestrade-gregson-professional",
+      "rel_lestrade-hopkins-professional"
+    ],
     "cases": [
       "case_a-study-in-scarlet",
       "case_the-adventure-of-the-engineers-thumb",
@@ -242,6 +258,153 @@
     ],
     "biography": "Mycroft Holmes is Sherlock's older brother and, by Holmes's own admission, an even more gifted reasoner. He holds a unique position in the British government as an intelligence clearing house, and is a founding member of the Diogenes Club — a club for men who dislike company.",
     "tags": ["government", "Diogenes Club", "brother", "intelligence"],
+    "created_by": "theloreatlas",
+    "last_edited_by": "theloreatlas"
+  },
+  {
+    "id": "char_mrs-hudson",
+    "series": "sherlock_holmes",
+    "name": "Mrs. Hudson",
+    "aliases": ["Martha Hudson", "The Landlady"],
+    "role": "supporting",
+    "status": "active",
+    "first_mention": { "book": 1, "chapter": 2 },
+    "full_reveal": { "book": 1, "chapter": 2 },
+    "affiliations": [],
+    "relationships": [
+      "rel_holmes-mrs-hudson-professional",
+      "rel_watson-mrs-hudson-professional"
+    ],
+    "cases": [
+      "case_a-study-in-scarlet",
+      "case_a-scandal-in-bohemia",
+      "case_the-final-problem",
+      "case_the-adventure-of-the-empty-house",
+      "case_the-adventure-of-the-dying-detective"
+    ],
+    "biography": "Mrs. Hudson is the long-suffering landlady of 221B Baker Street and one of the most constant presences in the Holmes canon. She rents the first-floor rooms to Holmes and Watson, endures Holmes's eccentric habits — chemistry experiments at all hours, revolver shots into the wainscoting, the smell of tobacco, and an unrelenting parade of strange visitors — without complaint. She brings up callers, delivers telegrams, and maintains the domestic infrastructure of 221B with quiet competence. Holmes, who rarely expresses sentiment, clearly values her: in The Adventure of the Empty House he uses a wax bust of himself to deceive Moran, and Mrs. Hudson's role in manipulating it shows her willingness to place herself in danger for him. Her first name is given as Martha in His Last Bow.",
+    "tags": ["landlady", "Baker Street", "221B", "housekeeper"],
+    "created_by": "theloreatlas",
+    "last_edited_by": "theloreatlas"
+  },
+  {
+    "id": "char_colonel-sebastian-moran",
+    "series": "sherlock_holmes",
+    "name": "Colonel Sebastian Moran",
+    "aliases": ["The Tiger of San Pedro", "Moran"],
+    "role": "antagonist",
+    "status": "active",
+    "first_mention": { "book": 6, "chapter": 1 },
+    "full_reveal": { "book": 6, "chapter": 1 },
+    "affiliations": [
+      "faction_moriarty-criminal-network"
+    ],
+    "relationships": [
+      "rel_holmes-moran-enemy",
+      "rel_moriarty-moran-ally"
+    ],
+    "cases": [
+      "case_the-adventure-of-the-empty-house",
+      "case_the-final-problem"
+    ],
+    "biography": "Colonel Sebastian Moran is Moriarty's chief of staff and the most dangerous man in London after the Professor himself. Holmes describes him as the best heavy-game shot in the Indian Empire — a decorated soldier turned hired killer. He served in the Indian Army before his undisclosed crimes forced him into Moriarty's criminal organization, where he became the network's most lethal operative. After Moriarty's death at Reichenbach, Moran continues to hunt Holmes, eventually attempting to kill him from Camden House using an air-gun designed by the blind mechanic Von Herder. Holmes sets a trap using a wax bust as bait, and Moran is arrested. His dossier in Holmes's records notes he is the second most dangerous man in London.",
+    "tags": ["villain", "assassin", "Moriarty network", "shikari", "airgun", "Empty House"],
+    "created_by": "theloreatlas",
+    "last_edited_by": "theloreatlas"
+  },
+  {
+    "id": "char_mary-morstan",
+    "series": "sherlock_holmes",
+    "name": "Mary Morstan",
+    "aliases": ["Mrs. Watson", "Mary Watson"],
+    "role": "supporting",
+    "status": "deceased",
+    "first_mention": { "book": 2, "chapter": 2 },
+    "full_reveal": { "book": 2, "chapter": 2 },
+    "affiliations": [],
+    "relationships": [
+      "rel_watson-mary-morstan-romantic"
+    ],
+    "cases": [
+      "case_the-sign-of-the-four"
+    ],
+    "biography": "Mary Morstan is the client who brings Watson and Holmes the case in The Sign of the Four, and subsequently becomes Watson's wife. She arrives at 221B seeking Holmes's help: her father, Captain Morstan, disappeared years earlier, and she has been receiving annual gifts of pearls from an anonymous sender. She is intelligent, composed under pressure, and strikes Watson immediately as a woman of refinement and courage. The case resolves around the Agra Treasure, which would have made her wealthy — but Jonathan Small throws it into the Thames, leaving her with nothing material. She and Watson marry shortly after. She is mentioned in later stories as deceased, her passing between canons explaining Watson's return to Baker Street.",
+    "tags": ["client", "Watson's wife", "Sign of Four", "Agra Treasure", "pearls"],
+    "created_by": "theloreatlas",
+    "last_edited_by": "theloreatlas"
+  },
+  {
+    "id": "char_inspector-gregson",
+    "series": "sherlock_holmes",
+    "name": "Inspector Tobias Gregson",
+    "aliases": ["Gregson", "Inspector Gregson"],
+    "role": "supporting",
+    "status": "active",
+    "first_mention": { "book": 1, "chapter": 3 },
+    "full_reveal": { "book": 1, "chapter": 3 },
+    "affiliations": [
+      "faction_scotland-yard"
+    ],
+    "relationships": [
+      "rel_holmes-gregson-professional",
+      "rel_lestrade-gregson-professional"
+    ],
+    "cases": [
+      "case_a-study-in-scarlet",
+      "case_the-five-orange-pips",
+      "case_the-adventure-of-wisteria-lodge"
+    ],
+    "biography": "Inspector Tobias Gregson is one of Scotland Yard's ablest detectives and, along with Lestrade, Holmes's most frequent official contact. Holmes considers him and Lestrade the pick of a bad lot — smart within limits, energetic, but chained to conventional procedure. Gregson appears in A Study in Scarlet as the Yard's lead investigator on the Lauriston Gardens murder, where he and Lestrade compete as much with each other as with the case. He is described as tall and flaxen-haired, with a self-satisfied manner that Holmes finds mildly amusing. He recurs in Five Orange Pips and Wisteria Lodge, always following the facts further than the average officer but stopping short of Holmes's leaps of inference.",
+    "tags": ["Scotland Yard", "inspector", "detective", "police", "official force"],
+    "created_by": "theloreatlas",
+    "last_edited_by": "theloreatlas"
+  },
+  {
+    "id": "char_inspector-stanley-hopkins",
+    "series": "sherlock_holmes",
+    "name": "Inspector Stanley Hopkins",
+    "aliases": ["Hopkins", "Inspector Hopkins"],
+    "role": "supporting",
+    "status": "active",
+    "first_mention": { "book": 6, "chapter": 6 },
+    "full_reveal": { "book": 6, "chapter": 6 },
+    "affiliations": [
+      "faction_scotland-yard"
+    ],
+    "relationships": [
+      "rel_holmes-hopkins-mentor",
+      "rel_lestrade-hopkins-professional"
+    ],
+    "cases": [
+      "case_the-adventure-of-black-peter",
+      "case_the-adventure-of-the-golden-pince-nez",
+      "case_the-adventure-of-the-abbey-grange"
+    ],
+    "biography": "Inspector Stanley Hopkins is a young Scotland Yard detective who appears in three Return-era cases and is distinctive for being the one officer Holmes takes a genuine professional interest in. Holmes regards him as possessing real ability and several times suggests he has the makings of a great detective — though Hopkins repeatedly makes the same error of jumping to a conclusion too early and being reluctant to revise it. Holmes acts as an explicit mentor across their cases together, correcting his reasoning and demonstrating the methods Hopkins has not yet mastered. He is energetic, earnest, and not too proud to ask for help, which earns him more warmth from Holmes than most Yarders receive.",
+    "tags": ["Scotland Yard", "inspector", "detective", "police", "Holmes protégé"],
+    "created_by": "theloreatlas",
+    "last_edited_by": "theloreatlas"
+  },
+  {
+    "id": "char_inspector-athelney-jones",
+    "series": "sherlock_holmes",
+    "name": "Inspector Athelney Jones",
+    "aliases": ["Jones", "Inspector Jones"],
+    "role": "supporting",
+    "status": "active",
+    "first_mention": { "book": 2, "chapter": 5 },
+    "full_reveal": { "book": 2, "chapter": 5 },
+    "affiliations": [
+      "faction_scotland-yard"
+    ],
+    "relationships": [
+      "rel_holmes-athelney-jones-professional"
+    ],
+    "cases": [
+      "case_the-sign-of-the-four"
+    ],
+    "biography": "Inspector Athelney Jones is the Scotland Yard detective assigned to the Pondicherry Lodge murder in The Sign of the Four. He arrives at the crime scene with great confidence, immediately theorizing about the case and making an early arrest based on circumstantial evidence — only to find himself wrong. He is not unintelligent but is prone to the same over-hasty conclusions Holmes criticizes in all Yarders. He proves adaptable enough to partner with Holmes on the Thames boat chase that ends the case, showing practical competence even when his deductive theories have been dismantled. He is portrayed with a degree of self-deprecating humor absent from Lestrade and Gregson.",
+    "tags": ["Scotland Yard", "inspector", "detective", "police", "Sign of Four"],
     "created_by": "theloreatlas",
     "last_edited_by": "theloreatlas"
   }
