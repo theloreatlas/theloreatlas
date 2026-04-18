@@ -1,0 +1,13 @@
+{
+  "id": "rel_holmes-mary-sutherland-professional",
+  "series": "sherlock_holmes",
+  "character_a": "char_sherlock-holmes",
+  "character_b": "char_mary-sutherland",
+  "relationship_type": "professional",
+  "first_established": "case_a-case-of-identity",
+  "notes": "Mary Sutherland hires Holmes to find her missing fiancé Hosmer Angel. Holmes solves the case rapidly — the fiancé was a fiction created by her stepfather Windibank — but takes the notable decision not to tell her. He reasons she would not believe him, that the truth would cause her more pain than the comfortable uncertainty she already lives with, and that Windibank will receive his own punishment from the universe in due course. It is one of the clearest examples in the canon of Holmes choosing the client's emotional welfare over full disclosure — a paternalistic judgment that Watson neither endorses nor challenges.",
+  "first_mention": { "book": 3, "chapter": 3 },
+  "full_reveal": { "book": 3, "chapter": 3 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

@@ -1,0 +1,13 @@
+{
+  "id": "rel_holmes-mrs-hudson-professional",
+  "series": "sherlock_holmes",
+  "character_a": "char_sherlock-holmes",
+  "character_b": "char_mrs-hudson",
+  "relationship_type": "professional",
+  "first_established": "case_a-study-in-scarlet",
+  "notes": "Holmes is Mrs. Hudson's most famous — and most exasperating — tenant. He pays well and she tolerates his chemistry experiments, erratic hours, revolver practice against the wall, and the constant parade of unusual visitors. Holmes is more attached to her than his manner suggests: in The Adventure of the Empty House he recruits her to slowly manipulate a wax bust in front of the window, a task placing her in a sniper's line of sight. She agrees without hesitation. In His Last Bow she is identified by her first name Martha, and is revealed to have served Holmes during a covert mission.",
+  "first_mention": { "book": 1, "chapter": 2 },
+  "full_reveal": { "book": 1, "chapter": 2 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

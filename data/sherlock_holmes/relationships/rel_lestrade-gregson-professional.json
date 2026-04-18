@@ -1,0 +1,13 @@
+{
+  "id": "rel_lestrade-gregson-professional",
+  "series": "sherlock_holmes",
+  "character_a": "char_inspector-lestrade",
+  "character_b": "char_inspector-gregson",
+  "relationship_type": "professional",
+  "first_established": "case_a-study-in-scarlet",
+  "notes": "Lestrade and Gregson are colleagues at Scotland Yard and rivals for professional distinction. In A Study in Scarlet they work the same case independently, each certain his approach is superior, each seeking credit. Holmes observes their competition with dry amusement and notes that they are each as eager to outshine the other as to solve the case. Their relationship is the institutional face of Scotland Yard's limitations: competent men in competition rather than cooperation, neither willing to build on the other's work.",
+  "first_mention": { "book": 1, "chapter": 3 },
+  "full_reveal": { "book": 1, "chapter": 3 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

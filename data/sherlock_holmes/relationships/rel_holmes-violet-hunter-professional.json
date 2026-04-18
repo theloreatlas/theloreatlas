@@ -1,0 +1,13 @@
+{
+  "id": "rel_holmes-violet-hunter-professional",
+  "series": "sherlock_holmes",
+  "character_a": "char_sherlock-holmes",
+  "character_b": "char_violet-hunter",
+  "relationship_type": "professional",
+  "first_established": "case_the-adventure-of-the-copper-beeches",
+  "notes": "Holmes's interest in Violet Hunter is noticeably warmer than his usual client relations — Watson observes it with mild surprise. Holmes advises her against taking the Copper Beeches position but does not prevent her, and she proves herself entirely capable of gathering the intelligence Holmes needs once she is inside the house. He rushes to her aid the moment she sends for help. Watson records that Holmes followed her subsequent career with interest; she becomes a headmistress, one of the few clients whose later life is noted in the canon.",
+  "first_mention": { "book": 3, "chapter": 12 },
+  "full_reveal": { "book": 3, "chapter": 12 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

@@ -1,0 +1,13 @@
+{
+  "id": "rel_holmes-hopkins-mentor",
+  "series": "sherlock_holmes",
+  "character_a": "char_sherlock-holmes",
+  "character_b": "char_inspector-stanley-hopkins",
+  "relationship_type": "mentor",
+  "first_established": "case_the-adventure-of-black-peter",
+  "notes": "Holmes takes an unusual interest in Hopkins, explicitly describing him as a promising officer who has the makings of a great detective. Across their three cases together Holmes functions as a teacher — correcting Hopkins's reasoning, demonstrating the observational method, and showing patience with errors he would dismiss more curtly in Lestrade or Gregson. Hopkins represents the possibility that official detection could improve if it adopted Holmes's approach, which gives the relationship a different quality to Holmes's other Yarder connections.",
+  "first_mention": { "book": 6, "chapter": 6 },
+  "full_reveal": { "book": 6, "chapter": 6 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

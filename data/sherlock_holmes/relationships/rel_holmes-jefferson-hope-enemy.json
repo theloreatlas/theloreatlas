@@ -1,0 +1,13 @@
+{
+  "id": "rel_holmes-jefferson-hope-enemy",
+  "series": "sherlock_holmes",
+  "character_a": "char_sherlock-holmes",
+  "character_b": "char_jefferson-hope",
+  "relationship_type": "enemy",
+  "first_established": "case_a-study-in-scarlet",
+  "notes": "Holmes hunts Hope from the Lauriston Gardens crime scene without knowing his identity, piecing together the killer's physical description from footprints, traces, and the RACHE inscription. He catches Hope in a neat trap: advertising the lost ring and waiting for the owner to claim it. Despite the adversarial framing, Holmes respects Hope — recognizing a man driven by genuine injustice rather than base greed. He allows Hope to tell his full story before his death. Watson notes Holmes's quiet admiration for Hope's determination across two decades of pursuit.",
+  "first_mention": { "book": 1, "chapter": 7 },
+  "full_reveal": { "book": 1, "chapter": 13 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

@@ -1,0 +1,13 @@
+{
+  "id": "rel_watson-mary-morstan-romantic",
+  "series": "sherlock_holmes",
+  "character_a": "char_john-watson",
+  "character_b": "char_mary-morstan",
+  "relationship_type": "romantic",
+  "first_established": "case_the-sign-of-the-four",
+  "notes": "Watson meets Mary Morstan when she arrives at 221B as a client in The Sign of the Four. He falls for her immediately — describing her with the warmth conspicuously absent from his prose elsewhere — and they marry shortly after the case concludes. Mary's death (occurring off-page between stories) brings Watson back to Baker Street. She is the one significant domestic attachment of his life, and her absence in the later canon shapes his return to Holmes's orbit.",
+  "first_mention": { "book": 2, "chapter": 2 },
+  "full_reveal": { "book": 2, "chapter": 2 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

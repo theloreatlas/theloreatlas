@@ -1,0 +1,13 @@
+{
+  "id": "rel_watson-mrs-hudson-professional",
+  "series": "sherlock_holmes",
+  "character_a": "char_john-watson",
+  "character_b": "char_mrs-hudson",
+  "relationship_type": "professional",
+  "first_established": "case_a-study-in-scarlet",
+  "notes": "Watson shares lodgings at 221B and occupies a secondary-tenant relationship with Mrs. Hudson. It is warmer and more straightforward than Holmes's: Watson appreciates her domestic steadiness and she is spared the worst of the eccentricities that Holmes alone generates. Watson notes her patience admiringly more than once. When he marries and moves out, she remains in the building and in the background of his life whenever he returns to Baker Street.",
+  "first_mention": { "book": 1, "chapter": 2 },
+  "full_reveal": { "book": 1, "chapter": 2 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

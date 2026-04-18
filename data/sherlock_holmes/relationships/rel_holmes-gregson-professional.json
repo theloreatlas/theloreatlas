@@ -1,0 +1,13 @@
+{
+  "id": "rel_holmes-gregson-professional",
+  "series": "sherlock_holmes",
+  "character_a": "char_sherlock-holmes",
+  "character_b": "char_inspector-gregson",
+  "relationship_type": "professional",
+  "first_established": "case_a-study-in-scarlet",
+  "notes": "Holmes regards Gregson as one of the two best men at Scotland Yard — he and Lestrade form the top tier of official detection. Gregson is more willing than Lestrade to acknowledge Holmes openly and to ask for help without the performance of skepticism. Holmes assists him in Study in Scarlet, Five Orange Pips, and Wisteria Lodge. The relationship is cooperative but never warm — Holmes is a consultant, Gregson an official, and neither pretends otherwise.",
+  "first_mention": { "book": 1, "chapter": 3 },
+  "full_reveal": { "book": 1, "chapter": 3 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

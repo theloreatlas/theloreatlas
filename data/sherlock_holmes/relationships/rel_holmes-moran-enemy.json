@@ -1,0 +1,13 @@
+{
+  "id": "rel_holmes-moran-enemy",
+  "series": "sherlock_holmes",
+  "character_a": "char_sherlock-holmes",
+  "character_b": "char_colonel-sebastian-moran",
+  "relationship_type": "enemy",
+  "first_established": "case_the-adventure-of-the-empty-house",
+  "notes": "Moran is Holmes's primary adversary in the period immediately after Reichenbach — the one survivor of Moriarty's network capable of threatening him. Holmes spent three years abroad partly to avoid Moran, who had tried to finish him in the Reichenbach gorge. When Holmes returns to London in 1894, he engineers Moran's arrest by using a wax bust as bait in the window of 221B. Moran attempts to shoot it from Camden House across the street; Holmes catches him in the act. It is a neat mirror of the Moriarty trap: this time Holmes controls the scene entirely.",
+  "first_mention": { "book": 6, "chapter": 1 },
+  "full_reveal": { "book": 6, "chapter": 1 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

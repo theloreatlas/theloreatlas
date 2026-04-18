@@ -1,0 +1,13 @@
+{
+  "id": "rel_watson-henry-baskerville-professional",
+  "series": "sherlock_holmes",
+  "character_a": "char_john-watson",
+  "character_b": "char_henry-baskerville",
+  "relationship_type": "professional",
+  "first_established": "case_the-hound-of-the-baskervilles",
+  "notes": "Holmes sends Watson to Dartmoor as Henry's companion and protector while he continues his own investigation in London. Watson becomes Henry's closest ally on the moor — accompanying him to Baskerville Hall, observing the neighbors, and sending Holmes detailed reports. The relationship is that of a professional guardian and a frightened client: Watson is loyal to Holmes's instructions while becoming genuinely fond of Henry's directness and courage. Henry is one of Watson's more substantial solo-narrative responsibilities in the entire canon.",
+  "first_mention": { "book": 5, "chapter": 4 },
+  "full_reveal": { "book": 5, "chapter": 4 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

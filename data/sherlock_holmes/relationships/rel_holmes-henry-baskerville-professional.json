@@ -1,0 +1,13 @@
+{
+  "id": "rel_holmes-henry-baskerville-professional",
+  "series": "sherlock_holmes",
+  "character_a": "char_sherlock-holmes",
+  "character_b": "char_henry-baskerville",
+  "relationship_type": "professional",
+  "first_established": "case_the-hound-of-the-baskervilles",
+  "notes": "Henry Baskerville engages Holmes to investigate the threat against his life after arriving in England to claim his inheritance. Holmes takes the case seriously enough to send Watson ahead to Dartmoor while continuing his own investigations in London. Henry is a cooperative client despite finding the restrictions Holmes places on his movements frustrating. Holmes ultimately saves his life, though not before the case comes dangerously close to killing him on the moor.",
+  "first_mention": { "book": 5, "chapter": 4 },
+  "full_reveal": { "book": 5, "chapter": 4 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

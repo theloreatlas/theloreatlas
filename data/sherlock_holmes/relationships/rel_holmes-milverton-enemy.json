@@ -1,0 +1,13 @@
+{
+  "id": "rel_holmes-milverton-enemy",
+  "series": "sherlock_holmes",
+  "character_a": "char_sherlock-holmes",
+  "character_b": "char_charles-augustus-milverton",
+  "relationship_type": "enemy",
+  "first_established": "case_the-adventure-of-charles-augustus-milverton",
+  "notes": "Holmes's loathing of Milverton is unusually personal and stated. He calls him the worst man in London — a judgment that places the blackmailer above Moriarty in terms of moral culpability, because Moriarty's criminality springs from ambition while Milverton's springs from indifference to human suffering. Holmes goes so far as to break into Appledore Towers — a clear criminal act — to recover letters held over a client. When he witnesses Milverton's murder by a woman he cannot identify, Holmes refuses to help the police, and Watson records that he destroyed the evidence. It is the starkest case of Holmes choosing personal moral judgment over legal obligation.",
+  "first_mention": { "book": 6, "chapter": 7 },
+  "full_reveal": { "book": 6, "chapter": 7 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

@@ -1,0 +1,13 @@
+{
+  "id": "rel_holmes-helen-stoner-professional",
+  "series": "sherlock_holmes",
+  "character_a": "char_sherlock-holmes",
+  "character_b": "char_helen-stoner",
+  "relationship_type": "professional",
+  "first_established": "case_the-adventure-of-the-speckled-band",
+  "notes": "Helen Stoner arrives at Baker Street at dawn in a state of visible fear, and Holmes takes the case immediately — one of the few instances in the canon where he does not question the client's credibility before acting. He travels to Stoke Moran to investigate, spends a night in Julia's old room, and confronts the danger directly. Helen's courage in coming to Baker Street at all — given Roylott's violence — impresses Holmes. The case is one of the clearest examples in the canon of Holmes using his abilities explicitly to protect a client rather than simply to solve a puzzle.",
+  "first_mention": { "book": 3, "chapter": 8 },
+  "full_reveal": { "book": 3, "chapter": 8 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

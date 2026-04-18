@@ -1,0 +1,13 @@
+{
+  "id": "rel_holmes-stapleton-enemy",
+  "series": "sherlock_holmes",
+  "character_a": "char_sherlock-holmes",
+  "character_b": "char_stapleton",
+  "relationship_type": "enemy",
+  "first_established": "case_the-hound-of-the-baskervilles",
+  "notes": "Stapleton is aware of Holmes's investigation earlier than Holmes realizes — he has been watching the Baskerville situation and correctly suspects when a detective arrives that the game is endangered. He and Holmes meet as apparent neighbors, with Stapleton playing the part of a friendly naturalist while Holmes suspects him. The relationship is one of mutual concealment: Stapleton trying to hide his identity and plan, Holmes trying to conceal how much he knows. When Holmes sets the final trap in chapter 13, Stapleton attempts to flee through Grimpen Mire rather than face capture, and is presumed drowned.",
+  "first_mention": { "book": 5, "chapter": 7 },
+  "full_reveal": { "book": 5, "chapter": 14 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

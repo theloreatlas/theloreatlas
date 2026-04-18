@@ -1,0 +1,13 @@
+{
+  "id": "rel_holmes-violet-smith-professional",
+  "series": "sherlock_holmes",
+  "character_a": "char_sherlock-holmes",
+  "character_b": "char_violet-smith",
+  "relationship_type": "professional",
+  "first_established": "case_the-adventure-of-the-solitary-cyclist",
+  "notes": "Violet Smith consults Holmes about the mysterious cyclist who follows her weekly. Holmes takes the case but handles it with less than his usual urgency — he sends Watson to observe first and acts too slowly to prevent a forced marriage ceremony. He later acknowledges the error. Despite this uncharacteristic lapse, he resolves the situation and the forced marriage is annulled. Watson's narration is unusually warm about Violet Smith's appearance and manner, a detail Holmes notes with amusement.",
+  "first_mention": { "book": 6, "chapter": 4 },
+  "full_reveal": { "book": 6, "chapter": 4 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

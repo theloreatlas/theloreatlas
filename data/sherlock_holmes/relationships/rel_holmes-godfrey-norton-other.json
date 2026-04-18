@@ -1,0 +1,13 @@
+{
+  "id": "rel_holmes-godfrey-norton-other",
+  "series": "sherlock_holmes",
+  "character_a": "char_sherlock-holmes",
+  "character_b": "char_godfrey-norton",
+  "relationship_type": "other",
+  "first_established": "case_a-scandal-in-bohemia",
+  "notes": "Holmes and Norton meet only once, under unusual circumstances: Holmes is following Irene Adler when he and Norton both arrive at a church, and Norton — frantic because he needs a witness to marry Adler legally — presses Holmes into service. Holmes agrees. It is one of the stranger moments in the canon: Holmes unwittingly facilitating the marriage that removes Adler from the King of Bohemia's reach and defeats his own mission. He describes Norton afterward with a trace of rueful respect — the man moved quickly and got what he wanted.",
+  "first_mention": { "book": 3, "chapter": 1 },
+  "full_reveal": { "book": 3, "chapter": 1 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

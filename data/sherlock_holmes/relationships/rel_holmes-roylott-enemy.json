@@ -1,0 +1,13 @@
+{
+  "id": "rel_holmes-roylott-enemy",
+  "series": "sherlock_holmes",
+  "character_a": "char_sherlock-holmes",
+  "character_b": "char_dr-grimesby-roylott",
+  "relationship_type": "enemy",
+  "first_established": "case_the-adventure-of-the-speckled-band",
+  "notes": "Roylott visits Baker Street before Holmes has finished his investigation — an unusual reversal where the villain confronts the detective directly. He physically intimidates Holmes, bending a steel fireplace poker with his bare hands and threatening him with unspecified consequences. Holmes straightens the poker and remarks that Roylott seems to have shown his strength. Watson notes that Holmes lists the Speckled Band case among the few in which he faced genuine physical danger to his person. Roylott dies by his own method before Holmes can bring a formal case.",
+  "first_mention": { "book": 3, "chapter": 8 },
+  "full_reveal": { "book": 3, "chapter": 8 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

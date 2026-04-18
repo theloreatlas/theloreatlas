@@ -1,0 +1,13 @@
+{
+  "id": "rel_lestrade-hopkins-professional",
+  "series": "sherlock_holmes",
+  "character_a": "char_inspector-lestrade",
+  "character_b": "char_inspector-stanley-hopkins",
+  "relationship_type": "professional",
+  "first_established": "case_the-adventure-of-black-peter",
+  "notes": "Lestrade and Hopkins are both Scotland Yard inspectors working roughly the same era, representing a generational contrast: Lestrade experienced and entrenched in his methods, Hopkins younger and more open to Holmes's influence. They appear in overlapping but non-identical cases within the Return and do not share scenes in the canonical text. Their relationship is inferred as one of professional hierarchy rather than personal connection.",
+  "first_mention": { "book": 6, "chapter": 6 },
+  "full_reveal": { "book": 6, "chapter": 6 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

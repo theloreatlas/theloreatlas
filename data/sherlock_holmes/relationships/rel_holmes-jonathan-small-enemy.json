@@ -1,0 +1,13 @@
+{
+  "id": "rel_holmes-jonathan-small-enemy",
+  "series": "sherlock_holmes",
+  "character_a": "char_sherlock-holmes",
+  "character_b": "char_jonathan-small",
+  "relationship_type": "enemy",
+  "first_established": "case_the-sign-of-the-four",
+  "notes": "Holmes reconstructs Small from the crime scene at Pondicherry Lodge — identifying the wooden leg, the small companion Tonga, and the connection to the Agra pact — then organizes the Thames boat chase that ends in Small's capture. Small is hostile but not without dignity: he gives Holmes a full account of his history once caught, and Holmes listens without contempt. Small's decision to throw the treasure into the Thames rather than allow it to fall to the Sholto family is one Holmes implicitly understands as a consistent act from a consistent man.",
+  "first_mention": { "book": 2, "chapter": 6 },
+  "full_reveal": { "book": 2, "chapter": 12 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}
