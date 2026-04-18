@@ -1,0 +1,22 @@
+{
+  "id": "artifact_bruce-partington-plans",
+  "series": "sherlock_holmes",
+  "name": "The Bruce-Partington Plans",
+  "type": "government document",
+  "description": "The complete technical blueprints for the Bruce-Partington submarine — a weapon the British Admiralty considers so significant that its theft constitutes a national crisis. The plans consist of ten sheets; seven are stolen from the Admiralty office by Hugo Oberstein, a foreign agent, with the complicity of a War Office clerk named Cadogan West, who is murdered for them. Three pages are withheld by the thief as a precaution. Mycroft Holmes considers the plans among the most important documents in the possession of the British government.",
+  "ownership_chain": [
+    {
+      "character_id": "char_mycroft-holmes",
+      "from": { "book": 8, "chapter": 4 },
+      "to": { "book": 8, "chapter": 4 }
+    }
+  ],
+  "appearance_history": [
+    "case_the-adventure-of-the-bruce-partington-plans"
+  ],
+  "significance": "The plans' theft draws Mycroft out of his habitual inactivity — a sign of how seriously the government regards the breach. Holmes recovers the plans by luring Oberstein with a forged reply to his newspaper advertisement, and is rewarded with an emerald tiepin from a grateful monarch. One of the few cases where the stakes are genuinely national rather than personal.",
+  "first_mention": { "book": 8, "chapter": 4 },
+  "full_reveal": { "book": 8, "chapter": 4 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

@@ -1,0 +1,22 @@
+{
+  "id": "artifact_musgrave-ritual",
+  "series": "sherlock_holmes",
+  "name": "The Musgrave Ritual",
+  "type": "historical document",
+  "description": "An ancient catechism recited by each Musgrave heir upon coming of age — a series of questions and answers about the sun, elm tree, oak, stone, and well on the Musgrave estate. The ritual has been passed down for generations without understanding; the family regards it as a piece of feudal formality. Holmes recognizes it as a set of precise navigational instructions — a treasure map in plain sight — leading to a hidden underground chamber beneath the estate. There he finds a rotted wooden chest containing the ancient crown of the Stuart kings, wrapped in canvas.",
+  "ownership_chain": [
+    {
+      "character_id": "char_sherlock-holmes",
+      "from": { "book": 4, "chapter": 5 },
+      "to": { "book": 4, "chapter": 5 }
+    }
+  ],
+  "appearance_history": [
+    "case_the-musgrave-ritual"
+  ],
+  "significance": "One of Holmes's earliest pre-Watson cases, told in retrospect. The ritual is simultaneously a piece of seventeenth-century cryptography and an heirloom without understood meaning — a demonstration that the most significant documents can survive hidden in plain sight for centuries. The discovery of the Stuart crown inside the well is one of the canon's most striking finds, though the crown itself has no legal value — Charles II presumably had a new one made.",
+  "first_mention": { "book": 4, "chapter": 5 },
+  "full_reveal": { "book": 4, "chapter": 5 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

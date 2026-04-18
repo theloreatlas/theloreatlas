@@ -78,5 +78,115 @@
     "full_reveal": { "book": 3, "chapter": 1 },
     "created_by": "theloreatlas",
     "last_edited_by": "theloreatlas"
+  },
+  {
+    "id": "artifact_beryl-coronet",
+    "series": "sherlock_holmes",
+    "name": "The Beryl Coronet",
+    "type": "national treasure",
+    "description": "A coronet set with thirty-nine beryls, described as one of the most precious public possessions in England. A nobleman deposits it with the banker Alexander Holder as security for a £50,000 loan. When one of the beryls goes missing overnight, Holder suspects his own son Arthur — but Holmes discovers the true culprit is Sir George Burnwell, and that Arthur was caught wrestling the coronet from Burnwell in an attempt to recover it, not steal it.",
+    "ownership_chain": [
+      {
+        "character_id": "char_sherlock-holmes",
+        "from": { "book": 3, "chapter": 11 },
+        "to": { "book": 3, "chapter": 11 }
+      }
+    ],
+    "appearance_history": [
+      "case_the-adventure-of-the-beryl-coronet"
+    ],
+    "significance": "A case of misread evidence: every appearance of guilt points to Arthur Holder, and every appearance is wrong. Holmes pays £1,000 from his own pocket to recover the missing beryl from Burnwell. The coronet is returned complete. The case is a study in the danger of the obvious conclusion.",
+    "first_mention": { "book": 3, "chapter": 11 },
+    "full_reveal": { "book": 3, "chapter": 11 },
+    "created_by": "theloreatlas",
+    "last_edited_by": "theloreatlas"
+  },
+  {
+    "id": "artifact_bruce-partington-plans",
+    "series": "sherlock_holmes",
+    "name": "The Bruce-Partington Plans",
+    "type": "government document",
+    "description": "The complete technical blueprints for the Bruce-Partington submarine — a weapon the British Admiralty considers so significant that its theft constitutes a national crisis. The plans consist of ten sheets; seven are stolen from the Admiralty office by Hugo Oberstein, a foreign agent, with the complicity of a War Office clerk named Cadogan West, who is murdered for them. Three pages are withheld by the thief as a precaution. Mycroft Holmes considers the plans among the most important documents in the possession of the British government.",
+    "ownership_chain": [
+      {
+        "character_id": "char_mycroft-holmes",
+        "from": { "book": 8, "chapter": 4 },
+        "to": { "book": 8, "chapter": 4 }
+      }
+    ],
+    "appearance_history": [
+      "case_the-adventure-of-the-bruce-partington-plans"
+    ],
+    "significance": "The plans' theft draws Mycroft out of his habitual inactivity — a sign of how seriously the government regards the breach. Holmes recovers the plans by luring Oberstein with a forged reply to his newspaper advertisement, and is rewarded with an emerald tiepin from a grateful monarch. One of the few cases where the stakes are genuinely national rather than personal.",
+    "first_mention": { "book": 8, "chapter": 4 },
+    "full_reveal": { "book": 8, "chapter": 4 },
+    "created_by": "theloreatlas",
+    "last_edited_by": "theloreatlas"
+  },
+  {
+    "id": "artifact_black-pearl-of-the-borgias",
+    "series": "sherlock_holmes",
+    "name": "The Black Pearl of the Borgias",
+    "type": "gemstone",
+    "description": "One of the most famous pearls in the world — a large black pearl with an illustrious and violent history tracing back to the Borgia family of Renaissance Italy. It was stolen from the Prince of Colonna's Roman hotel room. Beppo, the Italian criminal who stole it, hid it inside one of six identical plaster busts of Napoleon manufactured at the same workshop before his arrest. He then methodically smashed the busts one by one upon his release from prison, searching for the one containing the pearl.",
+    "ownership_chain": [
+      {
+        "character_id": "char_sherlock-holmes",
+        "from": { "book": 6, "chapter": 8 },
+        "to": { "book": 6, "chapter": 8 }
+      }
+    ],
+    "appearance_history": [
+      "case_the-adventure-of-the-six-napoleons"
+    ],
+    "significance": "The pearl's existence is the solution to what appears to be a case of insane Napoleon-hatred. Holmes deduces the pearl's hiding place by tracking which busts came from the same batch, purchases the last unsmashed bust, and shatters it himself to reveal the pearl. Lestrade, watching, is astonished. Holmes returns the pearl to the Prince of Colonna.",
+    "first_mention": { "book": 6, "chapter": 8 },
+    "full_reveal": { "book": 6, "chapter": 8 },
+    "created_by": "theloreatlas",
+    "last_edited_by": "theloreatlas"
+  },
+  {
+    "id": "artifact_musgrave-ritual",
+    "series": "sherlock_holmes",
+    "name": "The Musgrave Ritual",
+    "type": "historical document",
+    "description": "An ancient catechism recited by each Musgrave heir upon coming of age — a series of questions and answers about the sun, elm tree, oak, stone, and well on the Musgrave estate. The ritual has been passed down for generations without understanding; the family regards it as a piece of feudal formality. Holmes recognizes it as a set of precise navigational instructions — a treasure map in plain sight — leading to a hidden underground chamber beneath the estate. There he finds a rotted wooden chest containing the ancient crown of the Stuart kings, wrapped in canvas.",
+    "ownership_chain": [
+      {
+        "character_id": "char_sherlock-holmes",
+        "from": { "book": 4, "chapter": 5 },
+        "to": { "book": 4, "chapter": 5 }
+      }
+    ],
+    "appearance_history": [
+      "case_the-musgrave-ritual"
+    ],
+    "significance": "One of Holmes's earliest pre-Watson cases, told in retrospect. The ritual is simultaneously a piece of seventeenth-century cryptography and an heirloom without understood meaning — a demonstration that the most significant documents can survive hidden in plain sight for centuries. The discovery of the Stuart crown inside the well is one of the canon's most striking finds, though the crown itself has no legal value — Charles II presumably had a new one made.",
+    "first_mention": { "book": 4, "chapter": 5 },
+    "full_reveal": { "book": 4, "chapter": 5 },
+    "created_by": "theloreatlas",
+    "last_edited_by": "theloreatlas"
+  },
+  {
+    "id": "artifact_reigate-document",
+    "series": "sherlock_holmes",
+    "name": "The Reigate Document",
+    "type": "forged document",
+    "description": "A torn scrap of paper recovered near the body of William Kirwan, a coachman found murdered on the Cunningham estate. The document appears to be part of an appointment note. Holmes perceives immediately that it was written by two different hands — an old man and a young man — whose individual letters interlock with suspicious regularity, suggesting not two writers working separately but two writers composing together, word by word. The handwriting analysis identifies both conspirators: old Cunningham and his son Alec.",
+    "ownership_chain": [
+      {
+        "character_id": "char_sherlock-holmes",
+        "from": { "book": 4, "chapter": 6 },
+        "to": { "book": 4, "chapter": 6 }
+      }
+    ],
+    "appearance_history": [
+      "case_the-reigate-squire"
+    ],
+    "significance": "The torn document is the linchpin of the case and one of the canon's finest demonstrations of forensic document analysis. Holmes feigns illness and clumsiness to secretly pocket the scrap from the Cunninghams' possession. When they attempt to take it back by force, the struggle is the final confirmation of their guilt. Watson notes that this is the case that restores Holmes to health after his Continental exhaustion.",
+    "first_mention": { "book": 4, "chapter": 6 },
+    "full_reveal": { "book": 4, "chapter": 6 },
+    "created_by": "theloreatlas",
+    "last_edited_by": "theloreatlas"
   }
 ]

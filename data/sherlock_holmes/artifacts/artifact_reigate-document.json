@@ -1,0 +1,22 @@
+{
+  "id": "artifact_reigate-document",
+  "series": "sherlock_holmes",
+  "name": "The Reigate Document",
+  "type": "forged document",
+  "description": "A torn scrap of paper recovered near the body of William Kirwan, a coachman found murdered on the Cunningham estate. The document appears to be part of an appointment note. Holmes perceives immediately that it was written by two different hands — an old man and a young man — whose individual letters interlock with suspicious regularity, suggesting not two writers working separately but two writers composing together, word by word. The handwriting analysis identifies both conspirators: old Cunningham and his son Alec.",
+  "ownership_chain": [
+    {
+      "character_id": "char_sherlock-holmes",
+      "from": { "book": 4, "chapter": 6 },
+      "to": { "book": 4, "chapter": 6 }
+    }
+  ],
+  "appearance_history": [
+    "case_the-reigate-squire"
+  ],
+  "significance": "The torn document is the linchpin of the case and one of the canon's finest demonstrations of forensic document analysis. Holmes feigns illness and clumsiness to secretly pocket the scrap from the Cunninghams' possession. When they attempt to take it back by force, the struggle is the final confirmation of their guilt. Watson notes that this is the case that restores Holmes to health after his Continental exhaustion.",
+  "first_mention": { "book": 4, "chapter": 6 },
+  "full_reveal": { "book": 4, "chapter": 6 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

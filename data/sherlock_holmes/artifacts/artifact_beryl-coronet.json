@@ -1,0 +1,22 @@
+{
+  "id": "artifact_beryl-coronet",
+  "series": "sherlock_holmes",
+  "name": "The Beryl Coronet",
+  "type": "national treasure",
+  "description": "A coronet set with thirty-nine beryls, described as one of the most precious public possessions in England. A nobleman (unnamed, clearly of the highest rank) deposits it with the banker Alexander Holder as security for a £50,000 loan. When one of the beryls goes missing overnight, Holder suspects his own son Arthur — but Holmes discovers the true culprit is Sir George Burnwell, and that Arthur was caught wrestling the coronet from Burnwell in an attempt to recover it, not steal it.",
+  "ownership_chain": [
+    {
+      "character_id": "char_sherlock-holmes",
+      "from": { "book": 3, "chapter": 11 },
+      "to": { "book": 3, "chapter": 11 }
+    }
+  ],
+  "appearance_history": [
+    "case_the-adventure-of-the-beryl-coronet"
+  ],
+  "significance": "A case of misread evidence: every appearance of guilt points to Arthur Holder, and every appearance is wrong. Holmes pays £1,000 from his own pocket to recover the missing beryl from Burnwell. The coronet is returned complete. The case is a study in the danger of the obvious conclusion.",
+  "first_mention": { "book": 3, "chapter": 11 },
+  "full_reveal": { "book": 3, "chapter": 11 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

@@ -1,0 +1,22 @@
+{
+  "id": "artifact_black-pearl-of-the-borgias",
+  "series": "sherlock_holmes",
+  "name": "The Black Pearl of the Borgias",
+  "type": "gemstone",
+  "description": "One of the most famous pearls in the world — a large black pearl with an illustrious and violent history tracing back to the Borgia family of Renaissance Italy. It was stolen from the Prince of Colonna's Roman hotel room, where it had been kept as a family heirloom. Beppo, the Italian criminal who stole it, hid it inside one of six identical plaster busts of Napoleon manufactured at the same workshop before his arrest. He then methodically smashed the busts one by one upon his release from prison, searching for the one containing the pearl.",
+  "ownership_chain": [
+    {
+      "character_id": "char_sherlock-holmes",
+      "from": { "book": 6, "chapter": 8 },
+      "to": { "book": 6, "chapter": 8 }
+    }
+  ],
+  "appearance_history": [
+    "case_the-adventure-of-the-six-napoleons"
+  ],
+  "significance": "The pearl's existence is the solution to what appears to be a case of insane Napoleon-hatred. Holmes deduces the pearl's hiding place by tracking which busts came from the same batch, purchases the last unsmashed bust, and shatters it himself to reveal the pearl. Lestrade, watching, is astonished. Holmes returns the pearl to the Prince of Colonna.",
+  "first_mention": { "book": 6, "chapter": 8 },
+  "full_reveal": { "book": 6, "chapter": 8 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}
