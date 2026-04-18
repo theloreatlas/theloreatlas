@@ -1,0 +1,19 @@
+{
+  "id": "loc_sussex-downs",
+  "series": "sherlock_holmes",
+  "name": "Sussex Downs",
+  "type": "rural retreat",
+  "real_world_basis": "South Downs, East Sussex, England (Holmes's specific cottage is fictional; the area is real)",
+  "characters_associated": [
+    "char_sherlock-holmes"
+  ],
+  "cases_occurring_here": [
+    "case_his-last-bow",
+    "case_the-adventure-of-the-lions-mane"
+  ],
+  "description": "Holmes retires to a small farm on the Sussex Downs to keep bees — a detail announced in several late-canon stories and fully realized in His Last Bow and The Adventure of the Lion's Mane. The retirement is both a genuine withdrawal from London detective work and, as His Last Bow reveals, a cover for a wartime intelligence operation: Holmes has been living there as 'Altamont,' an Irish-American, while secretly working against German espionage ahead of the First World War. In The Adventure of the Lion's Mane — narrated by Holmes himself — the downs and sea cliffs are the setting for a baffling death that Holmes solves from his retirement.",
+  "first_mention": { "book": 8, "chapter": 8 },
+  "full_reveal": { "book": 8, "chapter": 8 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "loc_birlstone-manor",
+  "series": "sherlock_holmes",
+  "name": "Birlstone Manor",
+  "type": "country estate",
+  "real_world_basis": "Groombridge Place, East Sussex is widely cited as the model (real moated manor house)",
+  "characters_associated": [
+    "char_sherlock-holmes",
+    "char_john-watson",
+    "char_inspector-lestrade"
+  ],
+  "cases_occurring_here": [
+    "case_the-valley-of-fear"
+  ],
+  "description": "Birlstone Manor is a moated country house in Sussex and the primary setting of The Valley of Fear. A headless body is found in the study, apparently John Douglas's — but the case turns on a complex identity deception that Holmes untangles in the second half of the novel. The manor's moat and drawbridge are structurally important to the crime: the drawbridge was raised after the body was found, yet the murder weapon came from outside. The English portion of the novel is framed around the puzzle of what really happened within the manor's walls the night of the crime.",
+  "first_mention": { "book": 7, "chapter": 2 },
+  "full_reveal": { "book": 7, "chapter": 7 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

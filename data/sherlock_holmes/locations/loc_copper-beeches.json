@@ -1,0 +1,20 @@
+{
+  "id": "loc_copper-beeches",
+  "series": "sherlock_holmes",
+  "name": "The Copper Beeches",
+  "type": "country house",
+  "real_world_basis": "Hampshire, England (fictional house; the Winchester area is implied)",
+  "characters_associated": [
+    "char_violet-hunter",
+    "char_sherlock-holmes",
+    "char_john-watson"
+  ],
+  "cases_occurring_here": [
+    "case_the-adventure-of-the-copper-beeches"
+  ],
+  "description": "The Copper Beeches is a large country house near Winchester, Hampshire, named for the avenue of copper beech trees in its grounds. Violet Hunter is employed as governess here under the eccentric Rucastle family, with the condition that she cut her hair and wear a blue dress while sitting in a specific chair at specific times — conditions she reports to Holmes before taking the post. The locked wing of the house conceals a secret that drives the case. Holmes finds the rural isolation of such houses more sinister than the worst London slums, reasoning that crime in the country goes undetected far more readily than crime in a city full of witnesses.",
+  "first_mention": { "book": 3, "chapter": 12 },
+  "full_reveal": { "book": 3, "chapter": 12 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

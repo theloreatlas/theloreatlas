@@ -1,0 +1,21 @@
+{
+  "id": "loc_stoke-moran",
+  "series": "sherlock_holmes",
+  "name": "Stoke Moran",
+  "type": "country estate",
+  "real_world_basis": "Surrey, England (fictional estate)",
+  "characters_associated": [
+    "char_dr-grimesby-roylott",
+    "char_helen-stoner",
+    "char_sherlock-holmes",
+    "char_john-watson"
+  ],
+  "cases_occurring_here": [
+    "case_the-adventure-of-the-speckled-band"
+  ],
+  "description": "Stoke Moran is the ancestral estate of the Roylott family in Surrey — a once-grand property now run to seed under Dr. Grimesby Roylott. The estate is significant for its physical layout: the main building has three ground-floor bedrooms for the family, ventilators connecting rooms where no ventilation is needed, a dummy bell-pull, and a bed bolted to the floor. Holmes identifies these anomalies as the mechanism of murder. Roylott keeps exotic animals in the grounds — a cheetah, a baboon, and the swamp adder — lending the estate an air of danger that Watson finds oppressive. The estate is where Holmes spends a memorable and dangerous night in the dead sister's room.",
+  "first_mention": { "book": 3, "chapter": 8 },
+  "full_reveal": { "book": 3, "chapter": 8 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

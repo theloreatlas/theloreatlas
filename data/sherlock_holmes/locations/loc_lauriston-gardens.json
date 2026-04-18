@@ -1,0 +1,21 @@
+{
+  "id": "loc_lauriston-gardens",
+  "series": "sherlock_holmes",
+  "name": "Lauriston Gardens",
+  "type": "crime scene",
+  "real_world_basis": "Brixton, South London (fictional street in a real district)",
+  "characters_associated": [
+    "char_sherlock-holmes",
+    "char_john-watson",
+    "char_inspector-lestrade",
+    "char_inspector-gregson"
+  ],
+  "cases_occurring_here": [
+    "case_a-study-in-scarlet"
+  ],
+  "description": "Lauriston Gardens is a quiet Brixton street where Enoch Drebber's body is found in an empty house — the opening murder of A Study in Scarlet and the first crime scene Watson accompanies Holmes to investigate. The house is unoccupied, the body shows no visible wound but a look of terror on the face, and the word RACHE is written on the wall in blood. Holmes's examination of the scene — reading footprints, soil deposits, the victim's appearance — is one of the founding demonstrations of his deductive method. The word RACHE sends Lestrade and Gregson in the wrong direction; Holmes immediately understands it correctly.",
+  "first_mention": { "book": 1, "chapter": 3 },
+  "full_reveal": { "book": 1, "chapter": 3 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

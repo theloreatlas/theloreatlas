@@ -1,0 +1,20 @@
+{
+  "id": "loc_grimpen-mire",
+  "series": "sherlock_holmes",
+  "name": "The Great Grimpen Mire",
+  "type": "natural hazard",
+  "real_world_basis": "Fox Tor Mires, Dartmoor, Devon, England (Doyle's fictional mire is widely believed to be based on this real bog)",
+  "characters_associated": [
+    "char_stapleton",
+    "char_henry-baskerville",
+    "char_john-watson"
+  ],
+  "cases_occurring_here": [
+    "case_the-hound-of-the-baskervilles"
+  ],
+  "description": "The Great Grimpen Mire is a vast and treacherous bog on Dartmoor — one of the most vividly realized settings in the Holmes canon. It swallows ponies and men alike; only Stapleton knows the winding path through it. He hides the phosphorescent hound in a stone hut at the mire's center, accessible only by the hidden path he has marked with small stakes. When Holmes springs the trap and the hound is shot, Stapleton flees into the mire in darkness, abandoning the path markers — and is never seen again, presumed drowned in the bog. The mire functions as both obstacle and nemesis: Stapleton's instrument becomes his grave.",
+  "first_mention": { "book": 5, "chapter": 2 },
+  "full_reveal": { "book": 5, "chapter": 14 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

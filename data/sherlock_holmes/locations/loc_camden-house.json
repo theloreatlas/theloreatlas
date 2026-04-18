@@ -1,0 +1,20 @@
+{
+  "id": "loc_camden-house",
+  "series": "sherlock_holmes",
+  "name": "Camden House",
+  "type": "empty house",
+  "real_world_basis": "Baker Street area, Marylebone, London (fictional specific address opposite 221B)",
+  "characters_associated": [
+    "char_sherlock-holmes",
+    "char_colonel-sebastian-moran",
+    "char_john-watson"
+  ],
+  "cases_occurring_here": [
+    "case_the-adventure-of-the-empty-house"
+  ],
+  "description": "Camden House is the empty building directly opposite 221B Baker Street that gives The Adventure of the Empty House its name. Holmes uses it as his vantage point when he returns to London in 1894: he positions a wax bust of himself in the 221B window — slowly rotated by Mrs. Hudson — and waits in Camden House with Watson. Colonel Moran, believing Holmes to be sitting at the window, sets up his air-gun in the dark room opposite and fires. Holmes and Watson then seize him from behind. The empty house is a trap: Holmes chose it precisely because it gave Moran the shot he needed to walk into.",
+  "first_mention": { "book": 6, "chapter": 1 },
+  "full_reveal": { "book": 6, "chapter": 1 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

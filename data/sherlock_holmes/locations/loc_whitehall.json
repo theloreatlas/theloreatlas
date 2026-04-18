@@ -1,0 +1,20 @@
+{
+  "id": "loc_whitehall",
+  "series": "sherlock_holmes",
+  "name": "Whitehall",
+  "type": "government district",
+  "real_world_basis": "Whitehall, City of Westminster, London (real district; the centre of the British government)",
+  "characters_associated": [
+    "char_mycroft-holmes",
+    "char_sherlock-holmes"
+  ],
+  "cases_occurring_here": [
+    "case_the-greek-interpreter",
+    "case_the-adventure-of-the-bruce-partington-plans"
+  ],
+  "description": "Whitehall is the government district of London and the domain of Mycroft Holmes. Holmes explains that Mycroft occupies a singular position there: he is not a minister, has no official title, but is the clearing house for intelligence across all departments of government — the one man who knows everything and synthesises it. He walks from his Pall Mall lodgings to the Diogenes Club and back, rarely deviating. In The Adventure of the Bruce-Partington Plans, the loss of the submarine blueprints and the death of a young War Office clerk becomes a Whitehall crisis that draws both Holmes brothers into action.",
+  "first_mention": { "book": 4, "chapter": 9 },
+  "full_reveal": { "book": 4, "chapter": 9 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}
