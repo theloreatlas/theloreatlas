@@ -4,78 +4,32 @@
     "series": "sherlock_holmes",
     "name": "The Agra Treasure",
     "type": "treasure cache",
-    "description": "A vast cache of jewels and precious stones looted from an Indian raja's palace during the Indian Mutiny of 1857. Concealed by the 'Sign of Four' — four men who made a pact to share it equally. Jonathan Small was transported to the Andaman Islands before the treasure could be retrieved. The chest is ultimately found empty — Small threw the treasure into the Thames rather than allow it to fall into others' hands.",
+    "description": "A vast cache of jewels and precious stones — rubies, emeralds, diamonds, and pearls — looted from an Indian raja's palace during the Indian Mutiny of 1857. The treasure was concealed by four men (Jonathan Small, Mahomet Singh, Abdullah Khan, and Dost Akbar — the 'Sign of Four') who made a pact to share it equally. Small was later transported to the Andaman Islands penal colony before the treasure could be retrieved, spending decades plotting to recover it. The treasure chest is ironically found to contain only a note from Small, who threw the treasure into the Thames rather than allow it to fall into others' hands.",
     "ownership_chain": [
       {
         "character_id": "char_john-watson",
-        "from": { "book": 2, "chapter": 1 },
-        "to": { "book": 2, "chapter": 12 }
+        "from": {
+          "book": 2,
+          "chapter": 1
+        },
+        "to": {
+          "book": 2,
+          "chapter": 12
+        }
       }
     ],
-    "appearance_history": ["case_the-sign-of-the-four"],
-    "significance": "The central MacGuffin of The Sign of the Four. Its disposal into the Thames is both plot resolution and thematic statement about ill-gotten wealth. Mary Morstan loses her expected inheritance but gains Watson as a husband.",
-    "first_mention": { "book": 2, "chapter": 2 },
-    "full_reveal": { "book": 2, "chapter": 12 },
-    "created_by": "theloreatlas",
-    "last_edited_by": "theloreatlas"
-  },
-  {
-    "id": "artifact_blue-carbuncle",
-    "series": "sherlock_holmes",
-    "name": "The Blue Carbuncle",
-    "type": "gemstone",
-    "description": "A brilliant blue carbuncle of extraordinary value, stolen from the Countess of Morcar. It passes through a remarkable chain of hands before being found concealed inside a Christmas goose at 221B Baker Street.",
-    "ownership_chain": [
-      {
-        "character_id": "char_sherlock-holmes",
-        "from": { "book": 3, "chapter": 7 },
-        "to": { "book": 3, "chapter": 7 }
-      }
+    "appearance_history": [
+      "case_the-sign-of-the-four"
     ],
-    "appearance_history": ["case_the-adventure-of-the-blue-carbuncle"],
-    "significance": "A priceless gem discovered inside a Christmas goose. Holmes releases the actual thief rather than prosecute him. A comic chain-of-custody mystery with the carbuncle as MacGuffin.",
-    "first_mention": { "book": 3, "chapter": 7 },
-    "full_reveal": { "book": 3, "chapter": 7 },
-    "created_by": "theloreatlas",
-    "last_edited_by": "theloreatlas"
-  },
-  {
-    "id": "artifact_wax-bust-of-holmes",
-    "series": "sherlock_holmes",
-    "name": "The Wax Bust of Holmes",
-    "type": "decoy prop",
-    "description": "A wax bust of Sherlock Holmes modeled by Monsieur Oscar Meunier, placed in the Baker Street window to simulate Holmes's silhouette and bait Colonel Moran into firing at it.",
-    "ownership_chain": [
-      {
-        "character_id": "char_sherlock-holmes",
-        "from": { "book": 6, "chapter": 1 },
-        "to": { "book": 6, "chapter": 1 }
-      }
-    ],
-    "appearance_history": ["case_the-adventure-of-the-empty-house"],
-    "significance": "Holmes had the bust commissioned specifically for this trap. It is destroyed by Moran's air gun bullet, providing the evidence needed to convict him.",
-    "first_mention": { "book": 6, "chapter": 1 },
-    "full_reveal": { "book": 6, "chapter": 1 },
-    "created_by": "theloreatlas",
-    "last_edited_by": "theloreatlas"
-  },
-  {
-    "id": "artifact_bohemia-photograph",
-    "series": "sherlock_holmes",
-    "name": "The Bohemia Photograph",
-    "type": "photograph",
-    "description": "A compromising photograph showing Irene Adler with the King of Bohemia. Hidden in a concealed recess at Briony Lodge. Adler departs England with it intact but leaves a letter promising never to use it.",
-    "ownership_chain": [
-      {
-        "character_id": "char_irene-adler",
-        "from": { "book": 3, "chapter": 1 },
-        "to": { "book": 3, "chapter": 1 }
-      }
-    ],
-    "appearance_history": ["case_a-scandal-in-bohemia"],
-    "significance": "Central object of A Scandal in Bohemia. Its power is entirely reputational. Adler's decision not to use it is the resolution of the case and the basis for Holmes's lasting respect for her.",
-    "first_mention": { "book": 3, "chapter": 1 },
-    "full_reveal": { "book": 3, "chapter": 1 },
+    "significance": "The central MacGuffin of The Sign of the Four. Its ultimate disposal — thrown into the Thames by Jonathan Small — is both a plot resolution and a thematic statement about the corrupting nature of ill-gotten wealth. Mary Morstan, whose inheritance depended on the treasure, is left with nothing material — but gains Watson as a husband instead.",
+    "first_mention": {
+      "book": 2,
+      "chapter": 2
+    },
+    "full_reveal": {
+      "book": 2,
+      "chapter": 12
+    },
     "created_by": "theloreatlas",
     "last_edited_by": "theloreatlas"
   },
@@ -84,20 +38,134 @@
     "series": "sherlock_holmes",
     "name": "The Beryl Coronet",
     "type": "national treasure",
-    "description": "A coronet set with thirty-nine beryls, described as one of the most precious public possessions in England. A nobleman deposits it with the banker Alexander Holder as security for a £50,000 loan. When one of the beryls goes missing overnight, Holder suspects his own son Arthur — but Holmes discovers the true culprit is Sir George Burnwell, and that Arthur was caught wrestling the coronet from Burnwell in an attempt to recover it, not steal it.",
+    "description": "A coronet set with thirty-nine beryls, described as one of the most precious public possessions in England. A nobleman (unnamed, clearly of the highest rank) deposits it with the banker Alexander Holder as security for a £50,000 loan. When one of the beryls goes missing overnight, Holder suspects his own son Arthur — but Holmes discovers the true culprit is Sir George Burnwell, and that Arthur was caught wrestling the coronet from Burnwell in an attempt to recover it, not steal it.",
     "ownership_chain": [
       {
         "character_id": "char_sherlock-holmes",
-        "from": { "book": 3, "chapter": 11 },
-        "to": { "book": 3, "chapter": 11 }
+        "from": {
+          "book": 3,
+          "chapter": 11
+        },
+        "to": {
+          "book": 3,
+          "chapter": 11
+        }
       }
     ],
     "appearance_history": [
       "case_the-adventure-of-the-beryl-coronet"
     ],
     "significance": "A case of misread evidence: every appearance of guilt points to Arthur Holder, and every appearance is wrong. Holmes pays £1,000 from his own pocket to recover the missing beryl from Burnwell. The coronet is returned complete. The case is a study in the danger of the obvious conclusion.",
-    "first_mention": { "book": 3, "chapter": 11 },
-    "full_reveal": { "book": 3, "chapter": 11 },
+    "first_mention": {
+      "book": 3,
+      "chapter": 11
+    },
+    "full_reveal": {
+      "book": 3,
+      "chapter": 11
+    },
+    "created_by": "theloreatlas",
+    "last_edited_by": "theloreatlas"
+  },
+  {
+    "id": "artifact_black-pearl-of-the-borgias",
+    "series": "sherlock_holmes",
+    "name": "The Black Pearl of the Borgias",
+    "type": "gemstone",
+    "description": "One of the most famous pearls in the world — a large black pearl with an illustrious and violent history tracing back to the Borgia family of Renaissance Italy. It was stolen from the Prince of Colonna's Roman hotel room, where it had been kept as a family heirloom. Beppo, the Italian criminal who stole it, hid it inside one of six identical plaster busts of Napoleon manufactured at the same workshop before his arrest. He then methodically smashed the busts one by one upon his release from prison, searching for the one containing the pearl.",
+    "ownership_chain": [
+      {
+        "character_id": "char_sherlock-holmes",
+        "from": {
+          "book": 6,
+          "chapter": 8
+        },
+        "to": {
+          "book": 6,
+          "chapter": 8
+        }
+      }
+    ],
+    "appearance_history": [
+      "case_the-adventure-of-the-six-napoleons"
+    ],
+    "significance": "The pearl's existence is the solution to what appears to be a case of insane Napoleon-hatred. Holmes deduces the pearl's hiding place by tracking which busts came from the same batch, purchases the last unsmashed bust, and shatters it himself to reveal the pearl. Lestrade, watching, is astonished. Holmes returns the pearl to the Prince of Colonna.",
+    "first_mention": {
+      "book": 6,
+      "chapter": 8
+    },
+    "full_reveal": {
+      "book": 6,
+      "chapter": 8
+    },
+    "created_by": "theloreatlas",
+    "last_edited_by": "theloreatlas"
+  },
+  {
+    "id": "artifact_blue-carbuncle",
+    "series": "sherlock_holmes",
+    "name": "The Blue Carbuncle",
+    "type": "gemstone",
+    "description": "A brilliant blue carbuncle (a large gemstone, likely a blue garnet or sapphire) of extraordinary value, described as having a history of blood and misfortune. The stone was stolen from the Countess of Morcar at the Hotel Cosmopolitan. It passes through a remarkable chain of hands: from the thief (John Horner, wrongly accused) to a goose seller, concealed inside a Christmas goose, and ultimately discovered by Holmes when the goose is cut open at 221B Baker Street.",
+    "ownership_chain": [
+      {
+        "character_id": "char_sherlock-holmes",
+        "from": {
+          "book": 3,
+          "chapter": 7
+        },
+        "to": {
+          "book": 3,
+          "chapter": 7
+        }
+      }
+    ],
+    "appearance_history": [
+      "case_the-adventure-of-the-blue-carbuncle"
+    ],
+    "significance": "One of the most charming artifacts in the canon — a priceless gem discovered inside a Christmas goose. The case is notable for Holmes's decision to release the actual thief (James Ryder) rather than prosecute him, reasoning that imprisonment would make a worse man of him. The carbuncle itself is a MacGuffin that drives a comic chain-of-custody mystery.",
+    "first_mention": {
+      "book": 3,
+      "chapter": 7
+    },
+    "full_reveal": {
+      "book": 3,
+      "chapter": 7
+    },
+    "created_by": "theloreatlas",
+    "last_edited_by": "theloreatlas"
+  },
+  {
+    "id": "artifact_bohemia-photograph",
+    "series": "sherlock_holmes",
+    "name": "The Bohemia Photograph",
+    "type": "photograph",
+    "description": "A compromising photograph showing Irene Adler together with Wilhelm Gottsreich Sigismond von Ormstein, the King of Bohemia. The King fears the photograph will be used to block his upcoming marriage to a Scandinavian princess by proving a prior romantic entanglement with Adler. The photograph is hidden in a concealed recess behind a sliding panel above the right bell-pull at Briony Lodge. Adler departs England with the photograph intact but leaves behind a letter to Holmes promising never to use it, given her own happy marriage.",
+    "ownership_chain": [
+      {
+        "character_id": "char_irene-adler",
+        "from": {
+          "book": 3,
+          "chapter": 1
+        },
+        "to": {
+          "book": 3,
+          "chapter": 1
+        }
+      }
+    ],
+    "appearance_history": [
+      "case_a-scandal-in-bohemia"
+    ],
+    "significance": "The central object of A Scandal in Bohemia. Its power lies entirely in what it represents — potential scandal — rather than any intrinsic value. Irene Adler's decision to keep it but not use it is the resolution of the case and the basis for Holmes's lasting respect for her. The photograph of Adler that Holmes requests as payment is the only personal keepsake he is known to have kept.",
+    "first_mention": {
+      "book": 3,
+      "chapter": 1
+    },
+    "full_reveal": {
+      "book": 3,
+      "chapter": 1
+    },
     "created_by": "theloreatlas",
     "last_edited_by": "theloreatlas"
   },
@@ -110,38 +178,235 @@
     "ownership_chain": [
       {
         "character_id": "char_mycroft-holmes",
-        "from": { "book": 8, "chapter": 4 },
-        "to": { "book": 8, "chapter": 4 }
+        "from": {
+          "book": 8,
+          "chapter": 4
+        },
+        "to": {
+          "book": 8,
+          "chapter": 4
+        }
       }
     ],
     "appearance_history": [
       "case_the-adventure-of-the-bruce-partington-plans"
     ],
     "significance": "The plans' theft draws Mycroft out of his habitual inactivity — a sign of how seriously the government regards the breach. Holmes recovers the plans by luring Oberstein with a forged reply to his newspaper advertisement, and is rewarded with an emerald tiepin from a grateful monarch. One of the few cases where the stakes are genuinely national rather than personal.",
-    "first_mention": { "book": 8, "chapter": 4 },
-    "full_reveal": { "book": 8, "chapter": 4 },
+    "first_mention": {
+      "book": 8,
+      "chapter": 4
+    },
+    "full_reveal": {
+      "book": 8,
+      "chapter": 4
+    },
     "created_by": "theloreatlas",
     "last_edited_by": "theloreatlas"
   },
   {
-    "id": "artifact_black-pearl-of-the-borgias",
+    "id": "artifact_cocaine-seven-percent",
     "series": "sherlock_holmes",
-    "name": "The Black Pearl of the Borgias",
-    "type": "gemstone",
-    "description": "One of the most famous pearls in the world — a large black pearl with an illustrious and violent history tracing back to the Borgia family of Renaissance Italy. It was stolen from the Prince of Colonna's Roman hotel room. Beppo, the Italian criminal who stole it, hid it inside one of six identical plaster busts of Napoleon manufactured at the same workshop before his arrest. He then methodically smashed the busts one by one upon his release from prison, searching for the one containing the pearl.",
+    "name": "The Seven-Per-Cent Solution",
+    "type": "drug",
+    "description": "Holmes's cocaine habit — specifically a seven-per-cent solution of cocaine injected intravenously — is one of the most persistently noted facts in the canon. Watson opens The Sign of the Four with Holmes injecting for the third time in as many days and delivers a formal medical objection; Holmes dismisses it on the grounds that the stimulant is necessary to counter the lassitude of inaction between cases. He alternates between cocaine and morphine, and Watson's long-running campaign against the habit is one of the few points of sustained friction in the partnership. By the time of The Adventure of the Missing Three-Quarter, Watson believes he has finally succeeded in weaning Holmes off the drug entirely.",
+    "significance": "The cocaine habit is Holmes's most humanising flaw — a concession that his inhuman mental machinery requires chemical intervention when not engaged. It also establishes Watson as more than a narrator: his persistent, professionally-grounded objection to the habit is one of the clearest expressions of care in their relationship.",
     "ownership_chain": [
       {
         "character_id": "char_sherlock-holmes",
-        "from": { "book": 6, "chapter": 8 },
-        "to": { "book": 6, "chapter": 8 }
+        "from": {
+          "book": 2,
+          "chapter": 1
+        },
+        "to": {
+          "book": 6,
+          "chapter": 9
+        }
       }
     ],
     "appearance_history": [
-      "case_the-adventure-of-the-six-napoleons"
+      "case_the-sign-of-the-four",
+      "case_the-adventure-of-the-missing-three-quarter"
     ],
-    "significance": "The pearl's existence is the solution to what appears to be a case of insane Napoleon-hatred. Holmes deduces the pearl's hiding place by tracking which busts came from the same batch, purchases the last unsmashed bust, and shatters it himself to reveal the pearl. Lestrade, watching, is astonished. Holmes returns the pearl to the Prince of Colonna.",
-    "first_mention": { "book": 6, "chapter": 8 },
-    "full_reveal": { "book": 6, "chapter": 8 },
+    "first_mention": {
+      "book": 2,
+      "chapter": 1
+    },
+    "full_reveal": {
+      "book": 2,
+      "chapter": 1
+    },
+    "created_by": "theloreatlas",
+    "last_edited_by": "theloreatlas"
+  },
+  {
+    "id": "artifact_dancing-men-cipher",
+    "series": "sherlock_holmes",
+    "name": "The Dancing Men Cipher",
+    "type": "cipher",
+    "description": "A series of coded messages written in a simple substitution cipher, in which each letter of the alphabet is represented by a stick figure in a dancing pose. The messages are sent to Elsie Cubitt — whose past in Chicago included an association with the American gangster Abe Slaney — and their content escalates from contact attempts to threats. Her husband Hilton Cubitt brings the drawings to Holmes, who deciphers them by frequency analysis within hours. Holmes deduces the message content too late to prevent tragedy: Cubitt is killed and Elsie gravely wounded before he can intervene. Holmes uses the cipher offensively, sending a final message in Slaney's own code to lure him to the scene.",
+    "significance": "One of the canon's most elegant demonstrations of cryptanalysis. Holmes's solution by frequency analysis — 'E is the most common letter in the English alphabet' — is a textbook example of the method. The cipher also illustrates Holmes's habit of turning the criminal's own tools against him.",
+    "ownership_chain": [
+      {
+        "character_id": "char_sherlock-holmes",
+        "from": {
+          "book": 6,
+          "chapter": 3
+        },
+        "to": {
+          "book": 6,
+          "chapter": 3
+        }
+      }
+    ],
+    "appearance_history": [
+      "case_the-adventure-of-the-dancing-men"
+    ],
+    "first_mention": {
+      "book": 6,
+      "chapter": 3
+    },
+    "full_reveal": {
+      "book": 6,
+      "chapter": 3
+    },
+    "created_by": "theloreatlas",
+    "last_edited_by": "theloreatlas"
+  },
+  {
+    "id": "artifact_five-orange-pips",
+    "series": "sherlock_holmes",
+    "name": "The Five Orange Pips",
+    "type": "death threat",
+    "description": "Five dried orange seeds sent in an envelope bearing the initials K.K.K. — the calling card of the Ku Klux Klan as used in the canon, serving as a death warning. The same warning was sent to Elias Openshaw in 1883; to his nephew Joseph Openshaw in 1885; and finally to Joseph's son John Openshaw in 1887, who brings the case to Holmes. Each recipient died shortly after receiving the pips. The envelope instructs the recipient to place their papers on the sundial or face consequences. Holmes traces the origin to the American ship Lone Star out of Savannah — but the ship and its crew are lost in a storm before justice can be served.",
+    "significance": "One of Holmes's admitted failures: John Openshaw is murdered before Holmes can act, and the perpetrators are killed by a storm before they can be brought to justice. Holmes's reaction — sending his own five pips to the Lone Star — is an act of futile defiance, a gesture toward a justice the world denied. The case establishes that Holmes can lose.",
+    "ownership_chain": [
+      {
+        "character_id": "char_sherlock-holmes",
+        "from": {
+          "book": 3,
+          "chapter": 5
+        },
+        "to": {
+          "book": 3,
+          "chapter": 5
+        }
+      }
+    ],
+    "appearance_history": [
+      "case_the-five-orange-pips"
+    ],
+    "first_mention": {
+      "book": 3,
+      "chapter": 5
+    },
+    "full_reveal": {
+      "book": 3,
+      "chapter": 5
+    },
+    "created_by": "theloreatlas",
+    "last_edited_by": "theloreatlas"
+  },
+  {
+    "id": "artifact_index-volumes",
+    "series": "sherlock_holmes",
+    "name": "Holmes's Indexed Commonplace Books",
+    "type": "reference work",
+    "description": "Holmes maintains an extensive collection of indexed scrapbooks, commonplace books, and reference volumes in which he has catalogued newspaper clippings, case reports, criminal records, and personal observations accumulated over decades. Watson describes these records as irreplaceable: a complete index of London crime, biographical details of criminal figures, and notes on chemistry, disguise, literature, and the sensational press. Holmes can retrieve information from them almost instantly, and they serve as the foundation for deductions that appear miraculous to those who do not know the depth of preparation behind them. The system is entirely personal — organized on principles that would be opaque to anyone else.",
+    "significance": "The commonplace books are the material form of Holmes's method: deduction is not magic but the disciplined retrieval of prior knowledge. They also represent the only form of writing Holmes consistently engages in — his published monographs on tobacco ash, tire tracks, and bee-keeping are mentioned but the day-to-day index is his real intellectual labour.",
+    "ownership_chain": [
+      {
+        "character_id": "char_sherlock-holmes",
+        "from": {
+          "book": 1,
+          "chapter": 2
+        },
+        "to": {
+          "book": 9,
+          "chapter": 12
+        }
+      }
+    ],
+    "appearance_history": [
+      "case_a-study-in-scarlet",
+      "case_the-adventure-of-the-empty-house",
+      "case_the-adventure-of-charles-augustus-milverton"
+    ],
+    "first_mention": {
+      "book": 1,
+      "chapter": 2
+    },
+    "full_reveal": {
+      "book": 1,
+      "chapter": 2
+    },
+    "created_by": "theloreatlas",
+    "last_edited_by": "theloreatlas"
+  },
+  {
+    "id": "artifact_mazarin-stone",
+    "series": "sherlock_holmes",
+    "name": "The Mazarin Stone",
+    "type": "gemstone",
+    "description": "A great yellow diamond of exceptional size and value, stolen from the Crown Jewels collection in The Adventure of the Mazarin Stone. Count Sylvius and Sam Merton are responsible for the theft. Holmes recovers it through a piece of misdirection: he substitutes a wax dummy of himself seated in a chair (manipulated by Billy the page), allowing him to overhear Count Sylvius and Merton discussing the stone's whereabouts. Holmes palms the stone while the Count is distracted and then springs the trap. The stone is described as being of historical significance beyond its monetary value — a gem associated with Cardinal Mazarin, the French statesman.",
+    "significance": "The Mazarin Stone is one of Holmes's most theatrically recovered artifacts — the wax dummy and the substitution trick are characteristic Holmes stagecraft. Billy the page plays an unusually active role in the recovery, elevating him from a background domestic figure to a genuine operative.",
+    "ownership_chain": [
+      {
+        "character_id": "char_sherlock-holmes",
+        "from": {
+          "book": 9,
+          "chapter": 2
+        },
+        "to": {
+          "book": 9,
+          "chapter": 2
+        }
+      }
+    ],
+    "appearance_history": [
+      "case_the-adventure-of-the-mazarin-stone"
+    ],
+    "first_mention": {
+      "book": 9,
+      "chapter": 2
+    },
+    "full_reveal": {
+      "book": 9,
+      "chapter": 2
+    },
+    "created_by": "theloreatlas",
+    "last_edited_by": "theloreatlas"
+  },
+  {
+    "id": "artifact_milverton-documents",
+    "series": "sherlock_holmes",
+    "name": "The Milverton Archive",
+    "type": "blackmail documents",
+    "description": "The extensive collection of compromising letters, indiscreet communications, and damaging personal documents amassed by Charles Augustus Milverton in his long career as a blackmailer. The archive represents years of systematic acquisition — Milverton employed agents, cultivated servants, and paid informants to obtain letters that their authors would pay almost any price to suppress. Holmes is hired to recover a letter from the archive on behalf of a client; after burgling Milverton's Hampstead home (and witnessing his murder at the hands of a woman he had previously ruined), Holmes burns the entire collection in the fireplace. He makes no attempt to return individual documents to their authors.",
+    "significance": "Holmes's decision to burn the entire archive — rather than selectively returning documents — is a characteristically extreme act of private justice. He tells Watson afterward that he refuses to assist the police in identifying Milverton's murderer, regarding her as having performed a public service. The Milverton case is one of the sharpest illustrations of Holmes's willingness to operate entirely outside the law when he judges the moral case sufficient.",
+    "ownership_chain": [
+      {
+        "character_id": "char_charles-augustus-milverton",
+        "from": {
+          "book": 6,
+          "chapter": 7
+        },
+        "to": {
+          "book": 6,
+          "chapter": 7
+        }
+      }
+    ],
+    "appearance_history": [
+      "case_the-adventure-of-charles-augustus-milverton"
+    ],
+    "first_mention": {
+      "book": 6,
+      "chapter": 7
+    },
+    "full_reveal": {
+      "book": 6,
+      "chapter": 7
+    },
     "created_by": "theloreatlas",
     "last_edited_by": "theloreatlas"
   },
@@ -154,16 +419,62 @@
     "ownership_chain": [
       {
         "character_id": "char_sherlock-holmes",
-        "from": { "book": 4, "chapter": 5 },
-        "to": { "book": 4, "chapter": 5 }
+        "from": {
+          "book": 4,
+          "chapter": 5
+        },
+        "to": {
+          "book": 4,
+          "chapter": 5
+        }
       }
     ],
     "appearance_history": [
       "case_the-musgrave-ritual"
     ],
     "significance": "One of Holmes's earliest pre-Watson cases, told in retrospect. The ritual is simultaneously a piece of seventeenth-century cryptography and an heirloom without understood meaning — a demonstration that the most significant documents can survive hidden in plain sight for centuries. The discovery of the Stuart crown inside the well is one of the canon's most striking finds, though the crown itself has no legal value — Charles II presumably had a new one made.",
-    "first_mention": { "book": 4, "chapter": 5 },
-    "full_reveal": { "book": 4, "chapter": 5 },
+    "first_mention": {
+      "book": 4,
+      "chapter": 5
+    },
+    "full_reveal": {
+      "book": 4,
+      "chapter": 5
+    },
+    "created_by": "theloreatlas",
+    "last_edited_by": "theloreatlas"
+  },
+  {
+    "id": "artifact_naval-treaty",
+    "series": "sherlock_holmes",
+    "name": "The Naval Treaty",
+    "type": "diplomatic document",
+    "description": "A classified naval treaty between Britain and Italy, which Percy Phelps — a Foreign Office clerk — was given the dangerous task of copying overnight. When he stepped out briefly, the document was stolen from his desk. The theft, if disclosed, would represent a catastrophic diplomatic failure: the treaty's terms, if published, could inflame relations with two European powers. Holmes traces the document through a sequence of misdirections to Joseph Harrison, Phelps's future brother-in-law, who stole it opportunistically and hid it in Phelps's own home. Holmes recovers it by a piece of theatre — revealing it in a breakfast dish — and the matter is kept from official channels.",
+    "significance": "One of several Holmes cases involving state secrets at the highest level. The pattern — a government document stolen through opportunity rather than espionage, recovered without official acknowledgement — recurs in the Second Stain and the Bruce-Partington Plans. Holmes's willingness to resolve these cases privately, without credit, reflects his complex relationship with institutional authority.",
+    "ownership_chain": [
+      {
+        "character_id": "char_sherlock-holmes",
+        "from": {
+          "book": 4,
+          "chapter": 10
+        },
+        "to": {
+          "book": 4,
+          "chapter": 10
+        }
+      }
+    ],
+    "appearance_history": [
+      "case_the-naval-treaty"
+    ],
+    "first_mention": {
+      "book": 4,
+      "chapter": 10
+    },
+    "full_reveal": {
+      "book": 4,
+      "chapter": 10
+    },
     "created_by": "theloreatlas",
     "last_edited_by": "theloreatlas"
   },
@@ -176,16 +487,222 @@
     "ownership_chain": [
       {
         "character_id": "char_sherlock-holmes",
-        "from": { "book": 4, "chapter": 6 },
-        "to": { "book": 4, "chapter": 6 }
+        "from": {
+          "book": 4,
+          "chapter": 6
+        },
+        "to": {
+          "book": 4,
+          "chapter": 6
+        }
       }
     ],
     "appearance_history": [
       "case_the-reigate-squire"
     ],
     "significance": "The torn document is the linchpin of the case and one of the canon's finest demonstrations of forensic document analysis. Holmes feigns illness and clumsiness to secretly pocket the scrap from the Cunninghams' possession. When they attempt to take it back by force, the struggle is the final confirmation of their guilt. Watson notes that this is the case that restores Holmes to health after his Continental exhaustion.",
-    "first_mention": { "book": 4, "chapter": 6 },
-    "full_reveal": { "book": 4, "chapter": 6 },
+    "first_mention": {
+      "book": 4,
+      "chapter": 6
+    },
+    "full_reveal": {
+      "book": 4,
+      "chapter": 6
+    },
+    "created_by": "theloreatlas",
+    "last_edited_by": "theloreatlas"
+  },
+  {
+    "id": "artifact_second-stain-letter",
+    "series": "sherlock_holmes",
+    "name": "The Second Stain Letter",
+    "type": "diplomatic document",
+    "description": "A letter written by a foreign potentate — described as imprudent and inflammatory in the extreme — whose publication would, according to the Prime Minister and the Secretary for European Affairs (Trelawney Hope), bring Britain to the brink of war. The letter was stolen from Hope's dispatch box, which was kept in his private study. Holmes traces it through the murder of intelligence broker Eduardo Lucas and a concealed hiding place beneath a loose carpet square stained twice with blood — the 'second stain' of the title. The letter is recovered and quietly returned without public disclosure; the statesman's imprudence is suppressed.",
+    "significance": "The Second Stain is the third of Holmes's major diplomatic cases (after the Naval Treaty and the Bruce-Partington Plans) and the most politically consequential — involving the highest levels of government and a direct threat of European war. Holmes's habitual discretion in these matters — restoring the letter and asking no questions about how the statesman's wife obtained it — is one of the canon's clearest acts of willful ignorance in service of a greater good.",
+    "ownership_chain": [
+      {
+        "character_id": "char_sherlock-holmes",
+        "from": {
+          "book": 6,
+          "chapter": 12
+        },
+        "to": {
+          "book": 6,
+          "chapter": 12
+        }
+      }
+    ],
+    "appearance_history": [
+      "case_the-adventure-of-the-second-stain"
+    ],
+    "first_mention": {
+      "book": 6,
+      "chapter": 12
+    },
+    "full_reveal": {
+      "book": 6,
+      "chapter": 12
+    },
+    "created_by": "theloreatlas",
+    "last_edited_by": "theloreatlas"
+  },
+  {
+    "id": "artifact_stradivarius-violin",
+    "series": "sherlock_holmes",
+    "name": "Holmes's Stradivarius",
+    "type": "instrument",
+    "description": "Holmes's prize violin, a genuine Stradivarius which he purchased for fifty-five shillings at a Tottenham Court Road shop — a bargain that Watson regards as almost certainly a fiction or a stroke of extraordinary luck. Holmes plays it throughout the canon, sometimes with genuine virtuosity and sometimes in the small hours of the morning as a form of thought, scraping single strings with no apparent melody. Watson distinguishes between Holmes playing to think and Holmes playing to perform: the latter produces music of remarkable quality. Holmes is also a composer and a critic, with particular reverence for Mendelssohn and Sarasate.",
+    "significance": "The violin is one of the clearest windows into Holmes's inner life. He is a man who has deliberately suppressed emotion as interfering with reason; the violin is the one channel through which something resembling feeling is consistently permitted. Watson's descriptions of Holmes playing in the dark suggest a private interior that the detective otherwise keeps entirely concealed.",
+    "ownership_chain": [
+      {
+        "character_id": "char_sherlock-holmes",
+        "from": {
+          "book": 1,
+          "chapter": 2
+        },
+        "to": {
+          "book": 9,
+          "chapter": 12
+        }
+      }
+    ],
+    "appearance_history": [
+      "case_a-study-in-scarlet",
+      "case_the-adventure-of-the-empty-house",
+      "case_the-adventure-of-the-cardboard-box"
+    ],
+    "first_mention": {
+      "book": 1,
+      "chapter": 2
+    },
+    "full_reveal": {
+      "book": 1,
+      "chapter": 2
+    },
+    "created_by": "theloreatlas",
+    "last_edited_by": "theloreatlas"
+  },
+  {
+    "id": "artifact_von-herder-air-gun",
+    "series": "sherlock_holmes",
+    "name": "The Von Herder Air Gun",
+    "type": "weapon",
+    "description": "A custom pneumatic rifle constructed by the blind German mechanic Von Herder at the instruction of Professor Moriarty, and subsequently used by Colonel Sebastian Moran in his attempt to assassinate Sherlock Holmes from Camden House. The gun fires soft-nosed revolver bullets and is described as noiseless and of tremendous power — virtually undetectable in use. Holmes displays it to Watson after the ambush, with evident appreciation for the craftsmanship. It is the weapon with which Moran previously murdered the Honourable Ronald Adair by firing through an open window from a distance.",
+    "significance": "The Von Herder air gun links Moran to Moriarty directly — it was commissioned by Moriarty himself — and establishes that the criminal network survived Reichenbach in a functional, deadly form. Holmes's appreciation for the weapon's engineering is characteristic: he can admire the instrument even while bringing its wielder to justice.",
+    "ownership_chain": [
+      {
+        "character_id": "char_professor-moriarty",
+        "from": {
+          "book": 4,
+          "chapter": 10
+        },
+        "to": {
+          "book": 4,
+          "chapter": 11
+        }
+      },
+      {
+        "character_id": "char_colonel-sebastian-moran",
+        "from": {
+          "book": 6,
+          "chapter": 1
+        },
+        "to": {
+          "book": 6,
+          "chapter": 1
+        }
+      },
+      {
+        "character_id": "char_sherlock-holmes",
+        "from": {
+          "book": 6,
+          "chapter": 1
+        },
+        "to": {
+          "book": 6,
+          "chapter": 1
+        }
+      }
+    ],
+    "appearance_history": [
+      "case_the-adventure-of-the-empty-house"
+    ],
+    "first_mention": {
+      "book": 6,
+      "chapter": 1
+    },
+    "full_reveal": {
+      "book": 6,
+      "chapter": 1
+    },
+    "created_by": "theloreatlas",
+    "last_edited_by": "theloreatlas"
+  },
+  {
+    "id": "artifact_wax-bust-of-holmes",
+    "series": "sherlock_holmes",
+    "name": "The Wax Bust of Holmes",
+    "type": "decoy prop",
+    "description": "A wax bust of Sherlock Holmes, modeled by the artist Monsieur Oscar Meunier of Grenoble at Holmes's request. The bust is mounted on a pedestal and placed in the Baker Street window to simulate Holmes's silhouette. Mrs. Hudson moves it periodically to create the impression of Holmes moving about his rooms. The bust serves as bait to draw out Colonel Sebastian Moran, who fires an expanding revolver bullet at it from the empty house across the street, believing he is shooting the real Holmes.",
+    "ownership_chain": [
+      {
+        "character_id": "char_sherlock-holmes",
+        "from": {
+          "book": 6,
+          "chapter": 1
+        },
+        "to": {
+          "book": 6,
+          "chapter": 1
+        }
+      }
+    ],
+    "appearance_history": [
+      "case_the-adventure-of-the-empty-house"
+    ],
+    "significance": "One of the canon's most theatrical objects. Holmes's use of the bust demonstrates his theatrical flair and methodical planning — he had the bust commissioned specifically for this trap, anticipating that Moran would attempt to assassinate him upon his return to London. The bust is destroyed by Moran's air gun bullet, providing the evidence needed to convict him.",
+    "first_mention": {
+      "book": 6,
+      "chapter": 1
+    },
+    "full_reveal": {
+      "book": 6,
+      "chapter": 1
+    },
+    "created_by": "theloreatlas",
+    "last_edited_by": "theloreatlas"
+  },
+  {
+    "id": "artifact_yellow-face-mask",
+    "series": "sherlock_holmes",
+    "name": "The Yellow Face Mask",
+    "type": "disguise",
+    "description": "A crude, ill-fitting mask with a yellowish complexion — representing an exaggerated caricature of a Black face — worn by Lucy, the mixed-race daughter of Effie Munro (née Hebron) from her first marriage in Atlanta. Effie had kept Lucy secretly in a rented Norbury cottage, visited at night, fearing that her English husband Grant Munro would reject her and the child. Holmes erroneously deduces that the figure glimpsed at the window is Effie's supposedly dead first husband. When Munro forces his way into the cottage and the mask is removed, he immediately embraces the child. The mask is the physical emblem of the racial anxiety Effie feared from Victorian England — fear that proved, in this case, unfounded.",
+    "significance": "The Yellow Face is famous as one of Holmes's explicit failures — at the end, he tells Watson to mention 'Norbury' to him whenever he grows too confident of himself. The mask's function as a symbol is striking: it was meant to conceal, but what it reveals when removed is not a threat but a child. The case is unusually sentimental for the canon, and unusually honest about race.",
+    "ownership_chain": [
+      {
+        "character_id": "char_sherlock-holmes",
+        "from": {
+          "book": 4,
+          "chapter": 2
+        },
+        "to": {
+          "book": 4,
+          "chapter": 2
+        }
+      }
+    ],
+    "appearance_history": [
+      "case_the-yellow-face"
+    ],
+    "first_mention": {
+      "book": 4,
+      "chapter": 2
+    },
+    "full_reveal": {
+      "book": 4,
+      "chapter": 2
+    },
     "created_by": "theloreatlas",
     "last_edited_by": "theloreatlas"
   }

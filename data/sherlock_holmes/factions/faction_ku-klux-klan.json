@@ -1,0 +1,19 @@
+{
+  "id": "faction_ku-klux-klan",
+  "series": "sherlock_holmes",
+  "name": "The Ku Klux Klan",
+  "type": "criminal organisation",
+  "alignment": "antagonist — terrorist organisation",
+  "key_members": [],
+  "cases_involved": [
+    "case_the-five-orange-pips"
+  ],
+  "active_period": "1860s–present (historical); canon appearance c.1887",
+  "parent_org": null,
+  "child_orgs": [],
+  "description": "The Ku Klux Klan appears in The Adventure of the Five Orange Pips as the organisation responsible for sending death threats — five dried orange seeds in an envelope initialled K.K.K. — to three successive members of the Openshaw family. Holmes identifies the KKK immediately from the calling-card format and traces the threat to the American ship Lone Star out of Savannah, Georgia. The KKK in the story operates through fear and long-range assassination, eliminating witnesses to its activities. It represents Holmes encountering a genuinely American criminal institution — one whose reach extends across the Atlantic and whose violence is systematic rather than opportunistic.",
+  "first_mention": { "book": 3, "chapter": 5 },
+  "full_reveal": { "book": 3, "chapter": 5 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

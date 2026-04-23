@@ -1,0 +1,22 @@
+{
+  "id": "artifact_milverton-documents",
+  "series": "sherlock_holmes",
+  "name": "The Milverton Archive",
+  "type": "blackmail documents",
+  "description": "The extensive collection of compromising letters, indiscreet communications, and damaging personal documents amassed by Charles Augustus Milverton in his long career as a blackmailer. The archive represents years of systematic acquisition — Milverton employed agents, cultivated servants, and paid informants to obtain letters that their authors would pay almost any price to suppress. Holmes is hired to recover a letter from the archive on behalf of a client; after burgling Milverton's Hampstead home (and witnessing his murder at the hands of a woman he had previously ruined), Holmes burns the entire collection in the fireplace. He makes no attempt to return individual documents to their authors.",
+  "significance": "Holmes's decision to burn the entire archive — rather than selectively returning documents — is a characteristically extreme act of private justice. He tells Watson afterward that he refuses to assist the police in identifying Milverton's murderer, regarding her as having performed a public service. The Milverton case is one of the sharpest illustrations of Holmes's willingness to operate entirely outside the law when he judges the moral case sufficient.",
+  "ownership_chain": [
+    {
+      "character_id": "char_charles-augustus-milverton",
+      "from": { "book": 6, "chapter": 7 },
+      "to": { "book": 6, "chapter": 7 }
+    }
+  ],
+  "appearance_history": [
+    "case_the-adventure-of-charles-augustus-milverton"
+  ],
+  "first_mention": { "book": 6, "chapter": 7 },
+  "full_reveal": { "book": 6, "chapter": 7 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

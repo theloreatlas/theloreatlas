@@ -1,0 +1,32 @@
+{
+  "id": "artifact_von-herder-air-gun",
+  "series": "sherlock_holmes",
+  "name": "The Von Herder Air Gun",
+  "type": "weapon",
+  "description": "A custom pneumatic rifle constructed by the blind German mechanic Von Herder at the instruction of Professor Moriarty, and subsequently used by Colonel Sebastian Moran in his attempt to assassinate Sherlock Holmes from Camden House. The gun fires soft-nosed revolver bullets and is described as noiseless and of tremendous power — virtually undetectable in use. Holmes displays it to Watson after the ambush, with evident appreciation for the craftsmanship. It is the weapon with which Moran previously murdered the Honourable Ronald Adair by firing through an open window from a distance.",
+  "significance": "The Von Herder air gun links Moran to Moriarty directly — it was commissioned by Moriarty himself — and establishes that the criminal network survived Reichenbach in a functional, deadly form. Holmes's appreciation for the weapon's engineering is characteristic: he can admire the instrument even while bringing its wielder to justice.",
+  "ownership_chain": [
+    {
+      "character_id": "char_professor-moriarty",
+      "from": { "book": 4, "chapter": 10 },
+      "to": { "book": 4, "chapter": 11 }
+    },
+    {
+      "character_id": "char_colonel-sebastian-moran",
+      "from": { "book": 6, "chapter": 1 },
+      "to": { "book": 6, "chapter": 1 }
+    },
+    {
+      "character_id": "char_sherlock-holmes",
+      "from": { "book": 6, "chapter": 1 },
+      "to": { "book": 6, "chapter": 1 }
+    }
+  ],
+  "appearance_history": [
+    "case_the-adventure-of-the-empty-house"
+  ],
+  "first_mention": { "book": 6, "chapter": 1 },
+  "full_reveal": { "book": 6, "chapter": 1 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

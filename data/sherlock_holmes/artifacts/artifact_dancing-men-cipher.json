@@ -1,0 +1,22 @@
+{
+  "id": "artifact_dancing-men-cipher",
+  "series": "sherlock_holmes",
+  "name": "The Dancing Men Cipher",
+  "type": "cipher",
+  "description": "A series of coded messages written in a simple substitution cipher, in which each letter of the alphabet is represented by a stick figure in a dancing pose. The messages are sent to Elsie Cubitt — whose past in Chicago included an association with the American gangster Abe Slaney — and their content escalates from contact attempts to threats. Her husband Hilton Cubitt brings the drawings to Holmes, who deciphers them by frequency analysis within hours. Holmes deduces the message content too late to prevent tragedy: Cubitt is killed and Elsie gravely wounded before he can intervene. Holmes uses the cipher offensively, sending a final message in Slaney's own code to lure him to the scene.",
+  "significance": "One of the canon's most elegant demonstrations of cryptanalysis. Holmes's solution by frequency analysis — 'E is the most common letter in the English alphabet' — is a textbook example of the method. The cipher also illustrates Holmes's habit of turning the criminal's own tools against him.",
+  "ownership_chain": [
+    {
+      "character_id": "char_sherlock-holmes",
+      "from": { "book": 6, "chapter": 3 },
+      "to": { "book": 6, "chapter": 3 }
+    }
+  ],
+  "appearance_history": [
+    "case_the-adventure-of-the-dancing-men"
+  ],
+  "first_mention": { "book": 6, "chapter": 3 },
+  "full_reveal": { "book": 6, "chapter": 3 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

@@ -1,0 +1,22 @@
+{
+  "id": "artifact_yellow-face-mask",
+  "series": "sherlock_holmes",
+  "name": "The Yellow Face Mask",
+  "type": "disguise",
+  "description": "A crude, ill-fitting mask with a yellowish complexion — representing an exaggerated caricature of a Black face — worn by Lucy, the mixed-race daughter of Effie Munro (née Hebron) from her first marriage in Atlanta. Effie had kept Lucy secretly in a rented Norbury cottage, visited at night, fearing that her English husband Grant Munro would reject her and the child. Holmes erroneously deduces that the figure glimpsed at the window is Effie's supposedly dead first husband. When Munro forces his way into the cottage and the mask is removed, he immediately embraces the child. The mask is the physical emblem of the racial anxiety Effie feared from Victorian England — fear that proved, in this case, unfounded.",
+  "significance": "The Yellow Face is famous as one of Holmes's explicit failures — at the end, he tells Watson to mention 'Norbury' to him whenever he grows too confident of himself. The mask's function as a symbol is striking: it was meant to conceal, but what it reveals when removed is not a threat but a child. The case is unusually sentimental for the canon, and unusually honest about race.",
+  "ownership_chain": [
+    {
+      "character_id": "char_sherlock-holmes",
+      "from": { "book": 4, "chapter": 2 },
+      "to": { "book": 4, "chapter": 2 }
+    }
+  ],
+  "appearance_history": [
+    "case_the-yellow-face"
+  ],
+  "first_mention": { "book": 4, "chapter": 2 },
+  "full_reveal": { "book": 4, "chapter": 2 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

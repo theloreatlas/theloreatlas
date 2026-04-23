@@ -1,0 +1,24 @@
+{
+  "id": "artifact_index-volumes",
+  "series": "sherlock_holmes",
+  "name": "Holmes's Indexed Commonplace Books",
+  "type": "reference work",
+  "description": "Holmes maintains an extensive collection of indexed scrapbooks, commonplace books, and reference volumes in which he has catalogued newspaper clippings, case reports, criminal records, and personal observations accumulated over decades. Watson describes these records as irreplaceable: a complete index of London crime, biographical details of criminal figures, and notes on chemistry, disguise, literature, and the sensational press. Holmes can retrieve information from them almost instantly, and they serve as the foundation for deductions that appear miraculous to those who do not know the depth of preparation behind them. The system is entirely personal — organized on principles that would be opaque to anyone else.",
+  "significance": "The commonplace books are the material form of Holmes's method: deduction is not magic but the disciplined retrieval of prior knowledge. They also represent the only form of writing Holmes consistently engages in — his published monographs on tobacco ash, tire tracks, and bee-keeping are mentioned but the day-to-day index is his real intellectual labour.",
+  "ownership_chain": [
+    {
+      "character_id": "char_sherlock-holmes",
+      "from": { "book": 1, "chapter": 2 },
+      "to": { "book": 9, "chapter": 12 }
+    }
+  ],
+  "appearance_history": [
+    "case_a-study-in-scarlet",
+    "case_the-adventure-of-the-empty-house",
+    "case_the-adventure-of-charles-augustus-milverton"
+  ],
+  "first_mention": { "book": 1, "chapter": 2 },
+  "full_reveal": { "book": 1, "chapter": 2 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

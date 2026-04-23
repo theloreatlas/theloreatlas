@@ -1,0 +1,22 @@
+{
+  "id": "faction_british-government",
+  "series": "sherlock_holmes",
+  "name": "The British Government",
+  "type": "government",
+  "alignment": "lawful — clients of Holmes in matters of national security",
+  "key_members": ["char_mycroft-holmes"],
+  "cases_involved": [
+    "case_the-naval-treaty",
+    "case_the-adventure-of-the-bruce-partington-plans",
+    "case_the-adventure-of-the-second-stain",
+    "case_his-last-bow"
+  ],
+  "active_period": "1880s–1914 (Holmes canon period)",
+  "parent_org": null,
+  "child_orgs": [],
+  "description": "The British Government appears in the Holmes canon primarily as a client — bringing Holmes cases that Scotland Yard cannot handle and that cannot be disclosed publicly without diplomatic or political catastrophe. Holmes is consulted on stolen naval treaties, missing submarine plans, and inflammatory diplomatic correspondence. Mycroft Holmes is the government's most direct link to his brother: he serves as a clearing house for intelligence across multiple ministries and occasionally conveys cases personally. In His Last Bow, Holmes emerges from retirement to serve as a German spy (Altamont) in a two-year counter-intelligence operation — his most sustained engagement with state service.",
+  "first_mention": { "book": 4, "chapter": 10 },
+  "full_reveal": { "book": 4, "chapter": 10 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

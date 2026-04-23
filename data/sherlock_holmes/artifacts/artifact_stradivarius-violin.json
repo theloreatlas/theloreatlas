@@ -1,0 +1,24 @@
+{
+  "id": "artifact_stradivarius-violin",
+  "series": "sherlock_holmes",
+  "name": "Holmes's Stradivarius",
+  "type": "instrument",
+  "description": "Holmes's prize violin, a genuine Stradivarius which he purchased for fifty-five shillings at a Tottenham Court Road shop — a bargain that Watson regards as almost certainly a fiction or a stroke of extraordinary luck. Holmes plays it throughout the canon, sometimes with genuine virtuosity and sometimes in the small hours of the morning as a form of thought, scraping single strings with no apparent melody. Watson distinguishes between Holmes playing to think and Holmes playing to perform: the latter produces music of remarkable quality. Holmes is also a composer and a critic, with particular reverence for Mendelssohn and Sarasate.",
+  "significance": "The violin is one of the clearest windows into Holmes's inner life. He is a man who has deliberately suppressed emotion as interfering with reason; the violin is the one channel through which something resembling feeling is consistently permitted. Watson's descriptions of Holmes playing in the dark suggest a private interior that the detective otherwise keeps entirely concealed.",
+  "ownership_chain": [
+    {
+      "character_id": "char_sherlock-holmes",
+      "from": { "book": 1, "chapter": 2 },
+      "to": { "book": 9, "chapter": 12 }
+    }
+  ],
+  "appearance_history": [
+    "case_a-study-in-scarlet",
+    "case_the-adventure-of-the-empty-house",
+    "case_the-adventure-of-the-cardboard-box"
+  ],
+  "first_mention": { "book": 1, "chapter": 2 },
+  "full_reveal": { "book": 1, "chapter": 2 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

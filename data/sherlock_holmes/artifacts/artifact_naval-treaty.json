@@ -1,0 +1,22 @@
+{
+  "id": "artifact_naval-treaty",
+  "series": "sherlock_holmes",
+  "name": "The Naval Treaty",
+  "type": "diplomatic document",
+  "description": "A classified naval treaty between Britain and Italy, which Percy Phelps — a Foreign Office clerk — was given the dangerous task of copying overnight. When he stepped out briefly, the document was stolen from his desk. The theft, if disclosed, would represent a catastrophic diplomatic failure: the treaty's terms, if published, could inflame relations with two European powers. Holmes traces the document through a sequence of misdirections to Joseph Harrison, Phelps's future brother-in-law, who stole it opportunistically and hid it in Phelps's own home. Holmes recovers it by a piece of theatre — revealing it in a breakfast dish — and the matter is kept from official channels.",
+  "significance": "One of several Holmes cases involving state secrets at the highest level. The pattern — a government document stolen through opportunity rather than espionage, recovered without official acknowledgement — recurs in the Second Stain and the Bruce-Partington Plans. Holmes's willingness to resolve these cases privately, without credit, reflects his complex relationship with institutional authority.",
+  "ownership_chain": [
+    {
+      "character_id": "char_sherlock-holmes",
+      "from": { "book": 4, "chapter": 10 },
+      "to": { "book": 4, "chapter": 10 }
+    }
+  ],
+  "appearance_history": [
+    "case_the-naval-treaty"
+  ],
+  "first_mention": { "book": 4, "chapter": 10 },
+  "full_reveal": { "book": 4, "chapter": 10 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

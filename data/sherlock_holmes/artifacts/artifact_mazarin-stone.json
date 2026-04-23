@@ -1,0 +1,22 @@
+{
+  "id": "artifact_mazarin-stone",
+  "series": "sherlock_holmes",
+  "name": "The Mazarin Stone",
+  "type": "gemstone",
+  "description": "A great yellow diamond of exceptional size and value, stolen from the Crown Jewels collection in The Adventure of the Mazarin Stone. Count Sylvius and Sam Merton are responsible for the theft. Holmes recovers it through a piece of misdirection: he substitutes a wax dummy of himself seated in a chair (manipulated by Billy the page), allowing him to overhear Count Sylvius and Merton discussing the stone's whereabouts. Holmes palms the stone while the Count is distracted and then springs the trap. The stone is described as being of historical significance beyond its monetary value — a gem associated with Cardinal Mazarin, the French statesman.",
+  "significance": "The Mazarin Stone is one of Holmes's most theatrically recovered artifacts — the wax dummy and the substitution trick are characteristic Holmes stagecraft. Billy the page plays an unusually active role in the recovery, elevating him from a background domestic figure to a genuine operative.",
+  "ownership_chain": [
+    {
+      "character_id": "char_sherlock-holmes",
+      "from": { "book": 9, "chapter": 2 },
+      "to": { "book": 9, "chapter": 2 }
+    }
+  ],
+  "appearance_history": [
+    "case_the-adventure-of-the-mazarin-stone"
+  ],
+  "first_mention": { "book": 9, "chapter": 2 },
+  "full_reveal": { "book": 9, "chapter": 2 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

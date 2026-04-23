@@ -1,47 +1,189 @@
 [
   {
+    "id": "faction_afghan-campaign-veterans",
+    "series": "sherlock_holmes",
+    "name": "Second Afghan War Veterans",
+    "type": "other",
+    "alignment": "neutral — shared military service",
+    "key_members": [
+      "char_john-watson"
+    ],
+    "cases_involved": [],
+    "active_period": "1878–1880 (Second Anglo-Afghan War)",
+    "parent_org": null,
+    "child_orgs": [],
+    "description": "The informal grouping of British officers and soldiers who served in the Second Anglo-Afghan War (1878–1880), including the disastrous Battle of Maiwand in July 1880. Watson was wounded at Maiwand while attached to the Fifth Northumberland Fusiliers and then the Berkshire Regiment, receiving a jezail bullet in the shoulder (or leg — Watson is inconsistent). He was invalided home to England and, soon after recovering enough to circulate in London, encountered his old acquaintance Stamford at the Criterion Bar. The shared experience of the Afghan campaign forms part of Watson's identity throughout the canon: it explains his steadiness under fire, his medical skills in crisis situations, and the quiet fatalism that makes him so useful a companion to Holmes.",
+    "first_mention": {
+      "book": 1,
+      "chapter": 1
+    },
+    "full_reveal": {
+      "book": 1,
+      "chapter": 1
+    },
+    "created_by": "theloreatlas",
+    "last_edited_by": "theloreatlas"
+  },
+  {
+    "id": "faction_ancient-order-of-freemen",
+    "series": "sherlock_holmes",
+    "name": "The Ancient Order of Freemen",
+    "type": "fraternal organisation",
+    "alignment": "neutral (legitimate front for criminal sub-organisation)",
+    "key_members": [],
+    "cases_involved": [
+      "case_the-valley-of-fear"
+    ],
+    "active_period": "Active in the 1870s during the Vermissa Valley period",
+    "parent_org": null,
+    "child_orgs": [
+      "faction_scowrers"
+    ],
+    "description": "The Ancient Order of Freemen is a legitimate-seeming fraternal society — modeled on Freemasonry — whose Vermissa Valley lodge, Lodge 341, has been entirely subverted by the Scowrers. The Order provides the Scowrers with a formal structure, a membership mechanism, and legal cover: men who belong to the Order cannot easily be interrogated about their lodge activities without appearing to attack a legitimate institution. Birdy Edwards (the Pinkerton agent) infiltrates the lodge by becoming a member of the Order in good standing. The Order is a vehicle for explaining how a criminal organisation can sustain itself inside a community that would otherwise reject it.",
+    "first_mention": {
+      "book": 7,
+      "chapter": 8
+    },
+    "full_reveal": {
+      "book": 7,
+      "chapter": 8
+    },
+    "created_by": "theloreatlas",
+    "last_edited_by": "theloreatlas"
+  },
+  {
     "id": "faction_baker-street-irregulars",
     "series": "sherlock_holmes",
     "name": "The Baker Street Irregulars",
     "type": "other",
     "alignment": "neutral — loyal to Holmes for pay",
-    "key_members": ["char_sherlock-holmes"],
-    "cases_involved": ["case_a-study-in-scarlet", "case_the-sign-of-the-four"],
+    "key_members": [
+      "char_sherlock-holmes"
+    ],
+    "cases_involved": [
+      "case_a-study-in-scarlet",
+      "case_the-sign-of-the-four"
+    ],
     "active_period": "1881–1903 (approximate)",
     "parent_org": null,
     "child_orgs": [],
-    "description": "A loose gang of street children employed by Sherlock Holmes as intelligence gatherers and surveillance operatives. Holmes pays them a shilling each, plus a guinea to whoever brings him the information he needs. Their value lies in their invisibility — street children go unnoticed anywhere in London, making them ideal for tailing suspects and watching addresses. Led informally by a boy named Wiggins.",
-    "first_mention": { "book": 1, "chapter": 8 },
-    "full_reveal": { "book": 1, "chapter": 8 },
+    "description": "The Baker Street Irregulars are a loose gang of street children employed by Sherlock Holmes as intelligence gatherers and surveillance operatives. Holmes pays them a shilling each, plus a guinea to whoever brings him the information he needs. Their value lies in their invisibility — street children go unnoticed anywhere in London, making them ideal for tailing suspects, watching addresses, and gathering street-level intelligence that no adult detective could obtain without drawing attention. They are led informally by a boy named Wiggins. Holmes regards them with genuine warmth while maintaining the transactional nature of the arrangement.",
+    "first_mention": {
+      "book": 1,
+      "chapter": 8
+    },
+    "full_reveal": {
+      "book": 1,
+      "chapter": 8
+    },
     "created_by": "theloreatlas",
     "last_edited_by": "theloreatlas"
   },
   {
-    "id": "faction_scotland-yard",
+    "id": "faction_british-government",
     "series": "sherlock_holmes",
-    "name": "Scotland Yard",
-    "type": "law_enforcement",
-    "alignment": "law",
+    "name": "The British Government",
+    "type": "government",
+    "alignment": "lawful — clients of Holmes in matters of national security",
     "key_members": [
-      "char_inspector-lestrade",
-      "char_inspector-gregson",
-      "char_inspector-stanley-hopkins",
-      "char_inspector-athelney-jones"
+      "char_mycroft-holmes"
     ],
     "cases_involved": [
-      "case_a-study-in-scarlet",
-      "case_the-sign-of-the-four",
-      "case_the-adventure-of-the-empty-house",
-      "case_the-adventure-of-the-six-napoleons",
-      "case_the-adventure-of-black-peter",
-      "case_the-adventure-of-the-abbey-grange"
+      "case_the-naval-treaty",
+      "case_the-adventure-of-the-bruce-partington-plans",
+      "case_the-adventure-of-the-second-stain",
+      "case_his-last-bow"
+    ],
+    "active_period": "1880s–1914 (Holmes canon period)",
+    "parent_org": null,
+    "child_orgs": [],
+    "description": "The British Government appears in the Holmes canon primarily as a client — bringing Holmes cases that Scotland Yard cannot handle and that cannot be disclosed publicly without diplomatic or political catastrophe. Holmes is consulted on stolen naval treaties, missing submarine plans, and inflammatory diplomatic correspondence. Mycroft Holmes is the government's most direct link to his brother: he serves as a clearing house for intelligence across multiple ministries and occasionally conveys cases personally. In His Last Bow, Holmes emerges from retirement to serve as a German spy (Altamont) in a two-year counter-intelligence operation — his most sustained engagement with state service.",
+    "first_mention": {
+      "book": 4,
+      "chapter": 10
+    },
+    "full_reveal": {
+      "book": 4,
+      "chapter": 10
+    },
+    "created_by": "theloreatlas",
+    "last_edited_by": "theloreatlas"
+  },
+  {
+    "id": "faction_camorra",
+    "series": "sherlock_holmes",
+    "name": "The Camorra",
+    "type": "criminal organisation",
+    "alignment": "antagonist — Neapolitan criminal society",
+    "key_members": [],
+    "cases_involved": [
+      "case_the-adventure-of-the-red-circle"
+    ],
+    "active_period": "Historical; canon appearance c.1902",
+    "parent_org": null,
+    "child_orgs": [],
+    "description": "The Camorra is the Neapolitan criminal society that pursues Gennaro Lucca and his wife Emilia across the Atlantic in The Adventure of the Red Circle. Gennaro, forced into membership in New York, became an informant against the organisation's American leader Gorgiano, who follows him to London. Holmes and Watson become involved through Mrs. Warren, whose lodger communicates only through coded newspaper messages. The case resolves when Gennaro kills Gorgiano in a confrontation, and Holmes declines to press charges — recognising the killing as self-defence. The Camorra represents one of several instances in the canon where Holmes encounters genuinely foreign criminal organisations operating in London.",
+    "first_mention": {
+      "book": 8,
+      "chapter": 4
+    },
+    "full_reveal": {
+      "book": 8,
+      "chapter": 4
+    },
+    "created_by": "theloreatlas",
+    "last_edited_by": "theloreatlas"
+  },
+  {
+    "id": "faction_diogenes-club",
+    "series": "sherlock_holmes",
+    "name": "The Diogenes Club",
+    "type": "social",
+    "alignment": "neutral — unofficially government-adjacent",
+    "key_members": [
+      "char_mycroft-holmes"
+    ],
+    "cases_involved": [
+      "case_the-greek-interpreter",
+      "case_the-adventure-of-the-bruce-partington-plans"
     ],
     "active_period": "Ongoing",
     "parent_org": null,
     "child_orgs": [],
-    "description": "The Metropolitan Police Service's Criminal Investigation Department. The official investigative arm of London's police force and Holmes's most frequent institutional contact. Lestrade, Gregson, Hopkins, and Athelney Jones all consult Holmes on cases that exceed their conventional methods. Holmes regularly solves cases the Yard cannot, often allowing them to take public credit for his solutions.",
-    "first_mention": { "book": 1, "chapter": 3 },
-    "full_reveal": { "book": 1, "chapter": 3 },
+    "description": "The Diogenes Club is a London gentlemen's club founded for men who dislike company and conversation. Its rules are strict: no member may take the least notice of any other, and talking is forbidden in all rooms except the Strangers' Room. Mycroft Holmes is a founding member. Despite its eccentric premise, the Club serves a deeper function: it attracts Britain's most retiring and brilliant men, many of whom hold sensitive government positions. The Strangers' Room functions as an informal intelligence clearing house. Holmes describes the Club as 'the queerest club in London' — it is also, quietly, one of the most powerful.",
+    "first_mention": {
+      "book": 4,
+      "chapter": 9
+    },
+    "full_reveal": {
+      "book": 4,
+      "chapter": 9
+    },
+    "created_by": "theloreatlas",
+    "last_edited_by": "theloreatlas"
+  },
+  {
+    "id": "faction_ku-klux-klan",
+    "series": "sherlock_holmes",
+    "name": "The Ku Klux Klan",
+    "type": "criminal organisation",
+    "alignment": "antagonist — terrorist organisation",
+    "key_members": [],
+    "cases_involved": [
+      "case_the-five-orange-pips"
+    ],
+    "active_period": "1860s–present (historical); canon appearance c.1887",
+    "parent_org": null,
+    "child_orgs": [],
+    "description": "The Ku Klux Klan appears in The Adventure of the Five Orange Pips as the organisation responsible for sending death threats — five dried orange seeds in an envelope initialled K.K.K. — to three successive members of the Openshaw family. Holmes identifies the KKK immediately from the calling-card format and traces the threat to the American ship Lone Star out of Savannah, Georgia. The KKK in the story operates through fear and long-range assassination, eliminating witnesses to its activities. It represents Holmes encountering a genuinely American criminal institution — one whose reach extends across the Atlantic and whose violence is systematic rather than opportunistic.",
+    "first_mention": {
+      "book": 3,
+      "chapter": 5
+    },
+    "full_reveal": {
+      "book": 3,
+      "chapter": 5
+    },
     "created_by": "theloreatlas",
     "last_edited_by": "theloreatlas"
   },
@@ -52,40 +194,106 @@
     "type": "criminal",
     "alignment": "criminal",
     "key_members": [
-      "char_professor-moriarty",
-      "char_colonel-sebastian-moran"
+      "char_professor-moriarty"
     ],
     "cases_involved": [
       "case_the-final-problem",
       "case_the-valley-of-fear",
       "case_the-adventure-of-the-empty-house"
     ],
-    "active_period": "c.1875–1894",
+    "active_period": "c.1875–1891",
     "parent_org": null,
     "child_orgs": [],
-    "description": "The vast criminal organization built and controlled by Professor Moriarty. Holmes describes it as a spider's web — Moriarty at the center, coordinating every major crime in England without ever personally committing any. Holmes dismantles the bulk of the network in 1891. Colonel Sebastian Moran continues operations in a diminished capacity after Reichenbach until his arrest following Holmes's return in 1894.",
-    "first_mention": { "book": 4, "chapter": 1 },
-    "full_reveal": { "book": 4, "chapter": 10 },
+    "description": "The vast criminal organization built and controlled by Professor James Moriarty. Holmes describes it as a spider's web spanning London and beyond — Moriarty at the center, coordinating every major crime in England without ever personally committing any. The network encompasses blackmailers, forgers, burglars, and assassins, all connected through layers of intermediaries that insulate Moriarty from direct exposure. Holmes dismantles the bulk of the network in 1891, resulting in the confrontation at the Reichenbach Falls. Colonel Sebastian Moran, Moriarty's chief of staff and the second most dangerous man in London, continues operations in a diminished capacity until his arrest following Holmes's return.",
+    "first_mention": {
+      "book": 4,
+      "chapter": 1
+    },
+    "full_reveal": {
+      "book": 4,
+      "chapter": 10
+    },
     "created_by": "theloreatlas",
     "last_edited_by": "theloreatlas"
   },
   {
-    "id": "faction_diogenes-club",
+    "id": "faction_pinkerton-detective-agency",
     "series": "sherlock_holmes",
-    "name": "The Diogenes Club",
-    "type": "social",
-    "alignment": "neutral — unofficially government-adjacent",
-    "key_members": ["char_mycroft-holmes"],
+    "name": "The Pinkerton National Detective Agency",
+    "type": "law enforcement",
+    "alignment": "lawful — American private detective organisation",
+    "key_members": [],
     "cases_involved": [
-      "case_the-greek-interpreter",
-      "case_the-adventure-of-the-bruce-partington-plans"
+      "case_the-valley-of-fear"
+    ],
+    "active_period": "1850–present (historical); canon appearance c.1875 (Vermissa Valley backstory)",
+    "parent_org": null,
+    "child_orgs": [],
+    "description": "The Pinkerton National Detective Agency is the American institution behind the undercover operation at the heart of The Valley of Fear. Birdy Edwards, operating as Jack McMurdo, is a Pinkerton agent who infiltrated the Scowrers (Lodge 341 of the Ancient Order of Freemen) in Vermissa Valley, Pennsylvania, spending years building the trust of the organisation before exposing its leadership. The Pinkerton Agency was the preeminent American private detective force of the Victorian era, known for its labor disputes work, criminal investigations, and use of long-term undercover operatives — a practice Doyle accurately depicts. Edwards's survival after exposure required him to flee to England, where, as John Douglas of Birlstone, he is still hunted by Moriarty's network years later.",
+    "first_mention": {
+      "book": 7,
+      "chapter": 8
+    },
+    "full_reveal": {
+      "book": 7,
+      "chapter": 8
+    },
+    "created_by": "theloreatlas",
+    "last_edited_by": "theloreatlas"
+  },
+  {
+    "id": "faction_red-headed-league",
+    "series": "sherlock_holmes",
+    "name": "The Red-Headed League",
+    "type": "fictitious organisation",
+    "alignment": "neutral (fictional front; criminal in purpose)",
+    "key_members": [
+      "char_jabez-wilson"
+    ],
+    "cases_involved": [
+      "case_the-red-headed-league"
+    ],
+    "active_period": "April–October 1890 (approximately)",
+    "parent_org": null,
+    "child_orgs": [],
+    "description": "The Red-Headed League is an elaborate fiction invented by John Clay to keep Jabez Wilson occupied and away from his own pawnshop for several hours each day. Advertised in a newspaper as a well-endowed organisation paying four pounds a week to red-haired men willing to perform light clerical work, the 'League' operated from Saxe-Coburg Square under a man named Duncan Ross (another Clay accomplice). Its stated purpose — copying the Encyclopædia Britannica — was designed to sound absurd enough to attract little attention. When Clay's tunnel to the adjacent bank vault was complete, the League was dissolved by a notice on the door. Holmes notes that the scheme is distinguished by the audacity of its pretence and the elegance of its misdirection.",
+    "first_mention": {
+      "book": 3,
+      "chapter": 2
+    },
+    "full_reveal": {
+      "book": 3,
+      "chapter": 2
+    },
+    "created_by": "theloreatlas",
+    "last_edited_by": "theloreatlas"
+  },
+  {
+    "id": "faction_scotland-yard",
+    "series": "sherlock_holmes",
+    "name": "Scotland Yard",
+    "type": "law_enforcement",
+    "alignment": "law",
+    "key_members": [
+      "char_inspector-lestrade"
+    ],
+    "cases_involved": [
+      "case_a-study-in-scarlet",
+      "case_the-adventure-of-the-empty-house",
+      "case_the-adventure-of-the-six-napoleons"
     ],
     "active_period": "Ongoing",
     "parent_org": null,
     "child_orgs": [],
-    "description": "A London gentlemen's club founded for men who dislike company. Talking is forbidden in all rooms except the Strangers' Room. Mycroft Holmes is a founding member. Despite its eccentric premise, the Club attracts Britain's most retiring and brilliant men, many holding sensitive government positions — making it an informal intelligence clearing house.",
-    "first_mention": { "book": 4, "chapter": 9 },
-    "full_reveal": { "book": 4, "chapter": 9 },
+    "description": "The Metropolitan Police Service's Criminal Investigation Department, colloquially known as Scotland Yard. The official investigative arm of London's police force and Holmes's most frequent institutional contact. Scotland Yard detectives — chiefly Lestrade and Gregson — regularly consult Holmes on cases that exceed their conventional methods. The relationship is characterized by professional tension: the Yard's detectives follow procedure and seek conventional explanations, while Holmes pursues evidence wherever it leads. Holmes regularly solves cases the Yard cannot, often allowing them to take public credit while retaining his own satisfaction. The Yard represents institutional competence without imaginative genius.",
+    "first_mention": {
+      "book": 1,
+      "chapter": 3
+    },
+    "full_reveal": {
+      "book": 1,
+      "chapter": 3
+    },
     "created_by": "theloreatlas",
     "last_edited_by": "theloreatlas"
   },
@@ -100,30 +308,17 @@
       "case_the-valley-of-fear"
     ],
     "active_period": "c.1870s–1880s (Vermissa Valley, Pennsylvania)",
-    "parent_org": null,
+    "parent_org": "faction_ancient-order-of-freemen",
     "child_orgs": [],
     "description": "The Scowrers are the criminal wing of Lodge 341 of the Ancient Order of Freemen — a fraternal organization used as cover for a campaign of murder, arson, and extortion in the Vermissa Valley coalfields of Pennsylvania. Under their Bodymaster, Jack McGinty, they terrorize the region's mine owners and anyone who opposes them, operating with near-total impunity because their lodge membership protects them from testimony. Birdy Edwards (John Douglas), a Pinkerton agent, infiltrates the lodge at great personal risk and eventually brings the organization down from within. Their reach extends across the Atlantic: the opening of The Valley of Fear reveals that Moriarty himself has a financial connection to the Scowrers' operations, establishing the novel's link between Victorian London and the American coalfields.",
-    "first_mention": { "book": 7, "chapter": 8 },
-    "full_reveal": { "book": 7, "chapter": 14 },
-    "created_by": "theloreatlas",
-    "last_edited_by": "theloreatlas"
-  },
-  {
-    "id": "faction_afghan-campaign-veterans",
-    "series": "sherlock_holmes",
-    "name": "Second Afghan War Veterans",
-    "type": "other",
-    "alignment": "neutral — shared military service",
-    "key_members": [
-      "char_john-watson"
-    ],
-    "cases_involved": [],
-    "active_period": "1878–1880 (Second Anglo-Afghan War)",
-    "parent_org": null,
-    "child_orgs": [],
-    "description": "The informal grouping of British officers and soldiers who served in the Second Anglo-Afghan War (1878–1880), including the disastrous Battle of Maiwand in July 1880. Watson was wounded at Maiwand while attached to the Fifth Northumberland Fusiliers and then the Berkshire Regiment, receiving a jezail bullet in the shoulder (or leg — Watson is inconsistent). He was invalided home to England and, soon after recovering enough to circulate in London, encountered his old acquaintance Stamford at the Criterion Bar. The shared experience of the Afghan campaign forms part of Watson's identity throughout the canon: it explains his steadiness under fire, his medical skills in crisis situations, and the quiet fatalism that makes him so useful a companion to Holmes.",
-    "first_mention": { "book": 1, "chapter": 1 },
-    "full_reveal": { "book": 1, "chapter": 1 },
+    "first_mention": {
+      "book": 7,
+      "chapter": 8
+    },
+    "full_reveal": {
+      "book": 7,
+      "chapter": 14
+    },
     "created_by": "theloreatlas",
     "last_edited_by": "theloreatlas"
   }

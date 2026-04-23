@@ -1,0 +1,23 @@
+{
+  "id": "artifact_cocaine-seven-percent",
+  "series": "sherlock_holmes",
+  "name": "The Seven-Per-Cent Solution",
+  "type": "drug",
+  "description": "Holmes's cocaine habit — specifically a seven-per-cent solution of cocaine injected intravenously — is one of the most persistently noted facts in the canon. Watson opens The Sign of the Four with Holmes injecting for the third time in as many days and delivers a formal medical objection; Holmes dismisses it on the grounds that the stimulant is necessary to counter the lassitude of inaction between cases. He alternates between cocaine and morphine, and Watson's long-running campaign against the habit is one of the few points of sustained friction in the partnership. By the time of The Adventure of the Missing Three-Quarter, Watson believes he has finally succeeded in weaning Holmes off the drug entirely.",
+  "significance": "The cocaine habit is Holmes's most humanising flaw — a concession that his inhuman mental machinery requires chemical intervention when not engaged. It also establishes Watson as more than a narrator: his persistent, professionally-grounded objection to the habit is one of the clearest expressions of care in their relationship.",
+  "ownership_chain": [
+    {
+      "character_id": "char_sherlock-holmes",
+      "from": { "book": 2, "chapter": 1 },
+      "to": { "book": 6, "chapter": 9 }
+    }
+  ],
+  "appearance_history": [
+    "case_the-sign-of-the-four",
+    "case_the-adventure-of-the-missing-three-quarter"
+  ],
+  "first_mention": { "book": 2, "chapter": 1 },
+  "full_reveal": { "book": 2, "chapter": 1 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

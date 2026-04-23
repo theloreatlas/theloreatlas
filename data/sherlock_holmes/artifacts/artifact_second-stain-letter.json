@@ -1,0 +1,22 @@
+{
+  "id": "artifact_second-stain-letter",
+  "series": "sherlock_holmes",
+  "name": "The Second Stain Letter",
+  "type": "diplomatic document",
+  "description": "A letter written by a foreign potentate — described as imprudent and inflammatory in the extreme — whose publication would, according to the Prime Minister and the Secretary for European Affairs (Trelawney Hope), bring Britain to the brink of war. The letter was stolen from Hope's dispatch box, which was kept in his private study. Holmes traces it through the murder of intelligence broker Eduardo Lucas and a concealed hiding place beneath a loose carpet square stained twice with blood — the 'second stain' of the title. The letter is recovered and quietly returned without public disclosure; the statesman's imprudence is suppressed.",
+  "significance": "The Second Stain is the third of Holmes's major diplomatic cases (after the Naval Treaty and the Bruce-Partington Plans) and the most politically consequential — involving the highest levels of government and a direct threat of European war. Holmes's habitual discretion in these matters — restoring the letter and asking no questions about how the statesman's wife obtained it — is one of the canon's clearest acts of willful ignorance in service of a greater good.",
+  "ownership_chain": [
+    {
+      "character_id": "char_sherlock-holmes",
+      "from": { "book": 6, "chapter": 12 },
+      "to": { "book": 6, "chapter": 12 }
+    }
+  ],
+  "appearance_history": [
+    "case_the-adventure-of-the-second-stain"
+  ],
+  "first_mention": { "book": 6, "chapter": 12 },
+  "full_reveal": { "book": 6, "chapter": 12 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

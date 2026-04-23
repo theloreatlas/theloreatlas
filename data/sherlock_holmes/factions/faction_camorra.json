@@ -1,0 +1,19 @@
+{
+  "id": "faction_camorra",
+  "series": "sherlock_holmes",
+  "name": "The Camorra",
+  "type": "criminal organisation",
+  "alignment": "antagonist — Neapolitan criminal society",
+  "key_members": [],
+  "cases_involved": [
+    "case_the-adventure-of-the-red-circle"
+  ],
+  "active_period": "Historical; canon appearance c.1902",
+  "parent_org": null,
+  "child_orgs": [],
+  "description": "The Camorra is the Neapolitan criminal society that pursues Gennaro Lucca and his wife Emilia across the Atlantic in The Adventure of the Red Circle. Gennaro, forced into membership in New York, became an informant against the organisation's American leader Gorgiano, who follows him to London. Holmes and Watson become involved through Mrs. Warren, whose lodger communicates only through coded newspaper messages. The case resolves when Gennaro kills Gorgiano in a confrontation, and Holmes declines to press charges — recognising the killing as self-defence. The Camorra represents one of several instances in the canon where Holmes encounters genuinely foreign criminal organisations operating in London.",
+  "first_mention": { "book": 8, "chapter": 4 },
+  "full_reveal": { "book": 8, "chapter": 4 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

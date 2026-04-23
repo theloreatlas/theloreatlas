@@ -1,0 +1,19 @@
+{
+  "id": "faction_pinkerton-detective-agency",
+  "series": "sherlock_holmes",
+  "name": "The Pinkerton National Detective Agency",
+  "type": "law enforcement",
+  "alignment": "lawful — American private detective organisation",
+  "key_members": [],
+  "cases_involved": [
+    "case_the-valley-of-fear"
+  ],
+  "active_period": "1850–present (historical); canon appearance c.1875 (Vermissa Valley backstory)",
+  "parent_org": null,
+  "child_orgs": [],
+  "description": "The Pinkerton National Detective Agency is the American institution behind the undercover operation at the heart of The Valley of Fear. Birdy Edwards, operating as Jack McMurdo, is a Pinkerton agent who infiltrated the Scowrers (Lodge 341 of the Ancient Order of Freemen) in Vermissa Valley, Pennsylvania, spending years building the trust of the organisation before exposing its leadership. The Pinkerton Agency was the preeminent American private detective force of the Victorian era, known for its labor disputes work, criminal investigations, and use of long-term undercover operatives — a practice Doyle accurately depicts. Edwards's survival after exposure required him to flee to England, where, as John Douglas of Birlstone, he is still hunted by Moriarty's network years later.",
+  "first_mention": { "book": 7, "chapter": 8 },
+  "full_reveal": { "book": 7, "chapter": 8 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

@@ -1,0 +1,19 @@
+{
+  "id": "faction_ancient-order-of-freemen",
+  "series": "sherlock_holmes",
+  "name": "The Ancient Order of Freemen",
+  "type": "fraternal organisation",
+  "alignment": "neutral (legitimate front for criminal sub-organisation)",
+  "key_members": [],
+  "cases_involved": [
+    "case_the-valley-of-fear"
+  ],
+  "active_period": "Active in the 1870s during the Vermissa Valley period",
+  "parent_org": null,
+  "child_orgs": ["faction_scowrers"],
+  "description": "The Ancient Order of Freemen is a legitimate-seeming fraternal society — modeled on Freemasonry — whose Vermissa Valley lodge, Lodge 341, has been entirely subverted by the Scowrers. The Order provides the Scowrers with a formal structure, a membership mechanism, and legal cover: men who belong to the Order cannot easily be interrogated about their lodge activities without appearing to attack a legitimate institution. Birdy Edwards (the Pinkerton agent) infiltrates the lodge by becoming a member of the Order in good standing. The Order is a vehicle for explaining how a criminal organisation can sustain itself inside a community that would otherwise reject it.",
+  "first_mention": { "book": 7, "chapter": 8 },
+  "full_reveal": { "book": 7, "chapter": 8 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

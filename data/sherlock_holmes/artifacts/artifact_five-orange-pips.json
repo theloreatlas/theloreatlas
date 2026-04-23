@@ -1,0 +1,22 @@
+{
+  "id": "artifact_five-orange-pips",
+  "series": "sherlock_holmes",
+  "name": "The Five Orange Pips",
+  "type": "death threat",
+  "description": "Five dried orange seeds sent in an envelope bearing the initials K.K.K. — the calling card of the Ku Klux Klan as used in the canon, serving as a death warning. The same warning was sent to Elias Openshaw in 1883; to his nephew Joseph Openshaw in 1885; and finally to Joseph's son John Openshaw in 1887, who brings the case to Holmes. Each recipient died shortly after receiving the pips. The envelope instructs the recipient to place their papers on the sundial or face consequences. Holmes traces the origin to the American ship Lone Star out of Savannah — but the ship and its crew are lost in a storm before justice can be served.",
+  "significance": "One of Holmes's admitted failures: John Openshaw is murdered before Holmes can act, and the perpetrators are killed by a storm before they can be brought to justice. Holmes's reaction — sending his own five pips to the Lone Star — is an act of futile defiance, a gesture toward a justice the world denied. The case establishes that Holmes can lose.",
+  "ownership_chain": [
+    {
+      "character_id": "char_sherlock-holmes",
+      "from": { "book": 3, "chapter": 5 },
+      "to": { "book": 3, "chapter": 5 }
+    }
+  ],
+  "appearance_history": [
+    "case_the-five-orange-pips"
+  ],
+  "first_mention": { "book": 3, "chapter": 5 },
+  "full_reveal": { "book": 3, "chapter": 5 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}
