@@ -1,0 +1,140 @@
+/* ── Graph container ──────────────────────────────────────────────────────── */
+
+.graph-wrap {
+  position: relative;
+}
+
+.graph-svg {
+  display: block;
+  width: 100%;
+  background: radial-gradient(ellipse at center, #f5efe4 0%, #ede4d3 100%);
+  border: 1px solid #c8b89a;
+  border-radius: 4px;
+  cursor: grab;
+}
+
+.graph-svg:active {
+  cursor: grabbing;
+}
+
+/* ── Links ────────────────────────────────────────────────────────────────── */
+
+.graph-link {
+  transition: stroke-opacity 0.15s;
+}
+
+.graph-link:hover {
+  stroke-opacity: 0.9;
+  cursor: default;
+}
+
+/* ── Nodes ────────────────────────────────────────────────────────────────── */
+
+.graph-node {
+  cursor: pointer;
+}
+
+.graph-node circle {
+  transition: opacity 0.15s, r 0.15s;
+}
+
+.graph-node:hover circle {
+  opacity: 0.85;
+}
+
+.graph-label {
+  font-family: 'EB Garamond', Georgia, serif;
+  font-size: 0.7rem;
+  fill: #1a1510;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* ── Tooltip ──────────────────────────────────────────────────────────────── */
+
+.graph-tooltip {
+  position: absolute;
+  pointer-events: none;
+  background: #f5efe4;
+  border: 1px solid #c4a55a;
+  border-radius: 3px;
+  padding: 0.45rem 0.65rem;
+  font-family: 'EB Garamond', Georgia, serif;
+  font-size: 0.85rem;
+  color: #1a1510;
+  box-shadow: 2px 3px 8px rgba(26, 21, 16, 0.18);
+  max-width: 200px;
+  line-height: 1.45;
+  transition: opacity 0.1s;
+  z-index: 10;
+}
+
+.graph-tooltip strong {
+  font-weight: 600;
+  display: block;
+  margin-bottom: 0.1em;
+}
+
+.tt-role {
+  color: #6a5a3a;
+  font-style: italic;
+  text-transform: capitalize;
+}
+
+.tt-degree {
+  color: #8a7a5a;
+  font-size: 0.78rem;
+}
+
+/* ── Legend ───────────────────────────────────────────────────────────────── */
+
+.graph-legend {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 1.2rem;
+  margin-top: 0.9rem;
+  padding: 0.6rem 0.9rem;
+  background: #f0e8d8;
+  border: 1px solid #c8b89a;
+  border-radius: 3px;
+  font-family: 'EB Garamond', Georgia, serif;
+  font-size: 0.82rem;
+  color: #3a3020;
+}
+
+.graph-legend-title {
+  font-family: 'Cinzel', serif;
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #6a5a3a;
+  width: 100%;
+  margin: 0 0 0.2rem;
+}
+
+.graph-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  text-transform: capitalize;
+}
+
+.graph-legend-swatch {
+  display: inline-block;
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* ── Hint bar ─────────────────────────────────────────────────────────────── */
+
+.graph-hint {
+  margin-top: 0.5rem;
+  font-family: 'EB Garamond', Georgia, serif;
+  font-size: 0.78rem;
+  color: #8a7a5a;
+  font-style: italic;
+  text-align: center;
+}

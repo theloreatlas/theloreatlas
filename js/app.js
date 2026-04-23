@@ -70,7 +70,11 @@ async function onRouteChange() {
     renderSearch(content);
   } else if (parts.length === 2) {
     const [seriesId, entityType] = parts;
-    renderEntityList(content, seriesId, entityType);
+    if (entityType === 'graph') {
+      renderGraph(content, seriesId);
+    } else {
+      renderEntityList(content, seriesId, entityType);
+    }
   } else if (parts.length === 3) {
     // Entity detail — Session 5
     renderEntityDetail(content, parts[0], parts[1], parts[2]);
@@ -493,6 +497,28 @@ function renderRelationshipDetail(entity, status) {
       <span>Full reveal: ${esc(formatSpoiler(entity.full_reveal))}</span>
     </div>
   `;
+}
+
+function renderGraph(container, seriesId) {
+  const series = LoreLoader.getSeriesById(seriesId);
+  if (!series) { renderNotFound(container); return; }
+
+  container.innerHTML = `
+    <div class="page-header">
+      <div class="breadcrumb">
+        <a href="#/">Home</a> &rsaquo;
+        <span class="series-label">${esc(series.name)}</span> &rsaquo;
+        Relationship Graph
+      </div>
+      <h1>Relationship Graph</h1>
+    </div>
+    <div class="graph-wrap">
+      <div id="graph-container"></div>
+      <p class="graph-hint">Scroll to zoom &nbsp;·&nbsp; Drag to pan &nbsp;·&nbsp; Click a character to view their page</p>
+    </div>
+  `;
+
+  LoreGraph.init(document.getElementById('graph-container'), seriesId);
 }
 
 function renderNotFound(container) {
