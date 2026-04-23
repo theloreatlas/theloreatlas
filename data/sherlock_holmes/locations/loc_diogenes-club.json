@@ -1,0 +1,20 @@
+{
+  "id": "loc_diogenes-club",
+  "series": "sherlock_holmes",
+  "name": "The Diogenes Club",
+  "type": "club",
+  "real_world_basis": "Pall Mall, Westminster, London (fictional; no real-world counterpart)",
+  "characters_associated": [
+    "char_mycroft-holmes",
+    "char_sherlock-holmes"
+  ],
+  "cases_occurring_here": [
+    "case_the-greek-interpreter",
+    "case_the-adventure-of-the-bruce-partington-plans"
+  ],
+  "description": "The Diogenes Club is described by Holmes as the queerest club in London — founded for men who have no wish for the company of their fellows yet require a comfortable chair and access to periodicals. Talking is strictly forbidden except in the Strangers' Room; members who speak three times are expelled. Mycroft Holmes is one of the founders and its most distinguished habitué. The club serves as a place where Mycroft can be found reliably, and on occasion Holmes visits to consult his brother on matters of state. In The Adventure of the Bruce-Partington Plans, Mycroft emerges from the Diogenes Club to meet Holmes at Baker Street — an event Watson describes as extraordinary, since Mycroft rarely leaves his orbit of club, flat, and government office.",
+  "first_mention": { "book": 4, "chapter": 9 },
+  "full_reveal": { "book": 4, "chapter": 9 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

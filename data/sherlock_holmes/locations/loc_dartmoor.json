@@ -1,0 +1,21 @@
+{
+  "id": "loc_dartmoor",
+  "series": "sherlock_holmes",
+  "name": "Dartmoor",
+  "type": "wilderness",
+  "real_world_basis": "Dartmoor, Devon, England — a national park of approximately 368 square miles on the southwestern peninsula; characterised by granite tors, moorland, bogs, and mist",
+  "characters_associated": [
+    "char_sherlock-holmes",
+    "char_john-watson",
+    "char_henry-baskerville",
+    "char_stapleton"
+  ],
+  "cases_occurring_here": [
+    "case_the-hound-of-the-baskervilles"
+  ],
+  "description": "Dartmoor is the bleak, fog-prone moorland that serves as the primary setting for The Hound of the Baskervilles. Its combination of desolate beauty, treacherous bogs, and atmospheric isolation makes it an ideal canvas for Gothic horror and detection alike. Watson spends weeks at Baskerville Hall observing and reporting while Holmes conducts his own investigation in secret; the landscape — particularly the Great Grimpen Mire — functions as both a physical danger and a psychological pressure on everyone involved. The moor's real geography, including Grimspound and Foggintor, is lightly fictionalised in Doyle's version.",
+  "first_mention": { "book": 5, "chapter": 1 },
+  "full_reveal": { "book": 5, "chapter": 1 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

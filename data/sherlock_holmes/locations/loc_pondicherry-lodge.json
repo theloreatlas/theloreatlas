@@ -1,0 +1,20 @@
+{
+  "id": "loc_pondicherry-lodge",
+  "series": "sherlock_holmes",
+  "name": "Pondicherry Lodge",
+  "type": "residence",
+  "real_world_basis": "Upper Norwood, South London (fictional estate)",
+  "characters_associated": [
+    "char_sherlock-holmes",
+    "char_john-watson",
+    "char_jonathan-small"
+  ],
+  "cases_occurring_here": [
+    "case_the-sign-of-the-four"
+  ],
+  "description": "Pondicherry Lodge is the Upper Norwood estate of Bartholomew Sholto, where the central murder of The Sign of the Four takes place. It is named after the Indian city where his father, Major Sholto, served. The treasure of Agra is hidden in a concealed attic room; when Watson and Holmes arrive with Miss Morstan and Athelney Jones, they find Bartholomew dead from a poison dart and the treasure gone. The lodge grounds become the starting point for the famous Thames chase — Holmes and Watson pursue Jonathan Small and Tonga downriver by police launch, culminating near Plumstead Marshes.",
+  "first_mention": { "book": 2, "chapter": 6 },
+  "full_reveal": { "book": 2, "chapter": 6 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

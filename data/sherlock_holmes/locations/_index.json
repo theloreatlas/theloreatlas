@@ -5,30 +5,126 @@
     "name": "221B Baker Street",
     "type": "residence",
     "real_world_basis": "Baker Street, Marylebone, London (the specific number did not exist in Doyle's time; now commemorated at the Sherlock Holmes Museum)",
-    "characters_associated": ["char_sherlock-holmes", "char_john-watson", "char_mrs-hudson"],
+    "characters_associated": [
+      "char_sherlock-holmes",
+      "char_john-watson"
+    ],
     "cases_occurring_here": [
       "case_a-study-in-scarlet",
       "case_a-scandal-in-bohemia",
       "case_the-final-problem",
       "case_the-adventure-of-the-empty-house"
     ],
-    "description": "The shared lodging of Sherlock Holmes and Dr. John Watson, and the operational base for nearly all of Holmes's cases. Famous for organized chaos: chemical experiments, correspondence pinned to the mantelpiece with a jack-knife, Holmes's violin, and the initials V.R. shot into the wall. Clients arrive here; Holmes receives telegrams and letters here; and it is here that he does the bulk of his thinking. The most iconic address in English fiction.",
-    "first_mention": { "book": 1, "chapter": 2 },
-    "full_reveal": { "book": 1, "chapter": 2 },
+    "description": "221B Baker Street is the shared lodging of Sherlock Holmes and Dr. John Watson, and the operational base for nearly all of Holmes's cases. The rooms on the first floor above Mrs. Hudson's ground-floor quarters are famous for their organized chaos: chemical experiments on the table, correspondence pinned to the mantelpiece with a jack-knife, stacks of papers, Holmes's violin, and the initials V.R. shot into the wall with a revolver. Clients arrive here; Holmes receives telegrams and letters here; and it is here that he does the bulk of his thinking. The address has become the most iconic in English fiction.",
+    "first_mention": {
+      "book": 1,
+      "chapter": 2
+    },
+    "full_reveal": {
+      "book": 1,
+      "chapter": 2
+    },
     "created_by": "theloreatlas",
     "last_edited_by": "theloreatlas"
   },
   {
-    "id": "loc_reichenbach-falls",
+    "id": "loc_abbey-grange",
     "series": "sherlock_holmes",
-    "name": "The Reichenbach Falls",
-    "type": "natural landmark",
-    "real_world_basis": "Reichenbach Falls, Meiringen, Bern Oberland, Switzerland (real location; tourist site today)",
-    "characters_associated": ["char_sherlock-holmes", "char_professor-moriarty"],
-    "cases_occurring_here": ["case_the-final-problem"],
-    "description": "A dramatic waterfall near Meiringen in the Swiss Alps, and the site of the most famous confrontation in the Holmes canon. Holmes and Moriarty struggle here in May 1891, both apparently plunging to their deaths. Holmes later reveals he survived using Baritsu. The location has become synonymous with apparent death and sacrifice.",
-    "first_mention": { "book": 4, "chapter": 10 },
-    "full_reveal": { "book": 6, "chapter": 1 },
+    "name": "Abbey Grange",
+    "type": "residence",
+    "real_world_basis": "Near Marsham, Kent (fictional country house)",
+    "characters_associated": [
+      "char_sherlock-holmes",
+      "char_john-watson"
+    ],
+    "cases_occurring_here": [
+      "case_the-adventure-of-the-abbey-grange"
+    ],
+    "description": "Abbey Grange is the Kent country house where Sir Eustace Brackenstall is found dead, apparently murdered by the Randall gang of burglars, as testified by his wife Lady Brackenstall and her maid. Holmes is summoned on a bitter January night by telegram and reconstructs the crime from the drawing room evidence alone — noting inconsistencies in the wine-glass arrangement, the binding of Lady Brackenstall's wrists, and the beeswax on the rope. His reconstruction reveals the true sequence of events and leads to a private dispensation of justice rather than a prosecution. Holmes declares it one of the three cases in which he has acted against the strict letter of the law.",
+    "first_mention": {
+      "book": 6,
+      "chapter": 11
+    },
+    "full_reveal": {
+      "book": 6,
+      "chapter": 11
+    },
+    "created_by": "theloreatlas",
+    "last_edited_by": "theloreatlas"
+  },
+  {
+    "id": "loc_bar-of-gold",
+    "series": "sherlock_holmes",
+    "name": "The Bar of Gold",
+    "type": "criminal venue",
+    "real_world_basis": "Upper Swandam Lane, near London Bridge (fictional street; London's opium dens were concentrated in Limehouse and Whitechapel in the Victorian era)",
+    "characters_associated": [
+      "char_john-watson",
+      "char_neville-st-clair"
+    ],
+    "cases_occurring_here": [
+      "case_the-man-with-the-twisted-lip"
+    ],
+    "description": "The Bar of Gold is a low opium den in Upper Swandam Lane, accessed by a steep flight of steps below street level and presided over by a lascar. Watson enters it at the start of The Man with the Twisted Lip to retrieve the husband of a family friend — and encounters Holmes there in disguise, investigating the disappearance of Neville St. Clair. The den is the site where St. Clair was last seen alive, and the building above it is where Hugh Boone, the beggar, rents a room. The location embodies the Victorian underworld that sits just beneath the respectable surface of London — accessible, dangerous, and invisible to those who do not know where to look.",
+    "first_mention": {
+      "book": 3,
+      "chapter": 6
+    },
+    "full_reveal": {
+      "book": 3,
+      "chapter": 6
+    },
+    "created_by": "theloreatlas",
+    "last_edited_by": "theloreatlas"
+  },
+  {
+    "id": "loc_baskerville-hall",
+    "series": "sherlock_holmes",
+    "name": "Baskerville Hall",
+    "type": "estate",
+    "real_world_basis": "Dartmoor, Devon, England (fictional hall in a real landscape; Fox Tor Mire is believed to be the basis for the Great Grimpen Mire)",
+    "characters_associated": [
+      "char_sherlock-holmes",
+      "char_john-watson"
+    ],
+    "cases_occurring_here": [
+      "case_the-hound-of-the-baskervilles"
+    ],
+    "description": "Baskerville Hall is the ancestral seat of the Baskerville family on the edge of Dartmoor in Devon. It is a large, ancient, gloomy building of grey stone, surrounded by the wild and desolate moor. The Hall is the center of the Baskerville curse — the legend of a spectral hound that has haunted the family for generations following the sins of Hugo Baskerville. Sir Henry Baskerville arrives to take up his inheritance following his uncle Sir Charles's death, only to find himself in danger. Watson is stationed at the Hall while Holmes secretly investigates from the moor. The Great Grimpen Mire — a dangerous bog nearby — plays a crucial role in the resolution of the case.",
+    "first_mention": {
+      "book": 5,
+      "chapter": 1
+    },
+    "full_reveal": {
+      "book": 5,
+      "chapter": 15
+    },
+    "created_by": "theloreatlas",
+    "last_edited_by": "theloreatlas"
+  },
+  {
+    "id": "loc_birlstone-manor",
+    "series": "sherlock_holmes",
+    "name": "Birlstone Manor",
+    "type": "country estate",
+    "real_world_basis": "Groombridge Place, East Sussex is widely cited as the model (real moated manor house)",
+    "characters_associated": [
+      "char_sherlock-holmes",
+      "char_john-watson",
+      "char_inspector-lestrade"
+    ],
+    "cases_occurring_here": [
+      "case_the-valley-of-fear"
+    ],
+    "description": "Birlstone Manor is a moated country house in Sussex and the primary setting of The Valley of Fear. A headless body is found in the study, apparently John Douglas's — but the case turns on a complex identity deception that Holmes untangles in the second half of the novel. The manor's moat and drawbridge are structurally important to the crime: the drawbridge was raised after the body was found, yet the murder weapon came from outside. The English portion of the novel is framed around the puzzle of what really happened within the manor's walls the night of the crime.",
+    "first_mention": {
+      "book": 7,
+      "chapter": 2
+    },
+    "full_reveal": {
+      "book": 7,
+      "chapter": 7
+    },
     "created_by": "theloreatlas",
     "last_edited_by": "theloreatlas"
   },
@@ -38,25 +134,98 @@
     "name": "Briony Lodge",
     "type": "residence",
     "real_world_basis": "Serpentine Avenue, St. John's Wood, London (fictional address in a real district)",
-    "characters_associated": ["char_irene-adler", "char_godfrey-norton"],
-    "cases_occurring_here": ["case_a-scandal-in-bohemia"],
-    "description": "The Serpentine Avenue residence of Irene Adler in St. John's Wood. Holmes stages a fake fire here to prompt Adler into revealing the hiding place of the compromising photograph. He discovers the concealed recess behind a sliding panel — but too late, as Adler has already arranged to flee.",
-    "first_mention": { "book": 3, "chapter": 1 },
-    "full_reveal": { "book": 3, "chapter": 1 },
+    "characters_associated": [
+      "char_irene-adler"
+    ],
+    "cases_occurring_here": [
+      "case_a-scandal-in-bohemia"
+    ],
+    "description": "Briony Lodge is the Serpentine Avenue residence of Irene Adler in St. John's Wood, London. It is here that Holmes, disguised as a groom and later as a clergyman, conducts his surveillance and ultimately stages a fake fire to prompt Adler into revealing the hiding place of the compromising photograph. The lodge has a sitting room on the right side of the front door, where Holmes observes Adler through the open window during the staged commotion. The hiding place — a concealed recess behind a sliding panel above the right bell-pull — is discovered too late, as Adler has already made arrangements to flee.",
+    "first_mention": {
+      "book": 3,
+      "chapter": 1
+    },
+    "full_reveal": {
+      "book": 3,
+      "chapter": 1
+    },
     "created_by": "theloreatlas",
     "last_edited_by": "theloreatlas"
   },
   {
-    "id": "loc_baskerville-hall",
+    "id": "loc_camden-house",
     "series": "sherlock_holmes",
-    "name": "Baskerville Hall",
-    "type": "estate",
-    "real_world_basis": "Dartmoor, Devon, England (fictional hall; Fox Tor Mire is believed to be the basis for the Great Grimpen Mire)",
-    "characters_associated": ["char_sherlock-holmes", "char_john-watson", "char_henry-baskerville"],
-    "cases_occurring_here": ["case_the-hound-of-the-baskervilles"],
-    "description": "The ancestral seat of the Baskerville family on the edge of Dartmoor, Devon. A large, ancient, gloomy building of grey stone surrounded by wild moor. The center of the Baskerville curse — the legend of a spectral hound haunting the family. Watson is stationed here while Holmes secretly investigates from the moor.",
-    "first_mention": { "book": 5, "chapter": 1 },
-    "full_reveal": { "book": 5, "chapter": 15 },
+    "name": "Camden House",
+    "type": "empty house",
+    "real_world_basis": "Baker Street area, Marylebone, London (fictional specific address opposite 221B)",
+    "characters_associated": [
+      "char_sherlock-holmes",
+      "char_colonel-sebastian-moran",
+      "char_john-watson"
+    ],
+    "cases_occurring_here": [
+      "case_the-adventure-of-the-empty-house"
+    ],
+    "description": "Camden House is the empty building directly opposite 221B Baker Street that gives The Adventure of the Empty House its name. Holmes uses it as his vantage point when he returns to London in 1894: he positions a wax bust of himself in the 221B window — slowly rotated by Mrs. Hudson — and waits in Camden House with Watson. Colonel Moran, believing Holmes to be sitting at the window, sets up his air-gun in the dark room opposite and fires. Holmes and Watson then seize him from behind. The empty house is a trap: Holmes chose it precisely because it gave Moran the shot he needed to walk into.",
+    "first_mention": {
+      "book": 6,
+      "chapter": 1
+    },
+    "full_reveal": {
+      "book": 6,
+      "chapter": 1
+    },
+    "created_by": "theloreatlas",
+    "last_edited_by": "theloreatlas"
+  },
+  {
+    "id": "loc_coburg-square",
+    "series": "sherlock_holmes",
+    "name": "Coburg Square",
+    "type": "commercial",
+    "real_world_basis": "City of London (fictional; possibly inspired by Pope's Head Alley or other small City lanes)",
+    "characters_associated": [
+      "char_sherlock-holmes",
+      "char_jabez-wilson"
+    ],
+    "cases_occurring_here": [
+      "case_the-red-headed-league"
+    ],
+    "description": "Coburg Square is the unremarkable City of London address of Jabez Wilson's pawnbroking business and the apparent location of the Red-Headed League's advertisement scheme. Holmes visits the square on a Saturday reconnaissance, examines the building's exterior, and taps the pavement with his stick — establishing that John Clay has been tunneling beneath the premises toward the adjacent City and Suburban Bank. The square is memorably described as 'a pokey, little, shabby-genteel place.' Holmes's morning visit, followed by an evening ambush at the bank, is one of the most structurally elegant single-day investigations in the canon.",
+    "first_mention": {
+      "book": 3,
+      "chapter": 2
+    },
+    "full_reveal": {
+      "book": 3,
+      "chapter": 2
+    },
+    "created_by": "theloreatlas",
+    "last_edited_by": "theloreatlas"
+  },
+  {
+    "id": "loc_copper-beeches",
+    "series": "sherlock_holmes",
+    "name": "The Copper Beeches",
+    "type": "country house",
+    "real_world_basis": "Hampshire, England (fictional house; the Winchester area is implied)",
+    "characters_associated": [
+      "char_violet-hunter",
+      "char_sherlock-holmes",
+      "char_john-watson"
+    ],
+    "cases_occurring_here": [
+      "case_the-adventure-of-the-copper-beeches"
+    ],
+    "description": "The Copper Beeches is a large country house near Winchester, Hampshire, named for the avenue of copper beech trees in its grounds. Violet Hunter is employed as governess here under the eccentric Rucastle family, with the condition that she cut her hair and wear a blue dress while sitting in a specific chair at specific times — conditions she reports to Holmes before taking the post. The locked wing of the house conceals a secret that drives the case. Holmes finds the rural isolation of such houses more sinister than the worst London slums, reasoning that crime in the country goes undetected far more readily than crime in a city full of witnesses.",
+    "first_mention": {
+      "book": 3,
+      "chapter": 12
+    },
+    "full_reveal": {
+      "book": 3,
+      "chapter": 12
+    },
     "created_by": "theloreatlas",
     "last_edited_by": "theloreatlas"
   },
@@ -73,8 +242,144 @@
       "case_a-study-in-scarlet"
     ],
     "description": "The Criterion Bar in Piccadilly is where Watson encounters his old acquaintance Stamford, shortly after returning invalided from Afghanistan. Stamford, surprised to see him, invites Watson to have a drink — and over that drink, mentions that he knows of a man looking for someone to share lodgings. The man is Sherlock Holmes. The Criterion Bar is thus the literal starting point of the Holmes–Watson partnership and, by extension, the entire canon. It has no further role in any story but its function as the hinge on which the series turns gives it an outsized significance.",
-    "first_mention": { "book": 1, "chapter": 1 },
-    "full_reveal": { "book": 1, "chapter": 1 },
+    "first_mention": {
+      "book": 1,
+      "chapter": 1
+    },
+    "full_reveal": {
+      "book": 1,
+      "chapter": 1
+    },
+    "created_by": "theloreatlas",
+    "last_edited_by": "theloreatlas"
+  },
+  {
+    "id": "loc_dartmoor",
+    "series": "sherlock_holmes",
+    "name": "Dartmoor",
+    "type": "wilderness",
+    "real_world_basis": "Dartmoor, Devon, England — a national park of approximately 368 square miles on the southwestern peninsula; characterised by granite tors, moorland, bogs, and mist",
+    "characters_associated": [
+      "char_sherlock-holmes",
+      "char_john-watson",
+      "char_henry-baskerville",
+      "char_stapleton"
+    ],
+    "cases_occurring_here": [
+      "case_the-hound-of-the-baskervilles"
+    ],
+    "description": "Dartmoor is the bleak, fog-prone moorland that serves as the primary setting for The Hound of the Baskervilles. Its combination of desolate beauty, treacherous bogs, and atmospheric isolation makes it an ideal canvas for Gothic horror and detection alike. Watson spends weeks at Baskerville Hall observing and reporting while Holmes conducts his own investigation in secret; the landscape — particularly the Great Grimpen Mire — functions as both a physical danger and a psychological pressure on everyone involved. The moor's real geography, including Grimspound and Foggintor, is lightly fictionalised in Doyle's version.",
+    "first_mention": {
+      "book": 5,
+      "chapter": 1
+    },
+    "full_reveal": {
+      "book": 5,
+      "chapter": 1
+    },
+    "created_by": "theloreatlas",
+    "last_edited_by": "theloreatlas"
+  },
+  {
+    "id": "loc_diogenes-club",
+    "series": "sherlock_holmes",
+    "name": "The Diogenes Club",
+    "type": "club",
+    "real_world_basis": "Pall Mall, Westminster, London (fictional; no real-world counterpart)",
+    "characters_associated": [
+      "char_mycroft-holmes",
+      "char_sherlock-holmes"
+    ],
+    "cases_occurring_here": [
+      "case_the-greek-interpreter",
+      "case_the-adventure-of-the-bruce-partington-plans"
+    ],
+    "description": "The Diogenes Club is described by Holmes as the queerest club in London — founded for men who have no wish for the company of their fellows yet require a comfortable chair and access to periodicals. Talking is strictly forbidden except in the Strangers' Room; members who speak three times are expelled. Mycroft Holmes is one of the founders and its most distinguished habitué. The club serves as a place where Mycroft can be found reliably, and on occasion Holmes visits to consult his brother on matters of state. In The Adventure of the Bruce-Partington Plans, Mycroft emerges from the Diogenes Club to meet Holmes at Baker Street — an event Watson describes as extraordinary, since Mycroft rarely leaves his orbit of club, flat, and government office.",
+    "first_mention": {
+      "book": 4,
+      "chapter": 9
+    },
+    "full_reveal": {
+      "book": 4,
+      "chapter": 9
+    },
+    "created_by": "theloreatlas",
+    "last_edited_by": "theloreatlas"
+  },
+  {
+    "id": "loc_grimpen-mire",
+    "series": "sherlock_holmes",
+    "name": "The Great Grimpen Mire",
+    "type": "natural hazard",
+    "real_world_basis": "Fox Tor Mires, Dartmoor, Devon, England (Doyle's fictional mire is widely believed to be based on this real bog)",
+    "characters_associated": [
+      "char_stapleton",
+      "char_henry-baskerville",
+      "char_john-watson"
+    ],
+    "cases_occurring_here": [
+      "case_the-hound-of-the-baskervilles"
+    ],
+    "description": "The Great Grimpen Mire is a vast and treacherous bog on Dartmoor — one of the most vividly realized settings in the Holmes canon. It swallows ponies and men alike; only Stapleton knows the winding path through it. He hides the phosphorescent hound in a stone hut at the mire's center, accessible only by the hidden path he has marked with small stakes. When Holmes springs the trap and the hound is shot, Stapleton flees into the mire in darkness, abandoning the path markers — and is never seen again, presumed drowned in the bog. The mire functions as both obstacle and nemesis: Stapleton's instrument becomes his grave.",
+    "first_mention": {
+      "book": 5,
+      "chapter": 2
+    },
+    "full_reveal": {
+      "book": 5,
+      "chapter": 14
+    },
+    "created_by": "theloreatlas",
+    "last_edited_by": "theloreatlas"
+  },
+  {
+    "id": "loc_hotel-cosmopolitan",
+    "series": "sherlock_holmes",
+    "name": "Hotel Cosmopolitan",
+    "type": "hotel",
+    "real_world_basis": "London (fictional; likely inspired by grand Victorian hotels such as the Langham or the Metropole)",
+    "characters_associated": [
+      "char_sherlock-holmes",
+      "char_james-ryder"
+    ],
+    "cases_occurring_here": [
+      "case_the-adventure-of-the-blue-carbuncle"
+    ],
+    "description": "The Hotel Cosmopolitan is where the Countess of Morcar's blue carbuncle — a rare cornflower-blue diamond — is stolen from her suite, precipitating The Adventure of the Blue Carbuncle. The theft is blamed on John Horner, a plumber who worked in her rooms, but the true thief is James Ryder, the upper attendant. The stone's journey from the hotel, via Ryder's arrangement with a goose at Covent Garden market, to the crop of a Christmas goose sold to Henry Baker, forms the chain of chance that Holmes traces backward to its source.",
+    "first_mention": {
+      "book": 3,
+      "chapter": 7
+    },
+    "full_reveal": {
+      "book": 3,
+      "chapter": 7
+    },
+    "created_by": "theloreatlas",
+    "last_edited_by": "theloreatlas"
+  },
+  {
+    "id": "loc_langham-hotel",
+    "series": "sherlock_holmes",
+    "name": "The Langham Hotel",
+    "type": "hotel",
+    "real_world_basis": "The Langham Hotel, Portland Place, Marylebone, London — opened 1865 as one of Europe's first purpose-built grand hotels; still operating today",
+    "characters_associated": [
+      "char_sherlock-holmes",
+      "char_john-watson"
+    ],
+    "cases_occurring_here": [
+      "case_a-scandal-in-bohemia",
+      "case_the-sign-of-the-four"
+    ],
+    "description": "The Langham Hotel appears in several canonical stories as the natural accommodation for visiting royalty, foreign dignitaries, and wealthy clients. In A Scandal in Bohemia, the King of Bohemia arrives at Baker Street from the Langham. In The Sign of the Four, it is mentioned in connection with the evening's events. The Langham holds a particular place in Holmes lore because Arthur Conan Doyle himself dined there with Oscar Wilde and the American publisher J.M. Stoddart in August 1889 — the dinner at which both The Sign of the Four and The Picture of Dorian Gray were commissioned.",
+    "first_mention": {
+      "book": 2,
+      "chapter": 2
+    },
+    "full_reveal": {
+      "book": 2,
+      "chapter": 2
+    },
     "created_by": "theloreatlas",
     "last_edited_by": "theloreatlas"
   },
@@ -94,28 +399,143 @@
       "case_a-study-in-scarlet"
     ],
     "description": "Lauriston Gardens is a quiet Brixton street where Enoch Drebber's body is found in an empty house — the opening murder of A Study in Scarlet and the first crime scene Watson accompanies Holmes to investigate. The house is unoccupied, the body shows no visible wound but a look of terror on the face, and the word RACHE is written on the wall in blood. Holmes's examination of the scene — reading footprints, soil deposits, the victim's appearance — is one of the founding demonstrations of his deductive method. The word RACHE sends Lestrade and Gregson in the wrong direction; Holmes immediately understands it correctly.",
-    "first_mention": { "book": 1, "chapter": 3 },
-    "full_reveal": { "book": 1, "chapter": 3 },
+    "first_mention": {
+      "book": 1,
+      "chapter": 3
+    },
+    "full_reveal": {
+      "book": 1,
+      "chapter": 3
+    },
     "created_by": "theloreatlas",
     "last_edited_by": "theloreatlas"
   },
   {
-    "id": "loc_whitehall",
+    "id": "loc_merripit-house",
     "series": "sherlock_holmes",
-    "name": "Whitehall",
-    "type": "government district",
-    "real_world_basis": "Whitehall, City of Westminster, London (real district; the centre of the British government)",
+    "name": "Merripit House",
+    "type": "residence",
+    "real_world_basis": "Dartmoor, Devon (fictional farmhouse on the moor)",
     "characters_associated": [
-      "char_mycroft-holmes",
-      "char_sherlock-holmes"
+      "char_stapleton"
     ],
     "cases_occurring_here": [
-      "case_the-greek-interpreter",
+      "case_the-hound-of-the-baskervilles"
+    ],
+    "description": "Merripit House is the isolated farmhouse on the edge of the Great Grimpen Mire where Stapleton lives, posing as a naturalist. It is here that he keeps the enormous phosphorus-painted hound concealed in an outhouse, feeding it through the fog while maintaining his genial facade as a neighbour to Baskerville Hall. The house sits close enough to the mire that few locals venture near it, which gives Stapleton both cover and operational freedom. When the case is resolved, Stapleton flees across the mire at night and is presumed swallowed by the bog — his body never recovered.",
+    "first_mention": {
+      "book": 5,
+      "chapter": 6
+    },
+    "full_reveal": {
+      "book": 5,
+      "chapter": 14
+    },
+    "created_by": "theloreatlas",
+    "last_edited_by": "theloreatlas"
+  },
+  {
+    "id": "loc_pondicherry-lodge",
+    "series": "sherlock_holmes",
+    "name": "Pondicherry Lodge",
+    "type": "residence",
+    "real_world_basis": "Upper Norwood, South London (fictional estate)",
+    "characters_associated": [
+      "char_sherlock-holmes",
+      "char_john-watson",
+      "char_jonathan-small"
+    ],
+    "cases_occurring_here": [
+      "case_the-sign-of-the-four"
+    ],
+    "description": "Pondicherry Lodge is the Upper Norwood estate of Bartholomew Sholto, where the central murder of The Sign of the Four takes place. It is named after the Indian city where his father, Major Sholto, served. The treasure of Agra is hidden in a concealed attic room; when Watson and Holmes arrive with Miss Morstan and Athelney Jones, they find Bartholomew dead from a poison dart and the treasure gone. The lodge grounds become the starting point for the famous Thames chase — Holmes and Watson pursue Jonathan Small and Tonga downriver by police launch, culminating near Plumstead Marshes.",
+    "first_mention": {
+      "book": 2,
+      "chapter": 6
+    },
+    "full_reveal": {
+      "book": 2,
+      "chapter": 6
+    },
+    "created_by": "theloreatlas",
+    "last_edited_by": "theloreatlas"
+  },
+  {
+    "id": "loc_reichenbach-falls",
+    "series": "sherlock_holmes",
+    "name": "The Reichenbach Falls",
+    "type": "natural landmark",
+    "real_world_basis": "Reichenbach Falls, Meiringen, Bern Oberland, Switzerland (real location; tourist site today)",
+    "characters_associated": [
+      "char_sherlock-holmes",
+      "char_professor-moriarty"
+    ],
+    "cases_occurring_here": [
+      "case_the-final-problem"
+    ],
+    "description": "A dramatic waterfall near Meiringen in the Swiss Alps, and the site of the most famous confrontation in the Holmes canon. Holmes and Professor Moriarty struggle here in May 1891, both apparently plunging to their deaths in the falls below. Watson finds only Holmes's farewell note and two sets of footprints leading to the precipice. The Falls are described as a fearful place — a tremendous abyss with the green water boiling below. Holmes later reveals he survived using Baritsu, clinging to the cliff face while Moriarty fell. The location has become synonymous with apparent death, sacrifice, and the lengths to which Holmes will go to protect the public from Moriarty's network.",
+    "first_mention": {
+      "book": 4,
+      "chapter": 10
+    },
+    "full_reveal": {
+      "book": 6,
+      "chapter": 1
+    },
+    "created_by": "theloreatlas",
+    "last_edited_by": "theloreatlas"
+  },
+  {
+    "id": "loc_scotland-yard",
+    "series": "sherlock_holmes",
+    "name": "Scotland Yard",
+    "type": "government",
+    "real_world_basis": "New Scotland Yard, Victoria Embankment, Westminster, London (the original building; the Metropolitan Police moved to Victoria Street in 1967)",
+    "characters_associated": [
+      "char_inspector-lestrade",
+      "char_inspector-gregson",
+      "char_inspector-stanley-hopkins",
+      "char_inspector-athelney-jones"
+    ],
+    "cases_occurring_here": [
+      "case_a-study-in-scarlet",
+      "case_the-adventure-of-the-six-napoleons",
       "case_the-adventure-of-the-bruce-partington-plans"
     ],
-    "description": "Whitehall is the government district of London and the domain of Mycroft Holmes. Holmes explains that Mycroft occupies a singular position there: he is not a minister, has no official title, but is the clearing house for intelligence across all departments of government — the one man who knows everything and synthesises it. He walks from his Pall Mall lodgings to the Diogenes Club and back, rarely deviating. In The Adventure of the Bruce-Partington Plans, the loss of the submarine blueprints and the death of a young War Office clerk becomes a Whitehall crisis that draws both Holmes brothers into action.",
-    "first_mention": { "book": 4, "chapter": 9 },
-    "full_reveal": { "book": 4, "chapter": 9 },
+    "description": "Scotland Yard is the headquarters of the Metropolitan Police and the institutional home of Holmes's professional allies and occasional rivals in the detective fiction. Lestrade, Gregson, Hopkins, and Athelney Jones all operate from here, and Holmes is periodically consulted — or arrives uninvited — when cases exceed the official force's capacity. The relationship between Holmes and Scotland Yard is characterised by useful friction: Holmes provides the insight the official detectives lack; they provide the authority to make arrests he cannot. Holmes is privately scornful of their methods but professionally dependent on their cooperation, and they, in turn, are reluctant to credit him publicly while privately relying on him constantly.",
+    "first_mention": {
+      "book": 1,
+      "chapter": 3
+    },
+    "full_reveal": {
+      "book": 1,
+      "chapter": 3
+    },
+    "created_by": "theloreatlas",
+    "last_edited_by": "theloreatlas"
+  },
+  {
+    "id": "loc_st-bartholomews-hospital",
+    "series": "sherlock_holmes",
+    "name": "St. Bartholomew's Hospital",
+    "type": "hospital",
+    "real_world_basis": "St. Bartholomew's Hospital, Smithfield, City of London — the oldest hospital in London, founded 1123; still operating today",
+    "characters_associated": [
+      "char_sherlock-holmes",
+      "char_john-watson"
+    ],
+    "cases_occurring_here": [
+      "case_a-study-in-scarlet"
+    ],
+    "description": "St. Bartholomew's Hospital is where Holmes and Watson first meet, introduced by Stamford in the chemical laboratory. Holmes is conducting an experiment on haemoglobin when Stamford brings Watson in; Holmes greets him with 'You have been in Afghanistan, I perceive' — the single most famous opening deduction in the canon. The hospital's chemical laboratory is Holmes's workplace at this early period, before he establishes himself at Baker Street. Bart's, as it is known, thus stands at the origin point of the partnership that drives the entire canon.",
+    "first_mention": {
+      "book": 1,
+      "chapter": 1
+    },
+    "full_reveal": {
+      "book": 1,
+      "chapter": 1
+    },
     "created_by": "theloreatlas",
     "last_edited_by": "theloreatlas"
   },
@@ -135,88 +555,14 @@
       "case_the-adventure-of-the-speckled-band"
     ],
     "description": "Stoke Moran is the ancestral estate of the Roylott family in Surrey — a once-grand property now run to seed under Dr. Grimesby Roylott. The estate is significant for its physical layout: the main building has three ground-floor bedrooms for the family, ventilators connecting rooms where no ventilation is needed, a dummy bell-pull, and a bed bolted to the floor. Holmes identifies these anomalies as the mechanism of murder. Roylott keeps exotic animals in the grounds — a cheetah, a baboon, and the swamp adder — lending the estate an air of danger that Watson finds oppressive. The estate is where Holmes spends a memorable and dangerous night in the dead sister's room.",
-    "first_mention": { "book": 3, "chapter": 8 },
-    "full_reveal": { "book": 3, "chapter": 8 },
-    "created_by": "theloreatlas",
-    "last_edited_by": "theloreatlas"
-  },
-  {
-    "id": "loc_camden-house",
-    "series": "sherlock_holmes",
-    "name": "Camden House",
-    "type": "empty house",
-    "real_world_basis": "Baker Street area, Marylebone, London (fictional specific address opposite 221B)",
-    "characters_associated": [
-      "char_sherlock-holmes",
-      "char_colonel-sebastian-moran",
-      "char_john-watson"
-    ],
-    "cases_occurring_here": [
-      "case_the-adventure-of-the-empty-house"
-    ],
-    "description": "Camden House is the empty building directly opposite 221B Baker Street that gives The Adventure of the Empty House its name. Holmes uses it as his vantage point when he returns to London in 1894: he positions a wax bust of himself in the 221B window — slowly rotated by Mrs. Hudson — and waits in Camden House with Watson. Colonel Moran, believing Holmes to be sitting at the window, sets up his air-gun in the dark room opposite and fires. Holmes and Watson then seize him from behind. The empty house is a trap: Holmes chose it precisely because it gave Moran the shot he needed to walk into.",
-    "first_mention": { "book": 6, "chapter": 1 },
-    "full_reveal": { "book": 6, "chapter": 1 },
-    "created_by": "theloreatlas",
-    "last_edited_by": "theloreatlas"
-  },
-  {
-    "id": "loc_grimpen-mire",
-    "series": "sherlock_holmes",
-    "name": "The Great Grimpen Mire",
-    "type": "natural hazard",
-    "real_world_basis": "Fox Tor Mires, Dartmoor, Devon, England (Doyle's fictional mire is widely believed to be based on this real bog)",
-    "characters_associated": [
-      "char_stapleton",
-      "char_henry-baskerville",
-      "char_john-watson"
-    ],
-    "cases_occurring_here": [
-      "case_the-hound-of-the-baskervilles"
-    ],
-    "description": "The Great Grimpen Mire is a vast and treacherous bog on Dartmoor — one of the most vividly realized settings in the Holmes canon. It swallows ponies and men alike; only Stapleton knows the winding path through it. He hides the phosphorescent hound in a stone hut at the mire's center, accessible only by the hidden path he has marked with small stakes. When Holmes springs the trap and the hound is shot, Stapleton flees into the mire in darkness, abandoning the path markers — and is never seen again, presumed drowned in the bog. The mire functions as both obstacle and nemesis: Stapleton's instrument becomes his grave.",
-    "first_mention": { "book": 5, "chapter": 2 },
-    "full_reveal": { "book": 5, "chapter": 14 },
-    "created_by": "theloreatlas",
-    "last_edited_by": "theloreatlas"
-  },
-  {
-    "id": "loc_birlstone-manor",
-    "series": "sherlock_holmes",
-    "name": "Birlstone Manor",
-    "type": "country estate",
-    "real_world_basis": "Groombridge Place, East Sussex is widely cited as the model (real moated manor house)",
-    "characters_associated": [
-      "char_sherlock-holmes",
-      "char_john-watson",
-      "char_inspector-lestrade"
-    ],
-    "cases_occurring_here": [
-      "case_the-valley-of-fear"
-    ],
-    "description": "Birlstone Manor is a moated country house in Sussex and the primary setting of The Valley of Fear. A headless body is found in the study, apparently John Douglas's — but the case turns on a complex identity deception that Holmes untangles in the second half of the novel. The manor's moat and drawbridge are structurally important to the crime: the drawbridge was raised after the body was found, yet the murder weapon came from outside. The English portion of the novel is framed around the puzzle of what really happened within the manor's walls the night of the crime.",
-    "first_mention": { "book": 7, "chapter": 2 },
-    "full_reveal": { "book": 7, "chapter": 7 },
-    "created_by": "theloreatlas",
-    "last_edited_by": "theloreatlas"
-  },
-  {
-    "id": "loc_copper-beeches",
-    "series": "sherlock_holmes",
-    "name": "The Copper Beeches",
-    "type": "country house",
-    "real_world_basis": "Hampshire, England (fictional house; the Winchester area is implied)",
-    "characters_associated": [
-      "char_violet-hunter",
-      "char_sherlock-holmes",
-      "char_john-watson"
-    ],
-    "cases_occurring_here": [
-      "case_the-adventure-of-the-copper-beeches"
-    ],
-    "description": "The Copper Beeches is a large country house near Winchester, Hampshire, named for the avenue of copper beech trees in its grounds. Violet Hunter is employed as governess here under the eccentric Rucastle family, with the condition that she cut her hair and wear a blue dress while sitting in a specific chair at specific times — conditions she reports to Holmes before taking the post. The locked wing of the house conceals a secret that drives the case. Holmes finds the rural isolation of such houses more sinister than the worst London slums, reasoning that crime in the country goes undetected far more readily than crime in a city full of witnesses.",
-    "first_mention": { "book": 3, "chapter": 12 },
-    "full_reveal": { "book": 3, "chapter": 12 },
+    "first_mention": {
+      "book": 3,
+      "chapter": 8
+    },
+    "full_reveal": {
+      "book": 3,
+      "chapter": 8
+    },
     "created_by": "theloreatlas",
     "last_edited_by": "theloreatlas"
   },
@@ -234,8 +580,62 @@
       "case_the-adventure-of-the-lions-mane"
     ],
     "description": "Holmes retires to a small farm on the Sussex Downs to keep bees — a detail announced in several late-canon stories and fully realized in His Last Bow and The Adventure of the Lion's Mane. The retirement is both a genuine withdrawal from London detective work and, as His Last Bow reveals, a cover for a wartime intelligence operation: Holmes has been living there as 'Altamont,' an Irish-American, while secretly working against German espionage ahead of the First World War. In The Adventure of the Lion's Mane — narrated by Holmes himself — the downs and sea cliffs are the setting for a baffling death that Holmes solves from his retirement.",
-    "first_mention": { "book": 8, "chapter": 8 },
-    "full_reveal": { "book": 8, "chapter": 8 },
+    "first_mention": {
+      "book": 8,
+      "chapter": 8
+    },
+    "full_reveal": {
+      "book": 8,
+      "chapter": 8
+    },
+    "created_by": "theloreatlas",
+    "last_edited_by": "theloreatlas"
+  },
+  {
+    "id": "loc_vermissa-valley",
+    "series": "sherlock_holmes",
+    "name": "Vermissa Valley",
+    "type": "settlement",
+    "real_world_basis": "Bitumen County, Pennsylvania, USA (fictional; modeled on the anthracite coal regions of Pennsylvania and the historical Molly Maguires labor conflict of the 1870s)",
+    "characters_associated": [],
+    "cases_occurring_here": [
+      "case_the-valley-of-fear"
+    ],
+    "description": "Vermissa Valley is the Pennsylvania coal-mining district that forms the setting for the second part of The Valley of Fear, told in flashback. It is dominated by Lodge 341 of the Ancient Order of Freemen — a cover organisation for the Scowrers, a violent criminal fraternity that terrorises the valley's mine owners, foremen, and workers. The narrative follows Birdy Edwards (John Douglas), a Pinkerton agent who infiltrates the Lodge to gather evidence against its leader. Doyle drew closely on the real history of the Molly Maguires in the Pennsylvania coalfields; the Vermissa plot is among the most explicitly American stories in the canon.",
+    "first_mention": {
+      "book": 7,
+      "chapter": 8
+    },
+    "full_reveal": {
+      "book": 7,
+      "chapter": 8
+    },
+    "created_by": "theloreatlas",
+    "last_edited_by": "theloreatlas"
+  },
+  {
+    "id": "loc_whitehall",
+    "series": "sherlock_holmes",
+    "name": "Whitehall",
+    "type": "government district",
+    "real_world_basis": "Whitehall, City of Westminster, London (real district; the centre of the British government)",
+    "characters_associated": [
+      "char_mycroft-holmes",
+      "char_sherlock-holmes"
+    ],
+    "cases_occurring_here": [
+      "case_the-greek-interpreter",
+      "case_the-adventure-of-the-bruce-partington-plans"
+    ],
+    "description": "Whitehall is the government district of London and the domain of Mycroft Holmes. Holmes explains that Mycroft occupies a singular position there: he is not a minister, has no official title, but is the clearing house for intelligence across all departments of government — the one man who knows everything and synthesises it. He walks from his Pall Mall lodgings to the Diogenes Club and back, rarely deviating. In The Adventure of the Bruce-Partington Plans, the loss of the submarine blueprints and the death of a young War Office clerk becomes a Whitehall crisis that draws both Holmes brothers into action.",
+    "first_mention": {
+      "book": 4,
+      "chapter": 9
+    },
+    "full_reveal": {
+      "book": 4,
+      "chapter": 9
+    },
     "created_by": "theloreatlas",
     "last_edited_by": "theloreatlas"
   }

@@ -1,0 +1,20 @@
+{
+  "id": "loc_langham-hotel",
+  "series": "sherlock_holmes",
+  "name": "The Langham Hotel",
+  "type": "hotel",
+  "real_world_basis": "The Langham Hotel, Portland Place, Marylebone, London — opened 1865 as one of Europe's first purpose-built grand hotels; still operating today",
+  "characters_associated": [
+    "char_sherlock-holmes",
+    "char_john-watson"
+  ],
+  "cases_occurring_here": [
+    "case_a-scandal-in-bohemia",
+    "case_the-sign-of-the-four"
+  ],
+  "description": "The Langham Hotel appears in several canonical stories as the natural accommodation for visiting royalty, foreign dignitaries, and wealthy clients. In A Scandal in Bohemia, the King of Bohemia arrives at Baker Street from the Langham. In The Sign of the Four, it is mentioned in connection with the evening's events. The Langham holds a particular place in Holmes lore because Arthur Conan Doyle himself dined there with Oscar Wilde and the American publisher J.M. Stoddart in August 1889 — the dinner at which both The Sign of the Four and The Picture of Dorian Gray were commissioned.",
+  "first_mention": { "book": 2, "chapter": 2 },
+  "full_reveal": { "book": 2, "chapter": 2 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

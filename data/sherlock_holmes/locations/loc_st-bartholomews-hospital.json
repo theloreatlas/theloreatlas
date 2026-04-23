@@ -1,0 +1,19 @@
+{
+  "id": "loc_st-bartholomews-hospital",
+  "series": "sherlock_holmes",
+  "name": "St. Bartholomew's Hospital",
+  "type": "hospital",
+  "real_world_basis": "St. Bartholomew's Hospital, Smithfield, City of London — the oldest hospital in London, founded 1123; still operating today",
+  "characters_associated": [
+    "char_sherlock-holmes",
+    "char_john-watson"
+  ],
+  "cases_occurring_here": [
+    "case_a-study-in-scarlet"
+  ],
+  "description": "St. Bartholomew's Hospital is where Holmes and Watson first meet, introduced by Stamford in the chemical laboratory. Holmes is conducting an experiment on haemoglobin when Stamford brings Watson in; Holmes greets him with 'You have been in Afghanistan, I perceive' — the single most famous opening deduction in the canon. The hospital's chemical laboratory is Holmes's workplace at this early period, before he establishes himself at Baker Street. Bart's, as it is known, thus stands at the origin point of the partnership that drives the entire canon.",
+  "first_mention": { "book": 1, "chapter": 1 },
+  "full_reveal": { "book": 1, "chapter": 1 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

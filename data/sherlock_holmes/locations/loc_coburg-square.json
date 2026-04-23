@@ -1,0 +1,19 @@
+{
+  "id": "loc_coburg-square",
+  "series": "sherlock_holmes",
+  "name": "Coburg Square",
+  "type": "commercial",
+  "real_world_basis": "City of London (fictional; possibly inspired by Pope's Head Alley or other small City lanes)",
+  "characters_associated": [
+    "char_sherlock-holmes",
+    "char_jabez-wilson"
+  ],
+  "cases_occurring_here": [
+    "case_the-red-headed-league"
+  ],
+  "description": "Coburg Square is the unremarkable City of London address of Jabez Wilson's pawnbroking business and the apparent location of the Red-Headed League's advertisement scheme. Holmes visits the square on a Saturday reconnaissance, examines the building's exterior, and taps the pavement with his stick — establishing that John Clay has been tunneling beneath the premises toward the adjacent City and Suburban Bank. The square is memorably described as 'a pokey, little, shabby-genteel place.' Holmes's morning visit, followed by an evening ambush at the bank, is one of the most structurally elegant single-day investigations in the canon.",
+  "first_mention": { "book": 3, "chapter": 2 },
+  "full_reveal": { "book": 3, "chapter": 2 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

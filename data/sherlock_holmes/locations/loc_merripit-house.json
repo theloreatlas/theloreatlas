@@ -1,0 +1,18 @@
+{
+  "id": "loc_merripit-house",
+  "series": "sherlock_holmes",
+  "name": "Merripit House",
+  "type": "residence",
+  "real_world_basis": "Dartmoor, Devon (fictional farmhouse on the moor)",
+  "characters_associated": [
+    "char_stapleton"
+  ],
+  "cases_occurring_here": [
+    "case_the-hound-of-the-baskervilles"
+  ],
+  "description": "Merripit House is the isolated farmhouse on the edge of the Great Grimpen Mire where Stapleton lives, posing as a naturalist. It is here that he keeps the enormous phosphorus-painted hound concealed in an outhouse, feeding it through the fog while maintaining his genial facade as a neighbour to Baskerville Hall. The house sits close enough to the mire that few locals venture near it, which gives Stapleton both cover and operational freedom. When the case is resolved, Stapleton flees across the mire at night and is presumed swallowed by the bog — his body never recovered.",
+  "first_mention": { "book": 5, "chapter": 6 },
+  "full_reveal": { "book": 5, "chapter": 14 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

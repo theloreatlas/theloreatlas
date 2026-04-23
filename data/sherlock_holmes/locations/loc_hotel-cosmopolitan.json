@@ -1,0 +1,19 @@
+{
+  "id": "loc_hotel-cosmopolitan",
+  "series": "sherlock_holmes",
+  "name": "Hotel Cosmopolitan",
+  "type": "hotel",
+  "real_world_basis": "London (fictional; likely inspired by grand Victorian hotels such as the Langham or the Metropole)",
+  "characters_associated": [
+    "char_sherlock-holmes",
+    "char_james-ryder"
+  ],
+  "cases_occurring_here": [
+    "case_the-adventure-of-the-blue-carbuncle"
+  ],
+  "description": "The Hotel Cosmopolitan is where the Countess of Morcar's blue carbuncle — a rare cornflower-blue diamond — is stolen from her suite, precipitating The Adventure of the Blue Carbuncle. The theft is blamed on John Horner, a plumber who worked in her rooms, but the true thief is James Ryder, the upper attendant. The stone's journey from the hotel, via Ryder's arrangement with a goose at Covent Garden market, to the crop of a Christmas goose sold to Henry Baker, forms the chain of chance that Holmes traces backward to its source.",
+  "first_mention": { "book": 3, "chapter": 7 },
+  "full_reveal": { "book": 3, "chapter": 7 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

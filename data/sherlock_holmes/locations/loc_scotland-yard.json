@@ -1,0 +1,23 @@
+{
+  "id": "loc_scotland-yard",
+  "series": "sherlock_holmes",
+  "name": "Scotland Yard",
+  "type": "government",
+  "real_world_basis": "New Scotland Yard, Victoria Embankment, Westminster, London (the original building; the Metropolitan Police moved to Victoria Street in 1967)",
+  "characters_associated": [
+    "char_inspector-lestrade",
+    "char_inspector-gregson",
+    "char_inspector-stanley-hopkins",
+    "char_inspector-athelney-jones"
+  ],
+  "cases_occurring_here": [
+    "case_a-study-in-scarlet",
+    "case_the-adventure-of-the-six-napoleons",
+    "case_the-adventure-of-the-bruce-partington-plans"
+  ],
+  "description": "Scotland Yard is the headquarters of the Metropolitan Police and the institutional home of Holmes's professional allies and occasional rivals in the detective fiction. Lestrade, Gregson, Hopkins, and Athelney Jones all operate from here, and Holmes is periodically consulted — or arrives uninvited — when cases exceed the official force's capacity. The relationship between Holmes and Scotland Yard is characterised by useful friction: Holmes provides the insight the official detectives lack; they provide the authority to make arrests he cannot. Holmes is privately scornful of their methods but professionally dependent on their cooperation, and they, in turn, are reluctant to credit him publicly while privately relying on him constantly.",
+  "first_mention": { "book": 1, "chapter": 3 },
+  "full_reveal": { "book": 1, "chapter": 3 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

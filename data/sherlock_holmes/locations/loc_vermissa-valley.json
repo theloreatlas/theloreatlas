@@ -1,0 +1,16 @@
+{
+  "id": "loc_vermissa-valley",
+  "series": "sherlock_holmes",
+  "name": "Vermissa Valley",
+  "type": "settlement",
+  "real_world_basis": "Bitumen County, Pennsylvania, USA (fictional; modeled on the anthracite coal regions of Pennsylvania and the historical Molly Maguires labor conflict of the 1870s)",
+  "characters_associated": [],
+  "cases_occurring_here": [
+    "case_the-valley-of-fear"
+  ],
+  "description": "Vermissa Valley is the Pennsylvania coal-mining district that forms the setting for the second part of The Valley of Fear, told in flashback. It is dominated by Lodge 341 of the Ancient Order of Freemen — a cover organisation for the Scowrers, a violent criminal fraternity that terrorises the valley's mine owners, foremen, and workers. The narrative follows Birdy Edwards (John Douglas), a Pinkerton agent who infiltrates the Lodge to gather evidence against its leader. Doyle drew closely on the real history of the Molly Maguires in the Pennsylvania coalfields; the Vermissa plot is among the most explicitly American stories in the canon.",
+  "first_mention": { "book": 7, "chapter": 8 },
+  "full_reveal": { "book": 7, "chapter": 8 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

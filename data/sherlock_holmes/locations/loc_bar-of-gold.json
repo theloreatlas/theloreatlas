@@ -1,0 +1,19 @@
+{
+  "id": "loc_bar-of-gold",
+  "series": "sherlock_holmes",
+  "name": "The Bar of Gold",
+  "type": "criminal venue",
+  "real_world_basis": "Upper Swandam Lane, near London Bridge (fictional street; London's opium dens were concentrated in Limehouse and Whitechapel in the Victorian era)",
+  "characters_associated": [
+    "char_john-watson",
+    "char_neville-st-clair"
+  ],
+  "cases_occurring_here": [
+    "case_the-man-with-the-twisted-lip"
+  ],
+  "description": "The Bar of Gold is a low opium den in Upper Swandam Lane, accessed by a steep flight of steps below street level and presided over by a lascar. Watson enters it at the start of The Man with the Twisted Lip to retrieve the husband of a family friend — and encounters Holmes there in disguise, investigating the disappearance of Neville St. Clair. The den is the site where St. Clair was last seen alive, and the building above it is where Hugh Boone, the beggar, rents a room. The location embodies the Victorian underworld that sits just beneath the respectable surface of London — accessible, dangerous, and invisible to those who do not know where to look.",
+  "first_mention": { "book": 3, "chapter": 6 },
+  "full_reveal": { "book": 3, "chapter": 6 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}
