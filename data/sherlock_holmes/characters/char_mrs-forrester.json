@@ -1,0 +1,22 @@
+{
+  "id": "char_mrs-forrester",
+  "series": "sherlock_holmes",
+  "name": "Mrs. Cecil Forrester",
+  "aliases": ["Mrs. Forrester"],
+  "role": "supporting",
+  "status": "active",
+  "first_mention": { "book": 2, "chapter": 2 },
+  "full_reveal": { "book": 2, "chapter": 2 },
+  "affiliations": [],
+  "relationships": [
+    "rel_mrs-forrester-mary-morstan-professional",
+    "rel_watson-mrs-forrester-other"
+  ],
+  "cases": [
+    "case_the-sign-of-the-four"
+  ],
+  "biography": "Mrs. Cecil Forrester is the widow for whom Mary Morstan works as a governess at the time of The Sign of the Four. She lives in Lower Camberwell in a pleasant house, and Watson describes her as a woman of kind, sympathetic nature who takes considerable personal interest in her governess's strange case. When Watson arrives at the house to escort Miss Morstan to the mysterious meeting at the Lyceum Theatre, Mrs. Forrester herself sees them off with warm encouragement. Her inclusion in the story grounds Mary Morstan in a respectable domestic world — the kind of quiet, stable life that Watson increasingly desires. She is never mentioned again after The Sign of the Four, but her warmth toward Mary implies a genuine friendship that transcends the employer-employee arrangement.",
+  "tags": ["widow", "governess employer", "Camberwell", "domestic"],
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

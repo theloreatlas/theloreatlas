@@ -1,0 +1,22 @@
+{
+  "id": "char_shinwell-johnson",
+  "series": "sherlock_holmes",
+  "name": "Shinwell Johnson",
+  "aliases": ["Porky Shinwell"],
+  "role": "supporting",
+  "status": "active",
+  "first_mention": { "book": 9, "chapter": 1 },
+  "full_reveal": { "book": 9, "chapter": 1 },
+  "affiliations": [],
+  "relationships": [
+    "rel_holmes-shinwell-johnson-professional"
+  ],
+  "cases": [
+    "case_the-adventure-of-the-illustrious-client",
+    "case_the-adventure-of-the-retired-colourman"
+  ],
+  "biography": "Shinwell Johnson, known in the underworld as Porky Shinwell, is a reformed criminal who becomes one of Holmes's most valuable informants in the late canon. Holmes recruited him from the police records — a former gaolbird who discovered that his connections to criminal circles were more profitably deployed working for a detective than against him. He is described as a huge, coarse, red-faced man with a bull neck. In The Adventure of the Illustrious Client, Holmes uses him to gather intelligence on the dangerous Baron Gruner, sending Kitty Winter into Gruner's household via Johnson's network. He also assists in The Adventure of the Retired Colourman. Johnson represents Holmes's pragmatic approach to the criminal world: a man who cannot be reformed away from his associations can still be redirected toward useful ends. Holmes provides him tacit protection in exchange for access to a world Holmes himself cannot enter without detection.",
+  "tags": ["informant", "criminal", "underworld", "reformed", "late canon"],
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

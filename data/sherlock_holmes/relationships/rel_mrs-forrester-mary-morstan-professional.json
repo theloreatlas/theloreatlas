@@ -1,0 +1,13 @@
+{
+  "id": "rel_mrs-forrester-mary-morstan-professional",
+  "series": "sherlock_holmes",
+  "character_a": "char_mrs-forrester",
+  "character_b": "char_mary-morstan",
+  "relationship_type": "professional",
+  "first_established": "case_the-sign-of-the-four",
+  "notes": "Mrs. Forrester employs Mary Morstan as a governess at her Camberwell home, but the relationship clearly exceeds the employer-employee arrangement. She is described as taking genuine personal interest in Mary's mysterious case — welcoming Watson when he comes to collect Miss Morstan, and seeing them off with warm encouragement. That Mary is based in her home at all implies Mrs. Forrester has given her a safe and stable domestic situation after years of uncertainty. After Mary marries Watson, Mrs. Forrester disappears from the canon entirely.",
+  "first_mention": { "book": 2, "chapter": 2 },
+  "full_reveal": { "book": 2, "chapter": 2 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

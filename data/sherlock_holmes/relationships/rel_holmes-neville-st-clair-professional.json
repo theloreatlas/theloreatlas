@@ -1,0 +1,13 @@
+{
+  "id": "rel_holmes-neville-st-clair-professional",
+  "series": "sherlock_holmes",
+  "character_a": "char_sherlock-holmes",
+  "character_b": "char_neville-st-clair",
+  "relationship_type": "professional",
+  "first_established": "case_the-man-with-the-twisted-lip",
+  "notes": "Holmes is retained by Mrs. St. Clair to find her husband, who has vanished from an opium den in Upper Swandam Lane. The investigation leads Holmes to deduce that the notorious beggar Hugh Boone and Neville St. Clair are the same person — a conclusion he confirms dramatically by washing away the beggar's make-up at the police station. Holmes then negotiates a private resolution: St. Clair agrees to abandon the double life permanently, Holmes arranges for the matter to be suppressed, and no charges are brought. The case is notable for Holmes's willingness to act as a mediator rather than a prosecutor.",
+  "first_mention": { "book": 3, "chapter": 6 },
+  "full_reveal": { "book": 3, "chapter": 6 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

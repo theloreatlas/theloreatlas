@@ -1,0 +1,21 @@
+{
+  "id": "char_neville-st-clair",
+  "series": "sherlock_holmes",
+  "name": "Neville St. Clair",
+  "aliases": ["Hugh Boone", "The Man with the Twisted Lip"],
+  "role": "client",
+  "status": "active",
+  "first_mention": { "book": 3, "chapter": 6 },
+  "full_reveal": { "book": 3, "chapter": 6 },
+  "affiliations": [],
+  "relationships": [
+    "rel_holmes-neville-st-clair-professional"
+  ],
+  "cases": [
+    "case_the-man-with-the-twisted-lip"
+  ],
+  "biography": "Neville St. Clair is a Kent resident whose wife hires Holmes to investigate his disappearance, last seen at the window of the Bar of Gold, an opium den in Upper Swandam Lane. The investigation centres not on St. Clair but on Hugh Boone, a professional beggar of notoriously twisted appearance who frequents the same building. Holmes eventually establishes that St. Clair and Boone are the same person: as a young journalist, St. Clair discovered that begging in disguise earned vastly more than reporting, and he has since lived a double life — a respectable family man in Kent by night, a hideous professional beggar in the City by day. After Holmes confronts him in his cell at the police station and strips away the disguise with a wet sponge, St. Clair agrees to abandon the practice permanently. Holmes arranges for the matter to be quietly dropped, noting no crime was committed. The case is one of the canon's rare non-criminal mysteries.",
+  "tags": ["double life", "beggar", "disguise", "Kent", "journalist"],
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

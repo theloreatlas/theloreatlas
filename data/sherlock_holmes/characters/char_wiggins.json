@@ -1,0 +1,22 @@
+{
+  "id": "char_wiggins",
+  "series": "sherlock_holmes",
+  "name": "Wiggins",
+  "aliases": ["The Irregular", "Baker Street Irregular Leader"],
+  "role": "supporting",
+  "status": "active",
+  "first_mention": { "book": 2, "chapter": 8 },
+  "full_reveal": { "book": 2, "chapter": 8 },
+  "affiliations": ["faction_baker-street-irregulars"],
+  "relationships": [
+    "rel_holmes-wiggins-professional",
+    "rel_watson-wiggins-professional"
+  ],
+  "cases": [
+    "case_the-sign-of-the-four"
+  ],
+  "biography": "Wiggins is the acknowledged leader of the Baker Street Irregulars, a rotating band of street children Holmes employs as a surveillance and intelligence network. Holmes prizes them because they can go anywhere without attracting attention — they see everything and hear everything, and a child loitering on a street corner draws no suspicion. In The Sign of the Four, Wiggins leads a dozen ragged urchins to 221B, delivers his report to Holmes with considerable self-possession, and collects three shillings a day plus a guinea for actionable intelligence. Watson notes that Wiggins enters the sitting room and stands at ease with the air of someone accustomed to the place. A similar unnamed leader commands the Irregulars in A Study in Scarlet; many readers take him to be the same boy. Wiggins represents Holmes's recognition that a detective's reach depends on people who move through strata he cannot enter without detection.",
+  "tags": ["Baker Street Irregulars", "street arab", "informant", "messenger", "child"],
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

@@ -1,0 +1,13 @@
+{
+  "id": "rel_watson-mrs-forrester-other",
+  "series": "sherlock_holmes",
+  "character_a": "char_john-watson",
+  "character_b": "char_mrs-forrester",
+  "relationship_type": "other",
+  "first_established": "case_the-sign-of-the-four",
+  "notes": "Watson visits Mrs. Forrester's Camberwell home to collect Mary Morstan at the start of the Sign of the Four investigation. He notes her kindness and interest in Miss Morstan's case. The acquaintance is brief but pleasant — Watson clearly approves of her as a person and as the guardian of the woman he is falling in love with. After Mary and Watson marry, Mrs. Forrester is not mentioned again.",
+  "first_mention": { "book": 2, "chapter": 2 },
+  "full_reveal": { "book": 2, "chapter": 2 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

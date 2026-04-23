@@ -1,14 +1,987 @@
 [
   {
+    "id": "char_billy",
+    "series": "sherlock_holmes",
+    "name": "Billy",
+    "aliases": [
+      "Billy the Page"
+    ],
+    "role": "supporting",
+    "status": "active",
+    "first_mention": {
+      "book": 7,
+      "chapter": 1
+    },
+    "full_reveal": {
+      "book": 7,
+      "chapter": 1
+    },
+    "affiliations": [],
+    "relationships": [
+      "rel_holmes-billy-professional"
+    ],
+    "cases": [
+      "case_the-valley-of-fear",
+      "case_the-adventure-of-the-mazarin-stone"
+    ],
+    "biography": "Billy is Holmes's page — a live-in boy who answers the door, carries messages, and manages the domestic operations of 221B Baker Street in the later canon. He is described as a bright, discreet young man who takes quiet pride in his employer's methods and reputation. Unlike the Baker Street Irregulars, who are street children retained for specific outdoor tasks, Billy occupies a permanent position within the household and acts as an intermediary between Holmes and the outside world. He first appears in The Valley of Fear, announcing a visitor with cool efficiency, and recurs in The Adventure of the Mazarin Stone. Watson does not give him a surname. Holmes's domestic arrangements at 221B clearly evolved over the decades of the canon, and Billy represents the settled, post-Reichenbach period when Holmes was a figure of established fame.",
+    "tags": [
+      "page",
+      "221B",
+      "Baker Street",
+      "household",
+      "servant"
+    ],
+    "created_by": "theloreatlas",
+    "last_edited_by": "theloreatlas"
+  },
+  {
+    "id": "char_charles-augustus-milverton",
+    "series": "sherlock_holmes",
+    "name": "Charles Augustus Milverton",
+    "aliases": [
+      "Milverton",
+      "The Worst Man in London"
+    ],
+    "role": "antagonist",
+    "status": "deceased",
+    "first_mention": {
+      "book": 6,
+      "chapter": 7
+    },
+    "full_reveal": {
+      "book": 6,
+      "chapter": 7
+    },
+    "affiliations": [],
+    "relationships": [
+      "rel_holmes-milverton-enemy"
+    ],
+    "cases": [
+      "case_the-adventure-of-charles-augustus-milverton"
+    ],
+    "biography": "Charles Augustus Milverton is a professional blackmailer whom Holmes describes as the worst man in London — worse, even, than Moriarty. Unlike Moriarty, who commits crimes from ambition, Milverton inflicts misery purely for profit, acquiring compromising letters and photographs and extorting their subjects with cold-blooded efficiency. He presents himself as a genteel man of business, which Holmes finds more revolting than open villainy. Holmes breaks into Milverton's house at Appledore Towers in an attempt to recover a client's letters, only to witness a woman he cannot identify shoot Milverton dead — punishment for letters of hers that he had sold, which destroyed her husband. Holmes refuses to help the police identify the shooter. Milverton's death is one of the rare moments in the canon where Holmes condones an act he could not himself have committed.",
+    "tags": [
+      "villain",
+      "blackmailer",
+      "Appledore Towers",
+      "letters",
+      "Returns"
+    ],
+    "created_by": "theloreatlas",
+    "last_edited_by": "theloreatlas"
+  },
+  {
+    "id": "char_colonel-sebastian-moran",
+    "series": "sherlock_holmes",
+    "name": "Colonel Sebastian Moran",
+    "aliases": [
+      "The Tiger of San Pedro",
+      "Moran"
+    ],
+    "role": "antagonist",
+    "status": "active",
+    "first_mention": {
+      "book": 6,
+      "chapter": 1
+    },
+    "full_reveal": {
+      "book": 6,
+      "chapter": 1
+    },
+    "affiliations": [
+      "faction_moriarty-criminal-network"
+    ],
+    "relationships": [
+      "rel_holmes-moran-enemy",
+      "rel_moriarty-moran-ally"
+    ],
+    "cases": [
+      "case_the-adventure-of-the-empty-house",
+      "case_the-final-problem"
+    ],
+    "biography": "Colonel Sebastian Moran is Moriarty's chief of staff and the most dangerous man in London after the Professor himself. Holmes describes him as the best heavy-game shot in the Indian Empire — a decorated soldier turned hired killer. He served in the Indian Army before his undisclosed crimes forced him into Moriarty's criminal organization, where he became the network's most lethal operative. After Moriarty's death at Reichenbach, Moran continues to hunt Holmes, eventually attempting to kill him from Camden House using an air-gun designed by the blind mechanic Von Herder. Holmes sets a trap using a wax bust as bait, and Moran is arrested. His dossier in Holmes's records notes he is the second most dangerous man in London.",
+    "tags": [
+      "villain",
+      "assassin",
+      "Moriarty network",
+      "shikari",
+      "airgun",
+      "Empty House"
+    ],
+    "created_by": "theloreatlas",
+    "last_edited_by": "theloreatlas"
+  },
+  {
+    "id": "char_dr-grimesby-roylott",
+    "series": "sherlock_holmes",
+    "name": "Dr. Grimesby Roylott",
+    "aliases": [
+      "Roylott",
+      "Dr. Roylott"
+    ],
+    "role": "antagonist",
+    "status": "deceased",
+    "first_mention": {
+      "book": 3,
+      "chapter": 8
+    },
+    "full_reveal": {
+      "book": 3,
+      "chapter": 8
+    },
+    "affiliations": [],
+    "relationships": [
+      "rel_holmes-roylott-enemy"
+    ],
+    "cases": [
+      "case_the-adventure-of-the-speckled-band"
+    ],
+    "biography": "Dr. Grimesby Roylott is the villain of The Adventure of the Speckled Band and one of the most physically imposing antagonists in the Holmes canon. A doctor who practiced in Calcutta before a violent history in England forced him to retire to the ancestral estate of Stoke Moran, he keeps exotic animals — a cheetah and a baboon — on the grounds. His stepdaughter Helen Stoner's income passes to him as long as she remains unmarried, providing the motive for the murders Holmes uncovers. Holmes describes him as the most dangerous man he has encountered. Roylott dies by his own method — the swamp adder he trained to kill through a ventilator is driven back onto him by Holmes's cane, and he is struck. He is introduced as the villain by Helen Stoner from the opening of the story; his identity is never in doubt, only his method.",
+    "tags": [
+      "villain",
+      "doctor",
+      "Stoke Moran",
+      "speckled band",
+      "India",
+      "snake"
+    ],
+    "created_by": "theloreatlas",
+    "last_edited_by": "theloreatlas"
+  },
+  {
+    "id": "char_godfrey-norton",
+    "series": "sherlock_holmes",
+    "name": "Godfrey Norton",
+    "aliases": [
+      "Mr. Norton"
+    ],
+    "role": "supporting",
+    "status": "active",
+    "first_mention": {
+      "book": 3,
+      "chapter": 1
+    },
+    "full_reveal": {
+      "book": 3,
+      "chapter": 1
+    },
+    "affiliations": [],
+    "relationships": [
+      "rel_adler-norton-romantic",
+      "rel_holmes-godfrey-norton-other"
+    ],
+    "cases": [
+      "case_a-scandal-in-bohemia"
+    ],
+    "biography": "Godfrey Norton is a barrister and the husband of Irene Adler. He plays a minor but consequential role in A Scandal in Bohemia: Holmes, tailing Adler, observes her in conversation with Norton, follows them to a church, and is pressed into service as a witness to their marriage. Norton is described as dark, sharp-featured, and quick-moving — a man of considerable energy and obvious purpose. He departs for the Continent with Adler immediately after the wedding, rendering Holmes's mission moot. He has no role in any other canonical story but is the reason Irene Adler becomes Mrs. Norton — a detail Holmes notes pointedly in his memoirs.",
+    "tags": [
+      "barrister",
+      "Bohemia",
+      "Irene Adler",
+      "husband"
+    ],
+    "created_by": "theloreatlas",
+    "last_edited_by": "theloreatlas"
+  },
+  {
+    "id": "char_helen-stoner",
+    "series": "sherlock_holmes",
+    "name": "Helen Stoner",
+    "aliases": [
+      "Miss Stoner"
+    ],
+    "role": "supporting",
+    "status": "active",
+    "first_mention": {
+      "book": 3,
+      "chapter": 8
+    },
+    "full_reveal": {
+      "book": 3,
+      "chapter": 8
+    },
+    "affiliations": [],
+    "relationships": [
+      "rel_holmes-helen-stoner-professional"
+    ],
+    "cases": [
+      "case_the-adventure-of-the-speckled-band"
+    ],
+    "biography": "Helen Stoner is the client who brings Holmes the case in The Adventure of the Speckled Band. She arrives at Baker Street at dawn, visibly frightened, having heard the same mysterious whistle and metallic clang that preceded her twin sister Julia's death two years earlier. Julia died on the night before her wedding, uttering the phrase 'the speckled band.' Helen is now engaged herself and has been moved into Julia's old room — the same room where Julia died. She is courageous in seeking help but trapped in Stoke Moran by her stepfather's violence and the isolation of the estate. Holmes solves the case and breaks Roylott's method. Helen is the archetypal Holmes client: a woman in genuine danger, intelligent enough to seek help, and brave enough to follow through.",
+    "tags": [
+      "client",
+      "Speckled Band",
+      "Stoke Moran",
+      "stepdaughter",
+      "twin"
+    ],
+    "created_by": "theloreatlas",
+    "last_edited_by": "theloreatlas"
+  },
+  {
+    "id": "char_henry-baskerville",
+    "series": "sherlock_holmes",
+    "name": "Sir Henry Baskerville",
+    "aliases": [
+      "Henry Baskerville",
+      "Sir Henry"
+    ],
+    "role": "supporting",
+    "status": "active",
+    "first_mention": {
+      "book": 5,
+      "chapter": 3
+    },
+    "full_reveal": {
+      "book": 5,
+      "chapter": 4
+    },
+    "affiliations": [],
+    "relationships": [
+      "rel_holmes-henry-baskerville-professional",
+      "rel_watson-henry-baskerville-professional"
+    ],
+    "cases": [
+      "case_the-hound-of-the-baskervilles"
+    ],
+    "biography": "Sir Henry Baskerville is the last surviving heir to the Baskerville estate on Dartmoor, and the client at the center of Holmes's most famous case. A Canadian by upbringing, Henry knows little of the Baskerville legend until Dr. Mortimer brings him to Baker Street after his uncle Sir Charles dies under mysterious circumstances. He is robust, straightforward, and courageous — qualities that make him an appealing client but also a dangerous one to protect, since his stubbornness leads him to walk the moor at night against Holmes's instructions. His arrival in England is immediately marked by strange occurrences: a warning note, a stolen boot, and the sense of being watched. He eventually marries and settles abroad after the case is resolved, the estate's curse finally lifted.",
+    "tags": [
+      "Baskerville",
+      "Dartmoor",
+      "heir",
+      "baronet",
+      "Canada"
+    ],
+    "created_by": "theloreatlas",
+    "last_edited_by": "theloreatlas"
+  },
+  {
+    "id": "char_inspector-athelney-jones",
+    "series": "sherlock_holmes",
+    "name": "Inspector Athelney Jones",
+    "aliases": [
+      "Jones",
+      "Inspector Jones"
+    ],
+    "role": "supporting",
+    "status": "active",
+    "first_mention": {
+      "book": 2,
+      "chapter": 5
+    },
+    "full_reveal": {
+      "book": 2,
+      "chapter": 5
+    },
+    "affiliations": [
+      "faction_scotland-yard"
+    ],
+    "relationships": [
+      "rel_holmes-athelney-jones-professional"
+    ],
+    "cases": [
+      "case_the-sign-of-the-four"
+    ],
+    "biography": "Inspector Athelney Jones is the Scotland Yard detective assigned to the Pondicherry Lodge murder in The Sign of the Four. He arrives at the crime scene with great confidence, immediately theorizing about the case and making an early arrest based on circumstantial evidence — only to find himself wrong. He is not unintelligent but is prone to the same over-hasty conclusions Holmes criticizes in all Yarders. He proves adaptable enough to partner with Holmes on the Thames boat chase that ends the case, showing practical competence even when his deductive theories have been dismantled. He is portrayed with a degree of self-deprecating humor absent from Lestrade and Gregson.",
+    "tags": [
+      "Scotland Yard",
+      "inspector",
+      "detective",
+      "police",
+      "Sign of Four"
+    ],
+    "created_by": "theloreatlas",
+    "last_edited_by": "theloreatlas"
+  },
+  {
+    "id": "char_inspector-gregson",
+    "series": "sherlock_holmes",
+    "name": "Inspector Tobias Gregson",
+    "aliases": [
+      "Gregson",
+      "Inspector Gregson"
+    ],
+    "role": "supporting",
+    "status": "active",
+    "first_mention": {
+      "book": 1,
+      "chapter": 3
+    },
+    "full_reveal": {
+      "book": 1,
+      "chapter": 3
+    },
+    "affiliations": [
+      "faction_scotland-yard"
+    ],
+    "relationships": [
+      "rel_holmes-gregson-professional",
+      "rel_lestrade-gregson-professional"
+    ],
+    "cases": [
+      "case_a-study-in-scarlet",
+      "case_the-five-orange-pips",
+      "case_the-adventure-of-wisteria-lodge"
+    ],
+    "biography": "Inspector Tobias Gregson is one of Scotland Yard's ablest detectives and, along with Lestrade, Holmes's most frequent official contact. Holmes considers him and Lestrade the pick of a bad lot — smart within limits, energetic, but chained to conventional procedure. Gregson appears in A Study in Scarlet as the Yard's lead investigator on the Lauriston Gardens murder, where he and Lestrade compete as much with each other as with the case. He is described as tall and flaxen-haired, with a self-satisfied manner that Holmes finds mildly amusing. He recurs in Five Orange Pips and Wisteria Lodge, always following the facts further than the average officer but stopping short of Holmes's leaps of inference.",
+    "tags": [
+      "Scotland Yard",
+      "inspector",
+      "detective",
+      "police",
+      "official force"
+    ],
+    "created_by": "theloreatlas",
+    "last_edited_by": "theloreatlas"
+  },
+  {
+    "id": "char_inspector-lestrade",
+    "series": "sherlock_holmes",
+    "name": "Inspector G. Lestrade",
+    "aliases": [
+      "Lestrade",
+      "Inspector Lestrade"
+    ],
+    "role": "supporting",
+    "status": "active",
+    "first_mention": {
+      "book": 1,
+      "chapter": 3
+    },
+    "full_reveal": {
+      "book": 1,
+      "chapter": 3
+    },
+    "affiliations": [
+      "faction_scotland-yard"
+    ],
+    "relationships": [
+      "rel_holmes-lestrade-professional",
+      "rel_lestrade-gregson-professional",
+      "rel_lestrade-hopkins-professional"
+    ],
+    "cases": [
+      "case_a-study-in-scarlet",
+      "case_the-adventure-of-the-engineers-thumb",
+      "case_the-valley-of-fear",
+      "case_the-adventure-of-the-empty-house",
+      "case_the-adventure-of-the-norwood-builder",
+      "case_the-adventure-of-the-six-napoleons",
+      "case_the-adventure-of-the-second-stain"
+    ],
+    "biography": "Inspector Lestrade is Scotland Yard's most prominent detective and Holmes's most frequent professional contact within the official police force. He is tenacious, hard-working, and possesses strong conventional investigative instincts — but lacks the imaginative leaps Holmes makes effortlessly. Lestrade regularly consults Holmes on difficult cases while privately (and sometimes publicly) dismissing his methods as theatrical. Despite this rivalry, there is a grudging mutual respect: Holmes credits Lestrade as the best of the official detectives, and Lestrade acknowledges results even when he cannot follow the reasoning. His first name initial is given as 'G.' in the canon; the full name is never revealed.",
+    "tags": [
+      "Scotland Yard",
+      "detective",
+      "inspector",
+      "police",
+      "official force"
+    ],
+    "created_by": "theloreatlas",
+    "last_edited_by": "theloreatlas"
+  },
+  {
+    "id": "char_inspector-stanley-hopkins",
+    "series": "sherlock_holmes",
+    "name": "Inspector Stanley Hopkins",
+    "aliases": [
+      "Hopkins",
+      "Inspector Hopkins"
+    ],
+    "role": "supporting",
+    "status": "active",
+    "first_mention": {
+      "book": 6,
+      "chapter": 6
+    },
+    "full_reveal": {
+      "book": 6,
+      "chapter": 6
+    },
+    "affiliations": [
+      "faction_scotland-yard"
+    ],
+    "relationships": [
+      "rel_holmes-hopkins-mentor",
+      "rel_lestrade-hopkins-professional"
+    ],
+    "cases": [
+      "case_the-adventure-of-black-peter",
+      "case_the-adventure-of-the-golden-pince-nez",
+      "case_the-adventure-of-the-abbey-grange"
+    ],
+    "biography": "Inspector Stanley Hopkins is a young Scotland Yard detective who appears in three Return-era cases and is distinctive for being the one officer Holmes takes a genuine professional interest in. Holmes regards him as possessing real ability and several times suggests he has the makings of a great detective — though Hopkins repeatedly makes the same error of jumping to a conclusion too early and being reluctant to revise it. Holmes acts as an explicit mentor across their cases together, correcting his reasoning and demonstrating the methods Hopkins has not yet mastered. He is energetic, earnest, and not too proud to ask for help, which earns him more warmth from Holmes than most Yarders receive.",
+    "tags": [
+      "Scotland Yard",
+      "inspector",
+      "detective",
+      "police",
+      "Holmes protégé"
+    ],
+    "created_by": "theloreatlas",
+    "last_edited_by": "theloreatlas"
+  },
+  {
+    "id": "char_irene-adler",
+    "series": "sherlock_holmes",
+    "name": "Irene Adler",
+    "aliases": [
+      "The Woman",
+      "Mrs. Irene Norton"
+    ],
+    "role": "supporting",
+    "status": "active",
+    "first_mention": {
+      "book": 3,
+      "chapter": 1
+    },
+    "full_reveal": {
+      "book": 3,
+      "chapter": 1
+    },
+    "affiliations": [],
+    "relationships": [
+      "rel_holmes-irene-adler-other",
+      "rel_adler-norton-romantic"
+    ],
+    "cases": [
+      "case_a-scandal-in-bohemia"
+    ],
+    "biography": "Irene Adler is an American opera singer and the only woman who ever truly outwitted Sherlock Holmes. Born in New Jersey, she achieved fame as a contralto in opera across Europe. She appears in a single canonical story — A Scandal in Bohemia — in which the King of Bohemia hires Holmes to recover a compromising photograph she holds. Adler outmaneuvers Holmes completely, discerning his disguise and departing England with her husband Godfrey Norton before Holmes can retrieve the photograph. Watson records that Holmes thereafter refers to her simply as 'The Woman' — the one person to have bested him. She appears in no other canonical story.",
+    "tags": [
+      "opera singer",
+      "The Woman",
+      "American",
+      "Bohemia",
+      "photograph"
+    ],
+    "created_by": "theloreatlas",
+    "last_edited_by": "theloreatlas"
+  },
+  {
+    "id": "char_jabez-wilson",
+    "series": "sherlock_holmes",
+    "name": "Jabez Wilson",
+    "aliases": [],
+    "role": "client",
+    "status": "active",
+    "first_mention": {
+      "book": 3,
+      "chapter": 2
+    },
+    "full_reveal": {
+      "book": 3,
+      "chapter": 2
+    },
+    "affiliations": [],
+    "relationships": [
+      "rel_holmes-jabez-wilson-professional"
+    ],
+    "cases": [
+      "case_the-red-headed-league"
+    ],
+    "biography": "Jabez Wilson is a stout, slow-moving, red-haired pawnbroker of Coburg Square, City of London, who appears in The Red-Headed League as Holmes's client. He was recruited into the absurd titular organisation — which advertised four pounds a week for any red-headed man willing to copy the Encyclopædia Britannica — solely to keep him out of his own premises each day while his assistant, Vincent Spaulding (in reality the notorious John Clay), tunneled beneath the shop toward the vault of the City and Suburban Bank next door. Wilson is good-natured and easily bewildered, more offended by the wasted time than alarmed by any threat, and he presents the case to Holmes primarily as an inexplicable inconvenience. Holmes solves the scheme in a single morning's investigation and an evening ambush at the bank. The case is among the most elegant illustrations of Holmes's axiom that the more bizarre an event appears, the less mysterious it often proves.",
+    "tags": [
+      "pawnbroker",
+      "red hair",
+      "client",
+      "City of London"
+    ],
+    "created_by": "theloreatlas",
+    "last_edited_by": "theloreatlas"
+  },
+  {
+    "id": "char_james-ryder",
+    "series": "sherlock_holmes",
+    "name": "James Ryder",
+    "aliases": [],
+    "role": "supporting",
+    "status": "active",
+    "first_mention": {
+      "book": 3,
+      "chapter": 7
+    },
+    "full_reveal": {
+      "book": 3,
+      "chapter": 7
+    },
+    "affiliations": [],
+    "relationships": [
+      "rel_holmes-james-ryder-professional"
+    ],
+    "cases": [
+      "case_the-adventure-of-the-blue-carbuncle"
+    ],
+    "biography": "James Ryder is the upper attendant at the Hotel Cosmopolitan who steals the Countess of Morcar's famous blue carbuncle and plants it on innocent plumber John Horner to divert suspicion. His scheme for transporting the gem undetected — hiding it inside a goose's crop — goes catastrophically wrong when the wrong goose is sold at market, setting off the chain of chance that leads Holmes to the stone. When Ryder is finally confronted at 221B, he collapses in terror and confesses everything. Holmes releases him without prosecution, reasoning that the shock of his narrow escape will reform him more effectively than a prison sentence could, and that the law would only complete the destruction of a weak man rather than save him. Horner, having been arrested on false evidence, is exonerated when Ryder vanishes. The case is among the most frequently cited illustrations of Holmes's personal code of justice, which does not always align with the letter of the law.",
+    "tags": [
+      "thief",
+      "hotel",
+      "blue carbuncle",
+      "goose",
+      "mercy"
+    ],
+    "created_by": "theloreatlas",
+    "last_edited_by": "theloreatlas"
+  },
+  {
+    "id": "char_jefferson-hope",
+    "series": "sherlock_holmes",
+    "name": "Jefferson Hope",
+    "aliases": [
+      "The Cabman"
+    ],
+    "role": "antagonist",
+    "status": "deceased",
+    "first_mention": {
+      "book": 1,
+      "chapter": 7
+    },
+    "full_reveal": {
+      "book": 1,
+      "chapter": 13
+    },
+    "affiliations": [],
+    "relationships": [
+      "rel_holmes-jefferson-hope-enemy"
+    ],
+    "cases": [
+      "case_a-study-in-scarlet"
+    ],
+    "biography": "Jefferson Hope is the killer at the heart of A Study in Scarlet and, in many respects, the most sympathetically drawn of Holmes's antagonists. He is captured by Holmes in chapter 7 when he comes to Baker Street disguised as a cab driver to collect a ring — Holmes's trap. Part 2 of the novel reveals his full story: an American frontiersman who loved Lucy Ferrier, who was seized by Mormon elders and forced to marry Enoch Drebber. Lucy died within a month; Hope spent decades pursuing Drebber and his accomplice Stangerson across two continents. By the time he catches them in London, he is dying of an aortic aneurysm. He forces each victim to choose between two pills — one lethal, one harmless — placing the outcome in the hands of Providence. He dies in custody the night before his trial, his aneurysm finally claiming him. Holmes regards him with respect as a man driven by genuine grievance rather than greed.",
+    "tags": [
+      "villain",
+      "frontiersman",
+      "Mormon",
+      "Utah",
+      "avenging",
+      "cab driver",
+      "Study in Scarlet"
+    ],
+    "created_by": "theloreatlas",
+    "last_edited_by": "theloreatlas"
+  },
+  {
+    "id": "char_john-watson",
+    "series": "sherlock_holmes",
+    "name": "Dr. John H. Watson",
+    "aliases": [
+      "Watson",
+      "Dr. Watson",
+      "James Watson"
+    ],
+    "role": "protagonist",
+    "status": "active",
+    "first_mention": {
+      "book": 1,
+      "chapter": 1
+    },
+    "full_reveal": {
+      "book": 1,
+      "chapter": 1
+    },
+    "affiliations": [],
+    "relationships": [
+      "rel_holmes-watson-ally",
+      "rel_watson-mary-morstan-romantic",
+      "rel_watson-mrs-hudson-professional",
+      "rel_watson-henry-baskerville-professional",
+      "rel_watson-wiggins-professional",
+      "rel_watson-mrs-forrester-other"
+    ],
+    "cases": [
+      "case_a-study-in-scarlet",
+      "case_the-sign-of-the-four",
+      "case_a-scandal-in-bohemia",
+      "case_the-red-headed-league",
+      "case_a-case-of-identity",
+      "case_the-boscombe-valley-mystery",
+      "case_the-five-orange-pips",
+      "case_the-man-with-the-twisted-lip",
+      "case_the-adventure-of-the-blue-carbuncle",
+      "case_the-adventure-of-the-speckled-band",
+      "case_the-adventure-of-the-engineers-thumb",
+      "case_the-adventure-of-the-noble-bachelor",
+      "case_the-adventure-of-the-beryl-coronet",
+      "case_the-adventure-of-the-copper-beeches",
+      "case_silver-blaze",
+      "case_the-yellow-face",
+      "case_the-stockbrokers-clerk",
+      "case_the-gloria-scott",
+      "case_the-musgrave-ritual",
+      "case_the-reigate-squire",
+      "case_the-crooked-man",
+      "case_the-residents-patient",
+      "case_the-greek-interpreter",
+      "case_the-naval-treaty",
+      "case_the-final-problem",
+      "case_the-hound-of-the-baskervilles",
+      "case_the-adventure-of-the-empty-house",
+      "case_the-adventure-of-the-norwood-builder",
+      "case_the-adventure-of-the-dancing-men",
+      "case_the-adventure-of-the-solitary-cyclist",
+      "case_the-adventure-of-the-priory-school",
+      "case_the-adventure-of-black-peter",
+      "case_the-adventure-of-charles-augustus-milverton",
+      "case_the-adventure-of-the-six-napoleons",
+      "case_the-adventure-of-the-three-students",
+      "case_the-adventure-of-the-golden-pince-nez",
+      "case_the-adventure-of-the-missing-three-quarter",
+      "case_the-adventure-of-the-abbey-grange",
+      "case_the-adventure-of-the-second-stain",
+      "case_the-valley-of-fear",
+      "case_the-adventure-of-wisteria-lodge",
+      "case_the-adventure-of-the-cardboard-box",
+      "case_the-adventure-of-the-red-circle",
+      "case_the-adventure-of-the-bruce-partington-plans",
+      "case_the-adventure-of-the-dying-detective",
+      "case_the-disappearance-of-lady-frances-carfax",
+      "case_the-adventure-of-the-devils-foot",
+      "case_his-last-bow",
+      "case_the-adventure-of-the-illustrious-client",
+      "case_the-adventure-of-the-mazarin-stone",
+      "case_the-adventure-of-the-three-gables",
+      "case_the-adventure-of-the-sussex-vampire",
+      "case_the-adventure-of-the-three-garridebs",
+      "case_the-problem-of-thor-bridge",
+      "case_the-adventure-of-the-creeping-man",
+      "case_the-adventure-of-the-veiled-lodger",
+      "case_the-adventure-of-shoscombe-old-place",
+      "case_the-adventure-of-the-retired-colourman"
+    ],
+    "biography": "Dr. John H. Watson is a retired Army surgeon and the chronicler of Sherlock Holmes's cases. Invalided home from the Second Anglo-Afghan War (wounded at the Battle of Maiwand), Watson meets Holmes through Stamford and moves into 221B Baker Street as his lodger. He serves as Holmes's companion, occasional assistant, and the narrator of nearly all the published accounts. Watson is a man of action, loyalty, and warmth — qualities that complement Holmes's cold rationalism. He later marries Mary Morstan (whom he met during The Sign of the Four), sets up a medical practice, and eventually returns to Baker Street following Mary's death. Watson's admiring but honest narration shapes how the world perceives Holmes.",
+    "tags": [
+      "doctor",
+      "army surgeon",
+      "narrator",
+      "Afghanistan",
+      "Baker Street",
+      "Watson"
+    ],
+    "created_by": "theloreatlas",
+    "last_edited_by": "theloreatlas"
+  },
+  {
+    "id": "char_jonathan-small",
+    "series": "sherlock_holmes",
+    "name": "Jonathan Small",
+    "aliases": [
+      "The Wooden-Legged Man"
+    ],
+    "role": "antagonist",
+    "status": "active",
+    "first_mention": {
+      "book": 2,
+      "chapter": 6
+    },
+    "full_reveal": {
+      "book": 2,
+      "chapter": 12
+    },
+    "affiliations": [],
+    "relationships": [
+      "rel_holmes-jonathan-small-enemy"
+    ],
+    "cases": [
+      "case_the-sign-of-the-four"
+    ],
+    "biography": "Jonathan Small is the antagonist of The Sign of the Four — a one-legged ex-soldier who has spent decades in pursuit of the Agra Treasure he believes is rightfully his. Holmes identifies him from the crime scene at Pondicherry Lodge by the distinctive footprint of a wooden leg. Small's full story emerges in chapter 12 when he is captured after the Thames boat chase: as a young soldier in India he lost his leg to a crocodile, fell in with the wrong company during the Indian Mutiny, and became one of the 'Sign of Four' — a pact between Small and three Sikh soldiers to share the Agra treasure equally. He spent years in the Andaman Islands penal colony while the treasure sat unclaimed. He escaped with Tonga, his Andaman Islander companion, and returned to England to claim what he saw as his. Rather than let the treasure fall to others, he throws it into the Thames. Holmes regards him as a man more wronged than wrong.",
+    "tags": [
+      "villain",
+      "Sign of Four",
+      "Agra Treasure",
+      "wooden leg",
+      "Andaman Islands",
+      "India"
+    ],
+    "created_by": "theloreatlas",
+    "last_edited_by": "theloreatlas"
+  },
+  {
+    "id": "char_mary-morstan",
+    "series": "sherlock_holmes",
+    "name": "Mary Morstan",
+    "aliases": [
+      "Mrs. Watson",
+      "Mary Watson"
+    ],
+    "role": "supporting",
+    "status": "deceased",
+    "first_mention": {
+      "book": 2,
+      "chapter": 2
+    },
+    "full_reveal": {
+      "book": 2,
+      "chapter": 2
+    },
+    "affiliations": [],
+    "relationships": [
+      "rel_watson-mary-morstan-romantic",
+      "rel_mrs-forrester-mary-morstan-professional"
+    ],
+    "cases": [
+      "case_the-sign-of-the-four"
+    ],
+    "biography": "Mary Morstan is the client who brings Watson and Holmes the case in The Sign of the Four, and subsequently becomes Watson's wife. She arrives at 221B seeking Holmes's help: her father, Captain Morstan, disappeared years earlier, and she has been receiving annual gifts of pearls from an anonymous sender. She is intelligent, composed under pressure, and strikes Watson immediately as a woman of refinement and courage. The case resolves around the Agra Treasure, which would have made her wealthy — but Jonathan Small throws it into the Thames, leaving her with nothing material. She and Watson marry shortly after. She is mentioned in later stories as deceased, her passing between canons explaining Watson's return to Baker Street.",
+    "tags": [
+      "client",
+      "Watson's wife",
+      "Sign of Four",
+      "Agra Treasure",
+      "pearls"
+    ],
+    "created_by": "theloreatlas",
+    "last_edited_by": "theloreatlas"
+  },
+  {
+    "id": "char_mary-sutherland",
+    "series": "sherlock_holmes",
+    "name": "Mary Sutherland",
+    "aliases": [
+      "Miss Sutherland"
+    ],
+    "role": "supporting",
+    "status": "active",
+    "first_mention": {
+      "book": 3,
+      "chapter": 3
+    },
+    "full_reveal": {
+      "book": 3,
+      "chapter": 3
+    },
+    "affiliations": [],
+    "relationships": [
+      "rel_holmes-mary-sutherland-professional"
+    ],
+    "cases": [
+      "case_a-case-of-identity"
+    ],
+    "biography": "Mary Sutherland is the client in A Case of Identity — a large, good-natured woman with short sight who consults Holmes about the disappearance of her fiancé, Hosmer Angel, who vanished on the morning of their wedding. She is a typist with a small income and naive trust. Holmes deduces almost immediately that Hosmer Angel is a fiction created by her stepfather Windibank to keep her at home and prevent her from marrying and taking her income with her. Holmes solves the case but, in a departure from his usual practice, chooses not to tell Mary the truth — concluding she would not believe him and would be happier without knowing. The case is a study in Holmes's ambivalence about what solving a case actually owes to a client.",
+    "tags": [
+      "client",
+      "Case of Identity",
+      "typist",
+      "Hosmer Angel",
+      "stepfather"
+    ],
+    "created_by": "theloreatlas",
+    "last_edited_by": "theloreatlas"
+  },
+  {
+    "id": "char_mrs-forrester",
+    "series": "sherlock_holmes",
+    "name": "Mrs. Cecil Forrester",
+    "aliases": [
+      "Mrs. Forrester"
+    ],
+    "role": "supporting",
+    "status": "active",
+    "first_mention": {
+      "book": 2,
+      "chapter": 2
+    },
+    "full_reveal": {
+      "book": 2,
+      "chapter": 2
+    },
+    "affiliations": [],
+    "relationships": [
+      "rel_mrs-forrester-mary-morstan-professional",
+      "rel_watson-mrs-forrester-other"
+    ],
+    "cases": [
+      "case_the-sign-of-the-four"
+    ],
+    "biography": "Mrs. Cecil Forrester is the widow for whom Mary Morstan works as a governess at the time of The Sign of the Four. She lives in Lower Camberwell in a pleasant house, and Watson describes her as a woman of kind, sympathetic nature who takes considerable personal interest in her governess's strange case. When Watson arrives at the house to escort Miss Morstan to the mysterious meeting at the Lyceum Theatre, Mrs. Forrester herself sees them off with warm encouragement. Her inclusion in the story grounds Mary Morstan in a respectable domestic world — the kind of quiet, stable life that Watson increasingly desires. She is never mentioned again after The Sign of the Four, but her warmth toward Mary implies a genuine friendship that transcends the employer-employee arrangement.",
+    "tags": [
+      "widow",
+      "governess employer",
+      "Camberwell",
+      "domestic"
+    ],
+    "created_by": "theloreatlas",
+    "last_edited_by": "theloreatlas"
+  },
+  {
+    "id": "char_mrs-hudson",
+    "series": "sherlock_holmes",
+    "name": "Mrs. Hudson",
+    "aliases": [
+      "Martha Hudson",
+      "The Landlady"
+    ],
+    "role": "supporting",
+    "status": "active",
+    "first_mention": {
+      "book": 1,
+      "chapter": 2
+    },
+    "full_reveal": {
+      "book": 1,
+      "chapter": 2
+    },
+    "affiliations": [],
+    "relationships": [
+      "rel_holmes-mrs-hudson-professional",
+      "rel_watson-mrs-hudson-professional"
+    ],
+    "cases": [
+      "case_a-study-in-scarlet",
+      "case_a-scandal-in-bohemia",
+      "case_the-final-problem",
+      "case_the-adventure-of-the-empty-house",
+      "case_the-adventure-of-the-dying-detective"
+    ],
+    "biography": "Mrs. Hudson is the long-suffering landlady of 221B Baker Street and one of the most constant presences in the Holmes canon. She rents the first-floor rooms to Holmes and Watson, endures Holmes's eccentric habits — chemistry experiments at all hours, revolver shots into the wainscoting, the smell of tobacco, and an unrelenting parade of strange visitors — without complaint. She brings up callers, delivers telegrams, and maintains the domestic infrastructure of 221B with quiet competence. Holmes, who rarely expresses sentiment, clearly values her: in The Adventure of the Empty House he uses a wax bust of himself to deceive Moran, and Mrs. Hudson's role in manipulating it shows her willingness to place herself in danger for him. Her first name is given as Martha in His Last Bow.",
+    "tags": [
+      "landlady",
+      "Baker Street",
+      "221B",
+      "housekeeper"
+    ],
+    "created_by": "theloreatlas",
+    "last_edited_by": "theloreatlas"
+  },
+  {
+    "id": "char_mycroft-holmes",
+    "series": "sherlock_holmes",
+    "name": "Mycroft Holmes",
+    "aliases": [
+      "Mycroft"
+    ],
+    "role": "supporting",
+    "status": "active",
+    "first_mention": {
+      "book": 4,
+      "chapter": 9
+    },
+    "full_reveal": {
+      "book": 4,
+      "chapter": 9
+    },
+    "affiliations": [
+      "faction_diogenes-club"
+    ],
+    "relationships": [
+      "rel_holmes-mycroft-family"
+    ],
+    "cases": [
+      "case_the-greek-interpreter",
+      "case_the-adventure-of-the-bruce-partington-plans"
+    ],
+    "biography": "Mycroft Holmes is Sherlock's older brother and, by Holmes's own admission, an even more gifted reasoner. Where Sherlock applies his intellect actively in the field, Mycroft is entirely sedentary — his powers of observation and synthesis are unmatched, but he lacks the energy or inclination to act on his conclusions. He holds a unique and deliberately vague position in the British government: nominally an auditor of departmental accounts, in practice he is the clearing house for all government intelligence, indispensable and irreplaceable. Mycroft is a founding member of the Diogenes Club — a club for men who dislike company — where conversation is forbidden in all rooms but one.",
+    "tags": [
+      "government",
+      "Diogenes Club",
+      "brother",
+      "intelligence",
+      "sedentary"
+    ],
+    "created_by": "theloreatlas",
+    "last_edited_by": "theloreatlas"
+  },
+  {
+    "id": "char_neville-st-clair",
+    "series": "sherlock_holmes",
+    "name": "Neville St. Clair",
+    "aliases": [
+      "Hugh Boone",
+      "The Man with the Twisted Lip"
+    ],
+    "role": "client",
+    "status": "active",
+    "first_mention": {
+      "book": 3,
+      "chapter": 6
+    },
+    "full_reveal": {
+      "book": 3,
+      "chapter": 6
+    },
+    "affiliations": [],
+    "relationships": [
+      "rel_holmes-neville-st-clair-professional"
+    ],
+    "cases": [
+      "case_the-man-with-the-twisted-lip"
+    ],
+    "biography": "Neville St. Clair is a Kent resident whose wife hires Holmes to investigate his disappearance, last seen at the window of the Bar of Gold, an opium den in Upper Swandam Lane. The investigation centres not on St. Clair but on Hugh Boone, a professional beggar of notoriously twisted appearance who frequents the same building. Holmes eventually establishes that St. Clair and Boone are the same person: as a young journalist, St. Clair discovered that begging in disguise earned vastly more than reporting, and he has since lived a double life — a respectable family man in Kent by night, a hideous professional beggar in the City by day. After Holmes confronts him in his cell at the police station and strips away the disguise with a wet sponge, St. Clair agrees to abandon the practice permanently. Holmes arranges for the matter to be quietly dropped, noting no crime was committed. The case is one of the canon's rare non-criminal mysteries.",
+    "tags": [
+      "double life",
+      "beggar",
+      "disguise",
+      "Kent",
+      "journalist"
+    ],
+    "created_by": "theloreatlas",
+    "last_edited_by": "theloreatlas"
+  },
+  {
+    "id": "char_professor-moriarty",
+    "series": "sherlock_holmes",
+    "name": "Professor James Moriarty",
+    "aliases": [
+      "The Napoleon of Crime",
+      "The Professor"
+    ],
+    "role": "antagonist",
+    "status": "deceased",
+    "first_mention": {
+      "book": 4,
+      "chapter": 1
+    },
+    "full_reveal": {
+      "book": 4,
+      "chapter": 10
+    },
+    "affiliations": [
+      "faction_moriarty-criminal-network"
+    ],
+    "relationships": [
+      "rel_holmes-moriarty-enemy",
+      "rel_moriarty-moran-ally"
+    ],
+    "cases": [
+      "case_the-final-problem",
+      "case_the-valley-of-fear",
+      "case_the-adventure-of-the-empty-house"
+    ],
+    "biography": "Professor James Moriarty is Holmes's greatest adversary — a brilliant mathematician turned criminal mastermind. Once a respected academic who wrote a treatise on the Binomial Theorem and held a chair at a small university, Moriarty descended into crime, becoming the organizing intelligence behind a vast criminal network spanning London and beyond. Holmes describes him as 'the Napoleon of Crime' — the spider at the center of a web, touching every major crime without ever dirtying his own hands. Moriarty and Holmes meet their apparent end together at the Reichenbach Falls in 1891, though Colonel Sebastian Moran survives to carry on part of his network.",
+    "tags": [
+      "villain",
+      "mathematician",
+      "criminal mastermind",
+      "Reichenbach Falls",
+      "Napoleon of Crime"
+    ],
+    "created_by": "theloreatlas",
+    "last_edited_by": "theloreatlas"
+  },
+  {
     "id": "char_sherlock-holmes",
     "series": "sherlock_holmes",
     "name": "Sherlock Holmes",
-    "aliases": ["Mr. Holmes", "The Detective", "Sigerson", "Altamont"],
+    "aliases": [
+      "Mr. Holmes",
+      "The Detective",
+      "Sigerson",
+      "Altamont"
+    ],
     "role": "protagonist",
     "status": "active",
-    "first_mention": { "book": 1, "chapter": 1 },
-    "full_reveal": { "book": 1, "chapter": 2 },
-    "affiliations": ["faction_baker-street-irregulars"],
+    "first_mention": {
+      "book": 1,
+      "chapter": 1
+    },
+    "full_reveal": {
+      "book": 1,
+      "chapter": 2
+    },
+    "affiliations": [
+      "faction_baker-street-irregulars"
+    ],
     "relationships": [
       "rel_holmes-watson-ally",
       "rel_holmes-moriarty-enemy",
@@ -30,7 +1003,13 @@
       "rel_holmes-violet-hunter-professional",
       "rel_holmes-godfrey-norton-other",
       "rel_holmes-violet-smith-professional",
-      "rel_holmes-mary-sutherland-professional"
+      "rel_holmes-mary-sutherland-professional",
+      "rel_holmes-wiggins-professional",
+      "rel_holmes-billy-professional",
+      "rel_holmes-shinwell-johnson-professional",
+      "rel_holmes-jabez-wilson-professional",
+      "rel_holmes-neville-st-clair-professional",
+      "rel_holmes-james-ryder-professional"
     ],
     "cases": [
       "case_a-study-in-scarlet",
@@ -95,371 +1074,51 @@
       "case_the-adventure-of-the-retired-colourman"
     ],
     "biography": "Sherlock Holmes is a consulting detective of extraordinary ability, residing at 221B Baker Street, London. He is the world's only consulting detective — a role he invented himself. Holmes applies rigorous logical deduction, deep knowledge of chemistry, anatomy, criminal history, and a vast network of informants to solve cases that baffle Scotland Yard. He is a skilled violinist, occasional user of cocaine (7% solution), and a master of disguise. His methods are as famous as his cases: he observes what others merely see, and deduces what others cannot imagine. He apparently died at the Reichenbach Falls in 1891 during a confrontation with Professor Moriarty, but returned in 1894 having faked his death to elude Moriarty's network. He eventually retired to the Sussex Downs to keep bees.",
-    "tags": ["detective", "consulting detective", "violinist", "chemist", "master of disguise", "Baker Street", "Sussex"],
+    "tags": [
+      "detective",
+      "consulting detective",
+      "violinist",
+      "chemist",
+      "master of disguise",
+      "Baker Street",
+      "Sussex"
+    ],
     "created_by": "theloreatlas",
     "last_edited_by": "theloreatlas"
   },
   {
-    "id": "char_john-watson",
+    "id": "char_shinwell-johnson",
     "series": "sherlock_holmes",
-    "name": "Dr. John H. Watson",
-    "aliases": ["Watson", "Dr. Watson", "James Watson"],
-    "role": "protagonist",
+    "name": "Shinwell Johnson",
+    "aliases": [
+      "Porky Shinwell"
+    ],
+    "role": "supporting",
     "status": "active",
-    "first_mention": { "book": 1, "chapter": 1 },
-    "full_reveal": { "book": 1, "chapter": 1 },
+    "first_mention": {
+      "book": 9,
+      "chapter": 1
+    },
+    "full_reveal": {
+      "book": 9,
+      "chapter": 1
+    },
     "affiliations": [],
     "relationships": [
-      "rel_holmes-watson-ally",
-      "rel_watson-mary-morstan-romantic",
-      "rel_watson-mrs-hudson-professional",
-      "rel_watson-henry-baskerville-professional"
+      "rel_holmes-shinwell-johnson-professional"
     ],
     "cases": [
-      "case_a-study-in-scarlet",
-      "case_the-sign-of-the-four",
-      "case_a-scandal-in-bohemia",
-      "case_the-red-headed-league",
-      "case_a-case-of-identity",
-      "case_the-boscombe-valley-mystery",
-      "case_the-five-orange-pips",
-      "case_the-man-with-the-twisted-lip",
-      "case_the-adventure-of-the-blue-carbuncle",
-      "case_the-adventure-of-the-speckled-band",
-      "case_the-adventure-of-the-engineers-thumb",
-      "case_the-adventure-of-the-noble-bachelor",
-      "case_the-adventure-of-the-beryl-coronet",
-      "case_the-adventure-of-the-copper-beeches",
-      "case_silver-blaze",
-      "case_the-yellow-face",
-      "case_the-stockbrokers-clerk",
-      "case_the-gloria-scott",
-      "case_the-musgrave-ritual",
-      "case_the-reigate-squire",
-      "case_the-crooked-man",
-      "case_the-residents-patient",
-      "case_the-greek-interpreter",
-      "case_the-naval-treaty",
-      "case_the-final-problem",
-      "case_the-hound-of-the-baskervilles",
-      "case_the-adventure-of-the-empty-house",
-      "case_the-adventure-of-the-norwood-builder",
-      "case_the-adventure-of-the-dancing-men",
-      "case_the-adventure-of-the-solitary-cyclist",
-      "case_the-adventure-of-the-priory-school",
-      "case_the-adventure-of-black-peter",
-      "case_the-adventure-of-charles-augustus-milverton",
-      "case_the-adventure-of-the-six-napoleons",
-      "case_the-adventure-of-the-three-students",
-      "case_the-adventure-of-the-golden-pince-nez",
-      "case_the-adventure-of-the-missing-three-quarter",
-      "case_the-adventure-of-the-abbey-grange",
-      "case_the-adventure-of-the-second-stain",
-      "case_the-valley-of-fear",
-      "case_the-adventure-of-wisteria-lodge",
-      "case_the-adventure-of-the-cardboard-box",
-      "case_the-adventure-of-the-red-circle",
-      "case_the-adventure-of-the-bruce-partington-plans",
-      "case_the-adventure-of-the-dying-detective",
-      "case_the-disappearance-of-lady-frances-carfax",
-      "case_the-adventure-of-the-devils-foot",
-      "case_his-last-bow",
       "case_the-adventure-of-the-illustrious-client",
-      "case_the-adventure-of-the-mazarin-stone",
-      "case_the-adventure-of-the-three-gables",
-      "case_the-adventure-of-the-sussex-vampire",
-      "case_the-adventure-of-the-three-garridebs",
-      "case_the-problem-of-thor-bridge",
-      "case_the-adventure-of-the-creeping-man",
-      "case_the-adventure-of-the-veiled-lodger",
-      "case_the-adventure-of-shoscombe-old-place",
       "case_the-adventure-of-the-retired-colourman"
     ],
-    "biography": "Dr. John H. Watson is a retired Army surgeon and the chronicler of Sherlock Holmes's cases. Invalided home from the Second Anglo-Afghan War (wounded at the Battle of Maiwand), Watson meets Holmes through Stamford and moves into 221B Baker Street as his lodger. He serves as Holmes's companion, occasional assistant, and the narrator of nearly all the published accounts. Watson is a man of action, loyalty, and warmth — qualities that complement Holmes's cold rationalism. He later marries Mary Morstan (whom he met during The Sign of the Four), sets up a medical practice, and eventually returns to Baker Street following Mary's death. Watson's admiring but honest narration shapes how the world perceives Holmes.",
-    "tags": ["doctor", "army surgeon", "narrator", "Afghanistan", "Baker Street", "Watson"],
-    "created_by": "theloreatlas",
-    "last_edited_by": "theloreatlas"
-  },
-  {
-    "id": "char_professor-moriarty",
-    "series": "sherlock_holmes",
-    "name": "Professor James Moriarty",
-    "aliases": ["The Napoleon of Crime", "The Professor"],
-    "role": "antagonist",
-    "status": "deceased",
-    "first_mention": { "book": 4, "chapter": 1 },
-    "full_reveal": { "book": 4, "chapter": 10 },
-    "affiliations": ["faction_moriarty-criminal-network"],
-    "relationships": [
-      "rel_holmes-moriarty-enemy",
-      "rel_moriarty-moran-ally"
+    "biography": "Shinwell Johnson, known in the underworld as Porky Shinwell, is a reformed criminal who becomes one of Holmes's most valuable informants in the late canon. Holmes recruited him from the police records — a former gaolbird who discovered that his connections to criminal circles were more profitably deployed working for a detective than against him. He is described as a huge, coarse, red-faced man with a bull neck. In The Adventure of the Illustrious Client, Holmes uses him to gather intelligence on the dangerous Baron Gruner, sending Kitty Winter into Gruner's household via Johnson's network. He also assists in The Adventure of the Retired Colourman. Johnson represents Holmes's pragmatic approach to the criminal world: a man who cannot be reformed away from his associations can still be redirected toward useful ends. Holmes provides him tacit protection in exchange for access to a world Holmes himself cannot enter without detection.",
+    "tags": [
+      "informant",
+      "criminal",
+      "underworld",
+      "reformed",
+      "late canon"
     ],
-    "cases": [
-      "case_the-final-problem",
-      "case_the-valley-of-fear",
-      "case_the-adventure-of-the-empty-house"
-    ],
-    "biography": "Professor James Moriarty is Holmes's greatest adversary — a brilliant mathematician turned criminal mastermind. Once a respected academic who wrote a treatise on the Binomial Theorem and held a chair at a small university, Moriarty descended into crime, becoming the organizing intelligence behind a vast criminal network spanning London and beyond. Holmes describes him as 'the Napoleon of Crime' — the spider at the center of a web, touching every major crime without ever dirtying his own hands. Moriarty and Holmes meet their apparent end together at the Reichenbach Falls in 1891, though Colonel Sebastian Moran survives to carry on part of his network.",
-    "tags": ["villain", "mathematician", "criminal mastermind", "Reichenbach Falls", "Napoleon of Crime"],
-    "created_by": "theloreatlas",
-    "last_edited_by": "theloreatlas"
-  },
-  {
-    "id": "char_irene-adler",
-    "series": "sherlock_holmes",
-    "name": "Irene Adler",
-    "aliases": ["The Woman", "Mrs. Irene Norton"],
-    "role": "supporting",
-    "status": "active",
-    "first_mention": { "book": 3, "chapter": 1 },
-    "full_reveal": { "book": 3, "chapter": 1 },
-    "affiliations": [],
-    "relationships": [
-      "rel_holmes-irene-adler-other",
-      "rel_adler-norton-romantic"
-    ],
-    "cases": ["case_a-scandal-in-bohemia"],
-    "biography": "Irene Adler is an American opera singer and the only woman who ever truly outwitted Sherlock Holmes. Born in New Jersey, she achieved fame as a contralto in opera across Europe. She appears in a single canonical story — A Scandal in Bohemia — in which the King of Bohemia hires Holmes to recover a compromising photograph she holds. Adler outmaneuvers Holmes completely, discerning his disguise and departing England with her husband Godfrey Norton before Holmes can retrieve the photograph. Watson records that Holmes thereafter refers to her simply as 'The Woman' — the one person to have bested him. She appears in no other canonical story.",
-    "tags": ["opera singer", "The Woman", "American", "Bohemia", "photograph"],
-    "created_by": "theloreatlas",
-    "last_edited_by": "theloreatlas"
-  },
-  {
-    "id": "char_inspector-lestrade",
-    "series": "sherlock_holmes",
-    "name": "Inspector G. Lestrade",
-    "aliases": ["Lestrade", "Inspector Lestrade"],
-    "role": "supporting",
-    "status": "active",
-    "first_mention": { "book": 1, "chapter": 3 },
-    "full_reveal": { "book": 1, "chapter": 3 },
-    "affiliations": ["faction_scotland-yard"],
-    "relationships": [
-      "rel_holmes-lestrade-professional",
-      "rel_lestrade-gregson-professional",
-      "rel_lestrade-hopkins-professional"
-    ],
-    "cases": [
-      "case_a-study-in-scarlet",
-      "case_the-adventure-of-the-engineers-thumb",
-      "case_the-valley-of-fear",
-      "case_the-adventure-of-the-empty-house",
-      "case_the-adventure-of-the-norwood-builder",
-      "case_the-adventure-of-the-six-napoleons",
-      "case_the-adventure-of-the-second-stain"
-    ],
-    "biography": "Inspector Lestrade is Scotland Yard's most prominent detective and Holmes's most frequent professional contact within the official police force. Tenacious but conventional, he regularly consults Holmes on difficult cases while privately dismissing his methods. Despite this rivalry, there is grudging mutual respect: Holmes credits Lestrade as the best of the official detectives.",
-    "tags": ["Scotland Yard", "detective", "inspector", "police"],
-    "created_by": "theloreatlas",
-    "last_edited_by": "theloreatlas"
-  },
-  {
-    "id": "char_mycroft-holmes",
-    "series": "sherlock_holmes",
-    "name": "Mycroft Holmes",
-    "aliases": ["Mycroft"],
-    "role": "supporting",
-    "status": "active",
-    "first_mention": { "book": 4, "chapter": 9 },
-    "full_reveal": { "book": 4, "chapter": 9 },
-    "affiliations": ["faction_diogenes-club"],
-    "relationships": ["rel_holmes-mycroft-family"],
-    "cases": [
-      "case_the-greek-interpreter",
-      "case_the-adventure-of-the-bruce-partington-plans"
-    ],
-    "biography": "Mycroft Holmes is Sherlock's older brother and, by Holmes's own admission, an even more gifted reasoner. He holds a unique position in the British government as an intelligence clearing house, and is a founding member of the Diogenes Club — a club for men who dislike company.",
-    "tags": ["government", "Diogenes Club", "brother", "intelligence"],
-    "created_by": "theloreatlas",
-    "last_edited_by": "theloreatlas"
-  },
-  {
-    "id": "char_mrs-hudson",
-    "series": "sherlock_holmes",
-    "name": "Mrs. Hudson",
-    "aliases": ["Martha Hudson", "The Landlady"],
-    "role": "supporting",
-    "status": "active",
-    "first_mention": { "book": 1, "chapter": 2 },
-    "full_reveal": { "book": 1, "chapter": 2 },
-    "affiliations": [],
-    "relationships": [
-      "rel_holmes-mrs-hudson-professional",
-      "rel_watson-mrs-hudson-professional"
-    ],
-    "cases": [
-      "case_a-study-in-scarlet",
-      "case_a-scandal-in-bohemia",
-      "case_the-final-problem",
-      "case_the-adventure-of-the-empty-house",
-      "case_the-adventure-of-the-dying-detective"
-    ],
-    "biography": "Mrs. Hudson is the long-suffering landlady of 221B Baker Street and one of the most constant presences in the Holmes canon. She rents the first-floor rooms to Holmes and Watson, endures Holmes's eccentric habits — chemistry experiments at all hours, revolver shots into the wainscoting, the smell of tobacco, and an unrelenting parade of strange visitors — without complaint. She brings up callers, delivers telegrams, and maintains the domestic infrastructure of 221B with quiet competence. Holmes, who rarely expresses sentiment, clearly values her: in The Adventure of the Empty House he uses a wax bust of himself to deceive Moran, and Mrs. Hudson's role in manipulating it shows her willingness to place herself in danger for him. Her first name is given as Martha in His Last Bow.",
-    "tags": ["landlady", "Baker Street", "221B", "housekeeper"],
-    "created_by": "theloreatlas",
-    "last_edited_by": "theloreatlas"
-  },
-  {
-    "id": "char_colonel-sebastian-moran",
-    "series": "sherlock_holmes",
-    "name": "Colonel Sebastian Moran",
-    "aliases": ["The Tiger of San Pedro", "Moran"],
-    "role": "antagonist",
-    "status": "active",
-    "first_mention": { "book": 6, "chapter": 1 },
-    "full_reveal": { "book": 6, "chapter": 1 },
-    "affiliations": [
-      "faction_moriarty-criminal-network"
-    ],
-    "relationships": [
-      "rel_holmes-moran-enemy",
-      "rel_moriarty-moran-ally"
-    ],
-    "cases": [
-      "case_the-adventure-of-the-empty-house",
-      "case_the-final-problem"
-    ],
-    "biography": "Colonel Sebastian Moran is Moriarty's chief of staff and the most dangerous man in London after the Professor himself. Holmes describes him as the best heavy-game shot in the Indian Empire — a decorated soldier turned hired killer. He served in the Indian Army before his undisclosed crimes forced him into Moriarty's criminal organization, where he became the network's most lethal operative. After Moriarty's death at Reichenbach, Moran continues to hunt Holmes, eventually attempting to kill him from Camden House using an air-gun designed by the blind mechanic Von Herder. Holmes sets a trap using a wax bust as bait, and Moran is arrested. His dossier in Holmes's records notes he is the second most dangerous man in London.",
-    "tags": ["villain", "assassin", "Moriarty network", "shikari", "airgun", "Empty House"],
-    "created_by": "theloreatlas",
-    "last_edited_by": "theloreatlas"
-  },
-  {
-    "id": "char_mary-morstan",
-    "series": "sherlock_holmes",
-    "name": "Mary Morstan",
-    "aliases": ["Mrs. Watson", "Mary Watson"],
-    "role": "supporting",
-    "status": "deceased",
-    "first_mention": { "book": 2, "chapter": 2 },
-    "full_reveal": { "book": 2, "chapter": 2 },
-    "affiliations": [],
-    "relationships": [
-      "rel_watson-mary-morstan-romantic"
-    ],
-    "cases": [
-      "case_the-sign-of-the-four"
-    ],
-    "biography": "Mary Morstan is the client who brings Watson and Holmes the case in The Sign of the Four, and subsequently becomes Watson's wife. She arrives at 221B seeking Holmes's help: her father, Captain Morstan, disappeared years earlier, and she has been receiving annual gifts of pearls from an anonymous sender. She is intelligent, composed under pressure, and strikes Watson immediately as a woman of refinement and courage. The case resolves around the Agra Treasure, which would have made her wealthy — but Jonathan Small throws it into the Thames, leaving her with nothing material. She and Watson marry shortly after. She is mentioned in later stories as deceased, her passing between canons explaining Watson's return to Baker Street.",
-    "tags": ["client", "Watson's wife", "Sign of Four", "Agra Treasure", "pearls"],
-    "created_by": "theloreatlas",
-    "last_edited_by": "theloreatlas"
-  },
-  {
-    "id": "char_inspector-gregson",
-    "series": "sherlock_holmes",
-    "name": "Inspector Tobias Gregson",
-    "aliases": ["Gregson", "Inspector Gregson"],
-    "role": "supporting",
-    "status": "active",
-    "first_mention": { "book": 1, "chapter": 3 },
-    "full_reveal": { "book": 1, "chapter": 3 },
-    "affiliations": [
-      "faction_scotland-yard"
-    ],
-    "relationships": [
-      "rel_holmes-gregson-professional",
-      "rel_lestrade-gregson-professional"
-    ],
-    "cases": [
-      "case_a-study-in-scarlet",
-      "case_the-five-orange-pips",
-      "case_the-adventure-of-wisteria-lodge"
-    ],
-    "biography": "Inspector Tobias Gregson is one of Scotland Yard's ablest detectives and, along with Lestrade, Holmes's most frequent official contact. Holmes considers him and Lestrade the pick of a bad lot — smart within limits, energetic, but chained to conventional procedure. Gregson appears in A Study in Scarlet as the Yard's lead investigator on the Lauriston Gardens murder, where he and Lestrade compete as much with each other as with the case. He is described as tall and flaxen-haired, with a self-satisfied manner that Holmes finds mildly amusing. He recurs in Five Orange Pips and Wisteria Lodge, always following the facts further than the average officer but stopping short of Holmes's leaps of inference.",
-    "tags": ["Scotland Yard", "inspector", "detective", "police", "official force"],
-    "created_by": "theloreatlas",
-    "last_edited_by": "theloreatlas"
-  },
-  {
-    "id": "char_inspector-stanley-hopkins",
-    "series": "sherlock_holmes",
-    "name": "Inspector Stanley Hopkins",
-    "aliases": ["Hopkins", "Inspector Hopkins"],
-    "role": "supporting",
-    "status": "active",
-    "first_mention": { "book": 6, "chapter": 6 },
-    "full_reveal": { "book": 6, "chapter": 6 },
-    "affiliations": [
-      "faction_scotland-yard"
-    ],
-    "relationships": [
-      "rel_holmes-hopkins-mentor",
-      "rel_lestrade-hopkins-professional"
-    ],
-    "cases": [
-      "case_the-adventure-of-black-peter",
-      "case_the-adventure-of-the-golden-pince-nez",
-      "case_the-adventure-of-the-abbey-grange"
-    ],
-    "biography": "Inspector Stanley Hopkins is a young Scotland Yard detective who appears in three Return-era cases and is distinctive for being the one officer Holmes takes a genuine professional interest in. Holmes regards him as possessing real ability and several times suggests he has the makings of a great detective — though Hopkins repeatedly makes the same error of jumping to a conclusion too early and being reluctant to revise it. Holmes acts as an explicit mentor across their cases together, correcting his reasoning and demonstrating the methods Hopkins has not yet mastered. He is energetic, earnest, and not too proud to ask for help, which earns him more warmth from Holmes than most Yarders receive.",
-    "tags": ["Scotland Yard", "inspector", "detective", "police", "Holmes protégé"],
-    "created_by": "theloreatlas",
-    "last_edited_by": "theloreatlas"
-  },
-  {
-    "id": "char_inspector-athelney-jones",
-    "series": "sherlock_holmes",
-    "name": "Inspector Athelney Jones",
-    "aliases": ["Jones", "Inspector Jones"],
-    "role": "supporting",
-    "status": "active",
-    "first_mention": { "book": 2, "chapter": 5 },
-    "full_reveal": { "book": 2, "chapter": 5 },
-    "affiliations": [
-      "faction_scotland-yard"
-    ],
-    "relationships": [
-      "rel_holmes-athelney-jones-professional"
-    ],
-    "cases": [
-      "case_the-sign-of-the-four"
-    ],
-    "biography": "Inspector Athelney Jones is the Scotland Yard detective assigned to the Pondicherry Lodge murder in The Sign of the Four. He arrives at the crime scene with great confidence, immediately theorizing about the case and making an early arrest based on circumstantial evidence — only to find himself wrong. He is not unintelligent but is prone to the same over-hasty conclusions Holmes criticizes in all Yarders. He proves adaptable enough to partner with Holmes on the Thames boat chase that ends the case, showing practical competence even when his deductive theories have been dismantled. He is portrayed with a degree of self-deprecating humor absent from Lestrade and Gregson.",
-    "tags": ["Scotland Yard", "inspector", "detective", "police", "Sign of Four"],
-    "created_by": "theloreatlas",
-    "last_edited_by": "theloreatlas"
-  },
-  {
-    "id": "char_henry-baskerville",
-    "series": "sherlock_holmes",
-    "name": "Sir Henry Baskerville",
-    "aliases": ["Henry Baskerville", "Sir Henry"],
-    "role": "supporting",
-    "status": "active",
-    "first_mention": { "book": 5, "chapter": 3 },
-    "full_reveal": { "book": 5, "chapter": 4 },
-    "affiliations": [],
-    "relationships": [
-      "rel_holmes-henry-baskerville-professional",
-      "rel_watson-henry-baskerville-professional"
-    ],
-    "cases": [
-      "case_the-hound-of-the-baskervilles"
-    ],
-    "biography": "Sir Henry Baskerville is the last surviving heir to the Baskerville estate on Dartmoor, and the client at the center of Holmes's most famous case. A Canadian by upbringing, Henry knows little of the Baskerville legend until Dr. Mortimer brings him to Baker Street after his uncle Sir Charles dies under mysterious circumstances. He is robust, straightforward, and courageous — qualities that make him an appealing client but also a dangerous one to protect, since his stubbornness leads him to walk the moor at night against Holmes's instructions. His arrival in England is immediately marked by strange occurrences: a warning note, a stolen boot, and the sense of being watched. He eventually marries and settles abroad after the case is resolved, the estate's curse finally lifted.",
-    "tags": ["Baskerville", "Dartmoor", "heir", "baronet", "Canada"],
-    "created_by": "theloreatlas",
-    "last_edited_by": "theloreatlas"
-  },
-  {
-    "id": "char_dr-grimesby-roylott",
-    "series": "sherlock_holmes",
-    "name": "Dr. Grimesby Roylott",
-    "aliases": ["Roylott", "Dr. Roylott"],
-    "role": "antagonist",
-    "status": "deceased",
-    "first_mention": { "book": 3, "chapter": 8 },
-    "full_reveal": { "book": 3, "chapter": 8 },
-    "affiliations": [],
-    "relationships": [
-      "rel_holmes-roylott-enemy"
-    ],
-    "cases": [
-      "case_the-adventure-of-the-speckled-band"
-    ],
-    "biography": "Dr. Grimesby Roylott is the villain of The Adventure of the Speckled Band and one of the most physically imposing antagonists in the Holmes canon. A doctor who practiced in Calcutta before a violent history in England forced him to retire to the ancestral estate of Stoke Moran, he keeps exotic animals — a cheetah and a baboon — on the grounds. His stepdaughter Helen Stoner's income passes to him as long as she remains unmarried, providing the motive for the murders Holmes uncovers. Holmes describes him as the most dangerous man he has encountered. Roylott dies by his own method — the swamp adder he trained to kill through a ventilator is driven back onto him by Holmes's cane, and he is struck. He is introduced as the villain by Helen Stoner from the opening of the story; his identity is never in doubt, only his method.",
-    "tags": ["villain", "doctor", "Stoke Moran", "speckled band", "India", "snake"],
     "created_by": "theloreatlas",
     "last_edited_by": "theloreatlas"
   },
@@ -467,11 +1126,21 @@
     "id": "char_stapleton",
     "series": "sherlock_holmes",
     "name": "Jack Stapleton",
-    "aliases": ["Rodger Baskerville", "Mr. Vandeleur", "The Naturalist"],
+    "aliases": [
+      "Rodger Baskerville",
+      "Mr. Vandeleur",
+      "The Naturalist"
+    ],
     "role": "antagonist",
     "status": "deceased",
-    "first_mention": { "book": 5, "chapter": 7 },
-    "full_reveal": { "book": 5, "chapter": 14 },
+    "first_mention": {
+      "book": 5,
+      "chapter": 7
+    },
+    "full_reveal": {
+      "book": 5,
+      "chapter": 14
+    },
     "affiliations": [],
     "relationships": [
       "rel_holmes-stapleton-enemy"
@@ -480,91 +1149,15 @@
       "case_the-hound-of-the-baskervilles"
     ],
     "biography": "Jack Stapleton is the villain of The Hound of the Baskervilles — a naturalist living near Baskerville Hall whose true identity is the central twist of the novel. He presents himself as a genial neighbour and amateur entomologist, deeply knowledgeable about Dartmoor's flora and fauna. In reality he is Rodger Baskerville, a descendant of the family line who has engineered the deaths of Charles Baskerville and now plots to kill Henry in order to inherit the estate. He has trained a large dog — painted with phosphorus to create a hellish appearance — to serve as the legendary Hound. Holmes deduces his identity partly from a family portrait resemblance. When Holmes springs the trap in chapter 14, Stapleton flees into Grimpen Mire and is presumed drowned. The full account of his true identity and methods is laid out in chapter 15.",
-    "tags": ["villain", "naturalist", "Dartmoor", "Grimpen Mire", "Baskerville", "hound", "phosphorus"],
-    "created_by": "theloreatlas",
-    "last_edited_by": "theloreatlas"
-  },
-  {
-    "id": "char_jefferson-hope",
-    "series": "sherlock_holmes",
-    "name": "Jefferson Hope",
-    "aliases": ["The Cabman"],
-    "role": "antagonist",
-    "status": "deceased",
-    "first_mention": { "book": 1, "chapter": 7 },
-    "full_reveal": { "book": 1, "chapter": 13 },
-    "affiliations": [],
-    "relationships": [
-      "rel_holmes-jefferson-hope-enemy"
+    "tags": [
+      "villain",
+      "naturalist",
+      "Dartmoor",
+      "Grimpen Mire",
+      "Baskerville",
+      "hound",
+      "phosphorus"
     ],
-    "cases": [
-      "case_a-study-in-scarlet"
-    ],
-    "biography": "Jefferson Hope is the killer at the heart of A Study in Scarlet and, in many respects, the most sympathetically drawn of Holmes's antagonists. He is captured by Holmes in chapter 7 when he comes to Baker Street disguised as a cab driver to collect a ring — Holmes's trap. Part 2 of the novel reveals his full story: an American frontiersman who loved Lucy Ferrier, who was seized by Mormon elders and forced to marry Enoch Drebber. Lucy died within a month; Hope spent decades pursuing Drebber and his accomplice Stangerson across two continents. By the time he catches them in London, he is dying of an aortic aneurysm. He forces each victim to choose between two pills — one lethal, one harmless — placing the outcome in the hands of Providence. He dies in custody the night before his trial, his aneurysm finally claiming him. Holmes regards him with respect as a man driven by genuine grievance rather than greed.",
-    "tags": ["villain", "frontiersman", "Mormon", "Utah", "avenging", "cab driver", "Study in Scarlet"],
-    "created_by": "theloreatlas",
-    "last_edited_by": "theloreatlas"
-  },
-  {
-    "id": "char_jonathan-small",
-    "series": "sherlock_holmes",
-    "name": "Jonathan Small",
-    "aliases": ["The Wooden-Legged Man"],
-    "role": "antagonist",
-    "status": "active",
-    "first_mention": { "book": 2, "chapter": 6 },
-    "full_reveal": { "book": 2, "chapter": 12 },
-    "affiliations": [],
-    "relationships": [
-      "rel_holmes-jonathan-small-enemy"
-    ],
-    "cases": [
-      "case_the-sign-of-the-four"
-    ],
-    "biography": "Jonathan Small is the antagonist of The Sign of the Four — a one-legged ex-soldier who has spent decades in pursuit of the Agra Treasure he believes is rightfully his. Holmes identifies him from the crime scene at Pondicherry Lodge by the distinctive footprint of a wooden leg. Small's full story emerges in chapter 12 when he is captured after the Thames boat chase: as a young soldier in India he lost his leg to a crocodile, fell in with the wrong company during the Indian Mutiny, and became one of the 'Sign of Four' — a pact between Small and three Sikh soldiers to share the Agra treasure equally. He spent years in the Andaman Islands penal colony while the treasure sat unclaimed. He escaped with Tonga, his Andaman Islander companion, and returned to England to claim what he saw as his. Rather than let the treasure fall to others, he throws it into the Thames. Holmes regards him as a man more wronged than wrong.",
-    "tags": ["villain", "Sign of Four", "Agra Treasure", "wooden leg", "Andaman Islands", "India"],
-    "created_by": "theloreatlas",
-    "last_edited_by": "theloreatlas"
-  },
-  {
-    "id": "char_charles-augustus-milverton",
-    "series": "sherlock_holmes",
-    "name": "Charles Augustus Milverton",
-    "aliases": ["Milverton", "The Worst Man in London"],
-    "role": "antagonist",
-    "status": "deceased",
-    "first_mention": { "book": 6, "chapter": 7 },
-    "full_reveal": { "book": 6, "chapter": 7 },
-    "affiliations": [],
-    "relationships": [
-      "rel_holmes-milverton-enemy"
-    ],
-    "cases": [
-      "case_the-adventure-of-charles-augustus-milverton"
-    ],
-    "biography": "Charles Augustus Milverton is a professional blackmailer whom Holmes describes as the worst man in London — worse, even, than Moriarty. Unlike Moriarty, who commits crimes from ambition, Milverton inflicts misery purely for profit, acquiring compromising letters and photographs and extorting their subjects with cold-blooded efficiency. He presents himself as a genteel man of business, which Holmes finds more revolting than open villainy. Holmes breaks into Milverton's house at Appledore Towers in an attempt to recover a client's letters, only to witness a woman he cannot identify shoot Milverton dead — punishment for letters of hers that he had sold, which destroyed her husband. Holmes refuses to help the police identify the shooter. Milverton's death is one of the rare moments in the canon where Holmes condones an act he could not himself have committed.",
-    "tags": ["villain", "blackmailer", "Appledore Towers", "letters", "Returns"],
-    "created_by": "theloreatlas",
-    "last_edited_by": "theloreatlas"
-  },
-  {
-    "id": "char_helen-stoner",
-    "series": "sherlock_holmes",
-    "name": "Helen Stoner",
-    "aliases": ["Miss Stoner"],
-    "role": "supporting",
-    "status": "active",
-    "first_mention": { "book": 3, "chapter": 8 },
-    "full_reveal": { "book": 3, "chapter": 8 },
-    "affiliations": [],
-    "relationships": [
-      "rel_holmes-helen-stoner-professional"
-    ],
-    "cases": [
-      "case_the-adventure-of-the-speckled-band"
-    ],
-    "biography": "Helen Stoner is the client who brings Holmes the case in The Adventure of the Speckled Band. She arrives at Baker Street at dawn, visibly frightened, having heard the same mysterious whistle and metallic clang that preceded her twin sister Julia's death two years earlier. Julia died on the night before her wedding, uttering the phrase 'the speckled band.' Helen is now engaged herself and has been moved into Julia's old room — the same room where Julia died. She is courageous in seeking help but trapped in Stoke Moran by her stepfather's violence and the isolation of the estate. Holmes solves the case and breaks Roylott's method. Helen is the archetypal Holmes client: a woman in genuine danger, intelligent enough to seek help, and brave enough to follow through.",
-    "tags": ["client", "Speckled Band", "Stoke Moran", "stepdaughter", "twin"],
     "created_by": "theloreatlas",
     "last_edited_by": "theloreatlas"
   },
@@ -572,11 +1165,19 @@
     "id": "char_violet-hunter",
     "series": "sherlock_holmes",
     "name": "Violet Hunter",
-    "aliases": ["Miss Hunter"],
+    "aliases": [
+      "Miss Hunter"
+    ],
     "role": "supporting",
     "status": "active",
-    "first_mention": { "book": 3, "chapter": 12 },
-    "full_reveal": { "book": 3, "chapter": 12 },
+    "first_mention": {
+      "book": 3,
+      "chapter": 12
+    },
+    "full_reveal": {
+      "book": 3,
+      "chapter": 12
+    },
     "affiliations": [],
     "relationships": [
       "rel_holmes-violet-hunter-professional"
@@ -585,29 +1186,13 @@
       "case_the-adventure-of-the-copper-beeches"
     ],
     "biography": "Violet Hunter is the client in The Adventure of the Copper Beeches — a governess who consults Holmes about a peculiar job offer that comes with unusual conditions: she must cut her hair short, wear a particular electric-blue dress, and sit in a specific chair at a certain time of day. The pay is exceptional. Holmes advises against taking it, but she does, and soon writes for help. The truth behind the conditions, the locked wing of the house, and the family's strange behaviour forms the case. Watson notes that Holmes showed genuine interest in Miss Hunter — an unusual attentiveness — though nothing comes of it. She goes on to become headmistress of a private school, one of the few Holmes clients whose subsequent career is noted.",
-    "tags": ["client", "governess", "Copper Beeches", "Hampshire", "hair"],
-    "created_by": "theloreatlas",
-    "last_edited_by": "theloreatlas"
-  },
-  {
-    "id": "char_godfrey-norton",
-    "series": "sherlock_holmes",
-    "name": "Godfrey Norton",
-    "aliases": ["Mr. Norton"],
-    "role": "supporting",
-    "status": "active",
-    "first_mention": { "book": 3, "chapter": 1 },
-    "full_reveal": { "book": 3, "chapter": 1 },
-    "affiliations": [],
-    "relationships": [
-      "rel_adler-norton-romantic",
-      "rel_holmes-godfrey-norton-other"
+    "tags": [
+      "client",
+      "governess",
+      "Copper Beeches",
+      "Hampshire",
+      "hair"
     ],
-    "cases": [
-      "case_a-scandal-in-bohemia"
-    ],
-    "biography": "Godfrey Norton is a barrister and the husband of Irene Adler. He plays a minor but consequential role in A Scandal in Bohemia: Holmes, tailing Adler, observes her in conversation with Norton, follows them to a church, and is pressed into service as a witness to their marriage. Norton is described as dark, sharp-featured, and quick-moving — a man of considerable energy and obvious purpose. He departs for the Continent with Adler immediately after the wedding, rendering Holmes's mission moot. He has no role in any other canonical story but is the reason Irene Adler becomes Mrs. Norton — a detail Holmes notes pointedly in his memoirs.",
-    "tags": ["barrister", "Bohemia", "Irene Adler", "husband"],
     "created_by": "theloreatlas",
     "last_edited_by": "theloreatlas"
   },
@@ -615,11 +1200,20 @@
     "id": "char_violet-smith",
     "series": "sherlock_holmes",
     "name": "Violet Smith",
-    "aliases": ["Miss Smith", "Miss Violet Smith"],
+    "aliases": [
+      "Miss Smith",
+      "Miss Violet Smith"
+    ],
     "role": "supporting",
     "status": "active",
-    "first_mention": { "book": 6, "chapter": 4 },
-    "full_reveal": { "book": 6, "chapter": 4 },
+    "first_mention": {
+      "book": 6,
+      "chapter": 4
+    },
+    "full_reveal": {
+      "book": 6,
+      "chapter": 4
+    },
     "affiliations": [],
     "relationships": [
       "rel_holmes-violet-smith-professional"
@@ -628,28 +1222,52 @@
       "case_the-adventure-of-the-solitary-cyclist"
     ],
     "biography": "Violet Smith is the client in The Adventure of the Solitary Cyclist — a music teacher who has taken a position in Surrey and has begun to notice a mysterious bearded cyclist who follows her every Saturday on her ride to the station. She consults Holmes after the experience becomes unnerving. The case connects to her family's past in South Africa and to men who have designs on her fortune. She is described as a beautiful young woman of considerable spirit, and Watson is visibly taken by her. Holmes handles the case somewhat carelessly — he fails to prevent a forced marriage — but ultimately resolves the situation. She and her fiancé Cyril Morton marry shortly after.",
-    "tags": ["client", "Solitary Cyclist", "Surrey", "cyclist", "music teacher"],
+    "tags": [
+      "client",
+      "Solitary Cyclist",
+      "Surrey",
+      "cyclist",
+      "music teacher"
+    ],
     "created_by": "theloreatlas",
     "last_edited_by": "theloreatlas"
   },
   {
-    "id": "char_mary-sutherland",
+    "id": "char_wiggins",
     "series": "sherlock_holmes",
-    "name": "Mary Sutherland",
-    "aliases": ["Miss Sutherland"],
+    "name": "Wiggins",
+    "aliases": [
+      "The Irregular",
+      "Baker Street Irregular Leader"
+    ],
     "role": "supporting",
     "status": "active",
-    "first_mention": { "book": 3, "chapter": 3 },
-    "full_reveal": { "book": 3, "chapter": 3 },
-    "affiliations": [],
+    "first_mention": {
+      "book": 2,
+      "chapter": 8
+    },
+    "full_reveal": {
+      "book": 2,
+      "chapter": 8
+    },
+    "affiliations": [
+      "faction_baker-street-irregulars"
+    ],
     "relationships": [
-      "rel_holmes-mary-sutherland-professional"
+      "rel_holmes-wiggins-professional",
+      "rel_watson-wiggins-professional"
     ],
     "cases": [
-      "case_a-case-of-identity"
+      "case_the-sign-of-the-four"
     ],
-    "biography": "Mary Sutherland is the client in A Case of Identity — a large, good-natured woman with short sight who consults Holmes about the disappearance of her fiancé, Hosmer Angel, who vanished on the morning of their wedding. She is a typist with a small income and naive trust. Holmes deduces almost immediately that Hosmer Angel is a fiction created by her stepfather Windibank to keep her at home and prevent her from marrying and taking her income with her. Holmes solves the case but, in a departure from his usual practice, chooses not to tell Mary the truth — concluding she would not believe him and would be happier without knowing. The case is a study in Holmes's ambivalence about what solving a case actually owes to a client.",
-    "tags": ["client", "Case of Identity", "typist", "Hosmer Angel", "stepfather"],
+    "biography": "Wiggins is the acknowledged leader of the Baker Street Irregulars, a rotating band of street children Holmes employs as a surveillance and intelligence network. Holmes prizes them because they can go anywhere without attracting attention — they see everything and hear everything, and a child loitering on a street corner draws no suspicion. In The Sign of the Four, Wiggins leads a dozen ragged urchins to 221B, delivers his report to Holmes with considerable self-possession, and collects three shillings a day plus a guinea for actionable intelligence. Watson notes that Wiggins enters the sitting room and stands at ease with the air of someone accustomed to the place. A similar unnamed leader commands the Irregulars in A Study in Scarlet; many readers take him to be the same boy. Wiggins represents Holmes's recognition that a detective's reach depends on people who move through strata he cannot enter without detection.",
+    "tags": [
+      "Baker Street Irregulars",
+      "street arab",
+      "informant",
+      "messenger",
+      "child"
+    ],
     "created_by": "theloreatlas",
     "last_edited_by": "theloreatlas"
   }

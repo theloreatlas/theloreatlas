@@ -9,7 +9,8 @@
   "full_reveal": { "book": 2, "chapter": 2 },
   "affiliations": [],
   "relationships": [
-    "rel_watson-mary-morstan-romantic"
+    "rel_watson-mary-morstan-romantic",
+    "rel_mrs-forrester-mary-morstan-professional"
   ],
   "cases": [
     "case_the-sign-of-the-four"

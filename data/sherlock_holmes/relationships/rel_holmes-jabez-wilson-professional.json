@@ -1,0 +1,13 @@
+{
+  "id": "rel_holmes-jabez-wilson-professional",
+  "series": "sherlock_holmes",
+  "character_a": "char_sherlock-holmes",
+  "character_b": "char_jabez-wilson",
+  "relationship_type": "professional",
+  "first_established": "case_the-red-headed-league",
+  "notes": "Wilson hires Holmes to investigate the sudden dissolution of the Red-Headed League — an organisation that had been paying him four pounds a week to copy the Encyclopædia Britannica. Holmes deduces within moments of hearing the story that the League was a fiction designed to keep Wilson from his shop while John Clay tunneled toward the adjacent bank vault. The case is one-sided: Wilson contributes only his bewildered account; Holmes contributes the solution. They do not appear to interact again after the case is resolved.",
+  "first_mention": { "book": 3, "chapter": 2 },
+  "full_reveal": { "book": 3, "chapter": 2 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

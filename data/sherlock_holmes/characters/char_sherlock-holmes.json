@@ -31,7 +31,13 @@
     "rel_holmes-violet-hunter-professional",
     "rel_holmes-godfrey-norton-other",
     "rel_holmes-violet-smith-professional",
-    "rel_holmes-mary-sutherland-professional"
+    "rel_holmes-mary-sutherland-professional",
+    "rel_holmes-wiggins-professional",
+    "rel_holmes-billy-professional",
+    "rel_holmes-shinwell-johnson-professional",
+    "rel_holmes-jabez-wilson-professional",
+    "rel_holmes-neville-st-clair-professional",
+    "rel_holmes-james-ryder-professional"
   ],
   "cases": [
     "case_a-study-in-scarlet",

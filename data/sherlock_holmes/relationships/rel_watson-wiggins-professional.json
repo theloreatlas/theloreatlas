@@ -1,0 +1,13 @@
+{
+  "id": "rel_watson-wiggins-professional",
+  "series": "sherlock_holmes",
+  "character_a": "char_john-watson",
+  "character_b": "char_wiggins",
+  "relationship_type": "professional",
+  "first_established": "case_the-sign-of-the-four",
+  "notes": "Watson acts as Holmes's intermediary with the Irregulars on occasion, paying Wiggins on Holmes's behalf and recording the Irregulars' activities in his narratives. His descriptions of Wiggins and the other boys are warmly observational — he notes their self-possession, their energy, and the odd dignity with which the ragged troop presents itself at 221B. Watson does not condescend to them; he records them with the same interest he brings to every character in Holmes's orbit.",
+  "first_mention": { "book": 2, "chapter": 8 },
+  "full_reveal": { "book": 2, "chapter": 8 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

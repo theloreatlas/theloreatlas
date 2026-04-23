@@ -12,7 +12,9 @@
     "rel_holmes-watson-ally",
     "rel_watson-mary-morstan-romantic",
     "rel_watson-mrs-hudson-professional",
-    "rel_watson-henry-baskerville-professional"
+    "rel_watson-henry-baskerville-professional",
+    "rel_watson-wiggins-professional",
+    "rel_watson-mrs-forrester-other"
   ],
   "cases": [
     "case_a-study-in-scarlet",

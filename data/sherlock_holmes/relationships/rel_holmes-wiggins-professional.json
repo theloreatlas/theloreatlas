@@ -1,0 +1,13 @@
+{
+  "id": "rel_holmes-wiggins-professional",
+  "series": "sherlock_holmes",
+  "character_a": "char_sherlock-holmes",
+  "character_b": "char_wiggins",
+  "relationship_type": "professional",
+  "first_established": "case_the-sign-of-the-four",
+  "notes": "Holmes employs Wiggins as the leader of the Baker Street Irregulars — a loose network of street children used for surveillance, tracking, and intelligence-gathering. The relationship is efficient and respectful despite the obvious power asymmetry: Holmes pays fairly (three shillings a day plus a guinea for results), gives clear instructions, and treats Wiggins as a capable operative rather than mere hired help. Wiggins, for his part, delivers reports with self-possession and apparent pride in the work. Holmes recognises that the Irregulars can go where he cannot, and values this access accordingly.",
+  "first_mention": { "book": 2, "chapter": 8 },
+  "full_reveal": { "book": 2, "chapter": 8 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

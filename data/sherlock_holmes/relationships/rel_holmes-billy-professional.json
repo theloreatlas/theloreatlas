@@ -1,0 +1,13 @@
+{
+  "id": "rel_holmes-billy-professional",
+  "series": "sherlock_holmes",
+  "character_a": "char_sherlock-holmes",
+  "character_b": "char_billy",
+  "relationship_type": "professional",
+  "first_established": "case_the-valley-of-fear",
+  "notes": "Billy serves Holmes as a live-in page at 221B in the later canon — answering the door, carrying messages, and managing the flow of visitors. Holmes trusts him with the practicalities of the household and Billy takes evident pride in his employer's reputation. The relationship is understated in the text but implies a settled domestic trust: Billy is discreet, efficient, and loyal in the way that the best household staff are, without ever becoming a named figure of emotional significance.",
+  "first_mention": { "book": 7, "chapter": 1 },
+  "full_reveal": { "book": 7, "chapter": 1 },
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

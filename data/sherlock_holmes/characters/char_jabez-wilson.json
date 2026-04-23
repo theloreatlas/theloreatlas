@@ -1,0 +1,21 @@
+{
+  "id": "char_jabez-wilson",
+  "series": "sherlock_holmes",
+  "name": "Jabez Wilson",
+  "aliases": [],
+  "role": "client",
+  "status": "active",
+  "first_mention": { "book": 3, "chapter": 2 },
+  "full_reveal": { "book": 3, "chapter": 2 },
+  "affiliations": [],
+  "relationships": [
+    "rel_holmes-jabez-wilson-professional"
+  ],
+  "cases": [
+    "case_the-red-headed-league"
+  ],
+  "biography": "Jabez Wilson is a stout, slow-moving, red-haired pawnbroker of Coburg Square, City of London, who appears in The Red-Headed League as Holmes's client. He was recruited into the absurd titular organisation — which advertised four pounds a week for any red-headed man willing to copy the Encyclopædia Britannica — solely to keep him out of his own premises each day while his assistant, Vincent Spaulding (in reality the notorious John Clay), tunneled beneath the shop toward the vault of the City and Suburban Bank next door. Wilson is good-natured and easily bewildered, more offended by the wasted time than alarmed by any threat, and he presents the case to Holmes primarily as an inexplicable inconvenience. Holmes solves the scheme in a single morning's investigation and an evening ambush at the bank. The case is among the most elegant illustrations of Holmes's axiom that the more bizarre an event appears, the less mysterious it often proves.",
+  "tags": ["pawnbroker", "red hair", "client", "City of London"],
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

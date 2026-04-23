@@ -1,0 +1,21 @@
+{
+  "id": "char_james-ryder",
+  "series": "sherlock_holmes",
+  "name": "James Ryder",
+  "aliases": [],
+  "role": "supporting",
+  "status": "active",
+  "first_mention": { "book": 3, "chapter": 7 },
+  "full_reveal": { "book": 3, "chapter": 7 },
+  "affiliations": [],
+  "relationships": [
+    "rel_holmes-james-ryder-professional"
+  ],
+  "cases": [
+    "case_the-adventure-of-the-blue-carbuncle"
+  ],
+  "biography": "James Ryder is the upper attendant at the Hotel Cosmopolitan who steals the Countess of Morcar's famous blue carbuncle and plants it on innocent plumber John Horner to divert suspicion. His scheme for transporting the gem undetected — hiding it inside a goose's crop — goes catastrophically wrong when the wrong goose is sold at market, setting off the chain of chance that leads Holmes to the stone. When Ryder is finally confronted at 221B, he collapses in terror and confesses everything. Holmes releases him without prosecution, reasoning that the shock of his narrow escape will reform him more effectively than a prison sentence could, and that the law would only complete the destruction of a weak man rather than save him. Horner, having been arrested on false evidence, is exonerated when Ryder vanishes. The case is among the most frequently cited illustrations of Holmes's personal code of justice, which does not always align with the letter of the law.",
+  "tags": ["thief", "hotel", "blue carbuncle", "goose", "mercy"],
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}
