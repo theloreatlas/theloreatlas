@@ -5,7 +5,7 @@
   "aliases": ["Martha Hudson", "The Landlady"],
   "role": "supporting",
   "status": "active",
-  "first_mention": { "book": 1, "chapter": 2 },
+  "first_mention": { "book": 3, "chapter": 1 },
   "full_reveal": { "book": 1, "chapter": 2 },
   "affiliations": [],
   "relationships": [

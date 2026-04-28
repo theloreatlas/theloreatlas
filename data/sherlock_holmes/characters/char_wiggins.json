@@ -5,7 +5,7 @@
   "aliases": ["The Irregular", "Baker Street Irregular Leader"],
   "role": "supporting",
   "status": "active",
-  "first_mention": { "book": 2, "chapter": 8 },
+  "first_mention": { "book": 1, "chapter": 6 },
   "full_reveal": { "book": 2, "chapter": 8 },
   "affiliations": ["faction_baker-street-irregulars"],
   "relationships": [

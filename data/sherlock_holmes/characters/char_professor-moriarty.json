@@ -5,8 +5,8 @@
   "aliases": ["The Napoleon of Crime", "The Professor"],
   "role": "antagonist",
   "status": "deceased",
-  "first_mention": { "book": 4, "chapter": 1 },
-  "full_reveal": { "book": 4, "chapter": 10 },
+  "first_mention": { "book": 4, "chapter": 11 },
+  "full_reveal": { "book": 4, "chapter": 11 },
   "affiliations": [
     "faction_moriarty-criminal-network"
   ],

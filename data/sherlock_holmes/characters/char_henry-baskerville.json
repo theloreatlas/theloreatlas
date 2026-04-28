@@ -5,7 +5,7 @@
   "aliases": ["Henry Baskerville", "Sir Henry"],
   "role": "supporting",
   "status": "active",
-  "first_mention": { "book": 5, "chapter": 3 },
+  "first_mention": { "book": 5, "chapter": 4 },
   "full_reveal": { "book": 5, "chapter": 4 },
   "affiliations": [],
   "relationships": [
