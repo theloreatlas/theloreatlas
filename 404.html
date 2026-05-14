@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Lore Atlas</title>
+  <meta name="robots" content="noindex">
+  <script>
+    // SPA 404 handler for GitHub Pages.
+    // GitHub Pages serves this file for any path that doesn't match a real file.
+    // We capture the requested path, stash it in sessionStorage, and bounce to
+    // root. index.html's spa-redirect.js then reads it and history.replaceState's
+    // the URL bar back to the original path before any app code runs.
+    //
+    // The user perceives a single load that lands on the right page.
+    // Two HTTP requests instead of one — only on cold loads of deep URLs.
+    (function () {
+      var path = window.location.pathname + window.location.search + window.location.hash;
+      sessionStorage.setItem('spa_redirect', path);
+      window.location.replace('/');
+    })();
+  </script>
+</head>
+<body>
+  <noscript>
+    <p>This site requires JavaScript. Please return to <a href="/">the home page</a>.</p>
+  </noscript>
+</body>
+</html>

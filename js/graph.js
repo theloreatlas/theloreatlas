@@ -169,7 +169,7 @@ const LoreGraph = (() => {
       .on('mousemove', moveTooltip)
       .on('mouseleave', hideTooltip)
       .on('click', (event, d) => {
-        window.location.hash = `#/${encodeURIComponent(seriesId)}/characters/${encodeURIComponent(d.id)}`;
+        navigate(entityPath(seriesId, 'characters', d.id));
       });
 
     link

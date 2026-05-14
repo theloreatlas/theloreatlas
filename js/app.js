@@ -31,14 +31,107 @@ function esc(s) {
 
 // ── Routing ──────────────────────────────────────────────────────────────────
 
+// Entity type → ID prefix. Used to round-trip clean URL slugs back into
+// prefixed entity IDs at lookup time.
+const ENTITY_TYPE_TO_PREFIX = {
+  characters:    'char',
+  cases:         'case',
+  factions:      'faction',
+  books:         'book',
+  locations:     'loc',
+  artifacts:     'artifact',
+  events:        'event',
+  relationships: 'rel',
+};
+
+const KNOWN_PREFIXES = /^(char|case|faction|book|loc|artifact|event|rel)_/;
+
+// 'char_sherlock-holmes' → 'sherlock-holmes'
+function entityIdToUrlSlug(id) {
+  const idx = id.indexOf('_');
+  return idx === -1 ? id : id.substring(idx + 1);
+}
+
+// 'sherlock-holmes' (under entityType 'characters') → 'char_sherlock-holmes'
+// Backwards-compat: if slug already has a known prefix, pass through unchanged.
+function urlSlugToEntityId(entityType, slug) {
+  if (KNOWN_PREFIXES.test(slug)) return slug;
+  const prefix = ENTITY_TYPE_TO_PREFIX[entityType];
+  return prefix ? `${prefix}_${slug}` : null;
+}
+
+// URL builders — use these everywhere instead of string-templating paths.
+function entityPath(seriesId, entityType, id) {
+  return `/${encodeURIComponent(seriesId)}/${encodeURIComponent(entityType)}/${encodeURIComponent(entityIdToUrlSlug(id))}`;
+}
+function entityListPath(seriesId, entityType) {
+  return `/${encodeURIComponent(seriesId)}/${encodeURIComponent(entityType)}`;
+}
+function graphPath(seriesId) {
+  return `/${encodeURIComponent(seriesId)}/graph`;
+}
+function searchPath(query) {
+  return query ? `/search?q=${encodeURIComponent(query)}` : '/search';
+}
+
 function parseRoute() {
-  const hash = window.location.hash.replace(/^#\/?/, '');
-  const parts = hash.split('/').filter(Boolean);
-  return parts;
+  const path = window.location.pathname.replace(/^\/+/, '').replace(/\/+$/, '');
+  return path ? path.split('/').map(decodeURIComponent) : [];
 }
 
 function navigate(path) {
-  window.location.hash = '/' + path;
+  const current = window.location.pathname + window.location.search;
+  if (path === current) return;
+  history.pushState(null, '', path);
+  onRouteChange();
+}
+
+// Convert any pre-existing #/... URL to the new path shape and replaceState.
+// Runs once on DOMContentLoaded, before route dispatch.
+function maybeRedirectLegacyHash() {
+  const hash = window.location.hash;
+  if (!hash || hash === '#' || !hash.startsWith('#/')) return;
+
+  const stripped = hash.substring(2); // strip '#/'
+  const [pathPart, queryPart] = stripped.split('?');
+  const parts = pathPart.split('/').filter(Boolean);
+
+  // Entity-detail URLs (3 segments): strip the entity ID prefix.
+  if (parts.length === 3) {
+    parts[2] = entityIdToUrlSlug(parts[2]);
+  }
+
+  const newPath = parts.length ? '/' + parts.join('/') : '/';
+  const newUrl = queryPart ? newPath + '?' + queryPart : newPath;
+  history.replaceState(null, '', newUrl);
+}
+
+// Intercept clicks on internal <a href="/..."> links and route via pushState.
+// Honors modifier keys, target="_blank", and an opt-out via data-external.
+function setupLinkInterception() {
+  document.addEventListener('click', function (e) {
+    if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    const a = e.target.closest('a');
+    if (!a) return;
+    const href = a.getAttribute('href');
+    if (!href || !href.startsWith('/')) return;
+    if (a.target && a.target !== '_self') return;
+    if (a.dataset.external !== undefined) return;
+    e.preventDefault();
+    navigate(href);
+  });
+}
+
+// Set <link rel="canonical"> based on current path. Excludes query strings
+// (so /search?q=watson canonicalizes to /search, not to itself).
+function setCanonical() {
+  let link = document.querySelector('link[rel="canonical"]');
+  if (!link) {
+    link = document.createElement('link');
+    link.setAttribute('rel', 'canonical');
+    document.head.appendChild(link);
+  }
+  link.setAttribute('href', 'https://theloreatlas.com' + window.location.pathname);
 }
 
 async function onRouteChange() {
@@ -46,7 +139,6 @@ async function onRouteChange() {
   const content = document.getElementById('main-content');
   if (!content) return;
 
-  // Show loading state
   content.innerHTML = '<p class="state-loading">Loading…</p>';
   content.classList.remove('page-enter');
 
@@ -60,30 +152,53 @@ async function onRouteChange() {
 
   initReaderPositionPicker();
   updateNavActive(parts);
+  setCanonical();
 
   // Route dispatch
   if (parts.length === 0) {
+    setMetaTags(parts, null, null, '', false);
     renderHome(content);
   } else if (parts.length === 1 && parts[0] === 'series') {
+    setMetaTags(parts, null, null, '', false);
     renderHome(content);
-  } else if (parts.length >= 1 && parts[0].split('?')[0] === 'search') {
+  } else if (parts.length >= 1 && parts[0] === 'search') {
+    setMetaTags(parts, null, null, '', false);
     renderSearch(content);
+  } else if (parts.length === 1) {
+    const series = LoreLoader.getSeriesById(parts[0]);
+    const seriesName = series ? series.name : '';
+    setMetaTags(parts, null, null, seriesName, !series);
+    renderHome(content);
   } else if (parts.length === 2) {
     const [seriesId, entityType] = parts;
+    const series = LoreLoader.getSeriesById(seriesId);
+    const seriesName = series ? series.name : '';
     if (entityType === 'graph') {
+      setMetaTags(parts, null, null, seriesName, false);
       renderGraph(content, seriesId);
     } else {
+      setMetaTags(parts, null, entityType, seriesName, false);
       renderEntityList(content, seriesId, entityType);
     }
   } else if (parts.length === 3) {
-    // Entity detail — Session 5
-    renderEntityDetail(content, parts[0], parts[1], parts[2]);
+    const [seriesId, entityType, slug] = parts;
+    const id = urlSlugToEntityId(entityType, slug);
+    const entity = LoreLoader.getById(id);
+    const series = LoreLoader.getSeriesById(seriesId);
+    const seriesName = series ? series.name : '';
+    if (!entity) {
+      setMetaTags(parts, null, entityType, seriesName, true);
+      renderNotFound(content);
+    } else {
+      setMetaTags(parts, entity, entityType, seriesName, false);
+      renderEntityDetail(content, seriesId, entityType, id);
+    }
   } else {
+    setMetaTags(parts, null, null, '', true);
     renderNotFound(content);
   }
 
-  // Trigger entrance animation after render
-  void content.offsetWidth; // force reflow
+  void content.offsetWidth; // force reflow for entrance animation
   content.classList.add('page-enter');
 }
 
@@ -92,7 +207,7 @@ async function onRouteChange() {
 function updateNavActive(parts) {
   document.querySelectorAll('#site-nav a').forEach(a => a.classList.remove('active'));
   if (parts.length === 0) {
-    const homeLink = document.querySelector('#site-nav a[href="#/"]');
+    const homeLink = document.querySelector('#site-nav a[href="/"]');
     if (homeLink) homeLink.classList.add('active');
   }
 }
@@ -121,7 +236,7 @@ function renderHome(container) {
       const entities = LoreLoader.getAll(s.id, et.key);
       if (entities.length === 0) continue;
       html += `
-        <a class="entity-type-card" href="#/${encodeURIComponent(s.id)}/${encodeURIComponent(et.key)}">
+        <a class="entity-type-card" href="${entityListPath(s.id, et.key)}">
           <div class="card-label">Browse</div>
           <div class="card-title">${et.label}</div>
           <div class="card-count">${entities.length} ${entities.length === 1 ? et.singular : et.label}</div>
@@ -153,7 +268,7 @@ function renderEntityList(container, seriesId, entityType) {
   let html = `
     <div class="page-header">
       <div class="breadcrumb">
-        <a href="#/">Home</a> &rsaquo; <span class="series-label">${esc(series.name)}</span> &rsaquo; ${etConfig.label}
+        <a href="/">Home</a> &rsaquo; <span class="series-label">${esc(series.name)}</span> &rsaquo; ${etConfig.label}
       </div>
       <h1>${etConfig.label}</h1>
     </div>
@@ -180,7 +295,7 @@ function renderEntityList(container, seriesId, entityType) {
 }
 
 function renderEntityListItem(entity, entityType, seriesId, status) {
-  const href = `#/${encodeURIComponent(seriesId)}/${encodeURIComponent(entityType)}/${encodeURIComponent(entity.id)}`;
+  const href = entityPath(seriesId, entityType, entity.id);
   const name = getEntityName(entity, entityType);
   const meta = getEntityMeta(entity, entityType);
   const badge = getEntityBadge(entity, entityType);
@@ -219,7 +334,7 @@ function entityLink(id) {
   const name = getEntityName(entity, guessEntityType(id));
   const type = guessEntityType(id);
   const displayName = typeof name === 'string' ? name : id;
-  return `<a href="#/${encodeURIComponent(seriesId)}/${encodeURIComponent(type)}/${encodeURIComponent(id)}">${esc(displayName)}</a>`;
+  return `<a href="${entityPath(seriesId, type, id)}">${esc(displayName)}</a>`;
 }
 
 function formatSpoiler(threshold) {
@@ -258,8 +373,8 @@ function renderEntityDetail(container, seriesId, entityType, id) {
     container.innerHTML = `
       <div class="page-header">
         <div class="breadcrumb">
-          <a href="#/">Home</a> &rsaquo;
-          <a href="#/${encodeURIComponent(seriesId)}/${encodeURIComponent(entityType)}">${etConfig ? etConfig.label : esc(entityType)}</a>
+          <a href="/">Home</a> &rsaquo;
+          <a href="${entityListPath(seriesId, entityType)}">${etConfig ? etConfig.label : esc(entityType)}</a>
         </div>
         <h1>Entry not yet reached</h1>
       </div>
@@ -276,8 +391,8 @@ function renderEntityDetail(container, seriesId, entityType, id) {
   const breadcrumb = `
     <div class="page-header">
       <div class="breadcrumb">
-        <a href="#/">Home</a> &rsaquo;
-        <a href="#/${encodeURIComponent(seriesId)}/${encodeURIComponent(entityType)}">${etConfig ? etConfig.label : esc(entityType)}</a> &rsaquo;
+        <a href="/">Home</a> &rsaquo;
+        <a href="${entityListPath(seriesId, entityType)}">${etConfig ? etConfig.label : esc(entityType)}</a> &rsaquo;
         ${esc(getEntityName(entity, entityType))}
       </div>
       <h1>${esc(getEntityName(entity, entityType))}</h1>
@@ -506,7 +621,7 @@ function renderGraph(container, seriesId) {
   container.innerHTML = `
     <div class="page-header">
       <div class="breadcrumb">
-        <a href="#/">Home</a> &rsaquo;
+        <a href="/">Home</a> &rsaquo;
         <span class="series-label">${esc(series.name)}</span> &rsaquo;
         Relationship Graph
       </div>
@@ -524,17 +639,15 @@ function renderGraph(container, seriesId) {
 function renderNotFound(container) {
   container.innerHTML = `
     <div class="page-header"><h1>Page not found</h1></div>
-    <p><a href="#/">← Back to home</a></p>
+    <p><a href="/">← Back to home</a></p>
   `;
 }
 
 // ── Search ────────────────────────────────────────────────────────────────────
 
 function getSearchQuery() {
-  const hash = window.location.hash;
-  const qIndex = hash.indexOf('?q=');
-  if (qIndex === -1) return '';
-  return decodeURIComponent(hash.substring(qIndex + 3));
+  const params = new URLSearchParams(window.location.search);
+  return params.get('q') || '';
 }
 
 function renderSearch(container) {
@@ -560,9 +673,10 @@ function renderSearch(container) {
     clearTimeout(debounceTimer);
     debounceTimer = setTimeout(() => {
       const q = input.value.trim();
-      const newHash = q ? '#/search?q=' + encodeURIComponent(q) : '#/search';
-      if (window.location.hash !== newHash) {
-        history.replaceState(null, '', newHash);
+      const newPath = searchPath(q);
+      const current = window.location.pathname + window.location.search;
+      if (current !== newPath) {
+        history.replaceState(null, '', newPath);
       }
       renderSearchResults(q);
     }, 250);
@@ -848,12 +962,194 @@ function rpUpdateStatus(pos, books, statusEl) {
   statusEl.textContent = `Gating: ${title}, Ch. ${pos.chapter}`;
 }
 
+// ── Meta tags ────────────────────────────────────────────────────────────────
+
+function truncateForMeta(text, max = 155) {
+  if (!text) return '';
+  const cleaned = String(text).replace(/\s+/g, ' ').trim();
+  if (cleaned.length <= max) return cleaned;
+  const slice = cleaned.substring(0, max);
+  const lastSpace = slice.lastIndexOf(' ');
+  return slice.substring(0, lastSpace > 0 ? lastSpace : max).trim() + '…';
+}
+
+function firstSentencesForMeta(text, maxChars = 155) {
+  if (!text) return '';
+  const sentences = text.match(/[^.!?]+[.!?]+(?=\s|$)/g);
+  if (!sentences || sentences.length === 0) return truncateForMeta(text, maxChars);
+  let out = '';
+  for (const s of sentences) {
+    if ((out + s).length > maxChars) break;
+    out += s + ' ';
+  }
+  out = out.trim();
+  return out || truncateForMeta(sentences[0], maxChars);
+}
+
+function setMetaTag(nameOrProperty, content) {
+  const isOg = nameOrProperty.startsWith('og:');
+  const attr = isOg ? 'property' : 'name';
+  let tag = document.querySelector(`meta[${attr}="${nameOrProperty}"]`);
+  if (!tag) {
+    tag = document.createElement('meta');
+    tag.setAttribute(attr, nameOrProperty);
+    document.head.appendChild(tag);
+  }
+  tag.setAttribute('content', content);
+}
+
+function removeMetaTag(nameOrProperty) {
+  const isOg = nameOrProperty.startsWith('og:');
+  const attr = isOg ? 'property' : 'name';
+  const tag = document.querySelector(`meta[${attr}="${nameOrProperty}"]`);
+  if (tag) tag.remove();
+}
+
+function buildEntityMeta(entity, entityType, seriesName) {
+  const SITE = 'The Lore Atlas';
+  let title, description, ogType = 'article';
+
+  switch (entityType) {
+    case 'characters': {
+      title = `${entity.name} | ${seriesName} | ${SITE}`;
+      description = entity.biography
+        ? firstSentencesForMeta(entity.biography)
+        : `${entity.role || 'Character'} in ${seriesName}.`;
+      break;
+    }
+    case 'cases': {
+      title = `${entity.title} | ${seriesName} | ${SITE}`;
+      description = firstSentencesForMeta(entity.synopsis);
+      break;
+    }
+    case 'books': {
+      title = `${entity.title} | ${seriesName} | ${SITE}`;
+      ogType = 'book';
+      const base = firstSentencesForMeta(entity.description, 130);
+      const yearTag = entity.publication_year ? ` Published ${entity.publication_year}.` : '';
+      description = (base + yearTag).length <= 160 ? base + yearTag : truncateForMeta(base);
+      break;
+    }
+    case 'locations': {
+      title = `${entity.name} | ${seriesName} | ${SITE}`;
+      description = firstSentencesForMeta(entity.description);
+      break;
+    }
+    case 'artifacts': {
+      title = `${entity.name} | ${seriesName} | ${SITE}`;
+      const base = firstSentencesForMeta(entity.description, 130);
+      const sig = entity.significance ? ' ' + firstSentencesForMeta(entity.significance, 160 - base.length - 1) : '';
+      description = base + sig;
+      break;
+    }
+    case 'factions': {
+      title = `${entity.name} | ${seriesName} | ${SITE}`;
+      description = firstSentencesForMeta(entity.description);
+      break;
+    }
+    case 'events': {
+      const baseTitle = `${entity.name} | ${seriesName}`;
+      title = baseTitle.length > 50 ? baseTitle : `${baseTitle} | ${SITE}`;
+      const datePart = entity.date_or_position ? `${entity.date_or_position}. ` : '';
+      description = truncateForMeta(datePart + firstSentencesForMeta(entity.description, 155 - datePart.length));
+      break;
+    }
+    case 'relationships': {
+      const a = LoreLoader.getById(entity.character_a);
+      const b = LoreLoader.getById(entity.character_b);
+      const aName = a ? a.name : entity.character_a;
+      const bName = b ? b.name : entity.character_b;
+      title = `${aName} and ${bName} | ${SITE}`;
+      if (entity.notes) {
+        description = firstSentencesForMeta(entity.notes);
+      } else {
+        const caseEntity = entity.first_established ? LoreLoader.getById(entity.first_established) : null;
+        const caseTitle = caseEntity ? caseEntity.title : entity.first_established;
+        description = `${entity.relationship_type} between ${aName} and ${bName} in ${seriesName}.${caseTitle ? ` First established in "${caseTitle}".` : ''}`;
+      }
+      break;
+    }
+    default: {
+      title = `${entity.name || entity.title || ''} | ${seriesName} | ${SITE}`;
+      description = firstSentencesForMeta(entity.description || entity.biography || '');
+    }
+  }
+
+  return { title, description, ogType };
+}
+
+function setMetaTags(parts, entity, entityType, seriesName, notFound) {
+  const SITE = 'The Lore Atlas';
+  const SITE_URL = 'https://theloreatlas.com';
+  const fullUrl = SITE_URL + window.location.pathname;
+
+  setMetaTag('og:site_name', SITE);
+  setMetaTag('og:url', fullUrl);
+  setMetaTag('twitter:card', 'summary');
+
+  // Always remove robots tag first; re-add only on noindex routes.
+  removeMetaTag('robots');
+
+  let title, description, ogType;
+
+  if (notFound) {
+    title = `Page not found | ${SITE}`;
+    description = `The page you're looking for doesn't exist on The Lore Atlas.`;
+    ogType = 'website';
+    setMetaTag('robots', 'noindex');
+  } else if (parts.length === 0 || (parts.length === 1 && parts[0] === 'series')) {
+    title = `${SITE} | Public Domain Literary Encyclopedia`;
+    const staticDesc = document.querySelector('meta[name="description"]');
+    description = staticDesc ? staticDesc.getAttribute('content') : '';
+    ogType = 'website';
+  } else if (parts[0] === 'search') {
+    title = `Search | ${SITE}`;
+    description = `Search characters, cases, locations, and more across The Lore Atlas's public domain literary encyclopedias.`;
+    ogType = 'website';
+    setMetaTag('robots', 'noindex');
+  } else if (parts.length === 1) {
+    title = `${seriesName} | ${SITE}`;
+    const series = LoreLoader.getSeriesById(parts[0]);
+    description = series ? truncateForMeta(series.description) : '';
+    ogType = 'website';
+  } else if (parts.length === 2 && parts[1] === 'graph') {
+    title = `${seriesName} Relationship Graph | ${SITE}`;
+    description = `Interactive force-directed graph of all character relationships in ${seriesName}. Hover for details, click to navigate.`;
+    ogType = 'website';
+  } else if (parts.length === 2) {
+    const etConfig = ENTITY_TYPES.find(e => e.key === parts[1]);
+    const count = LoreLoader.getAll(parts[0], parts[1]).length;
+    title = `${etConfig ? etConfig.label : parts[1]} | ${seriesName} | ${SITE}`;
+    description = `Browse all ${count} ${etConfig ? etConfig.label.toLowerCase() : parts[1]} in the ${seriesName} encyclopedia. Each entry links to relationships, cases, and source texts.`;
+    ogType = 'website';
+  } else if (parts.length === 3 && entity) {
+    const built = buildEntityMeta(entity, entityType, seriesName);
+    title = built.title;
+    description = built.description;
+    ogType = built.ogType;
+  } else {
+    title = `${SITE} | Public Domain Literary Encyclopedia`;
+    description = '';
+    ogType = 'website';
+  }
+
+  // Enforce hard length cap on title.
+  if (title && title.length > 70) {
+    title = title.substring(0, 67).trimEnd() + '…';
+  }
+
+  document.title = title || SITE;
+  setMetaTag('description', description || '');
+  setMetaTag('og:title', title || SITE);
+  setMetaTag('og:description', description || '');
+  setMetaTag('og:type', ogType || 'website');
+}
+
 // ── Init ─────────────────────────────────────────────────────────────────────
 
-window.addEventListener('hashchange', onRouteChange);
+window.addEventListener('popstate', onRouteChange);
 window.addEventListener('DOMContentLoaded', () => {
-  if (!window.location.hash || window.location.hash === '#') {
-    window.location.hash = '#/';
-  }
+  maybeRedirectLegacyHash();
+  setupLinkInterception();
   onRouteChange();
 });
