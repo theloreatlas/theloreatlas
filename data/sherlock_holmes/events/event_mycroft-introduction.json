@@ -1,0 +1,21 @@
+{
+  "id": "event_mycroft-introduction",
+  "series": "sherlock_holmes",
+  "name": "Watson Meets Mycroft Holmes",
+  "date_or_position": "Summer 1888",
+  "characters_involved": [
+    "char_sherlock-holmes",
+    "char_mycroft-holmes",
+    "char_john-watson"
+  ],
+  "cases_linked": [
+    "case_the-greek-interpreter"
+  ],
+  "location": "loc_diogenes-club",
+  "event_type": "canonical",
+  "first_mention": { "book": 4, "chapter": 9 },
+  "full_reveal": { "book": 4, "chapter": 9 },
+  "description": "In The Greek Interpreter, Holmes casually mentions his elder brother Mycroft for the first time. Watson, after seven years' acquaintance, has assumed Holmes had no living relatives. Holmes takes Watson to the Diogenes Club — the strangest club in London, whose members are forbidden to converse — and introduces him to Mycroft. Mycroft demonstrates deductive faculties superior to Sherlock's (according to Sherlock himself), explaining that he lacks the energy and ambition to apply them to detective work, instead serving the British Government in a capacity Watson does not fully understand until much later. Mycroft becomes a recurring figure in subsequent stories.",
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

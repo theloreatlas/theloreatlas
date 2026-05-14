@@ -1,0 +1,21 @@
+{
+  "id": "event_moran-capture",
+  "series": "sherlock_holmes",
+  "name": "The Capture of Colonel Sebastian Moran",
+  "date_or_position": "April 1894",
+  "characters_involved": [
+    "char_sherlock-holmes",
+    "char_john-watson",
+    "char_colonel-sebastian-moran"
+  ],
+  "cases_linked": [
+    "case_the-adventure-of-the-empty-house"
+  ],
+  "location": "loc_camden-house",
+  "event_type": "canonical",
+  "first_mention": { "book": 6, "chapter": 1 },
+  "full_reveal": { "book": 6, "chapter": 1 },
+  "description": "On the night of his return to London, Holmes enacts a long-planned trap. He places a wax bust of himself in the lit window of 221B Baker Street, visible from the street, then conceals himself with Watson in the empty Camden House across the way. Colonel Moran — the second most dangerous man in London, the executor of Moriarty's surviving organisation, and the assassin Holmes has been hunting since the Hiatus — takes the bait. He fires a soft revolver bullet from a specially modified von Herder air gun through the window into the bust. Holmes and Lestrade arrest him on the spot. Moran's capture closes the Moriarty business and makes London safe for Holmes's return.",
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

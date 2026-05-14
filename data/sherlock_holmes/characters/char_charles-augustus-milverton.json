@@ -16,6 +16,9 @@
   ],
   "biography": "Charles Augustus Milverton is a professional blackmailer whom Holmes describes as the worst man in London — worse, even, than Moriarty. Unlike Moriarty, who commits crimes from ambition, Milverton inflicts misery purely for profit, acquiring compromising letters and photographs and extorting their subjects with cold-blooded efficiency. He presents himself as a genteel man of business, which Holmes finds more revolting than open villainy. Holmes breaks into Milverton's house at Appledore Towers in an attempt to recover a client's letters, only to witness a woman he cannot identify shoot Milverton dead — punishment for letters of hers that he had sold, which destroyed her husband. Holmes refuses to help the police identify the shooter. Milverton's death is one of the rare moments in the canon where Holmes condones an act he could not himself have committed.",
   "tags": ["villain", "blackmailer", "Appledore Towers", "letters", "Returns"],
+  "events": [
+    "event_milverton-death"
+  ],
   "created_by": "theloreatlas",
   "last_edited_by": "theloreatlas"
 }

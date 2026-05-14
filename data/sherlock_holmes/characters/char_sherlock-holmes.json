@@ -103,6 +103,18 @@
   ],
   "biography": "Sherlock Holmes is a consulting detective of extraordinary ability, residing at 221B Baker Street, London. He is the world's only consulting detective — a role he invented himself. Holmes applies rigorous logical deduction, deep knowledge of chemistry, anatomy, criminal history, and a vast network of informants to solve cases that baffle Scotland Yard. He is a skilled violinist, occasional user of cocaine (7% solution), and a master of disguise. His methods are as famous as his cases: he observes what others merely see, and deduces what others cannot imagine. He apparently died at the Reichenbach Falls in 1891 during a confrontation with Professor Moriarty, but returned in 1894 having faked his death to elude Moriarty's network. He eventually retired to the Sussex Downs to keep bees.",
   "tags": ["detective", "consulting detective", "violinist", "chemist", "master of disguise", "Baker Street", "Sussex"],
+  "events": [
+    "event_holmes-watson-first-meeting",
+    "event_holmes-defeat-by-adler",
+    "event_mycroft-introduction",
+    "event_reichenbach-falls-confrontation",
+    "event_great-hiatus",
+    "event_holmes-return-to-london",
+    "event_moran-capture",
+    "event_milverton-death",
+    "event_holmes-sussex-retirement",
+    "event_holmes-wwi-service"
+  ],
   "created_by": "theloreatlas",
   "last_edited_by": "theloreatlas"
 }

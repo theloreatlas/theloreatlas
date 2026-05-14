@@ -1,0 +1,19 @@
+{
+  "id": "event_watson-afghan-injury",
+  "series": "sherlock_holmes",
+  "name": "Watson's Afghan War Injury",
+  "date_or_position": "27 July 1880 (Battle of Maiwand)",
+  "characters_involved": [
+    "char_john-watson"
+  ],
+  "cases_linked": [
+    "case_a-study-in-scarlet"
+  ],
+  "location": null,
+  "event_type": "canonical",
+  "first_mention": { "book": 1, "chapter": 1 },
+  "full_reveal": { "book": 1, "chapter": 1 },
+  "description": "At the Battle of Maiwand during the Second Anglo-Afghan War, Watson — serving as an assistant surgeon attached to the Berkshires — is struck by a Jezail bullet. The wound's location is described inconsistently across the canon (shoulder in A Study in Scarlet, leg in The Sign of the Four), generating one of the longest-running debates in Sherlockian scholarship. His orderly Murray brings him out of the Ghazi attack. Watson contracts enteric fever during recovery and is invalided home to England, arriving in London with no friends, no family, and a wound pension of eleven shillings and sixpence a day. The injury is the proximate cause of his meeting Holmes — without it he would have remained on military duty rather than seeking cheap shared lodgings in London. Periodically referenced through the canon when Watson's old wound aches in damp weather.",
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

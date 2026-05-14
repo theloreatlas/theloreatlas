@@ -1,0 +1,21 @@
+{
+  "id": "event_holmes-defeat-by-adler",
+  "series": "sherlock_holmes",
+  "name": "Holmes Outwitted by Irene Adler",
+  "date_or_position": "20–21 March 1888",
+  "characters_involved": [
+    "char_sherlock-holmes",
+    "char_irene-adler",
+    "char_john-watson"
+  ],
+  "cases_linked": [
+    "case_a-scandal-in-bohemia"
+  ],
+  "location": "loc_briony-lodge",
+  "event_type": "canonical",
+  "first_mention": { "book": 3, "chapter": 1 },
+  "full_reveal": { "book": 3, "chapter": 1 },
+  "description": "Hired by the King of Bohemia to recover a compromising photograph from his former lover Irene Adler, Holmes disguises himself first as a groom and then as a Nonconformist clergyman, stages a false fire at Briony Lodge to provoke Adler into revealing the photograph's hiding place, and returns the next morning to retrieve it — only to find Adler has recognised him despite his disguise, departed England with her new husband, and left a letter of farewell. The photograph remains in her possession. Holmes asks the King for one of Adler's photographs as his sole reward. From this point onward Holmes refers to her always as \"the woman\" — the only person in the canon ever to defeat him decisively.",
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}

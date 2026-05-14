@@ -78,6 +78,18 @@
   ],
   "biography": "Dr. John H. Watson is a retired Army surgeon and the chronicler of Sherlock Holmes's cases. Invalided home from the Second Anglo-Afghan War (wounded at the Battle of Maiwand), Watson meets Holmes through Stamford and moves into 221B Baker Street as his lodger. He serves as Holmes's companion, occasional assistant, and the narrator of nearly all the published accounts. Watson is a man of action, loyalty, and warmth — qualities that complement Holmes's cold rationalism. He later marries Mary Morstan (whom he met during The Sign of the Four), sets up a medical practice, and eventually returns to Baker Street following Mary's death. Watson's admiring but honest narration shapes how the world perceives Holmes.",
   "tags": ["doctor", "army surgeon", "narrator", "Afghanistan", "Baker Street", "Watson"],
+  "events": [
+    "event_watson-afghan-injury",
+    "event_holmes-watson-first-meeting",
+    "event_watson-mary-morstan-marriage",
+    "event_mary-morstan-death",
+    "event_holmes-defeat-by-adler",
+    "event_reichenbach-falls-confrontation",
+    "event_holmes-return-to-london",
+    "event_moran-capture",
+    "event_milverton-death",
+    "event_holmes-wwi-service"
+  ],
   "created_by": "theloreatlas",
   "last_edited_by": "theloreatlas"
 }

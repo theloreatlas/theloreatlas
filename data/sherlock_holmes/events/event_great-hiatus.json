@@ -1,0 +1,20 @@
+{
+  "id": "event_great-hiatus",
+  "series": "sherlock_holmes",
+  "name": "The Great Hiatus (Holmes's Missing Years)",
+  "date_or_position": "May 1891 – April 1894",
+  "characters_involved": [
+    "char_sherlock-holmes"
+  ],
+  "cases_linked": [
+    "case_the-final-problem",
+    "case_the-adventure-of-the-empty-house"
+  ],
+  "location": null,
+  "event_type": "canonical",
+  "first_mention": { "book": 4, "chapter": 11 },
+  "full_reveal": { "book": 6, "chapter": 1 },
+  "description": "After his apparent death at Reichenbach, Holmes spends three years travelling under the alias Sigerson. By his own account in The Empty House, he visits Tibet (where he spends two years and meets the head Lama at Lhasa), passes through Persia, looks in at Mecca, pays a brief visit to the Khalifa at Khartoum, and finally settles for several months in research at Montpellier in the south of France studying coal-tar derivatives. Throughout the Hiatus, only Mycroft knows Holmes is alive; Mycroft maintains the rooms at Baker Street and supplies Holmes with money. The Hiatus ends when news reaches Holmes that the last remnants of Moriarty's network — chiefly Colonel Moran — can finally be neutralised. The period has generated more Sherlockian apocrypha than any other gap in the canon.",
+  "created_by": "theloreatlas",
+  "last_edited_by": "theloreatlas"
+}
