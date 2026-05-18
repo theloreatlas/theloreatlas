@@ -23,6 +23,9 @@ const LoreLoader = (() => {
   // The parsed manifest
   let manifest = null;
 
+  // The parsed meta-config
+  let metaConfig = null;
+
   // Track load state
   let loaded = false;
 
@@ -61,8 +64,11 @@ const LoreLoader = (() => {
     // and locally (file:// or localhost root)
     const base = getBasePath();
 
-    // 1. Fetch manifest
-    manifest = await fetchJSON(`${base}data/manifest.json`);
+    // 1. Fetch manifest and meta-config in parallel
+    [manifest, metaConfig] = await Promise.all([
+      fetchJSON(`${base}data/manifest.json`),
+      fetchJSON(`${base}data/meta-config.json`),
+    ]);
 
     // 2. For each series, fetch all entity type indexes in parallel
     for (const series of manifest.series) {
@@ -146,6 +152,10 @@ const LoreLoader = (() => {
     return loaded;
   }
 
-  return { load, getById, getAll, getSeries, getSeriesById, resolveIds, isLoaded };
+  function getMetaConfig() {
+    return metaConfig;
+  }
+
+  return { load, getById, getAll, getSeries, getSeriesById, resolveIds, isLoaded, getMetaConfig };
 
 })();

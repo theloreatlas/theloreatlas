@@ -4,6 +4,7 @@
     {
       "id": "sherlock_holmes",
       "name": "Sherlock Holmes",
+      "author": "Arthur Conan Doyle",
       "description": "The complete works of Arthur Conan Doyle featuring Sherlock Holmes and Dr. John Watson. 60 stories across 4 novels and 5 short story collections, published 1887–1927.",
       "entity_indexes": {
         "books":         "data/sherlock_holmes/books/_index.json",

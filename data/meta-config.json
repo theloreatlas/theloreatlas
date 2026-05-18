@@ -1,0 +1,27 @@
+{
+  "site_name": "The Lore Atlas",
+  "site_url": "https://theloreatlas.com",
+  "title_separator": " | ",
+  "max_title_chars": 70,
+  "max_description_chars": 155,
+  "og_types": {
+    "characters":    "article",
+    "cases":         "article",
+    "books":         "book",
+    "factions":      "article",
+    "locations":     "article",
+    "artifacts":     "article",
+    "events":        "article",
+    "relationships": "article"
+  },
+  "description_sources": {
+    "characters":    "biography",
+    "cases":         "synopsis",
+    "books":         "description",
+    "factions":      "description",
+    "locations":     "description",
+    "artifacts":     "description",
+    "events":        "description",
+    "relationships": "notes"
+  }
+}

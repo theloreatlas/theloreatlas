@@ -61,14 +61,15 @@ function urlSlugToEntityId(entityType, slug) {
 }
 
 // URL builders — use these everywhere instead of string-templating paths.
+// Trailing slashes match GitHub Pages's directory-index behavior (301 without → with).
 function entityPath(seriesId, entityType, id) {
-  return `/${encodeURIComponent(seriesId)}/${encodeURIComponent(entityType)}/${encodeURIComponent(entityIdToUrlSlug(id))}`;
+  return `/${encodeURIComponent(seriesId)}/${encodeURIComponent(entityType)}/${encodeURIComponent(entityIdToUrlSlug(id))}/`;
 }
 function entityListPath(seriesId, entityType) {
-  return `/${encodeURIComponent(seriesId)}/${encodeURIComponent(entityType)}`;
+  return `/${encodeURIComponent(seriesId)}/${encodeURIComponent(entityType)}/`;
 }
 function graphPath(seriesId) {
-  return `/${encodeURIComponent(seriesId)}/graph`;
+  return `/${encodeURIComponent(seriesId)}/graph/`;
 }
 function searchPath(query) {
   return query ? `/search?q=${encodeURIComponent(query)}` : '/search';
@@ -101,7 +102,9 @@ function maybeRedirectLegacyHash() {
     parts[2] = entityIdToUrlSlug(parts[2]);
   }
 
-  const newPath = parts.length ? '/' + parts.join('/') : '/';
+  // Append trailing slash for non-root entity paths to match canonical form.
+  let newPath = parts.length ? '/' + parts.join('/') : '/';
+  if (newPath !== '/' && !newPath.endsWith('/')) newPath += '/';
   const newUrl = queryPart ? newPath + '?' + queryPart : newPath;
   history.replaceState(null, '', newUrl);
 }
@@ -122,8 +125,9 @@ function setupLinkInterception() {
   });
 }
 
-// Set <link rel="canonical"> based on current path. Excludes query strings
-// (so /search?q=watson canonicalizes to /search, not to itself).
+// Set <link rel="canonical"> based on current path. Excludes query strings.
+// Appends trailing slash for non-root paths to match pre-rendered file layout
+// and GitHub Pages's directory-index redirect behavior.
 function setCanonical() {
   let link = document.querySelector('link[rel="canonical"]');
   if (!link) {
@@ -131,7 +135,9 @@ function setCanonical() {
     link.setAttribute('rel', 'canonical');
     document.head.appendChild(link);
   }
-  link.setAttribute('href', 'https://theloreatlas.com' + window.location.pathname);
+  let p = window.location.pathname;
+  if (p !== '/' && !p.endsWith('/')) p += '/';
+  link.setAttribute('href', 'https://theloreatlas.com' + p);
 }
 
 async function onRouteChange() {
@@ -154,7 +160,9 @@ async function onRouteChange() {
   updateNavActive(parts);
   setCanonical();
 
-  // Route dispatch
+  // Route dispatch — compute shared vars, then render + set meta + set JSON-LD.
+  let _entity = null, _entityType = null, _seriesObj = null;
+
   if (parts.length === 0) {
     setMetaTags(parts, null, null, '', false);
     renderHome(content);
@@ -165,14 +173,15 @@ async function onRouteChange() {
     setMetaTags(parts, null, null, '', false);
     renderSearch(content);
   } else if (parts.length === 1) {
-    const series = LoreLoader.getSeriesById(parts[0]);
-    const seriesName = series ? series.name : '';
-    setMetaTags(parts, null, null, seriesName, !series);
+    _seriesObj = LoreLoader.getSeriesById(parts[0]);
+    const seriesName = _seriesObj ? _seriesObj.name : '';
+    setMetaTags(parts, null, null, seriesName, !_seriesObj);
     renderHome(content);
   } else if (parts.length === 2) {
     const [seriesId, entityType] = parts;
-    const series = LoreLoader.getSeriesById(seriesId);
-    const seriesName = series ? series.name : '';
+    _seriesObj = LoreLoader.getSeriesById(seriesId);
+    _entityType = entityType;
+    const seriesName = _seriesObj ? _seriesObj.name : '';
     if (entityType === 'graph') {
       setMetaTags(parts, null, null, seriesName, false);
       renderGraph(content, seriesId);
@@ -183,20 +192,23 @@ async function onRouteChange() {
   } else if (parts.length === 3) {
     const [seriesId, entityType, slug] = parts;
     const id = urlSlugToEntityId(entityType, slug);
-    const entity = LoreLoader.getById(id);
-    const series = LoreLoader.getSeriesById(seriesId);
-    const seriesName = series ? series.name : '';
-    if (!entity) {
+    _entity = LoreLoader.getById(id);
+    _entityType = entityType;
+    _seriesObj = LoreLoader.getSeriesById(seriesId);
+    const seriesName = _seriesObj ? _seriesObj.name : '';
+    if (!_entity) {
       setMetaTags(parts, null, entityType, seriesName, true);
       renderNotFound(content);
     } else {
-      setMetaTags(parts, entity, entityType, seriesName, false);
+      setMetaTags(parts, _entity, entityType, seriesName, false);
       renderEntityDetail(content, seriesId, entityType, id);
     }
   } else {
     setMetaTags(parts, null, null, '', true);
     renderNotFound(content);
   }
+
+  setJsonLd(parts, _entity, _entityType, _seriesObj);
 
   void content.offsetWidth; // force reflow for entrance animation
   content.classList.add('page-enter');
@@ -1006,8 +1018,10 @@ function removeMetaTag(nameOrProperty) {
 }
 
 function buildEntityMeta(entity, entityType, seriesName) {
-  const SITE = 'The Lore Atlas';
-  let title, description, ogType = 'article';
+  const cfg = LoreLoader.getMetaConfig() || {};
+  const SITE = cfg.site_name || 'The Lore Atlas';
+  const ogTypes = cfg.og_types || {};
+  let title, description, ogType = ogTypes[entityType] || 'article';
 
   switch (entityType) {
     case 'characters': {
@@ -1078,10 +1092,233 @@ function buildEntityMeta(entity, entityType, seriesName) {
   return { title, description, ogType };
 }
 
+// ── JSON-LD structured data ──────────────────────────────────────────────────
+
+function setJsonLd(parts, entity, entityType, seriesObj) {
+  // Remove all existing JSON-LD blocks (defensive — prevents orphans on SPA nav).
+  document.querySelectorAll('script[type="application/ld+json"]').forEach(s => s.remove());
+
+  const cfg = LoreLoader.getMetaConfig() || {};
+  const SITE_URL = cfg.site_url || 'https://theloreatlas.com';
+  let canonPath = window.location.pathname;
+  if (canonPath !== '/' && !canonPath.endsWith('/')) canonPath += '/';
+  const url = SITE_URL + canonPath;
+
+  const blocks = [];
+
+  // WebSite with SearchAction — present on every page.
+  blocks.push({
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    'name': cfg.site_name || 'The Lore Atlas',
+    'url': SITE_URL + '/',
+    'potentialAction': {
+      '@type': 'SearchAction',
+      'target': {
+        '@type': 'EntryPoint',
+        'urlTemplate': SITE_URL + '/search?q={search_term_string}'
+      },
+      'query-input': 'required name=search_term_string'
+    }
+  });
+
+  // BreadcrumbList — every non-home page.
+  if (parts.length > 0 && parts[0] !== 'search') {
+    blocks.push(buildBreadcrumbJsonLd(parts, entity, entityType, seriesObj, SITE_URL));
+  }
+
+  // Per-entity schema — entity detail pages only.
+  if (parts.length === 3 && entity) {
+    const block = buildEntityJsonLd(entity, entityType, seriesObj, url);
+    if (block) blocks.push(block);
+  }
+
+  for (const block of blocks) {
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+    // textContent is safe — </script> sequences in JSON won't terminate the tag.
+    script.textContent = JSON.stringify(block);
+    document.head.appendChild(script);
+  }
+}
+
+function buildEntityJsonLd(entity, entityType, seriesObj, url) {
+  const desc = firstSentencesForMeta(
+    entity.biography || entity.synopsis || entity.description || entity.notes || ''
+  );
+
+  switch (entityType) {
+    case 'characters':
+      return {
+        '@context': 'https://schema.org',
+        '@type': 'Person',
+        'name': entity.name,
+        ...(entity.aliases && entity.aliases.length ? { 'alternateName': entity.aliases } : {}),
+        'description': desc,
+        'url': url
+      };
+
+    case 'books':
+      return {
+        '@context': 'https://schema.org',
+        '@type': 'Book',
+        'name': entity.title,
+        'author': { '@type': 'Person', 'name': (seriesObj && seriesObj.author) || 'Unknown' },
+        'datePublished': entity.publication_year ? String(entity.publication_year) : undefined,
+        'description': desc,
+        'url': url,
+        'inLanguage': 'en',
+        'genre': 'Mystery'
+      };
+
+    case 'locations':
+      return {
+        '@context': 'https://schema.org',
+        '@type': 'Place',
+        'name': entity.name,
+        'description': desc,
+        'url': url
+      };
+
+    case 'factions': {
+      const block = {
+        '@context': 'https://schema.org',
+        '@type': 'Organization',
+        'name': entity.name,
+        'description': desc,
+        'url': url
+      };
+      if (entity.parent_org) {
+        const parent = LoreLoader.getById(entity.parent_org);
+        block.parentOrganization = { '@type': 'Organization', 'name': parent ? parent.name : entity.parent_org };
+      }
+      if (entity.child_orgs && entity.child_orgs.length) {
+        block.subOrganization = entity.child_orgs.map(id => {
+          const child = LoreLoader.getById(id);
+          return { '@type': 'Organization', 'name': child ? child.name : id };
+        });
+      }
+      return block;
+    }
+
+    case 'events': {
+      const block = {
+        '@context': 'https://schema.org',
+        '@type': 'Event',
+        'name': entity.name,
+        'description': desc,
+        'url': url
+      };
+      const isoDate = tryParseEventDate(entity.date_or_position);
+      if (isoDate) block.startDate = isoDate;
+      return block;
+    }
+
+    case 'cases': {
+      const sourceBook = entity.source_book ? LoreLoader.getById(entity.source_book) : null;
+      const isNovel = sourceBook && sourceBook.type === 'novel';
+      return {
+        '@context': 'https://schema.org',
+        '@type': 'Article',
+        'headline': entity.title,
+        'description': firstSentencesForMeta(entity.synopsis || ''),  // never solution
+        'url': url,
+        'about': {
+          '@type': isNovel ? 'Book' : 'ShortStory',
+          'name': entity.title,
+          'author': { '@type': 'Person', 'name': (seriesObj && seriesObj.author) || 'Unknown' }
+        }
+      };
+    }
+
+    case 'artifacts':
+      return {
+        '@context': 'https://schema.org',
+        '@type': 'Thing',
+        'name': entity.name,
+        'description': desc,
+        'url': url
+      };
+
+    case 'relationships': {
+      const a = LoreLoader.getById(entity.character_a);
+      const b = LoreLoader.getById(entity.character_b);
+      const aName = a ? a.name : entity.character_a;
+      const bName = b ? b.name : entity.character_b;
+      return {
+        '@context': 'https://schema.org',
+        '@type': 'Article',
+        'headline': `${aName} and ${bName}`,
+        'description': desc,
+        'url': url,
+        'about': [
+          { '@type': 'Person', 'name': aName },
+          { '@type': 'Person', 'name': bName }
+        ]
+      };
+    }
+  }
+  return null;
+}
+
+function buildBreadcrumbJsonLd(parts, entity, entityType, seriesObj, SITE_URL) {
+  const crumbs = [{ name: 'Home', url: SITE_URL + '/' }];
+
+  if (parts.length >= 1 && parts[0] !== 'search') {
+    const sName = seriesObj ? seriesObj.name : parts[0];
+    crumbs.push({ name: sName, url: `${SITE_URL}/${parts[0]}/` });
+  }
+  if (parts.length >= 2) {
+    if (parts[1] === 'graph') {
+      crumbs.push({ name: 'Relationship Graph', url: `${SITE_URL}/${parts[0]}/graph/` });
+    } else {
+      const etConfig = ENTITY_TYPES.find(e => e.key === parts[1]);
+      crumbs.push({
+        name: etConfig ? etConfig.label : parts[1],
+        url: `${SITE_URL}/${parts[0]}/${parts[1]}/`
+      });
+    }
+  }
+  if (parts.length >= 3 && entity) {
+    const a = entity.character_a ? LoreLoader.getById(entity.character_a) : null;
+    const b = entity.character_b ? LoreLoader.getById(entity.character_b) : null;
+    const relName = a && b ? `${a.name} and ${b.name}` : null;
+    crumbs.push({
+      name: entity.name || entity.title || relName || entity.id,
+      url: SITE_URL + (window.location.pathname.endsWith('/') ? window.location.pathname : window.location.pathname + '/')
+    });
+  }
+
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    'itemListElement': crumbs.map((c, i) => ({
+      '@type': 'ListItem',
+      'position': i + 1,
+      'name': c.name,
+      'item': c.url
+    }))
+  };
+}
+
+function tryParseEventDate(text) {
+  if (!text) return null;
+  const months = { January:'01', February:'02', March:'03', April:'04', May:'05', June:'06',
+    July:'07', August:'08', September:'09', October:'10', November:'11', December:'12' };
+  const m = text.match(/^(January|February|March|April|May|June|July|August|September|October|November|December)\s+(\d{4})/);
+  if (m) return `${m[2]}-${months[m[1]]}`;
+  const yearMatch = text.match(/^(\d{4})/);
+  return yearMatch ? yearMatch[1] : null;
+}
+
 function setMetaTags(parts, entity, entityType, seriesName, notFound) {
-  const SITE = 'The Lore Atlas';
-  const SITE_URL = 'https://theloreatlas.com';
-  const fullUrl = SITE_URL + window.location.pathname;
+  const cfg = LoreLoader.getMetaConfig() || {};
+  const SITE = cfg.site_name || 'The Lore Atlas';
+  const SITE_URL = cfg.site_url || 'https://theloreatlas.com';
+  // og:url uses canonical (trailing-slash) path, matching setCanonical().
+  let canonPath = window.location.pathname;
+  if (canonPath !== '/' && !canonPath.endsWith('/')) canonPath += '/';
+  const fullUrl = SITE_URL + canonPath;
 
   setMetaTag('og:site_name', SITE);
   setMetaTag('og:url', fullUrl);
@@ -1133,9 +1370,10 @@ function setMetaTags(parts, entity, entityType, seriesName, notFound) {
     ogType = 'website';
   }
 
-  // Enforce hard length cap on title.
-  if (title && title.length > 70) {
-    title = title.substring(0, 67).trimEnd() + '…';
+  // Enforce hard length cap on title (from meta-config).
+  const maxTitle = cfg.max_title_chars || 70;
+  if (title && title.length > maxTitle) {
+    title = title.substring(0, maxTitle - 1).trimEnd() + '…';
   }
 
   document.title = title || SITE;
