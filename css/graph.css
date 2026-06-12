@@ -138,3 +138,175 @@
   font-style: italic;
   text-align: center;
 }
+
+/* ── Info panel (Session 13) ──────────────────────────────────────────────── */
+
+#graph-container {
+  position: relative;
+}
+
+/* Keyboard focus ring on nodes */
+.graph-node:focus {
+  outline: none;
+}
+
+.graph-node:focus circle {
+  stroke: var(--gold, #c9a55a);
+  stroke-width: 2.5;
+}
+
+.graph-info-panel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 320px;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 1.5rem;
+  background: var(--card-bg, rgba(255, 252, 244, 0.96));
+  border: 1px solid var(--border-strong, rgba(180, 160, 120, 0.6));
+  border-radius: var(--radius-lg, 6px);
+  box-shadow: -4px 0 18px var(--shadow-warm, rgba(26, 19, 10, 0.14));
+  font-family: var(--font-body, 'EB Garamond', Georgia, serif);
+  color: var(--ink, #1a130a);
+  overflow-y: auto;
+  transform: translateX(100%);
+  transition: transform 200ms ease;
+  z-index: 20;
+}
+
+.graph-info-panel.open {
+  transform: translateX(0);
+}
+
+.graph-info-panel:focus {
+  outline: none;
+}
+
+.panel-close {
+  position: absolute;
+  top: 0.55rem;
+  right: 0.8rem;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  line-height: 1;
+  color: var(--text-muted, #6b5c45);
+  cursor: pointer;
+  padding: 0.2rem;
+}
+
+.panel-close:hover {
+  color: var(--ink, #1a130a);
+}
+
+.panel-name {
+  font-family: var(--font-serif, 'Cormorant Garamond', Georgia, serif);
+  font-style: italic;
+  font-weight: 600;
+  font-size: 1.7rem;
+  line-height: 1.15;
+  margin: 0 1.6rem 0.45rem 0;
+  color: var(--ink, #1a130a);
+}
+
+.panel-badges {
+  margin-bottom: 0.85rem;
+}
+
+.panel-badges .badge {
+  margin-left: 0;
+}
+
+.panel-desc {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--ink-soft, #2e2318);
+  margin: 0 0 1rem;
+}
+
+.panel-count {
+  font-family: var(--font-display, 'Cinzel', serif);
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted, #6b5c45);
+  margin: 0 0 0.6rem;
+}
+
+.panel-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 1.2rem;
+}
+
+.panel-chip {
+  font-family: var(--font-body, 'EB Garamond', Georgia, serif);
+  font-size: 0.85rem;
+  padding: 0.25em 0.7em;
+  background: var(--parchment-warm, #ede4d0);
+  border: 1px solid var(--border, rgba(180, 160, 120, 0.35));
+  border-left: 3px solid var(--chip-color, var(--gold, #c9a55a));
+  border-radius: 2px;
+  color: var(--ink-soft, #2e2318);
+  cursor: pointer;
+  transition: background 0.12s;
+}
+
+.panel-chip:hover {
+  background: var(--parchment-mid, #ddd4bc);
+}
+
+.panel-view-full {
+  display: inline-block;
+  font-family: var(--font-display, 'Cinzel', serif);
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--gold-dim, #9a7a3e);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+}
+
+.panel-view-full:hover {
+  border-bottom-color: var(--gold-dim, #9a7a3e);
+}
+
+.panel-empty {
+  color: var(--text-subtle, #9a8870);
+  font-style: italic;
+}
+
+/* Mobile: bottom sheet */
+@media (max-width: 767px) {
+  .graph-info-panel {
+    position: fixed;
+    top: auto;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 55vh;
+    border-radius: 16px 16px 0 0;
+    box-shadow: 0 -4px 18px var(--shadow-warm, rgba(26, 19, 10, 0.14));
+    transform: translateY(100%);
+    padding-top: 1.9rem;
+  }
+
+  .graph-info-panel.open {
+    transform: translateY(0);
+  }
+
+  .graph-info-panel::before {
+    content: '';
+    position: absolute;
+    top: 0.6rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 4px;
+    border-radius: 2px;
+    background: var(--parchment-dark, #c8bda5);
+  }
+}

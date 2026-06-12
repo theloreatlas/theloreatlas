@@ -641,7 +641,7 @@ function renderGraph(container, seriesId) {
     </div>
     <div class="graph-wrap">
       <div id="graph-container"></div>
-      <p class="graph-hint">Scroll to zoom &nbsp;·&nbsp; Drag to pan &nbsp;·&nbsp; Click a character to view their page</p>
+      <p class="graph-hint">Scroll to zoom &nbsp;·&nbsp; Drag to pan &nbsp;·&nbsp; Click a character for details</p>
     </div>
   `;
 
