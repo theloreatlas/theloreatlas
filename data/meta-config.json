@@ -13,15 +13,5 @@
     "artifacts":     "article",
     "events":        "article",
     "relationships": "article"
-  },
-  "description_sources": {
-    "characters":    "biography",
-    "cases":         "synopsis",
-    "books":         "description",
-    "factions":      "description",
-    "locations":     "description",
-    "artifacts":     "description",
-    "events":        "description",
-    "relationships": "notes"
   }
 }

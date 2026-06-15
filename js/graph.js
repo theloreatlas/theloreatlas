@@ -465,6 +465,16 @@ const LoreGraph = (() => {
       d.fx = null;
       d.fy = null;
     }
+
+    // Controller handle — lets callers (e.g. Session 15 mini-graphs) drive this
+    // graph instance's panel. openPanel/swapPanel/closePanel close over this
+    // instance's simulation, nodes, and panel element.
+    return {
+      openPanel,
+      swapPanel,
+      closePanel,
+      getSelectedEntityId: () => selectedEntityId,
+    };
   }
 
   return { init };

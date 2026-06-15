@@ -11,6 +11,17 @@ Run before every commit that touches data files or index.html.
 Idempotent — safe to re-run; produces the same output for the same input.
 Also regenerates sitemap.xml from the same walk.
 
+⚠️  KEEP IN SYNC WITH js/seo.js (the runtime equivalent).
+    This script generates per-page <head> at BUILD TIME for non-JS crawlers;
+    js/seo.js generates the SAME output at RUNTIME. They must produce identical
+    titles, descriptions, and JSON-LD. Twin function pairs:
+      first_sentences        ↔ firstSentencesForMeta   truncate ↔ truncateForMeta
+      build_meta             ↔ buildEntityMeta          try_parse_event_date ↔ tryParseEventDate
+      build_jsonld_for_entity ↔ buildEntityJsonLd
+      build_breadcrumb_jsonld ↔ buildBreadcrumbJsonLd
+    Change one side → change the other, then re-run this script and confirm a
+    deployed page's view-source matches the runtime DOM head.
+
 Usage:
   python3 scripts/build_pages.py
 """
