@@ -119,7 +119,6 @@ const SpoilerGate = (() => {
   // ── Public API ──────────────────────────────────────────────────────────────
 
   return {
-    comparePositions,
     getPosition,
     setPosition,
     clearPosition,

@@ -76,7 +76,7 @@ const LoreGraph = (() => {
     }));
 
     const width  = container.clientWidth || 800;
-    const height = Math.max(600, Math.round(width * 0.65));
+    let   height = Math.max(600, Math.round(width * 0.65)); // recomputed on resize
 
     // ── SVG + zoom layer ─────────────────────────────────────────────────────
 
@@ -218,7 +218,10 @@ const LoreGraph = (() => {
     // ── Info panel (Session 13) ──────────────────────────────────────────────
 
     const PANEL_W = 320;
-    const isDesktopWidth = width >= 768;
+    // Read live rather than capturing at init: the panel switches between
+    // right-dock and bottom-sheet at the same 768px breakpoint the CSS uses, so
+    // a resize must change which layout the re-centring logic assumes.
+    const isDesktopWidth = () => (container.clientWidth || width) >= 768;
 
     let selectedEntityId = null;
     let lastFocusedNodeId = null;
@@ -276,8 +279,12 @@ const LoreGraph = (() => {
       const count = uniq.length;
       const chips = uniq.slice(0, 5).map(x => {
         const nm = nodeById[x.id]?.name || x.id;
+        // Colour goes in a data-* attribute, not style="" — the site's CSP omits
+        // 'unsafe-inline' from style-src, so a style attribute is silently
+        // dropped (chips would all fall back to gold). bindPanelControls()
+        // applies it via CSSOM, which CSP does allow.
         return `<button class="panel-chip" type="button" data-entity="${esc(x.id)}" `
-             + `style="--chip-color:${relColor(x.type)}">${esc(nm)}</button>`;
+             + `data-chip-color="${esc(relColor(x.type))}">${esc(nm)}</button>`;
       }).join('');
 
       return `
@@ -296,6 +303,9 @@ const LoreGraph = (() => {
       if (closeBtn) closeBtn.addEventListener('click', closePanel);
 
       panel.querySelectorAll('.panel-chip').forEach(btn => {
+        if (btn.dataset.chipColor) {
+          btn.style.setProperty('--chip-color', btn.dataset.chipColor);
+        }
         btn.addEventListener('click', () => {
           lastFocusedNodeId = btn.dataset.entity;
           swapPanel(btn.dataset.entity);
@@ -312,9 +322,12 @@ const LoreGraph = (() => {
     }
 
     // Shift the simulation's centre of mass left when the desktop panel is open
-    // so the graph re-settles in the still-visible area.
-    function setCenter(openWidth) {
-      simulation.force('center', d3.forceCenter(openWidth / 2, height / 2));
+    // so the graph re-settles in the still-visible area. Reads current width and
+    // panel state, so it stays correct across resizes and breakpoint crossings.
+    function recenter() {
+      const w = container.clientWidth || width;
+      const usable = (isDesktopWidth() && selectedEntityId !== null) ? w - PANEL_W : w;
+      simulation.force('center', d3.forceCenter(usable / 2, height / 2));
     }
 
     function openPanel(id, opts) {
@@ -325,7 +338,7 @@ const LoreGraph = (() => {
       panel.hidden = false;
       requestAnimationFrame(() => panel.classList.add('open'));
       if (!restore) {
-        if (isDesktopWidth) setCenter(width - PANEL_W);
+        recenter();
         simulation.alpha(0.3).restart();
         history.replaceState(null, '', `${location.pathname}?selected=${encodeURIComponent(id)}`);
         panel.focus();
@@ -345,7 +358,7 @@ const LoreGraph = (() => {
       selectedEntityId = null;
       panel.classList.remove('open');
       history.replaceState(null, '', location.pathname);
-      if (isDesktopWidth) setCenter(width);
+      recenter();
       simulation.alpha(0.3).restart();
 
       const finish = () => {
@@ -426,6 +439,27 @@ const LoreGraph = (() => {
         history.replaceState(null, '', location.pathname);
       }
     }
+
+    // Keep the layout correct when the viewport changes (device rotation, window
+    // resize, desktop↔mobile breakpoint crossings). Debounced; self-removing once
+    // the graph DOM is replaced by SPA navigation, matching the keydown handler.
+    let resizeTimer = null;
+    function onResize() {
+      if (!document.body.contains(container)) {
+        window.removeEventListener('resize', onResize);
+        return;
+      }
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
+        const w = container.clientWidth;
+        if (!w) return;
+        height = Math.max(600, Math.round(w * 0.65));
+        svg.attr('height', height);
+        recenter();
+        simulation.alpha(0.3).restart();
+      }, 150);
+    }
+    window.addEventListener('resize', onResize);
 
     // ── Legend ───────────────────────────────────────────────────────────────
 

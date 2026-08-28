@@ -63,9 +63,6 @@ function entityPath(seriesId, entityType, id) {
 function entityListPath(seriesId, entityType) {
   return `/${encodeURIComponent(seriesId)}/${encodeURIComponent(entityType)}/`;
 }
-function graphPath(seriesId) {
-  return `/${encodeURIComponent(seriesId)}/graph/`;
-}
 function searchPath(query) {
   return query ? `/search?q=${encodeURIComponent(query)}` : '/search';
 }
@@ -132,6 +129,11 @@ function setCanonical() {
   }
   let p = window.location.pathname;
   if (p !== '/' && !p.endsWith('/')) p += '/';
-  link.setAttribute('href', 'https://theloreatlas.com' + p);
+  // Site URL comes from meta-config.json — same source seo.js uses, so a domain
+  // change updates canonical + og:url + JSON-LD together. Called after
+  // LoreLoader.load(), so the config is available; literal is a safety net only.
+  const cfg = LoreLoader.getMetaConfig() || {};
+  const siteUrl = (cfg.site_url || 'https://theloreatlas.com').replace(/\/$/, '');
+  link.setAttribute('href', siteUrl + p);
 }
 

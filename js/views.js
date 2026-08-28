@@ -160,6 +160,56 @@ function redactedProse(entity) {
   return `<span class="spoiler-redacted">[Spoilers past ${where}]</span>`;
 }
 
+// ── Detail-section builders ───────────────────────────────────────────────────
+//
+// The eight render*Detail functions below are assembled from these four pieces.
+// Keeping the markup in one place means a change to section chrome (or to how
+// redaction is applied) lands everywhere at once.
+
+/**
+ * A prose field's value with spoiler redaction applied: the escaped field, or
+ * the redaction placeholder when the entity is only partially revealed.
+ */
+function proseValue(entity, status, field) {
+  return status === 'partial' ? redactedProse(entity) : esc(entity[field]);
+}
+
+/**
+ * Prose detail section. Renders nothing when the field is empty.
+ */
+function proseSection(label, entity, status, field) {
+  if (!entity[field]) return '';
+  return `<div class="detail-section"><h2>${label}</h2><p class="detail-prose">${proseValue(entity, status, field)}</p></div>`;
+}
+
+/**
+ * Detail section wrapping a list of cross-referenced entity links.
+ */
+function linkSection(label, ids) {
+  return `<div class="detail-section"><h2>${label}</h2><div class="detail-links">${renderLinkedList(ids)}</div></div>`;
+}
+
+/**
+ * Detail section wrapping a single cross-referenced entity link.
+ */
+function singleLinkSection(label, id) {
+  return `<div class="detail-section"><h2>${label}</h2><div class="detail-links"><span class="detail-link-item">${entityLink(id)}</span></div></div>`;
+}
+
+/**
+ * The "First appears / Full reveal" footer shown on gated entity details.
+ * `extra` appends type-specific rows (e.g. a case's timeline position).
+ */
+function thresholdFooter(entity, extra = '') {
+  return `
+    <div class="spoiler-thresholds">
+      <span>First appears: ${esc(formatSpoiler(entity.first_mention))}</span>
+      <span>Full reveal: ${esc(formatSpoiler(entity.full_reveal))}</span>
+      ${extra}
+    </div>
+  `;
+}
+
 // ── Entity detail ─────────────────────────────────────────────────────────────
 
 function renderEntityDetail(container, seriesId, entityType, id) {
@@ -167,15 +217,17 @@ function renderEntityDetail(container, seriesId, entityType, id) {
   if (!entity) { renderNotFound(container); return; }
 
   const status = SpoilerGate.getRevealStatus(entity, seriesId);
+  const etConfig = ENTITY_TYPES.find(e => e.key === entityType);
+  const typeLabel = etConfig ? etConfig.label : esc(entityType);
+  const listHref = entityListPath(seriesId, entityType);
 
   // Entity is before the reader's current position — don't reveal anything.
   if (status === 'hidden') {
-    const etConfig = ENTITY_TYPES.find(e => e.key === entityType);
     container.innerHTML = `
       <div class="page-header">
         <div class="breadcrumb">
           <a href="/">Home</a> &rsaquo;
-          <a href="${entityListPath(seriesId, entityType)}">${etConfig ? etConfig.label : esc(entityType)}</a>
+          <a href="${listHref}">${typeLabel}</a>
         </div>
         <h1>Entry not yet reached</h1>
       </div>
@@ -187,13 +239,11 @@ function renderEntityDetail(container, seriesId, entityType, id) {
     return;
   }
 
-  const etConfig = ENTITY_TYPES.find(e => e.key === entityType);
-
   const breadcrumb = `
     <div class="page-header">
       <div class="breadcrumb">
         <a href="/">Home</a> &rsaquo;
-        <a href="${entityListPath(seriesId, entityType)}">${etConfig ? etConfig.label : esc(entityType)}</a> &rsaquo;
+        <a href="${listHref}">${typeLabel}</a> &rsaquo;
         ${esc(getEntityName(entity, entityType))}
       </div>
       <h1>${esc(getEntityName(entity, entityType))}</h1>
@@ -225,23 +275,18 @@ function renderCharacterDetail(entity, status) {
     ? `<div class="detail-tags">${entity.tags.map(t => `<span class="detail-tag">${esc(t)}</span>`).join('')}</div>`
     : '';
 
-  const biographyContent = status === 'partial' ? redactedProse(entity) : esc(entity.biography);
-
   return `
     <div class="detail-meta">
       ${entity.role ? `<span class="badge badge-${esc(entity.role.replace(/_/g, '-'))}">${esc(entity.role.replace(/_/g, ' '))}</span>` : ''}
       ${entity.status === 'deceased' ? '<span class="badge badge-deceased">deceased</span>' : ''}
     </div>
-    ${entity.biography ? `<div class="detail-section"><h2>Biography</h2><p class="detail-prose">${biographyContent}</p></div>` : ''}
+    ${proseSection('Biography', entity, status, 'biography')}
     <div class="detail-section"><h2>Also Known As</h2><p class="detail-prose">${aliases}</p></div>
-    <div class="detail-section"><h2>Affiliations</h2><div class="detail-links">${renderLinkedList(entity.affiliations)}</div></div>
-    <div class="detail-section"><h2>Cases</h2><div class="detail-links">${renderLinkedList(entity.cases)}</div></div>
-    <div class="detail-section"><h2>Relationships</h2><div class="detail-links">${renderLinkedList(entity.relationships)}</div></div>
+    ${linkSection('Affiliations', entity.affiliations)}
+    ${linkSection('Cases', entity.cases)}
+    ${linkSection('Relationships', entity.relationships)}
     ${tags ? `<div class="detail-section"><h2>Tags</h2>${tags}</div>` : ''}
-    <div class="spoiler-thresholds">
-      <span>First appears: ${esc(formatSpoiler(entity.first_mention))}</span>
-      <span>Full reveal: ${esc(formatSpoiler(entity.full_reveal))}</span>
-    </div>
+    ${thresholdFooter(entity)}
   `;
 }
 
@@ -249,8 +294,6 @@ function renderCaseDetail(entity, status) {
   const notableElements = entity.notable_elements && entity.notable_elements.length
     ? `<ul class="detail-list">${entity.notable_elements.map(e => `<li>${esc(e)}</li>`).join('')}</ul>`
     : '<span class="detail-none">None</span>';
-
-  const synopsisContent = status === 'partial' ? redactedProse(entity) : esc(entity.synopsis);
 
   // Solution is always gated at full_reveal. When partial: redact. When full: keep <details>.
   let solutionSection = '';
@@ -278,23 +321,17 @@ function renderCaseDetail(entity, status) {
       ${entity.source_book ? `<span class="detail-meta-item">Source: ${entityLink(entity.source_book)}</span>` : ''}
       ${entity.case_nickname ? `<span class="detail-meta-item detail-nickname">&ldquo;${esc(entity.case_nickname)}&rdquo;</span>` : ''}
     </div>
-    ${entity.synopsis ? `<div class="detail-section"><h2>Synopsis</h2><p class="detail-prose">${synopsisContent}</p></div>` : ''}
+    ${proseSection('Synopsis', entity, status, 'synopsis')}
     ${solutionSection}
-    <div class="detail-section"><h2>Characters Involved</h2><div class="detail-links">${renderLinkedList(entity.characters_involved)}</div></div>
-    <div class="detail-section"><h2>Locations</h2><div class="detail-links">${renderLinkedList(entity.locations)}</div></div>
-    <div class="detail-section"><h2>Artifacts</h2><div class="detail-links">${renderLinkedList(entity.artifacts_involved)}</div></div>
+    ${linkSection('Characters Involved', entity.characters_involved)}
+    ${linkSection('Locations', entity.locations)}
+    ${linkSection('Artifacts', entity.artifacts_involved)}
     <div class="detail-section"><h2>Notable Elements</h2>${notableElements}</div>
-    <div class="spoiler-thresholds">
-      <span>First appears: ${esc(formatSpoiler(entity.first_mention))}</span>
-      <span>Full reveal: ${esc(formatSpoiler(entity.full_reveal))}</span>
-      ${entity.timeline_position ? `<span>Timeline position: ${esc(formatSpoiler(entity.timeline_position))}</span>` : ''}
-    </div>
+    ${thresholdFooter(entity, entity.timeline_position ? `<span>Timeline position: ${esc(formatSpoiler(entity.timeline_position))}</span>` : '')}
   `;
 }
 
 function renderBookDetail(entity, status) {
-  const descriptionContent = status === 'partial' ? redactedProse(entity) : esc(entity.description);
-
   return `
     <div class="detail-meta">
       ${entity.type === 'novel' ? '<span class="badge badge-novel">novel</span>' : ''}
@@ -302,47 +339,37 @@ function renderBookDetail(entity, status) {
       ${entity.publication_year ? `<span class="detail-meta-item">${esc(String(entity.publication_year))}</span>` : ''}
       ${entity.chronological_order ? `<span class="detail-meta-item">Vol. ${esc(String(entity.chronological_order))}</span>` : ''}
     </div>
-    ${entity.description ? `<div class="detail-section"><h2>Description</h2><p class="detail-prose">${descriptionContent}</p></div>` : ''}
-    <div class="detail-section"><h2>Stories Contained</h2><div class="detail-links">${renderLinkedList(entity.stories_contained)}</div></div>
+    ${proseSection('Description', entity, status, 'description')}
+    ${linkSection('Stories Contained', entity.stories_contained)}
   `;
 }
 
 function renderFactionDetail(entity, status) {
-  const descriptionContent = status === 'partial' ? redactedProse(entity) : esc(entity.description);
-
   return `
     <div class="detail-meta">
       ${entity.type ? `<span class="badge badge-faction">${esc(entity.type.replace(/_/g, ' '))}</span>` : ''}
       ${entity.alignment ? `<span class="detail-meta-item">${esc(entity.alignment)}</span>` : ''}
       ${entity.active_period ? `<span class="detail-meta-item">${esc(entity.active_period)}</span>` : ''}
     </div>
-    ${entity.description ? `<div class="detail-section"><h2>Description</h2><p class="detail-prose">${descriptionContent}</p></div>` : ''}
-    <div class="detail-section"><h2>Key Members</h2><div class="detail-links">${renderLinkedList(entity.key_members)}</div></div>
-    <div class="detail-section"><h2>Cases Involved</h2><div class="detail-links">${renderLinkedList(entity.cases_involved)}</div></div>
-    ${entity.parent_org ? `<div class="detail-section"><h2>Parent Organization</h2><div class="detail-links"><span class="detail-link-item">${entityLink(entity.parent_org)}</span></div></div>` : ''}
-    ${entity.child_orgs && entity.child_orgs.length ? `<div class="detail-section"><h2>Sub-Organizations</h2><div class="detail-links">${renderLinkedList(entity.child_orgs)}</div></div>` : ''}
-    <div class="spoiler-thresholds">
-      <span>First appears: ${esc(formatSpoiler(entity.first_mention))}</span>
-      <span>Full reveal: ${esc(formatSpoiler(entity.full_reveal))}</span>
-    </div>
+    ${proseSection('Description', entity, status, 'description')}
+    ${linkSection('Key Members', entity.key_members)}
+    ${linkSection('Cases Involved', entity.cases_involved)}
+    ${entity.parent_org ? singleLinkSection('Parent Organization', entity.parent_org) : ''}
+    ${entity.child_orgs && entity.child_orgs.length ? linkSection('Sub-Organizations', entity.child_orgs) : ''}
+    ${thresholdFooter(entity)}
   `;
 }
 
 function renderLocationDetail(entity, status) {
-  const descriptionContent = status === 'partial' ? redactedProse(entity) : esc(entity.description);
-
   return `
     <div class="detail-meta">
       ${entity.type ? `<span class="detail-meta-item">${esc(entity.type)}</span>` : ''}
       ${entity.real_world_basis ? `<span class="detail-meta-item detail-real-world">Real world: ${esc(entity.real_world_basis)}</span>` : ''}
     </div>
-    ${entity.description ? `<div class="detail-section"><h2>Description</h2><p class="detail-prose">${descriptionContent}</p></div>` : ''}
-    <div class="detail-section"><h2>Associated Characters</h2><div class="detail-links">${renderLinkedList(entity.characters_associated)}</div></div>
-    <div class="detail-section"><h2>Cases Occurring Here</h2><div class="detail-links">${renderLinkedList(entity.cases_occurring_here)}</div></div>
-    <div class="spoiler-thresholds">
-      <span>First appears: ${esc(formatSpoiler(entity.first_mention))}</span>
-      <span>Full reveal: ${esc(formatSpoiler(entity.full_reveal))}</span>
-    </div>
+    ${proseSection('Description', entity, status, 'description')}
+    ${linkSection('Associated Characters', entity.characters_associated)}
+    ${linkSection('Cases Occurring Here', entity.cases_occurring_here)}
+    ${thresholdFooter(entity)}
   `;
 }
 
@@ -355,46 +382,33 @@ function renderArtifactDetail(entity, status) {
         </div>`).join('')
     : '<span class="detail-none">No ownership data</span>';
 
-  const descriptionContent   = status === 'partial' ? redactedProse(entity) : esc(entity.description);
-  const significanceContent  = status === 'partial' ? redactedProse(entity) : esc(entity.significance);
-
   return `
     <div class="detail-meta">
       ${entity.type ? `<span class="detail-meta-item">${esc(entity.type)}</span>` : ''}
     </div>
-    ${entity.description ? `<div class="detail-section"><h2>Description</h2><p class="detail-prose">${descriptionContent}</p></div>` : ''}
-    ${entity.significance ? `<div class="detail-section"><h2>Significance</h2><p class="detail-prose">${significanceContent}</p></div>` : ''}
+    ${proseSection('Description', entity, status, 'description')}
+    ${proseSection('Significance', entity, status, 'significance')}
     <div class="detail-section"><h2>Ownership Chain</h2><div class="ownership-chain">${ownershipChain}</div></div>
-    <div class="detail-section"><h2>Appears In</h2><div class="detail-links">${renderLinkedList(entity.appearance_history)}</div></div>
-    <div class="spoiler-thresholds">
-      <span>First appears: ${esc(formatSpoiler(entity.first_mention))}</span>
-      <span>Full reveal: ${esc(formatSpoiler(entity.full_reveal))}</span>
-    </div>
+    ${linkSection('Appears In', entity.appearance_history)}
+    ${thresholdFooter(entity)}
   `;
 }
 
 function renderEventDetail(entity, status) {
-  const descriptionContent = status === 'partial' ? redactedProse(entity) : esc(entity.description);
-
   return `
     <div class="detail-meta">
       ${entity.event_type ? `<span class="badge badge-event-${esc(entity.event_type)}">${esc(entity.event_type)}</span>` : ''}
       ${entity.date_or_position ? `<span class="detail-meta-item">${esc(entity.date_or_position)}</span>` : ''}
     </div>
-    ${entity.description ? `<div class="detail-section"><h2>Description</h2><p class="detail-prose">${descriptionContent}</p></div>` : ''}
-    <div class="detail-section"><h2>Characters Involved</h2><div class="detail-links">${renderLinkedList(entity.characters_involved)}</div></div>
-    <div class="detail-section"><h2>Cases Linked</h2><div class="detail-links">${renderLinkedList(entity.cases_linked)}</div></div>
-    ${entity.location ? `<div class="detail-section"><h2>Location</h2><div class="detail-links"><span class="detail-link-item">${entityLink(entity.location)}</span></div></div>` : ''}
-    <div class="spoiler-thresholds">
-      <span>First appears: ${esc(formatSpoiler(entity.first_mention))}</span>
-      <span>Full reveal: ${esc(formatSpoiler(entity.full_reveal))}</span>
-    </div>
+    ${proseSection('Description', entity, status, 'description')}
+    ${linkSection('Characters Involved', entity.characters_involved)}
+    ${linkSection('Cases Linked', entity.cases_linked)}
+    ${entity.location ? singleLinkSection('Location', entity.location) : ''}
+    ${thresholdFooter(entity)}
   `;
 }
 
 function renderRelationshipDetail(entity, status) {
-  const notesContent = status === 'partial' ? redactedProse(entity) : esc(entity.notes);
-
   return `
     <div class="detail-meta">
       ${entity.relationship_type ? `<span class="badge badge-rel-${esc(entity.relationship_type)}">${esc(entity.relationship_type)}</span>` : ''}
@@ -406,12 +420,9 @@ function renderRelationshipDetail(entity, status) {
         ${entity.character_b ? `<span class="detail-link-item">${entityLink(entity.character_b)}</span>` : ''}
       </div>
     </div>
-    ${entity.first_established ? `<div class="detail-section"><h2>First Established</h2><div class="detail-links"><span class="detail-link-item">${entityLink(entity.first_established)}</span></div></div>` : ''}
-    ${entity.notes ? `<div class="detail-section"><h2>Notes</h2><p class="detail-prose">${notesContent}</p></div>` : ''}
-    <div class="spoiler-thresholds">
-      <span>First appears: ${esc(formatSpoiler(entity.first_mention))}</span>
-      <span>Full reveal: ${esc(formatSpoiler(entity.full_reveal))}</span>
-    </div>
+    ${entity.first_established ? singleLinkSection('First Established', entity.first_established) : ''}
+    ${proseSection('Notes', entity, status, 'notes')}
+    ${thresholdFooter(entity)}
   `;
 }
 

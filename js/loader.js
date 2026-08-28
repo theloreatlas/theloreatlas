@@ -136,26 +136,10 @@ const LoreLoader = (() => {
     return manifest.series.find(s => s.id === id) || null;
   }
 
-  /**
-   * Resolve an array of IDs to entity objects.
-   * IDs that can't be resolved are silently skipped.
-   */
-  function resolveIds(ids) {
-    if (!Array.isArray(ids)) return [];
-    return ids.map(id => lookup[id]).filter(Boolean);
-  }
-
-  /**
-   * Returns true if data has been loaded.
-   */
-  function isLoaded() {
-    return loaded;
-  }
-
   function getMetaConfig() {
     return metaConfig;
   }
 
-  return { load, getById, getAll, getSeries, getSeriesById, resolveIds, isLoaded, getMetaConfig };
+  return { load, getById, getAll, getSeries, getSeriesById, getMetaConfig };
 
 })();

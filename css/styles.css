@@ -327,27 +327,6 @@ a:hover {
   }
 }
 
-/* --- Ornamental Divider Utility --- */
-.ornament-rule {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  color: var(--gold-dim);
-  margin: 2rem 0;
-}
-
-.ornament-rule::before,
-.ornament-rule::after {
-  content: '';
-  flex: 1;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--border-strong));
-}
-
-.ornament-rule::after {
-  background: linear-gradient(90deg, var(--border-strong), transparent);
-}
-
 /* --- Homepage --- */
 .home-hero {
   margin-bottom: 3.5rem;
