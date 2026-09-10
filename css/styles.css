@@ -1064,8 +1064,15 @@ a:hover {
 }
 
 /* ============================================================
-   Mobile Responsiveness (Session 13.8)
-   Breakpoints: max-width 768px (tablet/phone) and 480px (phone).
+   Mobile Responsiveness (Session 13.8; breakpoint aligned in the
+   13.8 follow-up, Session 13.9 Step 0)
+   Breakpoints: max-width 991px (nav/reader-bar) and 480px (phone).
+   991px was measured, not guessed: the desktop nav (Timeline,
+   Relationships, Graph, Search) first fits without wrapping or
+   clipping any link at 992px, so the mobile nav/reader-bar rules
+   apply through 991px. graph.css keeps its own pre-existing
+   max-width: 767px breakpoint — untouched, and now a stricter
+   subset of this one, not aligned with it.
    Content pages only — the graph panel's mobile rules live in
    graph.css and are untouched here.
    ============================================================ */
@@ -1113,7 +1120,7 @@ body.nav-open .nav-toggle-bar:nth-child(3) {
   transform: translateY(-7px) rotate(-45deg);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 991px) {
   /* --- Header / Nav --- */
   .nav-toggle {
     display: flex;
