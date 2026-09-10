@@ -1062,3 +1062,177 @@ a:hover {
   background: rgba(201, 165, 90, 0.22);
   color: var(--ink);
 }
+
+/* ============================================================
+   Mobile Responsiveness (Session 13.8)
+   Breakpoints: max-width 768px (tablet/phone) and 480px (phone).
+   Content pages only — the graph panel's mobile rules live in
+   graph.css and are untouched here.
+   ============================================================ */
+
+/* --- Homepage hero: fluid heading, all widths --- */
+.home-hero h1 {
+  font-size: clamp(1.6rem, 8vw, 2.4rem);
+}
+
+/* --- Nav toggle (hamburger) --- */
+.nav-toggle {
+  display: none;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 1px solid rgba(201, 165, 90, 0.3);
+  border-radius: var(--radius);
+  background: transparent;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.nav-toggle-bar {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: var(--gold);
+  border-radius: 1px;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+body.nav-open .nav-toggle-bar:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+body.nav-open .nav-toggle-bar:nth-child(2) {
+  opacity: 0;
+}
+
+body.nav-open .nav-toggle-bar:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+@media (max-width: 768px) {
+  /* --- Header / Nav --- */
+  .nav-toggle {
+    display: flex;
+  }
+
+  #site-header nav {
+    display: none;
+    position: fixed;
+    top: 62px;
+    left: 0;
+    right: 0;
+    background: var(--header-bg);
+    border-bottom: 1px solid rgba(201, 165, 90, 0.25);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+    max-height: calc(100vh - 62px);
+    overflow-y: auto;
+    z-index: 150;
+  }
+
+  body.nav-open #site-header nav {
+    display: block;
+  }
+
+  #site-nav {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: 0.5rem 0;
+  }
+
+  #site-nav a {
+    display: flex;
+    align-items: center;
+    padding: 0.85rem 1.5rem;
+    font-size: 0.7rem;
+    min-height: 44px;
+    box-sizing: border-box;
+  }
+
+  #site-nav a::after {
+    display: none;
+  }
+
+  /* --- Reader position bar: two rows --- */
+  #reader-position-bar {
+    position: static;
+    flex-wrap: wrap;
+    height: auto;
+    padding: 0.6rem 1rem;
+    row-gap: 0.5rem;
+    column-gap: 0.75rem;
+  }
+
+  .rp-label {
+    order: 1;
+  }
+
+  .rp-status {
+    order: 2;
+    margin-left: auto;
+  }
+
+  .rp-controls {
+    order: 3;
+    flex-basis: 100%;
+    width: 100%;
+    flex-wrap: nowrap;
+    gap: 0.4rem;
+  }
+
+  #rp-book,
+  #rp-chapter {
+    font-size: 1rem;
+    min-height: 44px;
+    box-sizing: border-box;
+  }
+
+  #rp-book {
+    min-width: 0;
+    flex: 1 1 auto;
+    width: auto;
+  }
+
+  #rp-chapter {
+    min-width: 0;
+    flex: 0 1 4.5rem;
+  }
+
+  .rp-clear-btn {
+    min-height: 44px;
+    box-sizing: border-box;
+    flex: 0 0 auto;
+    white-space: nowrap;
+  }
+
+  /* --- Header padding --- */
+  #site-header {
+    padding: 0 1.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  /* --- Header --- */
+  #site-header {
+    padding: 0 1rem;
+  }
+
+  .logo-ornament {
+    display: none;
+  }
+
+  /* --- Entity list: stack name/meta --- */
+  .entity-list-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.35rem;
+  }
+
+  .entity-list-item .item-meta {
+    white-space: normal;
+  }
+}

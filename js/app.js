@@ -21,6 +21,7 @@ async function onRouteChange() {
 
   initReaderPositionPicker();
   updateNavActive(parts);
+  closeNavMenu();
   setCanonical();
 
   // Route dispatch — compute shared vars, then render + set meta + set JSON-LD.
@@ -84,5 +85,6 @@ window.addEventListener('popstate', onRouteChange);
 window.addEventListener('DOMContentLoaded', () => {
   maybeRedirectLegacyHash();
   setupLinkInterception();
+  initNavToggle();
   onRouteChange();
 });

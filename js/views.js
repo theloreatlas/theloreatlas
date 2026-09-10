@@ -13,6 +13,40 @@ function updateNavActive(parts) {
   }
 }
 
+// ── Mobile nav toggle (hamburger, ≤768px) ───────────────────────────────────
+
+let navToggleInitialized = false;
+
+function initNavToggle() {
+  if (navToggleInitialized) return;
+  const toggle = document.getElementById('nav-toggle');
+  const nav    = document.getElementById('site-nav');
+  if (!toggle || !nav) return;
+
+  toggle.addEventListener('click', () => {
+    const isOpen = document.body.classList.toggle('nav-open');
+    toggle.setAttribute('aria-expanded', String(isOpen));
+  });
+
+  // Close on link click (route change also closes it, but a click on the
+  // already-active link doesn't trigger a route change).
+  nav.addEventListener('click', (e) => {
+    if (e.target.closest('a')) closeNavMenu();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeNavMenu();
+  });
+
+  navToggleInitialized = true;
+}
+
+function closeNavMenu() {
+  document.body.classList.remove('nav-open');
+  const toggle = document.getElementById('nav-toggle');
+  if (toggle) toggle.setAttribute('aria-expanded', 'false');
+}
+
 // ── Views ────────────────────────────────────────────────────────────────────
 
 function renderHome(container) {
