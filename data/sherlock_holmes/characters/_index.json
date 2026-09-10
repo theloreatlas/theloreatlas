@@ -68,6 +68,9 @@
       "letters",
       "Returns"
     ],
+    "events": [
+      "event_milverton-death"
+    ],
     "created_by": "theloreatlas",
     "last_edited_by": "theloreatlas"
   },
@@ -97,8 +100,7 @@
       "rel_moriarty-moran-ally"
     ],
     "cases": [
-      "case_the-adventure-of-the-empty-house",
-      "case_the-final-problem"
+      "case_the-adventure-of-the-empty-house"
     ],
     "biography": "Colonel Sebastian Moran is Moriarty's chief of staff and the most dangerous man in London after the Professor himself. Holmes describes him as the best heavy-game shot in the Indian Empire — a decorated soldier turned hired killer. He served in the Indian Army before his undisclosed crimes forced him into Moriarty's criminal organization, where he became the network's most lethal operative. After Moriarty's death at Reichenbach, Moran continues to hunt Holmes, eventually attempting to kill him from Camden House using an air-gun designed by the blind mechanic Von Herder. Holmes sets a trap using a wax bust as bait, and Moran is arrested. His dossier in Holmes's records notes he is the second most dangerous man in London.",
     "tags": [
@@ -108,6 +110,9 @@
       "shikari",
       "airgun",
       "Empty House"
+    ],
+    "events": [
+      "event_moran-capture"
     ],
     "created_by": "theloreatlas",
     "last_edited_by": "theloreatlas"
@@ -231,7 +236,7 @@
     "status": "active",
     "first_mention": {
       "book": 5,
-      "chapter": 3
+      "chapter": 4
     },
     "full_reveal": {
       "book": 5,
@@ -277,9 +282,7 @@
     "affiliations": [
       "faction_scotland-yard"
     ],
-    "relationships": [
-      "rel_holmes-athelney-jones-professional"
-    ],
+    "relationships": [],
     "cases": [
       "case_the-sign-of-the-four"
     ],
@@ -321,7 +324,6 @@
     ],
     "cases": [
       "case_a-study-in-scarlet",
-      "case_the-five-orange-pips",
       "case_the-adventure-of-wisteria-lodge"
     ],
     "biography": "Inspector Tobias Gregson is one of Scotland Yard's ablest detectives and, along with Lestrade, Holmes's most frequent official contact. Holmes considers him and Lestrade the pick of a bad lot — smart within limits, energetic, but chained to conventional procedure. Gregson appears in A Study in Scarlet as the Yard's lead investigator on the Lauriston Gardens murder, where he and Lestrade compete as much with each other as with the case. He is described as tall and flaxen-haired, with a self-satisfied manner that Holmes finds mildly amusing. He recurs in Five Orange Pips and Wisteria Lodge, always following the facts further than the average officer but stopping short of Holmes's leaps of inference.",
@@ -456,6 +458,9 @@
       "Bohemia",
       "photograph"
     ],
+    "events": [
+      "event_holmes-defeat-by-adler"
+    ],
     "created_by": "theloreatlas",
     "last_edited_by": "theloreatlas"
   },
@@ -474,7 +479,7 @@
       "book": 3,
       "chapter": 2
     },
-    "affiliations": [],
+    "affiliations": ["faction_red-headed-league"],
     "relationships": [
       "rel_holmes-jabez-wilson-professional"
     ],
@@ -580,7 +585,7 @@
       "book": 1,
       "chapter": 1
     },
-    "affiliations": [],
+    "affiliations": ["faction_afghan-campaign-veterans"],
     "relationships": [
       "rel_holmes-watson-ally",
       "rel_watson-mary-morstan-romantic",
@@ -658,6 +663,19 @@
       "Baker Street",
       "Watson"
     ],
+    "events": [
+      "event_watson-afghan-injury",
+      "event_holmes-watson-first-meeting",
+      "event_watson-mary-morstan-marriage",
+      "event_mary-morstan-death",
+      "event_holmes-defeat-by-adler",
+      "event_reichenbach-falls-confrontation",
+      "event_holmes-return-to-london",
+      "event_moran-capture",
+      "event_milverton-death",
+      "event_holmes-wwi-service",
+      "event_mycroft-introduction"
+    ],
     "created_by": "theloreatlas",
     "last_edited_by": "theloreatlas"
   },
@@ -730,6 +748,10 @@
       "Sign of Four",
       "Agra Treasure",
       "pearls"
+    ],
+    "events": [
+      "event_watson-mary-morstan-marriage",
+      "event_mary-morstan-death"
     ],
     "created_by": "theloreatlas",
     "last_edited_by": "theloreatlas"
@@ -815,12 +837,12 @@
     "role": "supporting",
     "status": "active",
     "first_mention": {
-      "book": 1,
-      "chapter": 2
+      "book": 2,
+      "chapter": 1
     },
     "full_reveal": {
-      "book": 1,
-      "chapter": 2
+      "book": 2,
+      "chapter": 1
     },
     "affiliations": [],
     "relationships": [
@@ -828,9 +850,6 @@
       "rel_watson-mrs-hudson-professional"
     ],
     "cases": [
-      "case_a-study-in-scarlet",
-      "case_a-scandal-in-bohemia",
-      "case_the-final-problem",
       "case_the-adventure-of-the-empty-house",
       "case_the-adventure-of-the-dying-detective"
     ],
@@ -862,7 +881,8 @@
       "chapter": 9
     },
     "affiliations": [
-      "faction_diogenes-club"
+      "faction_diogenes-club",
+      "faction_british-government"
     ],
     "relationships": [
       "rel_holmes-mycroft-family"
@@ -878,6 +898,9 @@
       "brother",
       "intelligence",
       "sedentary"
+    ],
+    "events": [
+      "event_mycroft-introduction"
     ],
     "created_by": "theloreatlas",
     "last_edited_by": "theloreatlas"
@@ -930,11 +953,11 @@
     "status": "deceased",
     "first_mention": {
       "book": 4,
-      "chapter": 1
+      "chapter": 11
     },
     "full_reveal": {
       "book": 4,
-      "chapter": 10
+      "chapter": 11
     },
     "affiliations": [
       "faction_moriarty-criminal-network"
@@ -955,6 +978,9 @@
       "criminal mastermind",
       "Reichenbach Falls",
       "Napoleon of Crime"
+    ],
+    "events": [
+      "event_reichenbach-falls-confrontation"
     ],
     "created_by": "theloreatlas",
     "last_edited_by": "theloreatlas"
@@ -992,7 +1018,6 @@
       "rel_holmes-moran-enemy",
       "rel_holmes-gregson-professional",
       "rel_holmes-hopkins-mentor",
-      "rel_holmes-athelney-jones-professional",
       "rel_holmes-henry-baskerville-professional",
       "rel_holmes-roylott-enemy",
       "rel_holmes-stapleton-enemy",
@@ -1083,6 +1108,18 @@
       "Baker Street",
       "Sussex"
     ],
+    "events": [
+      "event_holmes-watson-first-meeting",
+      "event_holmes-defeat-by-adler",
+      "event_mycroft-introduction",
+      "event_reichenbach-falls-confrontation",
+      "event_great-hiatus",
+      "event_holmes-return-to-london",
+      "event_moran-capture",
+      "event_milverton-death",
+      "event_holmes-sussex-retirement",
+      "event_holmes-wwi-service"
+    ],
     "created_by": "theloreatlas",
     "last_edited_by": "theloreatlas"
   },
@@ -1108,8 +1145,7 @@
       "rel_holmes-shinwell-johnson-professional"
     ],
     "cases": [
-      "case_the-adventure-of-the-illustrious-client",
-      "case_the-adventure-of-the-retired-colourman"
+      "case_the-adventure-of-the-illustrious-client"
     ],
     "biography": "Shinwell Johnson, known in the underworld as Porky Shinwell, is a reformed criminal who becomes one of Holmes's most valuable informants in the late canon. Holmes recruited him from the police records — a former gaolbird who discovered that his connections to criminal circles were more profitably deployed working for a detective than against him. He is described as a huge, coarse, red-faced man with a bull neck. In The Adventure of the Illustrious Client, Holmes uses him to gather intelligence on the dangerous Baron Gruner, sending Kitty Winter into Gruner's household via Johnson's network. He also assists in The Adventure of the Retired Colourman. Johnson represents Holmes's pragmatic approach to the criminal world: a man who cannot be reformed away from his associations can still be redirected toward useful ends. Holmes provides him tacit protection in exchange for access to a world Holmes himself cannot enter without detection.",
     "tags": [
@@ -1243,8 +1279,8 @@
     "role": "supporting",
     "status": "active",
     "first_mention": {
-      "book": 2,
-      "chapter": 8
+      "book": 1,
+      "chapter": 6
     },
     "full_reveal": {
       "book": 2,

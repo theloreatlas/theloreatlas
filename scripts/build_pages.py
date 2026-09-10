@@ -24,6 +24,7 @@ Also regenerates sitemap.xml from the same walk.
 
 Usage:
   python3 scripts/build_pages.py
+  python3 scripts/build_pages.py --check   # verify only, write nothing; exit 1 if stale
 """
 
 import html as html_mod
@@ -299,7 +300,23 @@ def inject_head(base_html, head_content):
     out = out.replace('</head>', head_content + '\n</head>', 1)
     return out
 
+CHECK_MODE = False
+# Populated only in --check mode: stubs whose on-disk content differs from
+# what a fresh build would produce, stubs that don't exist yet, and stub
+# directories on disk that no longer correspond to any current entity/page.
+STALE = []
+MISSING = []
+EXPECTED_DIRS = set()
+
 def emit_page(out_dir, page_html):
+    EXPECTED_DIRS.add(out_dir.resolve())
+    if CHECK_MODE:
+        idx = out_dir / 'index.html'
+        if not idx.exists():
+            MISSING.append(str(out_dir.relative_to(REPO_ROOT)))
+        elif idx.read_text(encoding='utf-8') != page_html:
+            STALE.append(str(out_dir.relative_to(REPO_ROOT)))
+        return
     out_dir.mkdir(parents=True, exist_ok=True)
     (out_dir / 'index.html').write_text(page_html, encoding='utf-8')
 
@@ -307,9 +324,26 @@ def page_url(*parts):
     """Build a canonical URL with trailing slash."""
     return SITE_URL + '/' + '/'.join(str(p) for p in parts) + '/'
 
+def find_orphaned_stubs(manifest):
+    """Stub directories on disk (under each series root) that emit_page did
+    not visit this run — i.e. left over from a deleted/renamed entity."""
+    orphaned = []
+    for series in manifest['series']:
+        series_root = REPO_ROOT / series['id']
+        if not series_root.is_dir():
+            continue
+        for idx_file in series_root.rglob('index.html'):
+            stub_dir = idx_file.parent.resolve()
+            if stub_dir not in EXPECTED_DIRS:
+                orphaned.append(str(stub_dir.relative_to(REPO_ROOT)))
+    return sorted(orphaned)
+
 # ── Main ─────────────────────────────────────────────────────────────────────
 
 def main():
+    global CHECK_MODE
+    CHECK_MODE = '--check' in sys.argv[1:]
+
     base_html = INDEX_HTML.read_text(encoding='utf-8')
     manifest = json.loads((DATA_DIR / 'manifest.json').read_text())
 
@@ -424,7 +458,7 @@ def main():
         sitemap_urls.append(graph_url)
         emitted += 1
 
-    # ── Regenerate sitemap.xml ───────────────────────────────────────────────
+    # ── Sitemap.xml: build in memory; write it only when not checking ───────
     lines = [
         '<?xml version="1.0" encoding="UTF-8"?>',
         '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
@@ -432,15 +466,39 @@ def main():
     for u in sitemap_urls:
         lines.append(f'  <url><loc>{u}</loc></url>')
     lines.append('</urlset>')
-    SITEMAP.write_text('\n'.join(lines) + '\n', encoding='utf-8')
+    sitemap_content = '\n'.join(lines) + '\n'
 
-    print(f'Emitted {emitted} pages, regenerated sitemap.xml ({len(sitemap_urls)} URLs)')
+    sitemap_stale = False
+    if CHECK_MODE:
+        sitemap_stale = (not SITEMAP.exists()) or SITEMAP.read_text(encoding='utf-8') != sitemap_content
+    else:
+        SITEMAP.write_text(sitemap_content, encoding='utf-8')
 
     if errors:
         print(f'\n{len(errors)} error(s):')
         for err in errors:
             print(f'  {err}')
         sys.exit(1)
+
+    if CHECK_MODE:
+        orphaned = find_orphaned_stubs(manifest)
+        problems = len(STALE) + len(MISSING) + len(orphaned) + (1 if sitemap_stale else 0)
+        if problems:
+            print(f'--check found {problems} problem(s) (nothing was written):')
+            if sitemap_stale:
+                print('  stale: sitemap.xml (does not match a fresh build)')
+            for path in STALE:
+                print(f'  stale: {path}/index.html')
+            for path in MISSING:
+                print(f'  missing: {path}/index.html')
+            for path in orphaned:
+                print(f'  orphaned: {path}/index.html (no longer corresponds to any entity)')
+            print('\nRun python3 scripts/build_pages.py to regenerate.')
+            sys.exit(1)
+        print(f'--check OK: {emitted} pages and sitemap.xml are all up to date.')
+        return
+
+    print(f'Emitted {emitted} pages, regenerated sitemap.xml ({len(sitemap_urls)} URLs)')
 
 if __name__ == '__main__':
     main()

@@ -291,9 +291,17 @@ function renderCharacterDetail(entity, status) {
 }
 
 function renderCaseDetail(entity, status) {
-  const notableElements = entity.notable_elements && entity.notable_elements.length
-    ? `<ul class="detail-list">${entity.notable_elements.map(e => `<li>${esc(e)}</li>`).join('')}</ul>`
-    : '<span class="detail-none">None</span>';
+  // Gated like prose (D4, Session 13.7): notable elements can name spoilers
+  // (e.g. Sign of Four's list names Jonathan Small), so redact them while
+  // the case is only partially revealed, same as any other prose field.
+  let notableElements;
+  if (status === 'partial') {
+    notableElements = `<p class="detail-prose">${redactedProse(entity)}</p>`;
+  } else {
+    notableElements = entity.notable_elements && entity.notable_elements.length
+      ? `<ul class="detail-list">${entity.notable_elements.map(e => `<li>${esc(e)}</li>`).join('')}</ul>`
+      : '<span class="detail-none">None</span>';
+  }
 
   // Solution is always gated at full_reveal. When partial: redact. When full: keep <details>.
   let solutionSection = '';

@@ -5,23 +5,28 @@
     "title": "A Study in Scarlet",
     "case_nickname": "The Lauriston Gardens Murder",
     "source_book": "book_a-study-in-scarlet",
-    "characters_involved": ["char_sherlock-holmes", "char_john-watson", "char_inspector-lestrade"],
+    "characters_involved": ["char_sherlock-holmes", "char_john-watson", "char_inspector-lestrade", "char_inspector-gregson", "char_jefferson-hope"],
     "locations": ["loc_221b-baker-street", "loc_lauriston-gardens"],
     "artifacts_involved": [],
     "timeline_position": { "book": 1, "chapter": 1 },
-    "synopsis": "Watson, recently returned from Afghanistan, meets Sherlock Holmes and agrees to share lodgings at 221B Baker Street. Holmes investigates the murder of Enoch Drebber, found dead in an empty house with the word 'RACHE' written in blood on the wall. Holmes deduces the crime was committed by Jefferson Hope, a cab driver seeking vengeance for the deaths of his beloved Lucy Ferrier and her father at the hands of Mormon leaders in Utah.",
-    "solution": "Enoch Drebber and his secretary were murdered by Jefferson Hope, an American cab driver avenging the death of Lucy Ferrier. Hope forced Drebber to choose one of two pills — one poison, one harmless — as an act of divine justice. Hope is apprehended but dies of an aortic aneurysm before trial.",
+    "synopsis": "Watson, recently returned from Afghanistan, is introduced to Sherlock Holmes by Stamford and agrees to share lodgings at 221B Baker Street. Holmes is called in to investigate the murder of Enoch Drebber, found dead in an empty house in Lauriston Gardens with no apparent cause of death and the word 'RACHE' written in blood on the wall. Holmes deduces the crime was committed by Jefferson Hope, a cab driver seeking vengeance for the deaths of his beloved Lucy Ferrier and her father in the Utah Territory years before, at the hands of Mormon leaders who forced Lucy into marriage.",
+    "solution": "Enoch Drebber and his secretary Joseph Stangerson were murdered by Jefferson Hope, an American cab driver. Hope had pursued them across the Atlantic to avenge the death of Lucy Ferrier, whom he loved, and her father, both victims of Mormon elder Drebber's machinations in Utah. Hope forced Drebber to choose one of two pills \u2014 one poison, one harmless \u2014 as an act of divine justice. Hope is apprehended but dies of a ruptured aortic aneurysm before he can be tried.",
     "notable_elements": [
       "First appearance of Sherlock Holmes and Watson",
       "First appearance of Lestrade and Gregson",
       "Holmes and Watson establish their partnership at 221B Baker Street",
-      "The 'RACHE' clue — German for 'revenge'",
-      "Novel structure: Part 1 in London, Part 2 in Utah (backstory)"
+      "The 'RACHE' clue \u2014 German for 'revenge', not a woman's name as the police assume",
+      "Holmes's first use of a cab driver as an informant",
+      "The novel's structure: Part 1 in London, Part 2 in Utah (backstory)"
     ],
     "first_mention": { "book": 1, "chapter": 1 },
     "full_reveal": { "book": 1, "chapter": 14 },
     "created_by": "theloreatlas",
-    "last_edited_by": "theloreatlas"
+    "last_edited_by": "theloreatlas",
+    "events": [
+      "event_holmes-watson-first-meeting",
+      "event_watson-afghan-injury"
+    ]
   },
   {
     "id": "case_the-sign-of-the-four",
@@ -29,7 +34,7 @@
     "title": "The Sign of the Four",
     "case_nickname": "The Agra Treasure Case",
     "source_book": "book_the-sign-of-the-four",
-    "characters_involved": ["char_sherlock-holmes", "char_john-watson"],
+    "characters_involved": ["char_sherlock-holmes", "char_john-watson", "char_inspector-athelney-jones", "char_jonathan-small", "char_mary-morstan", "char_mrs-forrester", "char_wiggins"],
     "locations": ["loc_221b-baker-street"],
     "artifacts_involved": ["artifact_agra-treasure"],
     "timeline_position": { "book": 2, "chapter": 1 },
@@ -45,7 +50,10 @@
     "first_mention": { "book": 2, "chapter": 1 },
     "full_reveal": { "book": 2, "chapter": 12 },
     "created_by": "theloreatlas",
-    "last_edited_by": "theloreatlas"
+    "last_edited_by": "theloreatlas",
+    "events": [
+      "event_watson-mary-morstan-marriage"
+    ]
   },
   {
     "id": "case_a-scandal-in-bohemia",
@@ -53,22 +61,26 @@
     "title": "A Scandal in Bohemia",
     "case_nickname": "The Irene Adler Case",
     "source_book": "book_the-adventures-of-sherlock-holmes",
-    "characters_involved": ["char_sherlock-holmes", "char_john-watson", "char_irene-adler"],
+    "characters_involved": ["char_sherlock-holmes", "char_john-watson", "char_irene-adler", "char_godfrey-norton"],
     "locations": ["loc_221b-baker-street", "loc_briony-lodge"],
     "artifacts_involved": ["artifact_bohemia-photograph"],
     "timeline_position": { "book": 3, "chapter": 1 },
-    "synopsis": "The King of Bohemia hires Holmes to recover a compromising photograph held by Irene Adler. Holmes investigates and stages a fake fire at Adler's home to discover where she has hidden it — but Adler has recognized Holmes's disguise and departs England with her husband before the photograph can be recovered.",
-    "solution": "Irene Adler outmaneuvers Holmes entirely. She identifies him despite his disguise, leaves England with her husband, and keeps the photograph — but assures the King she has no intention of using it. Holmes asks for and receives only a photograph of Adler as payment.",
+    "synopsis": "Wilhelm Gottsreich Sigismond von Ormstein, King of Bohemia, visits Holmes in disguise. He has been conducting a secret correspondence with Irene Adler, an opera singer, and fears she will use a compromising photograph of the two together to block his upcoming marriage to a Scandinavian princess. Holmes investigates, disguises himself as a groom and then a clergyman, and stages a fake fire at Irene's home to discover where she has hidden the photograph. But Adler has recognized Holmes's disguise, followed him home, and departed England with her new husband Godfrey Norton \u2014 leaving behind a letter to Holmes and a photograph of herself alone.",
+    "solution": "Irene Adler outmaneuvers Holmes entirely. She identifies him despite his disguise, realizes the photograph's hiding place has been discovered, and leaves England with her husband before Holmes can recover the photograph. She keeps the photograph but assures the King she has no intention of using it, given her own happy marriage. Holmes asks for and receives only the photograph of Adler as payment. The King's marriage proceeds unimpeded.",
     "notable_elements": [
       "First and only major appearance of Irene Adler",
       "The only case in which Holmes is decisively outsmarted",
-      "Origin of Holmes referring to Adler as 'The Woman'",
+      "Origin of Holmes's habit of referring to Adler simply as 'The Woman'",
+      "Watson's account opens with Holmes's opinion that women are not to be trusted \u2014 which Adler immediately refutes",
       "One of the few cases where Holmes does not solve the problem he was hired to solve"
     ],
     "first_mention": { "book": 3, "chapter": 1 },
     "full_reveal": { "book": 3, "chapter": 1 },
     "created_by": "theloreatlas",
-    "last_edited_by": "theloreatlas"
+    "last_edited_by": "theloreatlas",
+    "events": [
+      "event_holmes-defeat-by-adler"
+    ]
   },
   {
     "id": "case_the-red-headed-league",
@@ -76,7 +88,7 @@
     "title": "The Red-Headed League",
     "case_nickname": "The Red-Headed League",
     "source_book": "book_the-adventures-of-sherlock-holmes",
-    "characters_involved": ["char_sherlock-holmes", "char_john-watson"],
+    "characters_involved": ["char_sherlock-holmes", "char_john-watson", "char_jabez-wilson"],
     "locations": ["loc_221b-baker-street"],
     "artifacts_involved": [],
     "timeline_position": { "book": 3, "chapter": 2 },
@@ -100,7 +112,7 @@
     "title": "A Case of Identity",
     "case_nickname": null,
     "source_book": "book_the-adventures-of-sherlock-holmes",
-    "characters_involved": ["char_sherlock-holmes", "char_john-watson"],
+    "characters_involved": ["char_sherlock-holmes", "char_john-watson", "char_mary-sutherland"],
     "locations": ["loc_221b-baker-street"],
     "artifacts_involved": [],
     "timeline_position": { "book": 3, "chapter": 3 },
@@ -169,7 +181,7 @@
     "title": "The Man with the Twisted Lip",
     "case_nickname": "The Man with the Twisted Lip",
     "source_book": "book_the-adventures-of-sherlock-holmes",
-    "characters_involved": ["char_sherlock-holmes", "char_john-watson"],
+    "characters_involved": ["char_sherlock-holmes", "char_john-watson", "char_neville-st-clair"],
     "locations": ["loc_221b-baker-street"],
     "artifacts_involved": [],
     "timeline_position": { "book": 3, "chapter": 6 },
@@ -192,7 +204,7 @@
     "title": "The Adventure of the Blue Carbuncle",
     "case_nickname": "The Blue Carbuncle",
     "source_book": "book_the-adventures-of-sherlock-holmes",
-    "characters_involved": ["char_sherlock-holmes", "char_john-watson"],
+    "characters_involved": ["char_sherlock-holmes", "char_john-watson", "char_james-ryder"],
     "locations": ["loc_221b-baker-street"],
     "artifacts_involved": ["artifact_blue-carbuncle"],
     "timeline_position": { "book": 3, "chapter": 7 },
@@ -215,7 +227,7 @@
     "title": "The Adventure of the Speckled Band",
     "case_nickname": "The Speckled Band",
     "source_book": "book_the-adventures-of-sherlock-holmes",
-    "characters_involved": ["char_sherlock-holmes", "char_john-watson"],
+    "characters_involved": ["char_sherlock-holmes", "char_john-watson", "char_dr-grimesby-roylott", "char_helen-stoner"],
     "locations": ["loc_221b-baker-street"],
     "artifacts_involved": [],
     "timeline_position": { "book": 3, "chapter": 8 },
@@ -308,7 +320,7 @@
     "title": "The Adventure of the Copper Beeches",
     "case_nickname": "The Copper Beeches",
     "source_book": "book_the-adventures-of-sherlock-holmes",
-    "characters_involved": ["char_sherlock-holmes", "char_john-watson"],
+    "characters_involved": ["char_sherlock-holmes", "char_john-watson", "char_violet-hunter"],
     "locations": ["loc_221b-baker-street"],
     "artifacts_involved": [],
     "timeline_position": { "book": 3, "chapter": 12 },
@@ -536,7 +548,10 @@
     "first_mention": { "book": 4, "chapter": 9 },
     "full_reveal": { "book": 4, "chapter": 9 },
     "created_by": "theloreatlas",
-    "last_edited_by": "theloreatlas"
+    "last_edited_by": "theloreatlas",
+    "events": [
+      "event_mycroft-introduction"
+    ]
   },
   {
     "id": "case_the-naval-treaty",
@@ -572,19 +587,22 @@
     "locations": ["loc_221b-baker-street", "loc_reichenbach-falls"],
     "artifacts_involved": [],
     "timeline_position": { "book": 4, "chapter": 11 },
-    "synopsis": "Holmes reveals he has dismantled Moriarty's criminal network and flees to the Continent as Moriarty pursues him. Near Meiringen, Switzerland, Holmes sends Watson away on a false errand at the Reichenbach Falls. When Watson returns, Holmes is gone — only a farewell note and two sets of footprints leading to the precipice remain.",
-    "solution": "Holmes and Moriarty struggle at the edge of the Reichenbach Falls and both apparently plunge to their deaths. The true outcome — Holmes survived using Baritsu — is not revealed until The Adventure of the Empty House (book 6).",
+    "synopsis": "Holmes informs Watson that he has been systematically dismantling Professor Moriarty's criminal network and expects Moriarty will attempt to kill him before he can bring the case to trial. The two flee to the Continent. Moriarty pursues them. Near Meiringen, Switzerland, Holmes and Watson visit the Reichenbach Falls. Holmes sends Watson away on a false errand. When Watson returns, Holmes is gone. Two sets of footprints lead to the edge of the precipice. A note from Holmes to Watson is found, suggesting Holmes knew he would not survive the encounter.",
+    "solution": "Holmes and Moriarty struggle at the edge of the Reichenbach Falls and both apparently plunge to their deaths. Watson finds Holmes's farewell note but no body. Colonel Sebastian Moran, Moriarty's chief of staff, is believed to have been present. The true outcome \u2014 that Holmes survived by using his knowledge of Baritsu to throw Moriarty while clinging to the cliff face \u2014 is not revealed until The Adventure of the Empty House (book 6).",
     "notable_elements": [
       "First introduction of Professor Moriarty as arch-nemesis",
-      "Apparent death of Sherlock Holmes — Doyle intended this to end the series",
+      "Apparent death of Sherlock Holmes \u2014 Doyle intended this to end the series",
       "Watson's narration is written as a memorial to Holmes",
-      "Introduces Colonel Sebastian Moran",
       "Holmes's farewell letter to Watson"
     ],
     "first_mention": { "book": 4, "chapter": 11 },
     "full_reveal": { "book": 6, "chapter": 1 },
     "created_by": "theloreatlas",
-    "last_edited_by": "theloreatlas"
+    "last_edited_by": "theloreatlas",
+    "events": [
+      "event_reichenbach-falls-confrontation",
+      "event_great-hiatus"
+    ]
   },
   {
     "id": "case_the-hound-of-the-baskervilles",
@@ -592,7 +610,7 @@
     "title": "The Hound of the Baskervilles",
     "case_nickname": "The Hound",
     "source_book": "book_the-hound-of-the-baskervilles",
-    "characters_involved": ["char_sherlock-holmes", "char_john-watson"],
+    "characters_involved": ["char_sherlock-holmes", "char_john-watson", "char_henry-baskerville", "char_stapleton"],
     "locations": ["loc_221b-baker-street", "loc_baskerville-hall"],
     "artifacts_involved": [],
     "timeline_position": { "book": 5, "chapter": 1 },
@@ -616,22 +634,31 @@
     "title": "The Adventure of the Empty House",
     "case_nickname": "The Return",
     "source_book": "book_the-return-of-sherlock-holmes",
-    "characters_involved": ["char_sherlock-holmes", "char_john-watson", "char_inspector-lestrade"],
+    "characters_involved": ["char_sherlock-holmes", "char_john-watson", "char_inspector-lestrade", "char_colonel-sebastian-moran", "char_mrs-hudson", "char_professor-moriarty"],
     "locations": ["loc_221b-baker-street", "loc_camden-house"],
     "artifacts_involved": ["artifact_wax-bust-of-holmes"],
     "timeline_position": { "book": 6, "chapter": 1 },
-    "synopsis": "Three years after Reichenbach, Holmes reappears to Watson, alive. He reveals he survived using Baritsu and spent three years traveling under an alias. The immediate threat is Colonel Moran, responsible for the murder of Ronald Adair. Holmes and Watson trap Moran using a wax bust of Holmes as decoy in the Baker Street window.",
-    "solution": "Colonel Sebastian Moran is arrested after firing an air gun at a wax bust of Holmes. Holmes explains his three-year disappearance and returns to Baker Street.",
+    "synopsis": "Three years after the events at Reichenbach Falls, Holmes reappears to Watson, very much alive. He reveals that he survived by using Baritsu to throw Moriarty over the falls while clinging to the cliff, then spent three years traveling under the alias Sigerson to allow Moriarty's surviving associates to believe him dead. The immediate threat now is Colonel Sebastian Moran, Moriarty's chief of staff, who is responsible for the recent murder of Ronald Adair. Holmes and Watson set a trap using a wax bust of Holmes in the Baker Street window, catching Moran red-handed as he attempts to shoot the decoy.",
+    "solution": "Colonel Sebastian Moran is arrested after firing an air gun at a wax bust of Holmes placed in the Baker Street window. He is convicted for the murder of Ronald Adair. Holmes explains his three-year disappearance and the Baritsu technique that saved his life at Reichenbach. His return to Baker Street is confirmed.",
     "notable_elements": [
-      "Holmes's return after three years",
-      "Reveals Holmes survived Reichenbach using Baritsu",
+      "Holmes's return after three years \u2014 Doyle's response to public demand",
+      "Reveals Holmes survived Reichenbach using Baritsu (a Japanese system of wrestling)",
       "Introduces Colonel Sebastian Moran and his custom air gun",
-      "The wax bust of Holmes — one of the canon's most theatrical set-pieces"
+      "The wax bust of Holmes \u2014 one of the canon's most theatrical set-pieces",
+      "Watson faints upon Holmes's reveal \u2014 among his more dramatic reactions",
+      "The 'empty house' of Camden House, across from 221B"
     ],
     "first_mention": { "book": 6, "chapter": 1 },
     "full_reveal": { "book": 6, "chapter": 1 },
     "created_by": "theloreatlas",
-    "last_edited_by": "theloreatlas"
+    "last_edited_by": "theloreatlas",
+    "events": [
+      "event_reichenbach-falls-confrontation",
+      "event_great-hiatus",
+      "event_mary-morstan-death",
+      "event_holmes-return-to-london",
+      "event_moran-capture"
+    ]
   },
   {
     "id": "case_the-adventure-of-the-norwood-builder",
@@ -685,7 +712,7 @@
     "title": "The Adventure of the Solitary Cyclist",
     "case_nickname": "The Solitary Cyclist",
     "source_book": "book_the-return-of-sherlock-holmes",
-    "characters_involved": ["char_sherlock-holmes", "char_john-watson"],
+    "characters_involved": ["char_sherlock-holmes", "char_john-watson", "char_violet-smith"],
     "locations": ["loc_221b-baker-street"],
     "artifacts_involved": [],
     "timeline_position": { "book": 6, "chapter": 4 },
@@ -731,7 +758,7 @@
     "title": "The Adventure of Black Peter",
     "case_nickname": "Black Peter",
     "source_book": "book_the-return-of-sherlock-holmes",
-    "characters_involved": ["char_sherlock-holmes", "char_john-watson"],
+    "characters_involved": ["char_sherlock-holmes", "char_john-watson", "char_inspector-stanley-hopkins"],
     "locations": ["loc_221b-baker-street"],
     "artifacts_involved": [],
     "timeline_position": { "book": 6, "chapter": 6 },
@@ -754,7 +781,7 @@
     "title": "The Adventure of Charles Augustus Milverton",
     "case_nickname": "Charles Augustus Milverton",
     "source_book": "book_the-return-of-sherlock-holmes",
-    "characters_involved": ["char_sherlock-holmes", "char_john-watson"],
+    "characters_involved": ["char_sherlock-holmes", "char_john-watson", "char_charles-augustus-milverton"],
     "locations": ["loc_221b-baker-street"],
     "artifacts_involved": [],
     "timeline_position": { "book": 6, "chapter": 7 },
@@ -769,7 +796,10 @@
     "first_mention": { "book": 6, "chapter": 7 },
     "full_reveal": { "book": 6, "chapter": 7 },
     "created_by": "theloreatlas",
-    "last_edited_by": "theloreatlas"
+    "last_edited_by": "theloreatlas",
+    "events": [
+      "event_milverton-death"
+    ]
   },
   {
     "id": "case_the-adventure-of-the-six-napoleons",
@@ -823,7 +853,7 @@
     "title": "The Adventure of the Golden Pince-Nez",
     "case_nickname": "The Golden Pince-Nez",
     "source_book": "book_the-return-of-sherlock-holmes",
-    "characters_involved": ["char_sherlock-holmes", "char_john-watson"],
+    "characters_involved": ["char_sherlock-holmes", "char_john-watson", "char_inspector-stanley-hopkins"],
     "locations": ["loc_221b-baker-street"],
     "artifacts_involved": [],
     "timeline_position": { "book": 6, "chapter": 10 },
@@ -869,7 +899,7 @@
     "title": "The Adventure of the Abbey Grange",
     "case_nickname": "The Abbey Grange",
     "source_book": "book_the-return-of-sherlock-holmes",
-    "characters_involved": ["char_sherlock-holmes", "char_john-watson"],
+    "characters_involved": ["char_sherlock-holmes", "char_john-watson", "char_inspector-stanley-hopkins"],
     "locations": [],
     "artifacts_involved": [],
     "timeline_position": { "book": 6, "chapter": 12 },
@@ -908,7 +938,10 @@
     "first_mention": { "book": 6, "chapter": 13 },
     "full_reveal": { "book": 6, "chapter": 13 },
     "created_by": "theloreatlas",
-    "last_edited_by": "theloreatlas"
+    "last_edited_by": "theloreatlas",
+    "events": [
+      "event_holmes-sussex-retirement"
+    ]
   },
   {
     "id": "case_the-valley-of-fear",
@@ -916,7 +949,7 @@
     "title": "The Valley of Fear",
     "case_nickname": "The Birlstone Mystery",
     "source_book": "book_the-valley-of-fear",
-    "characters_involved": ["char_sherlock-holmes", "char_john-watson", "char_inspector-lestrade", "char_professor-moriarty"],
+    "characters_involved": ["char_sherlock-holmes", "char_john-watson", "char_inspector-lestrade", "char_professor-moriarty", "char_billy"],
     "locations": ["loc_221b-baker-street"],
     "artifacts_involved": [],
     "timeline_position": { "book": 7, "chapter": 1 },
@@ -930,7 +963,7 @@
       "The last Holmes novel Doyle completed"
     ],
     "first_mention": { "book": 7, "chapter": 1 },
-    "full_reveal": { "book": 7, "chapter": 7 },
+    "full_reveal": { "book": 7, "chapter": 14 },
     "created_by": "theloreatlas",
     "last_edited_by": "theloreatlas"
   },
@@ -940,7 +973,7 @@
     "title": "The Adventure of Wisteria Lodge",
     "case_nickname": "Wisteria Lodge",
     "source_book": "book_his-last-bow",
-    "characters_involved": ["char_sherlock-holmes", "char_john-watson"],
+    "characters_involved": ["char_sherlock-holmes", "char_john-watson", "char_inspector-gregson"],
     "locations": ["loc_221b-baker-street"],
     "artifacts_involved": [],
     "timeline_position": { "book": 8, "chapter": 1 },
@@ -1032,7 +1065,7 @@
     "title": "The Adventure of the Dying Detective",
     "case_nickname": "The Dying Detective",
     "source_book": "book_his-last-bow",
-    "characters_involved": ["char_sherlock-holmes", "char_john-watson"],
+    "characters_involved": ["char_sherlock-holmes", "char_john-watson", "char_mrs-hudson"],
     "locations": ["loc_221b-baker-street"],
     "artifacts_involved": [],
     "timeline_position": { "book": 8, "chapter": 5 },
@@ -1117,7 +1150,10 @@
     "first_mention": { "book": 8, "chapter": 8 },
     "full_reveal": { "book": 8, "chapter": 8 },
     "created_by": "theloreatlas",
-    "last_edited_by": "theloreatlas"
+    "last_edited_by": "theloreatlas",
+    "events": [
+      "event_holmes-wwi-service"
+    ]
   },
   {
     "id": "case_the-adventure-of-the-illustrious-client",
@@ -1125,7 +1161,7 @@
     "title": "The Adventure of the Illustrious Client",
     "case_nickname": "The Illustrious Client",
     "source_book": "book_the-case-book-of-sherlock-holmes",
-    "characters_involved": ["char_sherlock-holmes", "char_john-watson"],
+    "characters_involved": ["char_sherlock-holmes", "char_john-watson", "char_shinwell-johnson"],
     "locations": ["loc_221b-baker-street"],
     "artifacts_involved": [],
     "timeline_position": { "book": 9, "chapter": 1 },
@@ -1171,7 +1207,7 @@
     "title": "The Adventure of the Mazarin Stone",
     "case_nickname": "The Mazarin Stone",
     "source_book": "book_the-case-book-of-sherlock-holmes",
-    "characters_involved": ["char_sherlock-holmes", "char_john-watson"],
+    "characters_involved": ["char_sherlock-holmes", "char_john-watson", "char_billy"],
     "locations": ["loc_221b-baker-street"],
     "artifacts_involved": [],
     "timeline_position": { "book": 9, "chapter": 3 },
@@ -1324,7 +1360,10 @@
     "first_mention": { "book": 9, "chapter": 9 },
     "full_reveal": { "book": 9, "chapter": 9 },
     "created_by": "theloreatlas",
-    "last_edited_by": "theloreatlas"
+    "last_edited_by": "theloreatlas",
+    "events": [
+      "event_holmes-sussex-retirement"
+    ]
   },
   {
     "id": "case_the-adventure-of-the-veiled-lodger",
