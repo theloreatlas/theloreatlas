@@ -136,17 +136,7 @@
     "stories_contained": ["case_the-hound-of-the-baskervilles"],
     "description": [
       {
-        "text": "The third Holmes novel, narrated partly in retrospect."
-      },
-      {
-        "text": "It is set during Holmes's apparent death period.",
-        "from": {
-          "book": 4,
-          "chapter": 11
-        }
-      },
-      {
-        "text": "Sir Charles Baskerville is found dead on the moor."
+        "text": "The third Holmes novel, narrated partly in retrospect. Sir Charles Baskerville is found dead on the moor."
       },
       {
         "text": "Holmes is called in to protect his heir, Sir Henry.",
