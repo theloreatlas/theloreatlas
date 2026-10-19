@@ -39,7 +39,21 @@
     "child_orgs": [
       "faction_scowrers"
     ],
-    "description": "The Ancient Order of Freemen is a legitimate-seeming fraternal society — modeled on Freemasonry — whose Vermissa Valley lodge, Lodge 341, has been entirely subverted by the Scowrers. The Order provides the Scowrers with a formal structure, a membership mechanism, and legal cover: men who belong to the Order cannot easily be interrogated about their lodge activities without appearing to attack a legitimate institution. Birdy Edwards (the Pinkerton agent) infiltrates the lodge by becoming a member of the Order in good standing. The Order is a vehicle for explaining how a criminal organisation can sustain itself inside a community that would otherwise reject it.",
+    "description": [
+      {
+        "text": "The Ancient Order of Freemen is a legitimate-seeming fraternal society — modeled on Freemasonry — whose Vermissa Valley lodge, Lodge 341, has been entirely subverted by the Scowrers. The Order provides the Scowrers with a formal structure, a membership mechanism, and legal cover: men who belong to the Order cannot easily be interrogated about their lodge activities without appearing to attack a legitimate institution."
+      },
+      {
+        "text": "Birdy Edwards (the Pinkerton agent) infiltrates the lodge by becoming a member of the Order in good standing.",
+        "from": {
+          "book": 7,
+          "chapter": 14
+        }
+      },
+      {
+        "text": "The Order is a vehicle for explaining how a criminal organisation can sustain itself inside a community that would otherwise reject it."
+      }
+    ],
     "first_mention": {
       "book": 7,
       "chapter": 8
@@ -253,7 +267,28 @@
     "active_period": "1850–present (historical); canon appearance c.1875 (Vermissa Valley backstory)",
     "parent_org": null,
     "child_orgs": [],
-    "description": "The Pinkerton National Detective Agency is the American institution behind the undercover operation at the heart of The Valley of Fear. Birdy Edwards, operating as Jack McMurdo, is a Pinkerton agent who infiltrated the Scowrers (Lodge 341 of the Ancient Order of Freemen) in Vermissa Valley, Pennsylvania, spending years building the trust of the organisation before exposing its leadership. The Pinkerton Agency was the preeminent American private detective force of the Victorian era, known for its labor disputes work, criminal investigations, and use of long-term undercover operatives — a practice Doyle accurately depicts. Edwards's survival after exposure required him to flee to England, where, as John Douglas of Birlstone, he is still hunted by Moriarty's network years later.",
+    "description": [
+      {
+        "text": "The Pinkerton National Detective Agency is the American institution behind the undercover operation at the heart of The Valley of Fear."
+      },
+      {
+        "text": "Birdy Edwards, operating as Jack McMurdo, is a Pinkerton agent who infiltrated the Scowrers (Lodge 341 of the Ancient Order of Freemen) in Vermissa Valley, Pennsylvania, spending years building the trust of the organisation before exposing its leadership.",
+        "from": {
+          "book": 7,
+          "chapter": 14
+        }
+      },
+      {
+        "text": "The Pinkerton Agency was the preeminent American private detective force of the Victorian era, known for its labor disputes work, criminal investigations, and use of long-term undercover operatives — a practice Doyle accurately depicts."
+      },
+      {
+        "text": "Edwards's survival after exposure required him to flee to England, where, as John Douglas of Birlstone, he is still hunted by Moriarty's network years later.",
+        "from": {
+          "book": 7,
+          "chapter": 14
+        }
+      }
+    ],
     "first_mention": {
       "book": 7,
       "chapter": 8

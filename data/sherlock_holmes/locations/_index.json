@@ -278,7 +278,21 @@
     "cases_occurring_here": [
       "case_the-hound-of-the-baskervilles"
     ],
-    "description": "Dartmoor is the bleak, fog-prone moorland that serves as the primary setting for The Hound of the Baskervilles. Its combination of desolate beauty, treacherous bogs, and atmospheric isolation makes it an ideal canvas for Gothic horror and detection alike. Watson spends weeks at Baskerville Hall observing and reporting while Holmes conducts his own investigation in secret; the landscape — particularly the Great Grimpen Mire — functions as both a physical danger and a psychological pressure on everyone involved. The moor's real geography, including Grimspound and Foggintor, is lightly fictionalised in Doyle's version.",
+    "description": [
+      {
+        "text": "Dartmoor is the bleak, fog-prone moorland that serves as the primary setting for The Hound of the Baskervilles. Its combination of desolate beauty, treacherous bogs, and atmospheric isolation makes it an ideal canvas for Gothic horror and detection alike. Watson spends weeks at Baskerville Hall observing and reporting; the landscape — particularly the Great Grimpen Mire — functions as both a physical danger and a psychological pressure on everyone involved."
+      },
+      {
+        "text": "Holmes meanwhile conducts his own investigation in secret.",
+        "from": {
+          "book": 5,
+          "chapter": 11
+        }
+      },
+      {
+        "text": "The moor's real geography, including Grimspound and Foggintor, is lightly fictionalised in Doyle's version."
+      }
+    ],
     "first_mention": {
       "book": 4,
       "chapter": 1
@@ -486,7 +500,18 @@
     "cases_occurring_here": [
       "case_the-sign-of-the-four"
     ],
-    "description": "Pondicherry Lodge is the Upper Norwood estate of Bartholomew Sholto, where the central murder of The Sign of the Four takes place. It is named after the Indian city where his father, Major Sholto, served. The treasure of Agra is hidden in a concealed attic room; when Watson and Holmes arrive with Miss Morstan and Athelney Jones, they find Bartholomew dead from a poison dart and the treasure gone. The lodge grounds become the starting point for the famous Thames chase — Holmes and Watson pursue Jonathan Small and Tonga downriver by police launch, culminating near Plumstead Marshes.",
+    "description": [
+      {
+        "text": "Pondicherry Lodge is the Upper Norwood estate of Bartholomew Sholto, where the central murder of The Sign of the Four takes place. It is named after the Indian city where his father, Major Sholto, served. The treasure of Agra is hidden in a concealed attic room; when Watson and Holmes arrive with Miss Morstan and Athelney Jones, they find Bartholomew dead from a poison dart and the treasure gone."
+      },
+      {
+        "text": "The lodge grounds become the starting point for the famous Thames chase — Holmes and Watson pursue Jonathan Small and Tonga downriver by police launch, culminating near Plumstead Marshes.",
+        "from": {
+          "book": 2,
+          "chapter": 10
+        }
+      }
+    ],
     "first_mention": {
       "book": 2,
       "chapter": 6
@@ -670,7 +695,21 @@
     "cases_occurring_here": [
       "case_the-valley-of-fear"
     ],
-    "description": "Vermissa Valley is the Pennsylvania coal-mining district that forms the setting for the second part of The Valley of Fear, told in flashback. It is dominated by Lodge 341 of the Ancient Order of Freemen — a cover organisation for the Scowrers, a violent criminal fraternity that terrorises the valley's mine owners, foremen, and workers. The narrative follows Birdy Edwards (John Douglas), a Pinkerton agent who infiltrates the Lodge to gather evidence against its leader. Doyle drew closely on the real history of the Molly Maguires in the Pennsylvania coalfields; the Vermissa plot is among the most explicitly American stories in the canon.",
+    "description": [
+      {
+        "text": "Vermissa Valley is the Pennsylvania coal-mining district that forms the setting for the second part of The Valley of Fear, told in flashback. It is dominated by Lodge 341 of the Ancient Order of Freemen — a cover organisation for the Scowrers, a violent criminal fraternity that terrorises the valley's mine owners, foremen, and workers."
+      },
+      {
+        "text": "The narrative follows Birdy Edwards (John Douglas), a Pinkerton agent who infiltrates the Lodge to gather evidence against its leader.",
+        "from": {
+          "book": 7,
+          "chapter": 14
+        }
+      },
+      {
+        "text": "Doyle drew closely on the real history of the Molly Maguires in the Pennsylvania coalfields; the Vermissa plot is among the most explicitly American stories in the canon."
+      }
+    ],
     "first_mention": {
       "book": 7,
       "chapter": 8
