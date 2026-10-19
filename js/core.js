@@ -5,6 +5,8 @@
 
 // ── Entity type display config ───────────────────────────────────────────────
 
+// ⚠️  KEEP IN SYNC WITH ENTITY_TYPE_LABELS in scripts/build_pages.py (list-page
+// titles and breadcrumb JSON-LD are pre-rendered there).
 const ENTITY_TYPES = [
   { key: 'characters',    label: 'Characters',    singular: 'Character'   },
   { key: 'cases',         label: 'Cases',         singular: 'Case'        },

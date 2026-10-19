@@ -53,6 +53,19 @@ MAX_DESC = CFG['max_description_chars']
 MAX_TITLE = CFG['max_title_chars']
 OG_TYPES = CFG['og_types']
 
+# Entity-type display labels. ⚠️ KEEP IN SYNC WITH ENTITY_TYPES in js/core.js —
+# list-page titles/descriptions and breadcrumb JSON-LD use them on both sides.
+ENTITY_TYPE_LABELS = {
+    'characters': 'Characters',
+    'cases': 'Cases',
+    'books': 'Books',
+    'factions': 'Factions',
+    'locations': 'Locations',
+    'artifacts': 'Artifacts',
+    'events': 'Timeline Events',
+    'relationships': 'Relationships',
+}
+
 # ── Text helpers (mirror JS buildEntityMeta / truncateForMeta) ───────────────
 
 def truncate(text, max_chars=None):
@@ -75,12 +88,16 @@ def first_sentences(text, max_chars=None):
     sentences = re.findall(r'[^.!?]+[.!?]+(?=\s|$)', str(text))
     if not sentences:
         return truncate(text, max_chars)
-    out = ''
-    for s in sentences:
-        if len(out + s) > max_chars:
+    # Each regex match keeps the space that followed the previous period, so
+    # strip it when joining. `used` still counts the raw length so exactly the
+    # same sentences are selected as before the double-space fix (Session 13.10 C).
+    parts, used = [], 0
+    for raw in sentences:
+        if used + len(raw) > max_chars:
             break
-        out += s + ' '
-    return out.strip() or truncate(sentences[0], max_chars)
+        parts.append(raw.strip())
+        used += len(raw) + 1
+    return ' '.join(parts) or truncate(sentences[0].strip(), max_chars)
 
 def prose_text(entity, field):
     """Canonical (all-segments) text for a prose field: biography, description,
@@ -167,7 +184,8 @@ def build_meta(entity, entity_type, series, lookup):
         title = enforce_title_cap(f'{name}{SEP}{series_name}{SEP}{SITE}')
         base = first_sentences(prose_text(entity, 'description'), 130)
         sig = prose_text(entity, 'significance')
-        description = base + (' ' + first_sentences(sig, MAX_DESC - len(base) - 1) if sig and len(base) < MAX_DESC - 20 else '')
+        # 160 (not MAX_DESC) mirrors seo.js's buildEntityMeta, which has no minimum-room guard.
+        description = base + (' ' + first_sentences(sig, 160 - len(base) - 1) if sig else '')
 
     else:  # factions, locations, and any future types
         title = enforce_title_cap(f'{name}{SEP}{series_name}{SEP}{SITE}')
@@ -458,7 +476,7 @@ def main():
 
             # ── Entity-type list page ────────────────────────────────────────
             list_url = page_url(series_id, et)
-            et_label = et.capitalize()
+            et_label = ENTITY_TYPE_LABELS.get(et, et.capitalize())
             list_title = enforce_title_cap(f'{et_label}{SEP}{series["name"]}{SEP}{SITE}')
             list_desc = truncate(
                 f'Browse all {len(entities)} {et_label.lower()} in the {series["name"]} '

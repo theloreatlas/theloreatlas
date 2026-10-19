@@ -31,13 +31,17 @@ function firstSentencesForMeta(text, maxChars = 155) {
   if (!text) return '';
   const sentences = text.match(/[^.!?]+[.!?]+(?=\s|$)/g);
   if (!sentences || sentences.length === 0) return truncateForMeta(text, maxChars);
-  let out = '';
-  for (const s of sentences) {
-    if ((out + s).length > maxChars) break;
-    out += s + ' ';
+  // Each regex match keeps the space that followed the previous period, so trim
+  // it when joining. `used` still counts the raw length so exactly the same
+  // sentences are selected as before the double-space fix (Session 13.10 C).
+  const parts = [];
+  let used = 0;
+  for (const raw of sentences) {
+    if (used + raw.length > maxChars) break;
+    parts.push(raw.trim());
+    used += raw.length + 1;
   }
-  out = out.trim();
-  return out || truncateForMeta(sentences[0], maxChars);
+  return parts.join(' ') || truncateForMeta(sentences[0].trim(), maxChars);
 }
 
 // Canonical (all-segments) text for a staged prose field — SEO/JSON-LD always
