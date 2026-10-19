@@ -101,7 +101,18 @@
     "character_b": "char_henry-baskerville",
     "relationship_type": "professional",
     "first_established": "case_the-hound-of-the-baskervilles",
-    "notes": "Henry Baskerville engages Holmes to investigate the threat against his life after arriving in England to claim his inheritance. Holmes takes the case seriously enough to send Watson ahead to Dartmoor while continuing his own investigations in London. Henry is a cooperative client despite finding the restrictions Holmes places on his movements frustrating. Holmes ultimately saves his life, though not before the case comes dangerously close to killing him on the moor.",
+    "notes": [
+      {
+        "text": "Henry Baskerville engages Holmes to investigate the threat against his life after arriving in England to claim his inheritance. Holmes takes the case seriously enough to send Watson ahead to Dartmoor while continuing his own investigations in London. Henry is a cooperative client despite finding the restrictions Holmes places on his movements frustrating."
+      },
+      {
+        "text": "Holmes ultimately saves his life, though not before the case comes dangerously close to killing him on the moor.",
+        "from": {
+          "book": 5,
+          "chapter": 15
+        }
+      }
+    ],
     "first_mention": {
       "book": 5,
       "chapter": 4
@@ -329,7 +340,25 @@
     "character_b": "char_mrs-hudson",
     "relationship_type": "professional",
     "first_established": "case_a-study-in-scarlet",
-    "notes": "Holmes is Mrs. Hudson's most famous — and most exasperating — tenant. He pays well and she tolerates his chemistry experiments, erratic hours, revolver practice against the wall, and the constant parade of unusual visitors. Holmes is more attached to her than his manner suggests: in The Adventure of the Empty House he recruits her to slowly manipulate a wax bust in front of the window, a task placing her in a sniper's line of sight. She agrees without hesitation. In His Last Bow she is identified by her first name Martha, and is revealed to have served Holmes during a covert mission.",
+    "notes": [
+      {
+        "text": "Holmes is Mrs. Hudson's most famous — and most exasperating — tenant. He pays well and she tolerates his chemistry experiments, erratic hours, revolver practice against the wall, and the constant parade of unusual visitors."
+      },
+      {
+        "text": "Holmes is more attached to her than his manner suggests: in The Adventure of the Empty House he recruits her to slowly manipulate a wax bust in front of the window, a task placing her in a sniper's line of sight. She agrees without hesitation.",
+        "from": {
+          "book": 6,
+          "chapter": 1
+        }
+      },
+      {
+        "text": "In His Last Bow she is identified by her first name Martha, and is revealed to have served Holmes during a covert mission.",
+        "from": {
+          "book": 8,
+          "chapter": 8
+        }
+      }
+    ],
     "first_mention": {
       "book": 2,
       "chapter": 1
@@ -481,7 +510,18 @@
     "character_b": "char_john-watson",
     "relationship_type": "ally",
     "first_established": "case_a-study-in-scarlet",
-    "notes": "The central relationship of the entire canon. Holmes and Watson meet in early 1881 and share lodgings at 221B Baker Street. Watson serves as Holmes's companion, assistant, and chronicler — his admiring but honest narration is the frame through which the world knows Holmes. The relationship is asymmetrical: Holmes is the genius, Watson the capable everyman. But Watson's warmth, loyalty, and willingness to follow Holmes into danger make him irreplaceable. Holmes, characteristically, expresses his regard obliquely — through trust, through inclusion, through the fact that Watson is the only person Holmes consistently chooses to have near him. Watson's marriages interrupt but never permanently sever the partnership.",
+    "notes": [
+      {
+        "text": "The central relationship of the entire canon. Holmes and Watson meet in early 1881 and share lodgings at 221B Baker Street. Watson serves as Holmes's companion, assistant, and chronicler — his admiring but honest narration is the frame through which the world knows Holmes. The relationship is asymmetrical: Holmes is the genius, Watson the capable everyman. But Watson's warmth, loyalty, and willingness to follow Holmes into danger make him irreplaceable. Holmes, characteristically, expresses his regard obliquely — through trust, through inclusion, through the fact that Watson is the only person Holmes consistently chooses to have near him."
+      },
+      {
+        "text": "Watson's marriages interrupt but never permanently sever the partnership.",
+        "from": {
+          "book": 2,
+          "chapter": 12
+        }
+      }
+    ],
     "first_mention": {
       "book": 1,
       "chapter": 1
@@ -576,7 +616,18 @@
     "character_b": "char_mary-morstan",
     "relationship_type": "professional",
     "first_established": "case_the-sign-of-the-four",
-    "notes": "Mrs. Forrester employs Mary Morstan as a governess at her Camberwell home, but the relationship clearly exceeds the employer-employee arrangement. She is described as taking genuine personal interest in Mary's mysterious case — welcoming Watson when he comes to collect Miss Morstan, and seeing them off with warm encouragement. That Mary is based in her home at all implies Mrs. Forrester has given her a safe and stable domestic situation after years of uncertainty. After Mary marries Watson, Mrs. Forrester disappears from the canon entirely.",
+    "notes": [
+      {
+        "text": "Mrs. Forrester employs Mary Morstan as a governess at her Camberwell home, but the relationship clearly exceeds the employer-employee arrangement. She is described as taking genuine personal interest in Mary's mysterious case — welcoming Watson when he comes to collect Miss Morstan, and seeing them off with warm encouragement. That Mary is based in her home at all implies Mrs. Forrester has given her a safe and stable domestic situation after years of uncertainty."
+      },
+      {
+        "text": "After Mary marries Watson, Mrs. Forrester disappears from the canon entirely.",
+        "from": {
+          "book": 2,
+          "chapter": 12
+        }
+      }
+    ],
     "first_mention": {
       "book": 2,
       "chapter": 2
@@ -614,7 +665,18 @@
     "character_b": "char_mary-morstan",
     "relationship_type": "romantic",
     "first_established": "case_the-sign-of-the-four",
-    "notes": "Watson meets Mary Morstan when she arrives at 221B as a client in The Sign of the Four. He falls for her immediately — describing her with the warmth conspicuously absent from his prose elsewhere — and they marry shortly after the case concludes. Mary's death (occurring off-page between stories) brings Watson back to Baker Street. She is the one significant domestic attachment of his life, and her absence in the later canon shapes his return to Holmes's orbit.",
+    "notes": [
+      {
+        "text": "Watson meets Mary Morstan when she arrives at 221B as a client in The Sign of the Four. He falls for her immediately — describing her with the warmth conspicuously absent from his prose elsewhere — and they marry shortly after the case concludes."
+      },
+      {
+        "text": "Mary's death (occurring off-page between stories) brings Watson back to Baker Street. She is the one significant domestic attachment of his life, and her absence in the later canon shapes his return to Holmes's orbit.",
+        "from": {
+          "book": 6,
+          "chapter": 1
+        }
+      }
+    ],
     "first_mention": {
       "book": 2,
       "chapter": 2
@@ -633,7 +695,18 @@
     "character_b": "char_mrs-forrester",
     "relationship_type": "other",
     "first_established": "case_the-sign-of-the-four",
-    "notes": "Watson visits Mrs. Forrester's Camberwell home to collect Mary Morstan at the start of the Sign of the Four investigation. He notes her kindness and interest in Miss Morstan's case. The acquaintance is brief but pleasant — Watson clearly approves of her as a person and as the guardian of the woman he is falling in love with. After Mary and Watson marry, Mrs. Forrester is not mentioned again.",
+    "notes": [
+      {
+        "text": "Watson visits Mrs. Forrester's Camberwell home to collect Mary Morstan at the start of the Sign of the Four investigation. He notes her kindness and interest in Miss Morstan's case. The acquaintance is brief but pleasant — Watson clearly approves of her as a person and as the guardian of the woman he is falling in love with."
+      },
+      {
+        "text": "After Mary and Watson marry, Mrs. Forrester is not mentioned again.",
+        "from": {
+          "book": 2,
+          "chapter": 12
+        }
+      }
+    ],
     "first_mention": {
       "book": 2,
       "chapter": 2
@@ -652,7 +725,18 @@
     "character_b": "char_mrs-hudson",
     "relationship_type": "professional",
     "first_established": "case_a-study-in-scarlet",
-    "notes": "Watson shares lodgings at 221B and occupies a secondary-tenant relationship with Mrs. Hudson. It is warmer and more straightforward than Holmes's: Watson appreciates her domestic steadiness and she is spared the worst of the eccentricities that Holmes alone generates. Watson notes her patience admiringly more than once. When he marries and moves out, she remains in the building and in the background of his life whenever he returns to Baker Street.",
+    "notes": [
+      {
+        "text": "Watson shares lodgings at 221B and occupies a secondary-tenant relationship with Mrs. Hudson. It is warmer and more straightforward than Holmes's: Watson appreciates her domestic steadiness and she is spared the worst of the eccentricities that Holmes alone generates. Watson notes her patience admiringly more than once."
+      },
+      {
+        "text": "When he marries and moves out, she remains in the building and in the background of his life whenever he returns to Baker Street.",
+        "from": {
+          "book": 2,
+          "chapter": 12
+        }
+      }
+    ],
     "first_mention": {
       "book": 2,
       "chapter": 1

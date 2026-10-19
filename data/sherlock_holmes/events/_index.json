@@ -22,7 +22,21 @@
     "characters_involved": ["char_john-watson"],
     "cases_linked": ["case_a-study-in-scarlet"],
     "location": null,
-    "description": "At the Battle of Maiwand during the Second Anglo-Afghan War, Watson \u2014 serving as an assistant surgeon attached to the Berkshires \u2014 is struck by a Jezail bullet. The wound's location is described inconsistently across the canon (shoulder in A Study in Scarlet, leg in The Sign of the Four), generating one of the longest-running debates in Sherlockian scholarship. His orderly Murray brings him out of the Ghazi attack. Watson contracts enteric fever during recovery and is invalided home to England, arriving in London with no friends, no family, and a wound pension of eleven shillings and sixpence a day. The injury is the proximate cause of his meeting Holmes \u2014 without it he would have remained on military duty rather than seeking cheap shared lodgings in London. Periodically referenced through the canon when Watson's old wound aches in damp weather.",
+    "description": [
+      {
+        "text": "At the Battle of Maiwand during the Second Anglo-Afghan War, Watson \u2014 serving as an assistant surgeon attached to the Berkshires \u2014 is struck by a Jezail bullet."
+      },
+      {
+        "text": "The wound's location is described inconsistently across the canon (shoulder in A Study in Scarlet, leg in The Sign of the Four), generating one of the longest-running debates in Sherlockian scholarship.",
+        "from": {
+          "book": 2,
+          "chapter": 1
+        }
+      },
+      {
+        "text": "His orderly Murray brings him out of the Ghazi attack. Watson contracts enteric fever during recovery and is invalided home to England, arriving in London with no friends, no family, and a wound pension of eleven shillings and sixpence a day. The injury is the proximate cause of his meeting Holmes \u2014 without it he would have remained on military duty rather than seeking cheap shared lodgings in London. Periodically referenced through the canon when Watson's old wound aches in damp weather."
+      }
+    ],
     "event_type": "canonical",
     "first_mention": { "book": 1, "chapter": 1 },
     "full_reveal": { "book": 1, "chapter": 1 },
@@ -172,7 +186,21 @@
     "characters_involved": ["char_sherlock-holmes"],
     "cases_linked": ["case_the-adventure-of-the-second-stain", "case_the-adventure-of-the-lions-mane"],
     "location": "loc_sussex-downs",
-    "description": "At some point in 1903 Holmes retires from active practice and moves to a small farm on the Sussex Downs near Eastbourne, devoting himself to bee-keeping and the writing of his Practical Handbook of Bee Culture. The Preface to His Last Bow, written by Watson, confirms the retirement; The Adventure of the Lion's Mane (narrated by Holmes himself) describes his Sussex life directly. Holmes consents to be drawn back into active work twice \u2014 for the Von Bork affair in 1914, and for the Lion's Mane investigation in his own neighbourhood. The retirement permanently changes the geography and tone of the late canon.",
+    "description": [
+      {
+        "text": "At some point in 1903 Holmes retires from active practice and moves to a small farm on the Sussex Downs near Eastbourne, devoting himself to bee-keeping and the writing of his Practical Handbook of Bee Culture. The Preface to His Last Bow, written by Watson, confirms the retirement."
+      },
+      {
+        "text": "The Adventure of the Lion's Mane (narrated by Holmes himself) describes his Sussex life directly. Holmes consents to be drawn back into active work twice \u2014 for the Von Bork affair in 1914, and for the Lion's Mane investigation in his own neighbourhood.",
+        "from": {
+          "book": 9,
+          "chapter": 9
+        }
+      },
+      {
+        "text": "The retirement permanently changes the geography and tone of the late canon."
+      }
+    ],
     "event_type": "canonical",
     "first_mention": { "book": 8, "chapter": 1 },
     "full_reveal": { "book": 8, "chapter": 1 },

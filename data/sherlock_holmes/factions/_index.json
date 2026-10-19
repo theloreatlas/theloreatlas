@@ -98,7 +98,18 @@
     "active_period": "1880s–1914 (Holmes canon period)",
     "parent_org": null,
     "child_orgs": [],
-    "description": "The British Government appears in the Holmes canon primarily as a client — bringing Holmes cases that Scotland Yard cannot handle and that cannot be disclosed publicly without diplomatic or political catastrophe. Holmes is consulted on stolen naval treaties, missing submarine plans, and inflammatory diplomatic correspondence. Mycroft Holmes is the government's most direct link to his brother: he serves as a clearing house for intelligence across multiple ministries and occasionally conveys cases personally. In His Last Bow, Holmes emerges from retirement to serve as a German spy (Altamont) in a two-year counter-intelligence operation — his most sustained engagement with state service.",
+    "description": [
+      {
+        "text": "The British Government appears in the Holmes canon primarily as a client — bringing Holmes cases that Scotland Yard cannot handle and that cannot be disclosed publicly without diplomatic or political catastrophe. Holmes is consulted on stolen naval treaties, missing submarine plans, and inflammatory diplomatic correspondence. Mycroft Holmes is the government's most direct link to his brother: he serves as a clearing house for intelligence across multiple ministries and occasionally conveys cases personally."
+      },
+      {
+        "text": "In His Last Bow, Holmes emerges from retirement to serve as a German spy (Altamont) in a two-year counter-intelligence operation — his most sustained engagement with state service.",
+        "from": {
+          "book": 8,
+          "chapter": 8
+        }
+      }
+    ],
     "first_mention": {
       "book": 4,
       "chapter": 9
@@ -206,7 +217,18 @@
     "active_period": "c.1875–1891",
     "parent_org": null,
     "child_orgs": [],
-    "description": "The vast criminal organization built and controlled by Professor James Moriarty. Holmes describes it as a spider's web spanning London and beyond — Moriarty at the center, coordinating every major crime in England without ever personally committing any. The network encompasses blackmailers, forgers, burglars, and assassins, all connected through layers of intermediaries that insulate Moriarty from direct exposure. Holmes dismantles the bulk of the network in 1891, resulting in the confrontation at the Reichenbach Falls. Colonel Sebastian Moran, Moriarty's chief of staff and the second most dangerous man in London, continues operations in a diminished capacity until his arrest following Holmes's return.",
+    "description": [
+      {
+        "text": "The vast criminal organization built and controlled by Professor James Moriarty. Holmes describes it as a spider's web spanning London and beyond — Moriarty at the center, coordinating every major crime in England without ever personally committing any. The network encompasses blackmailers, forgers, burglars, and assassins, all connected through layers of intermediaries that insulate Moriarty from direct exposure. Holmes dismantles the bulk of the network in 1891, resulting in the confrontation at the Reichenbach Falls."
+      },
+      {
+        "text": "Colonel Sebastian Moran, Moriarty's chief of staff and the second most dangerous man in London, continues operations in a diminished capacity until his arrest following Holmes's return.",
+        "from": {
+          "book": 6,
+          "chapter": 1
+        }
+      }
+    ],
     "first_mention": {
       "book": 4,
       "chapter": 11

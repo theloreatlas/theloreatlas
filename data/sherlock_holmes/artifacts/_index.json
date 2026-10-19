@@ -208,7 +208,18 @@
     "series": "sherlock_holmes",
     "name": "The Seven-Per-Cent Solution",
     "type": "drug",
-    "description": "Holmes's cocaine habit — specifically a seven-per-cent solution of cocaine injected intravenously — is one of the most persistently noted facts in the canon. Watson opens The Sign of the Four with Holmes injecting for the third time in as many days and delivers a formal medical objection; Holmes dismisses it on the grounds that the stimulant is necessary to counter the lassitude of inaction between cases. He alternates between cocaine and morphine, and Watson's long-running campaign against the habit is one of the few points of sustained friction in the partnership. By the time of The Adventure of the Missing Three-Quarter, Watson believes he has finally succeeded in weaning Holmes off the drug entirely.",
+    "description": [
+      {
+        "text": "Holmes's cocaine habit — specifically a seven-per-cent solution of cocaine injected intravenously — is one of the most persistently noted facts in the canon. Watson opens The Sign of the Four with Holmes injecting for the third time in as many days and delivers a formal medical objection; Holmes dismisses it on the grounds that the stimulant is necessary to counter the lassitude of inaction between cases. He alternates between cocaine and morphine, and Watson's long-running campaign against the habit is one of the few points of sustained friction in the partnership."
+      },
+      {
+        "text": "By the time of The Adventure of the Missing Three-Quarter, Watson believes he has finally succeeded in weaning Holmes off the drug entirely.",
+        "from": {
+          "book": 6,
+          "chapter": 11
+        }
+      }
+    ],
     "significance": "The cocaine habit is Holmes's most humanising flaw — a concession that his inhuman mental machinery requires chemical intervention when not engaged. It also establishes Watson as more than a narrator: his persistent, professionally-grounded objection to the habit is one of the clearest expressions of care in their relationship.",
     "ownership_chain": [
       {
@@ -450,7 +461,18 @@
     "name": "The Naval Treaty",
     "type": "diplomatic document",
     "description": "A classified naval treaty between Britain and Italy, which Percy Phelps — a Foreign Office clerk — was given the dangerous task of copying overnight. When he stepped out briefly, the document was stolen from his desk. The theft, if disclosed, would represent a catastrophic diplomatic failure: the treaty's terms, if published, could inflame relations with two European powers. Holmes traces the document through a sequence of misdirections to Joseph Harrison, Phelps's future brother-in-law, who stole it opportunistically and hid it in Phelps's own home. Holmes recovers it by a piece of theatre — revealing it in a breakfast dish — and the matter is kept from official channels.",
-    "significance": "One of several Holmes cases involving state secrets at the highest level. The pattern — a government document stolen through opportunity rather than espionage, recovered without official acknowledgement — recurs in the Second Stain and the Bruce-Partington Plans. Holmes's willingness to resolve these cases privately, without credit, reflects his complex relationship with institutional authority.",
+    "significance": [
+      {
+        "text": "One of several Holmes cases involving state secrets at the highest level."
+      },
+      {
+        "text": "The pattern — a government document stolen through opportunity rather than espionage, recovered without official acknowledgement — recurs in the Second Stain and the Bruce-Partington Plans. Holmes's willingness to resolve these cases privately, without credit, reflects his complex relationship with institutional authority.",
+        "from": {
+          "book": 8,
+          "chapter": 4
+        }
+      }
+    ],
     "ownership_chain": [
       {
         "character_id": "char_sherlock-holmes",

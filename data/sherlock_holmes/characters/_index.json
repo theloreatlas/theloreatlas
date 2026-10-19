@@ -24,7 +24,21 @@
       "case_the-valley-of-fear",
       "case_the-adventure-of-the-mazarin-stone"
     ],
-    "biography": "Billy is Holmes's page — a live-in boy who answers the door, carries messages, and manages the domestic operations of 221B Baker Street in the later canon. He is described as a bright, discreet young man who takes quiet pride in his employer's methods and reputation. Unlike the Baker Street Irregulars, who are street children retained for specific outdoor tasks, Billy occupies a permanent position within the household and acts as an intermediary between Holmes and the outside world. He first appears in The Valley of Fear, announcing a visitor with cool efficiency, and recurs in The Adventure of the Mazarin Stone. Watson does not give him a surname. Holmes's domestic arrangements at 221B clearly evolved over the decades of the canon, and Billy represents the settled, post-Reichenbach period when Holmes was a figure of established fame.",
+    "biography": [
+      {
+        "text": "Billy is Holmes's page — a live-in boy who answers the door, carries messages, and manages the domestic operations of 221B Baker Street in the later canon. He is described as a bright, discreet young man who takes quiet pride in his employer's methods and reputation. Unlike the Baker Street Irregulars, who are street children retained for specific outdoor tasks, Billy occupies a permanent position within the household and acts as an intermediary between Holmes and the outside world. He first appears in The Valley of Fear, announcing a visitor with cool efficiency."
+      },
+      {
+        "text": "He recurs in The Adventure of the Mazarin Stone.",
+        "from": {
+          "book": 9,
+          "chapter": 3
+        }
+      },
+      {
+        "text": "Watson does not give him a surname. Holmes's domestic arrangements at 221B clearly evolved over the decades of the canon, and Billy represents the settled, post-Reichenbach period when Holmes was a figure of established fame."
+      }
+    ],
     "tags": [
       "page",
       "221B",
@@ -286,7 +300,21 @@
     "cases": [
       "case_the-sign-of-the-four"
     ],
-    "biography": "Inspector Athelney Jones is the Scotland Yard detective assigned to the Pondicherry Lodge murder in The Sign of the Four. He arrives at the crime scene with great confidence, immediately theorizing about the case and making an early arrest based on circumstantial evidence — only to find himself wrong. He is not unintelligent but is prone to the same over-hasty conclusions Holmes criticizes in all Yarders. He proves adaptable enough to partner with Holmes on the Thames boat chase that ends the case, showing practical competence even when his deductive theories have been dismantled. He is portrayed with a degree of self-deprecating humor absent from Lestrade and Gregson.",
+    "biography": [
+      {
+        "text": "Inspector Athelney Jones is the Scotland Yard detective assigned to the Pondicherry Lodge murder in The Sign of the Four. He arrives at the crime scene with great confidence, immediately theorizing about the case and making an early arrest based on circumstantial evidence — only to find himself wrong. He is not unintelligent but is prone to the same over-hasty conclusions Holmes criticizes in all Yarders."
+      },
+      {
+        "text": "He proves adaptable enough to partner with Holmes on the Thames boat chase that ends the case, showing practical competence even when his deductive theories have been dismantled.",
+        "from": {
+          "book": 2,
+          "chapter": 10
+        }
+      },
+      {
+        "text": "He is portrayed with a degree of self-deprecating humor absent from Lestrade and Gregson."
+      }
+    ],
     "tags": [
       "Scotland Yard",
       "inspector",
@@ -654,7 +682,28 @@
       "case_the-adventure-of-shoscombe-old-place",
       "case_the-adventure-of-the-retired-colourman"
     ],
-    "biography": "Dr. John H. Watson is a retired Army surgeon and the chronicler of Sherlock Holmes's cases. Invalided home from the Second Anglo-Afghan War (wounded at the Battle of Maiwand), Watson meets Holmes through Stamford and moves into 221B Baker Street as his lodger. He serves as Holmes's companion, occasional assistant, and the narrator of nearly all the published accounts. Watson is a man of action, loyalty, and warmth — qualities that complement Holmes's cold rationalism. He later marries Mary Morstan (whom he met during The Sign of the Four), sets up a medical practice, and eventually returns to Baker Street following Mary's death. Watson's admiring but honest narration shapes how the world perceives Holmes.",
+    "biography": [
+      {
+        "text": "Dr. John H. Watson is a retired Army surgeon and the chronicler of Sherlock Holmes's cases. Invalided home from the Second Anglo-Afghan War (wounded at the Battle of Maiwand), Watson meets Holmes through Stamford and moves into 221B Baker Street as his lodger. He serves as Holmes's companion, occasional assistant, and the narrator of nearly all the published accounts. Watson is a man of action, loyalty, and warmth — qualities that complement Holmes's cold rationalism."
+      },
+      {
+        "text": "He later marries Mary Morstan (whom he met during The Sign of the Four) and sets up a medical practice.",
+        "from": {
+          "book": 2,
+          "chapter": 12
+        }
+      },
+      {
+        "text": "He eventually returns to Baker Street following Mary's death.",
+        "from": {
+          "book": 6,
+          "chapter": 1
+        }
+      },
+      {
+        "text": "Watson's admiring but honest narration shapes how the world perceives Holmes."
+      }
+    ],
     "tags": [
       "doctor",
       "army surgeon",
@@ -741,7 +790,25 @@
     "cases": [
       "case_the-sign-of-the-four"
     ],
-    "biography": "Mary Morstan is the client who brings Watson and Holmes the case in The Sign of the Four, and subsequently becomes Watson's wife. She arrives at 221B seeking Holmes's help: her father, Captain Morstan, disappeared years earlier, and she has been receiving annual gifts of pearls from an anonymous sender. She is intelligent, composed under pressure, and strikes Watson immediately as a woman of refinement and courage. The case resolves around the Agra Treasure, which would have made her wealthy — but Jonathan Small throws it into the Thames, leaving her with nothing material. She and Watson marry shortly after. She is mentioned in later stories as deceased, her passing between canons explaining Watson's return to Baker Street.",
+    "biography": [
+      {
+        "text": "Mary Morstan is the client who brings Watson and Holmes the case in The Sign of the Four. She arrives at 221B seeking Holmes's help: her father, Captain Morstan, disappeared years earlier, and she has been receiving annual gifts of pearls from an anonymous sender. She is intelligent, composed under pressure, and strikes Watson immediately as a woman of refinement and courage."
+      },
+      {
+        "text": "The case resolves around the Agra Treasure, which would have made her wealthy — but Jonathan Small throws it into the Thames, leaving her with nothing material. She and Watson marry shortly after.",
+        "from": {
+          "book": 2,
+          "chapter": 12
+        }
+      },
+      {
+        "text": "She is mentioned in later stories as deceased, her passing between canons explaining Watson's return to Baker Street.",
+        "from": {
+          "book": 6,
+          "chapter": 1
+        }
+      }
+    ],
     "tags": [
       "client",
       "Watson's wife",
@@ -853,7 +920,25 @@
       "case_the-adventure-of-the-empty-house",
       "case_the-adventure-of-the-dying-detective"
     ],
-    "biography": "Mrs. Hudson is the long-suffering landlady of 221B Baker Street and one of the most constant presences in the Holmes canon. She rents the first-floor rooms to Holmes and Watson, endures Holmes's eccentric habits — chemistry experiments at all hours, revolver shots into the wainscoting, the smell of tobacco, and an unrelenting parade of strange visitors — without complaint. She brings up callers, delivers telegrams, and maintains the domestic infrastructure of 221B with quiet competence. Holmes, who rarely expresses sentiment, clearly values her: in The Adventure of the Empty House he uses a wax bust of himself to deceive Moran, and Mrs. Hudson's role in manipulating it shows her willingness to place herself in danger for him. Her first name is given as Martha in His Last Bow.",
+    "biography": [
+      {
+        "text": "Mrs. Hudson is the long-suffering landlady of 221B Baker Street and one of the most constant presences in the Holmes canon. She rents the first-floor rooms to Holmes and Watson, endures Holmes's eccentric habits — chemistry experiments at all hours, revolver shots into the wainscoting, the smell of tobacco, and an unrelenting parade of strange visitors — without complaint. She brings up callers, delivers telegrams, and maintains the domestic infrastructure of 221B with quiet competence."
+      },
+      {
+        "text": "Holmes, who rarely expresses sentiment, clearly values her: in The Adventure of the Empty House he uses a wax bust of himself to deceive Moran, and Mrs. Hudson's role in manipulating it shows her willingness to place herself in danger for him.",
+        "from": {
+          "book": 6,
+          "chapter": 1
+        }
+      },
+      {
+        "text": "Her first name is given as Martha in His Last Bow.",
+        "from": {
+          "book": 8,
+          "chapter": 8
+        }
+      }
+    ],
     "tags": [
       "landlady",
       "Baker Street",
@@ -971,7 +1056,18 @@
       "case_the-valley-of-fear",
       "case_the-adventure-of-the-empty-house"
     ],
-    "biography": "Professor James Moriarty is Holmes's greatest adversary — a brilliant mathematician turned criminal mastermind. Once a respected academic who wrote a treatise on the Binomial Theorem and held a chair at a small university, Moriarty descended into crime, becoming the organizing intelligence behind a vast criminal network spanning London and beyond. Holmes describes him as 'the Napoleon of Crime' — the spider at the center of a web, touching every major crime without ever dirtying his own hands. Moriarty and Holmes meet their apparent end together at the Reichenbach Falls in 1891, though Colonel Sebastian Moran survives to carry on part of his network.",
+    "biography": [
+      {
+        "text": "Professor James Moriarty is Holmes's greatest adversary — a brilliant mathematician turned criminal mastermind. Once a respected academic who wrote a treatise on the Binomial Theorem and held a chair at a small university, Moriarty descended into crime, becoming the organizing intelligence behind a vast criminal network spanning London and beyond. Holmes describes him as 'the Napoleon of Crime' — the spider at the center of a web, touching every major crime without ever dirtying his own hands. Moriarty and Holmes meet their apparent end together at the Reichenbach Falls in 1891."
+      },
+      {
+        "text": "Colonel Sebastian Moran survives to carry on part of his network.",
+        "from": {
+          "book": 6,
+          "chapter": 1
+        }
+      }
+    ],
     "tags": [
       "villain",
       "mathematician",
@@ -1098,7 +1194,32 @@
       "case_the-adventure-of-shoscombe-old-place",
       "case_the-adventure-of-the-retired-colourman"
     ],
-    "biography": "Sherlock Holmes is a consulting detective of extraordinary ability, residing at 221B Baker Street, London. He is the world's only consulting detective — a role he invented himself. Holmes applies rigorous logical deduction, deep knowledge of chemistry, anatomy, criminal history, and a vast network of informants to solve cases that baffle Scotland Yard. He is a skilled violinist, occasional user of cocaine (7% solution), and a master of disguise. His methods are as famous as his cases: he observes what others merely see, and deduces what others cannot imagine. He apparently died at the Reichenbach Falls in 1891 during a confrontation with Professor Moriarty, but returned in 1894 having faked his death to elude Moriarty's network. He eventually retired to the Sussex Downs to keep bees.",
+    "biography": [
+      {
+        "text": "Sherlock Holmes is a consulting detective of extraordinary ability, residing at 221B Baker Street, London. He is the world's only consulting detective — a role he invented himself. Holmes applies rigorous logical deduction, deep knowledge of chemistry, anatomy, criminal history, and a vast network of informants to solve cases that baffle Scotland Yard. He is a skilled violinist, occasional user of cocaine (7% solution), and a master of disguise. His methods are as famous as his cases: he observes what others merely see, and deduces what others cannot imagine."
+      },
+      {
+        "text": "He apparently died at the Reichenbach Falls in 1891 during a confrontation with Professor Moriarty.",
+        "from": {
+          "book": 4,
+          "chapter": 11
+        }
+      },
+      {
+        "text": "He returned in 1894 having faked his death to elude Moriarty's network.",
+        "from": {
+          "book": 6,
+          "chapter": 1
+        }
+      },
+      {
+        "text": "He eventually retired to the Sussex Downs to keep bees.",
+        "from": {
+          "book": 8,
+          "chapter": 1
+        }
+      }
+    ],
     "tags": [
       "detective",
       "consulting detective",
@@ -1147,7 +1268,21 @@
     "cases": [
       "case_the-adventure-of-the-illustrious-client"
     ],
-    "biography": "Shinwell Johnson, known in the underworld as Porky Shinwell, is a reformed criminal who becomes one of Holmes's most valuable informants in the late canon. Holmes recruited him from the police records — a former gaolbird who discovered that his connections to criminal circles were more profitably deployed working for a detective than against him. He is described as a huge, coarse, red-faced man with a bull neck. In The Adventure of the Illustrious Client, Holmes uses him to gather intelligence on the dangerous Baron Gruner, sending Kitty Winter into Gruner's household via Johnson's network. He also assists in The Adventure of the Retired Colourman. Johnson represents Holmes's pragmatic approach to the criminal world: a man who cannot be reformed away from his associations can still be redirected toward useful ends. Holmes provides him tacit protection in exchange for access to a world Holmes himself cannot enter without detection.",
+    "biography": [
+      {
+        "text": "Shinwell Johnson, known in the underworld as Porky Shinwell, is a reformed criminal who becomes one of Holmes's most valuable informants in the late canon. Holmes recruited him from the police records — a former gaolbird who discovered that his connections to criminal circles were more profitably deployed working for a detective than against him. He is described as a huge, coarse, red-faced man with a bull neck. In The Adventure of the Illustrious Client, Holmes uses him to gather intelligence on the dangerous Baron Gruner, sending Kitty Winter into Gruner's household via Johnson's network."
+      },
+      {
+        "text": "He also assists in The Adventure of the Retired Colourman.",
+        "from": {
+          "book": 9,
+          "chapter": 12
+        }
+      },
+      {
+        "text": "Johnson represents Holmes's pragmatic approach to the criminal world: a man who cannot be reformed away from his associations can still be redirected toward useful ends. Holmes provides him tacit protection in exchange for access to a world Holmes himself cannot enter without detection."
+      }
+    ],
     "tags": [
       "informant",
       "criminal",

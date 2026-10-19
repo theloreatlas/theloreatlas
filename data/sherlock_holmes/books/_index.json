@@ -7,7 +7,32 @@
     "type": "novel",
     "chronological_order": 1,
     "stories_contained": ["case_a-study-in-scarlet"],
-    "description": "The first Holmes novel, introducing Sherlock Holmes and Dr. John Watson. Watson, recently returned from Afghanistan, meets Holmes through a mutual acquaintance and they take up lodgings together at 221B Baker Street. Their first case involves a murder investigation in Lauriston Gardens with the word 'RACHE' written in blood, revealing a tale of vengeance rooted in the American frontier.",
+    "description": [
+      {
+        "text": "The first Holmes novel, introducing Sherlock Holmes and Dr. John Watson. Watson, recently returned from Afghanistan, meets Holmes through a mutual acquaintance."
+      },
+      {
+        "text": "They take up lodgings together at 221B Baker Street.",
+        "from": {
+          "book": 1,
+          "chapter": 2
+        }
+      },
+      {
+        "text": "Their first case involves a murder investigation in Lauriston Gardens with the word 'RACHE' written in blood.",
+        "from": {
+          "book": 1,
+          "chapter": 3
+        }
+      },
+      {
+        "text": "The case reveals a tale of vengeance rooted in the American frontier.",
+        "from": {
+          "book": 1,
+          "chapter": 8
+        }
+      }
+    ],
     "created_by": "theloreatlas",
     "last_edited_by": "theloreatlas"
   },
@@ -19,7 +44,25 @@
     "type": "novel",
     "chronological_order": 2,
     "stories_contained": ["case_the-sign-of-the-four"],
-    "description": "The second Holmes novel. Mary Morstan engages Holmes to investigate a mysterious summons she has received. The case unravels a tale of stolen treasure, betrayal, and murder connected to the Agra Treasure and a secret pact between four convicts. Watson meets and falls in love with Mary Morstan.",
+    "description": [
+      {
+        "text": "The second Holmes novel."
+      },
+      {
+        "text": "Mary Morstan engages Holmes to investigate a mysterious summons she has received.",
+        "from": {
+          "book": 2,
+          "chapter": 2
+        }
+      },
+      {
+        "text": "The case unravels a tale of stolen treasure, betrayal, and murder connected to the Agra Treasure and a secret pact between four convicts. Watson meets and falls in love with Mary Morstan.",
+        "from": {
+          "book": 2,
+          "chapter": 12
+        }
+      }
+    ],
     "created_by": "theloreatlas",
     "last_edited_by": "theloreatlas"
   },
@@ -68,7 +111,18 @@
       "case_the-naval-treaty",
       "case_the-final-problem"
     ],
-    "description": "The second short story collection, containing 11 cases. Introduces Professor Moriarty and culminates in The Final Problem, in which Holmes and Moriarty apparently fall to their deaths at the Reichenbach Falls.",
+    "description": [
+      {
+        "text": "The second short story collection, containing 11 cases."
+      },
+      {
+        "text": "Introduces Professor Moriarty and culminates in The Final Problem, in which Holmes and Moriarty apparently fall to their deaths at the Reichenbach Falls.",
+        "from": {
+          "book": 4,
+          "chapter": 11
+        }
+      }
+    ],
     "created_by": "theloreatlas",
     "last_edited_by": "theloreatlas"
   },
@@ -80,7 +134,31 @@
     "type": "novel",
     "chronological_order": 5,
     "stories_contained": ["case_the-hound-of-the-baskervilles"],
-    "description": "The third Holmes novel, set during Holmes's apparent death period and narrated partly in retrospect. Sir Charles Baskerville is found dead on the moor, and Holmes is called in to protect his heir, Sir Henry. The case centers on a legendary spectral hound and the curse of the Baskerville family.",
+    "description": [
+      {
+        "text": "The third Holmes novel, narrated partly in retrospect."
+      },
+      {
+        "text": "It is set during Holmes's apparent death period.",
+        "from": {
+          "book": 4,
+          "chapter": 11
+        }
+      },
+      {
+        "text": "Sir Charles Baskerville is found dead on the moor."
+      },
+      {
+        "text": "Holmes is called in to protect his heir, Sir Henry.",
+        "from": {
+          "book": 5,
+          "chapter": 4
+        }
+      },
+      {
+        "text": "The case centers on a legendary spectral hound and the curse of the Baskerville family."
+      }
+    ],
     "created_by": "theloreatlas",
     "last_edited_by": "theloreatlas"
   },
@@ -106,7 +184,18 @@
       "case_the-adventure-of-the-abbey-grange",
       "case_the-adventure-of-the-second-stain"
     ],
-    "description": "The third short story collection, containing 13 cases. Opens with The Adventure of the Empty House, in which Holmes dramatically returns from his apparent death at Reichenbach Falls, revealing he had faked his death to evade Moriarty's associates.",
+    "description": [
+      {
+        "text": "The third short story collection, containing 13 cases. Opens with The Adventure of the Empty House."
+      },
+      {
+        "text": "In it, Holmes dramatically returns from his apparent death at Reichenbach Falls, revealing he had faked his death to evade Moriarty's associates.",
+        "from": {
+          "book": 6,
+          "chapter": 1
+        }
+      }
+    ],
     "created_by": "theloreatlas",
     "last_edited_by": "theloreatlas"
   },
@@ -118,7 +207,25 @@
     "type": "novel",
     "chronological_order": 7,
     "stories_contained": ["case_the-valley-of-fear"],
-    "description": "The fourth and final Holmes novel. A cipher message warns Holmes of a murder at Birlstone Manor. The investigation reveals a complex plot with roots in a brutal American mining community known as the Valley of Fear, and the long reach of Professor Moriarty.",
+    "description": [
+      {
+        "text": "The fourth and final Holmes novel. A cipher message warns Holmes of a murder at Birlstone Manor."
+      },
+      {
+        "text": "The investigation reveals a complex plot with roots in a brutal American mining community known as the Valley of Fear.",
+        "from": {
+          "book": 7,
+          "chapter": 8
+        }
+      },
+      {
+        "text": "It also reveals the long reach of Professor Moriarty.",
+        "from": {
+          "book": 7,
+          "chapter": 14
+        }
+      }
+    ],
     "created_by": "theloreatlas",
     "last_edited_by": "theloreatlas"
   },
@@ -139,7 +246,18 @@
       "case_the-adventure-of-the-devils-foot",
       "case_his-last-bow"
     ],
-    "description": "The fourth short story collection, containing 8 cases. The title story is set in 1914 on the eve of World War I, in which Holmes comes out of retirement to foil a German spy ring — the final chronological Holmes story.",
+    "description": [
+      {
+        "text": "The fourth short story collection, containing 8 cases."
+      },
+      {
+        "text": "The title story is set in 1914 on the eve of World War I, in which Holmes comes out of retirement to foil a German spy ring — the final chronological Holmes story.",
+        "from": {
+          "book": 8,
+          "chapter": 8
+        }
+      }
+    ],
     "created_by": "theloreatlas",
     "last_edited_by": "theloreatlas"
   },

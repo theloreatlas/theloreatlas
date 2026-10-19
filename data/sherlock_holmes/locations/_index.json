@@ -304,7 +304,18 @@
       "case_the-greek-interpreter",
       "case_the-adventure-of-the-bruce-partington-plans"
     ],
-    "description": "The Diogenes Club is described by Holmes as the queerest club in London — founded for men who have no wish for the company of their fellows yet require a comfortable chair and access to periodicals. Talking is strictly forbidden except in the Strangers' Room; members who speak three times are expelled. Mycroft Holmes is one of the founders and its most distinguished habitué. The club serves as a place where Mycroft can be found reliably, and on occasion Holmes visits to consult his brother on matters of state. In The Adventure of the Bruce-Partington Plans, Mycroft emerges from the Diogenes Club to meet Holmes at Baker Street — an event Watson describes as extraordinary, since Mycroft rarely leaves his orbit of club, flat, and government office.",
+    "description": [
+      {
+        "text": "The Diogenes Club is described by Holmes as the queerest club in London — founded for men who have no wish for the company of their fellows yet require a comfortable chair and access to periodicals. Talking is strictly forbidden except in the Strangers' Room; members who speak three times are expelled. Mycroft Holmes is one of the founders and its most distinguished habitué. The club serves as a place where Mycroft can be found reliably, and on occasion Holmes visits to consult his brother on matters of state."
+      },
+      {
+        "text": "In The Adventure of the Bruce-Partington Plans, Mycroft emerges from the Diogenes Club to meet Holmes at Baker Street — an event Watson describes as extraordinary, since Mycroft rarely leaves his orbit of club, flat, and government office.",
+        "from": {
+          "book": 8,
+          "chapter": 4
+        }
+      }
+    ],
     "first_mention": {
       "book": 4,
       "chapter": 9
@@ -384,7 +395,21 @@
       "case_a-scandal-in-bohemia",
       "case_the-sign-of-the-four"
     ],
-    "description": "The Langham Hotel appears in several canonical stories as the natural accommodation for visiting royalty, foreign dignitaries, and wealthy clients. In A Scandal in Bohemia, the King of Bohemia arrives at Baker Street from the Langham. In The Sign of the Four, it is mentioned in connection with the evening's events. The Langham holds a particular place in Holmes lore because Arthur Conan Doyle himself dined there with Oscar Wilde and the American publisher J.M. Stoddart in August 1889 — the dinner at which both The Sign of the Four and The Picture of Dorian Gray were commissioned.",
+    "description": [
+      {
+        "text": "The Langham Hotel appears in several canonical stories as the natural accommodation for visiting royalty, foreign dignitaries, and wealthy clients."
+      },
+      {
+        "text": "In A Scandal in Bohemia, the King of Bohemia arrives at Baker Street from the Langham.",
+        "from": {
+          "book": 3,
+          "chapter": 1
+        }
+      },
+      {
+        "text": "In The Sign of the Four, it is mentioned in connection with the evening's events. The Langham holds a particular place in Holmes lore because Arthur Conan Doyle himself dined there with Oscar Wilde and the American publisher J.M. Stoddart in August 1889 — the dinner at which both The Sign of the Four and The Picture of Dorian Gray were commissioned."
+      }
+    ],
     "first_mention": {
       "book": 2,
       "chapter": 2
@@ -518,7 +543,21 @@
       "case_the-adventure-of-the-six-napoleons",
       "case_the-adventure-of-the-bruce-partington-plans"
     ],
-    "description": "Scotland Yard is the headquarters of the Metropolitan Police and the institutional home of Holmes's professional allies and occasional rivals in the detective fiction. Lestrade, Gregson, Hopkins, and Athelney Jones all operate from here, and Holmes is periodically consulted — or arrives uninvited — when cases exceed the official force's capacity. The relationship between Holmes and Scotland Yard is characterised by useful friction: Holmes provides the insight the official detectives lack; they provide the authority to make arrests he cannot. Holmes is privately scornful of their methods but professionally dependent on their cooperation, and they, in turn, are reluctant to credit him publicly while privately relying on him constantly.",
+    "description": [
+      {
+        "text": "Scotland Yard is the headquarters of the Metropolitan Police and the institutional home of Holmes's professional allies and occasional rivals in the detective fiction. Lestrade and Gregson operate from here, and Holmes is periodically consulted — or arrives uninvited — when cases exceed the official force's capacity."
+      },
+      {
+        "text": "Hopkins and Athelney Jones also operate from here.",
+        "from": {
+          "book": 6,
+          "chapter": 6
+        }
+      },
+      {
+        "text": "The relationship between Holmes and Scotland Yard is characterised by useful friction: Holmes provides the insight the official detectives lack; they provide the authority to make arrests he cannot. Holmes is privately scornful of their methods but professionally dependent on their cooperation, and they, in turn, are reluctant to credit him publicly while privately relying on him constantly."
+      }
+    ],
     "first_mention": {
       "book": 1,
       "chapter": 3
@@ -595,7 +634,18 @@
       "case_his-last-bow",
       "case_the-adventure-of-the-lions-mane"
     ],
-    "description": "Holmes retires to a small farm on the Sussex Downs to keep bees — a detail announced in several late-canon stories and fully realized in His Last Bow and The Adventure of the Lion's Mane. The retirement is both a genuine withdrawal from London detective work and, as His Last Bow reveals, a cover for a wartime intelligence operation: Holmes has been living there as 'Altamont,' an Irish-American, while secretly working against German espionage ahead of the First World War. In The Adventure of the Lion's Mane — narrated by Holmes himself — the downs and sea cliffs are the setting for a baffling death that Holmes solves from his retirement.",
+    "description": [
+      {
+        "text": "Holmes retires to a small farm on the Sussex Downs to keep bees — a detail announced in several late-canon stories and fully realized in His Last Bow and The Adventure of the Lion's Mane. The retirement is both a genuine withdrawal from London detective work and, as His Last Bow reveals, a cover for a wartime intelligence operation: Holmes has been living there as 'Altamont,' an Irish-American, while secretly working against German espionage ahead of the First World War."
+      },
+      {
+        "text": "In The Adventure of the Lion's Mane — narrated by Holmes himself — the downs and sea cliffs are the setting for a baffling death that Holmes solves from his retirement.",
+        "from": {
+          "book": 9,
+          "chapter": 9
+        }
+      }
+    ],
     "first_mention": {
       "book": 8,
       "chapter": 8
@@ -646,7 +696,18 @@
       "case_the-greek-interpreter",
       "case_the-adventure-of-the-bruce-partington-plans"
     ],
-    "description": "Whitehall is the government district of London and the domain of Mycroft Holmes. Holmes explains that Mycroft occupies a singular position there: he is not a minister, has no official title, but is the clearing house for intelligence across all departments of government — the one man who knows everything and synthesises it. He walks from his Pall Mall lodgings to the Diogenes Club and back, rarely deviating. In The Adventure of the Bruce-Partington Plans, the loss of the submarine blueprints and the death of a young War Office clerk becomes a Whitehall crisis that draws both Holmes brothers into action.",
+    "description": [
+      {
+        "text": "Whitehall is the government district of London and the domain of Mycroft Holmes. Holmes explains that Mycroft occupies a singular position there: he is not a minister, has no official title, but is the clearing house for intelligence across all departments of government — the one man who knows everything and synthesises it. He walks from his Pall Mall lodgings to the Diogenes Club and back, rarely deviating."
+      },
+      {
+        "text": "In The Adventure of the Bruce-Partington Plans, the loss of the submarine blueprints and the death of a young War Office clerk becomes a Whitehall crisis that draws both Holmes brothers into action.",
+        "from": {
+          "book": 8,
+          "chapter": 4
+        }
+      }
+    ],
     "first_mention": {
       "book": 4,
       "chapter": 9
