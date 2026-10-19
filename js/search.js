@@ -63,9 +63,13 @@ function entityMatchesQuery(entity, entityType, q, seriesId) {
     entity.relationship_type,
   ];
 
-  // Prose fields — only searchable when fully revealed.
+  // Prose fields — only searchable when fully revealed, and only the text
+  // currently visible at the reader's position (Session 13.9 staged prose:
+  // a withheld segment isn't in the DOM, so it shouldn't be searchable either).
   if (status === 'full') {
-    fields.push(entity.biography, entity.synopsis, entity.description, entity.significance, entity.notes);
+    for (const f of ['biography', 'synopsis', 'description', 'significance', 'notes']) {
+      fields.push(proseText(entity, f, seriesId).text);
+    }
   }
 
   for (const f of fields) {

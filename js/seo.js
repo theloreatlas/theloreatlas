@@ -10,6 +10,7 @@
  *       buildEntityMeta       ↔ build_meta           tryParseEventDate ↔ try_parse_event_date
  *       buildEntityJsonLd     ↔ build_jsonld_for_entity
  *       buildBreadcrumbJsonLd ↔ build_breadcrumb_jsonld
+ *       canonProse (core.js's proseText, canonical: true) ↔ prose_text (scripts/build_pages.py)
  *     Change one side → change the other, then re-run build_pages.py and confirm
  *     a deployed page's view-source matches the runtime DOM head.
  *     (Full DRY would require a Node build step running this JS — deferred; see PK3.)
@@ -37,6 +38,13 @@ function firstSentencesForMeta(text, maxChars = 155) {
   }
   out = out.trim();
   return out || truncateForMeta(sentences[0], maxChars);
+}
+
+// Canonical (all-segments) text for a staged prose field — SEO/JSON-LD always
+// join every segment regardless of reading position. See core.js's proseText
+// and PK2 "Staged Prose (Session 13.9)".
+function canonProse(entity, field) {
+  return proseText(entity, field, entity.series, { canonical: true }).text;
 }
 
 function setMetaTag(nameOrProperty, content) {
@@ -67,46 +75,48 @@ function buildEntityMeta(entity, entityType, seriesName) {
   switch (entityType) {
     case 'characters': {
       title = `${entity.name} | ${seriesName} | ${SITE}`;
-      description = entity.biography
-        ? firstSentencesForMeta(entity.biography)
+      const bio = canonProse(entity, 'biography');
+      description = bio
+        ? firstSentencesForMeta(bio)
         : `${entity.role || 'Character'} in ${seriesName}.`;
       break;
     }
     case 'cases': {
       title = `${entity.title} | ${seriesName} | ${SITE}`;
-      description = firstSentencesForMeta(entity.synopsis);
+      description = firstSentencesForMeta(canonProse(entity, 'synopsis'));
       break;
     }
     case 'books': {
       title = `${entity.title} | ${seriesName} | ${SITE}`;
       ogType = 'book';
-      const base = firstSentencesForMeta(entity.description, 130);
+      const base = firstSentencesForMeta(canonProse(entity, 'description'), 130);
       const yearTag = entity.publication_year ? ` Published ${entity.publication_year}.` : '';
       description = (base + yearTag).length <= 160 ? base + yearTag : truncateForMeta(base);
       break;
     }
     case 'locations': {
       title = `${entity.name} | ${seriesName} | ${SITE}`;
-      description = firstSentencesForMeta(entity.description);
+      description = firstSentencesForMeta(canonProse(entity, 'description'));
       break;
     }
     case 'artifacts': {
       title = `${entity.name} | ${seriesName} | ${SITE}`;
-      const base = firstSentencesForMeta(entity.description, 130);
-      const sig = entity.significance ? ' ' + firstSentencesForMeta(entity.significance, 160 - base.length - 1) : '';
+      const base = firstSentencesForMeta(canonProse(entity, 'description'), 130);
+      const sigText = canonProse(entity, 'significance');
+      const sig = sigText ? ' ' + firstSentencesForMeta(sigText, 160 - base.length - 1) : '';
       description = base + sig;
       break;
     }
     case 'factions': {
       title = `${entity.name} | ${seriesName} | ${SITE}`;
-      description = firstSentencesForMeta(entity.description);
+      description = firstSentencesForMeta(canonProse(entity, 'description'));
       break;
     }
     case 'events': {
       const baseTitle = `${entity.name} | ${seriesName}`;
       title = baseTitle.length > 50 ? baseTitle : `${baseTitle} | ${SITE}`;
       const datePart = entity.date_or_position ? `${entity.date_or_position}. ` : '';
-      description = truncateForMeta(datePart + firstSentencesForMeta(entity.description, 155 - datePart.length));
+      description = truncateForMeta(datePart + firstSentencesForMeta(canonProse(entity, 'description'), 155 - datePart.length));
       break;
     }
     case 'relationships': {
@@ -115,8 +125,9 @@ function buildEntityMeta(entity, entityType, seriesName) {
       const aName = a ? a.name : entity.character_a;
       const bName = b ? b.name : entity.character_b;
       title = `${aName} and ${bName} | ${SITE}`;
-      if (entity.notes) {
-        description = firstSentencesForMeta(entity.notes);
+      const notesText = canonProse(entity, 'notes');
+      if (notesText) {
+        description = firstSentencesForMeta(notesText);
       } else {
         const caseEntity = entity.first_established ? LoreLoader.getById(entity.first_established) : null;
         const caseTitle = caseEntity ? caseEntity.title : entity.first_established;
@@ -126,7 +137,7 @@ function buildEntityMeta(entity, entityType, seriesName) {
     }
     default: {
       title = `${entity.name || entity.title || ''} | ${seriesName} | ${SITE}`;
-      description = firstSentencesForMeta(entity.description || entity.biography || '');
+      description = firstSentencesForMeta(canonProse(entity, 'description') || canonProse(entity, 'biography') || '');
     }
   }
 
@@ -185,7 +196,8 @@ function setJsonLd(parts, entity, entityType, seriesObj) {
 
 function buildEntityJsonLd(entity, entityType, seriesObj, url) {
   const desc = firstSentencesForMeta(
-    entity.biography || entity.synopsis || entity.description || entity.notes || ''
+    canonProse(entity, 'biography') || canonProse(entity, 'synopsis') ||
+    canonProse(entity, 'description') || canonProse(entity, 'notes') || ''
   );
 
   switch (entityType) {
@@ -262,7 +274,7 @@ function buildEntityJsonLd(entity, entityType, seriesObj, url) {
         '@context': 'https://schema.org',
         '@type': 'Article',
         'headline': entity.title,
-        'description': firstSentencesForMeta(entity.synopsis || ''),  // never solution
+        'description': firstSentencesForMeta(canonProse(entity, 'synopsis') || ''),  // never solution
         'url': url,
         'about': {
           '@type': isNovel ? 'Book' : 'ShortStory',

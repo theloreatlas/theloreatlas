@@ -201,11 +201,19 @@ function redactedProse(entity) {
 // redaction is applied) lands everywhere at once.
 
 /**
- * A prose field's value with spoiler redaction applied: the escaped field, or
- * the redaction placeholder when the entity is only partially revealed.
+ * A prose field's value with spoiler redaction applied: the escaped,
+ * currently-visible segments (Session 13.9 staged prose), or the redaction
+ * placeholder when the entity is only partially revealed. When segments are
+ * withheld by reading position, appends a "[More after Book X, Ch. Y]" hint.
  */
 function proseValue(entity, status, field) {
-  return status === 'partial' ? redactedProse(entity) : esc(entity[field]);
+  if (status === 'partial') return redactedProse(entity);
+  const { text, nextFrom } = proseText(entity, field, entity.series);
+  let html = esc(text);
+  if (nextFrom) {
+    html += ` <span class="prose-more">[More after Book ${esc(nextFrom.book)}, Ch. ${esc(nextFrom.chapter)}]</span>`;
+  }
+  return html;
 }
 
 /**

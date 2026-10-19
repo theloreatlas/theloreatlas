@@ -18,15 +18,27 @@ Errors (exit 1 if any are found):
        relationship.character_a/b  <-> character.relationships
        event.characters_involved/cases_linked/location <-> entity.events
        parent_org                  <-> child_orgs
+  5. Staged prose (Session 13.9). A prose field (biography, description,
+     synopsis, significance, notes) on ANY entity type, books included, is
+     either a string or a non-empty array of segments {text, from?}. Errors:
+     an empty array, a segment that isn't an object with a non-empty string
+     `text`, a malformed `from`, a first segment that carries `from`, `from`
+     values that decrease through the array, and a `from` whose book or
+     chapter is out of range (same rules as check 3).
 
 Warnings (printed, do not fail the build):
   - Forward-reference scan: a prose field names another entity (by name or
     alias, more than 5 characters) whose first_mention comes after this
     entity's own display gate (full_reveal for prose fields, including
-    notable_elements). Only entities that are themselves subject to spoiler
-    gating (i.e. carry first_mention/full_reveal) are scanned as sources or
-    used as match targets — books are excluded on both sides since PK2
-    documents them as the reference frame for gating, not subject to it.
+    notable_elements). For a staged-prose field the check runs per segment,
+    with gate = max(the entity's full_reveal, the segment's `from`).
+    Only entities that are themselves subject to spoiler gating (i.e. carry
+    first_mention/full_reveal) are used as match targets — books are excluded
+    as targets, since PK2 documents them as the reference frame for gating
+    and a book title is not a spoiler. Book `description`s ARE scanned as
+    sources (Session 13.9, R4): books have no full_reveal, so a base segment
+    (no `from`) is gated at (the book's chronological_order, chapter 1) and a
+    segment with `from` at that `from`.
 
 Usage:
   python3 scripts/validate_data.py [--verbose]
@@ -120,7 +132,11 @@ PROSE_FIELDS = {
     'artifacts': [('description', False), ('significance', False)],
     'events': [('description', False)],
     'relationships': [('notes', False)],
+    'books': [('description', False)],   # source only; ungated at entity level (R4)
 }
+
+# Fields that may be staged prose (string or array of segments), Session 13.9.
+STAGED_PROSE_FIELDS = ['biography', 'description', 'synopsis', 'significance', 'notes']
 
 
 def load_all():
@@ -237,6 +253,60 @@ def main():
                 errors.append(f"[threshold] {eid}.first_mention {first} is before its "
                               f"{role} ({char_id})'s first_mention {char_first}")
 
+    # ── Check 5: staged prose shape (Session 13.9) ───────────────────────────
+    def check_from(label, frm):
+        """Return an error message for a malformed/out-of-range `from`, else None."""
+        if (not isinstance(frm, dict) or not isinstance(frm.get('book'), int)
+                or not isinstance(frm.get('chapter'), int)
+                or isinstance(frm.get('book'), bool) or isinstance(frm.get('chapter'), bool)):
+            return f"[prose] {label}.from must be {{book:int, chapter:int}}, got {frm!r}"
+        if frm['book'] not in valid_chrono:
+            return (f"[prose] {label}.from book {frm['book']} out of range "
+                    f"(valid: {sorted(valid_chrono)})")
+        max_ch = get_chapter_count(books_by_chrono[frm['book']])
+        if frm['chapter'] < 1 or frm['chapter'] > max_ch:
+            return (f"[prose] {label}.from chapter {frm['chapter']} out of range "
+                    f"for book {frm['book']} (1-{max_ch})")
+        return None
+
+    for et, entities in by_type.items():
+        for ent in entities:
+            eid = ent.get('id', '?')
+            for field in STAGED_PROSE_FIELDS:
+                if field not in ent:
+                    continue
+                value = ent[field]
+                if value is None or isinstance(value, str):
+                    continue
+                if not isinstance(value, list):
+                    errors.append(f"[prose] {eid}.{field} must be a string or an array of "
+                                  f"segments, got {type(value).__name__}")
+                    continue
+                if not value:
+                    errors.append(f"[prose] {eid}.{field} is an empty array")
+                    continue
+                last_from = None
+                for i, seg in enumerate(value):
+                    label = f"{eid}.{field}[{i}]"
+                    if (not isinstance(seg, dict) or not isinstance(seg.get('text'), str)
+                            or not seg['text'].strip()):
+                        errors.append(f"[prose] {label} must be an object with a non-empty "
+                                      f"string 'text'")
+                        continue
+                    if 'from' not in seg:
+                        continue
+                    if i == 0:
+                        errors.append(f"[prose] {label}: the first segment must not have 'from'")
+                    msg = check_from(label, seg['from'])
+                    if msg:
+                        errors.append(msg)
+                        continue
+                    cur = pos_tuple(seg['from'])
+                    if last_from is not None and cur < last_from:
+                        errors.append(f"[prose] {label}.from {seg['from']} decreases "
+                                      f"(previous segment's from is {last_from})")
+                    last_from = cur
+
     # ── Check 4: back-references agree on both sides ─────────────────────────
     def symmetric_list(a_id, a_field, a_list, b_type, b_field):
         """Every id in a_list must have a back-reference (a_id in its b_field list)."""
@@ -334,7 +404,8 @@ def main():
 
     # ── Warnings: forward-reference scan ──────────────────────────────────────
     # Build the name/alias index over entities that are themselves gated
-    # (books are excluded — PK2 documents them as ungated reference frames).
+    # (books are excluded as match targets — PK2 documents them as ungated
+    # reference frames; their descriptions ARE scanned as sources, below).
     name_index = []  # (pattern, target_id, first_mention)
     for et in GATED_TYPES:
         for ent in by_type.get(et, []):
@@ -352,25 +423,60 @@ def main():
                     name_index.append((re.compile(r'\b' + re.escape(name) + r'\b', re.IGNORECASE),
                                        ent['id'], first))
 
+    def prose_segments(value):
+        """Yield (label_suffix, text, from_or_None) for a string or staged array."""
+        if isinstance(value, str):
+            yield '', value, None
+        elif isinstance(value, list):
+            for i, seg in enumerate(value):
+                if isinstance(seg, dict) and isinstance(seg.get('text'), str):
+                    frm = seg.get('from')
+                    ok = (isinstance(frm, dict) and isinstance(frm.get('book'), int)
+                          and isinstance(frm.get('chapter'), int))
+                    yield f'[{i}]', seg['text'], (frm if ok else None)
+
     for et, fields in PROSE_FIELDS.items():
         for ent in by_type.get(et, []):
             source_id = ent['id']
-            gate = ent.get('full_reveal')
-            if not gate:
-                continue
+            if et == 'books':
+                base_gate = {'book': ent.get('chronological_order'), 'chapter': 1}
+                if base_gate['book'] is None:
+                    continue
+                # Books: a segment without `from` is gated at (this book, ch. 1);
+                # one with `from` at that `from` alone.
+                def seg_gate(frm, base_gate=base_gate):
+                    return frm or base_gate
+            else:
+                entity_gate = ent.get('full_reveal')
+                if not entity_gate:
+                    continue
+                # Gated entities: gate = max(full_reveal, segment `from`).
+                def seg_gate(frm, entity_gate=entity_gate):
+                    if frm and pos_tuple(frm) > pos_tuple(entity_gate):
+                        return frm
+                    return entity_gate
             for field, is_list in fields:
                 value = ent.get(field)
                 if not value:
                     continue
-                texts = value if is_list else [value]
-                for text in texts:
+                if is_list:
+                    sources = [('', t, None) for t in value]
+                else:
+                    sources = list(prose_segments(value))
+                for suffix, text, frm in sources:
+                    gate = seg_gate(frm)
                     for pattern, target_id, target_first in name_index:
                         if target_id == source_id:
                             continue
                         if pos_tuple(target_first) > pos_tuple(gate) and pattern.search(text):
-                            warnings.append(f"[forward-ref] {source_id}.{field} names "
-                                            f"'{target_id}' (first_mention {target_first}) "
-                                            f"before its own full_reveal {gate}")
+                            if et == 'books' or suffix:
+                                warnings.append(f"[forward-ref] {source_id}.{field}{suffix} names "
+                                                f"'{target_id}' (first_mention {target_first}) "
+                                                f"before its gate {gate}")
+                            else:
+                                warnings.append(f"[forward-ref] {source_id}.{field} names "
+                                                f"'{target_id}' (first_mention {target_first}) "
+                                                f"before its own full_reveal {gate}")
 
     # ── Report ────────────────────────────────────────────────────────────────
     print(f"Checked {sum(len(v) for v in by_type.values())} entities across {len(by_type)} types.")

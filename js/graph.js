@@ -261,10 +261,11 @@ const LoreGraph = (() => {
         ? `<span class="badge badge-${esc(entity.role.replace(/_/g, '-'))}">${esc(entity.role.replace(/_/g, ' '))}</span>`
         : '';
 
+      const bioText = proseText(entity, 'biography', seriesId).text;
       const desc = status === 'partial'
         ? redactedProse(entity)
-        : (entity.biography
-            ? esc(firstSentencesForMeta(entity.biography, 120))
+        : (bioText
+            ? esc(firstSentencesForMeta(bioText, 120))
             : '<span class="panel-empty">No description available.</span>');
 
       // Unique neighbours, alphabetical (no edge-weight data → name sort).

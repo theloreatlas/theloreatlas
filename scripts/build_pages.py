@@ -19,6 +19,7 @@ Also regenerates sitemap.xml from the same walk.
       build_meta             ↔ buildEntityMeta          try_parse_event_date ↔ tryParseEventDate
       build_jsonld_for_entity ↔ buildEntityJsonLd
       build_breadcrumb_jsonld ↔ buildBreadcrumbJsonLd
+      prose_text (always canonical) ↔ core.js's proseText(..., { canonical: true })
     Change one side → change the other, then re-run this script and confirm a
     deployed page's view-source matches the runtime DOM head.
 
@@ -80,6 +81,27 @@ def first_sentences(text, max_chars=None):
         out += s + ' '
     return out.strip() or truncate(sentences[0], max_chars)
 
+def prose_text(entity, field):
+    """Canonical (all-segments) text for a prose field: biography, description,
+    synopsis, significance, or notes. Always canonical — this script has no
+    reading position to consult, so it joins every segment, mirroring
+    js/core.js's proseText(entity, field, seriesId, { canonical: true }).
+
+    Accepts the legacy plain-string form, or the Session 13.9 segment-array
+    form: [{"text": ...}, {"text": ..., "from": {"book": int, "chapter": int}}, ...].
+    """
+    value = entity.get(field)
+    if not value:
+        return ''
+    if isinstance(value, str):
+        return value
+    if isinstance(value, list):
+        return ' '.join(
+            seg['text'] for seg in value
+            if isinstance(seg, dict) and isinstance(seg.get('text'), str)
+        )
+    return ''
+
 def enforce_title_cap(title):
     if len(title) <= MAX_TITLE:
         return title
@@ -109,8 +131,9 @@ def build_meta(entity, entity_type, series, lookup):
         a_name = (lookup.get(entity.get('character_a', '')) or {}).get('name', entity.get('character_a', ''))
         b_name = (lookup.get(entity.get('character_b', '')) or {}).get('name', entity.get('character_b', ''))
         title = enforce_title_cap(f'{a_name} and {b_name}{SEP}{SITE}')
-        if entity.get('notes'):
-            description = first_sentences(entity['notes'])
+        notes_text = prose_text(entity, 'notes')
+        if notes_text:
+            description = first_sentences(notes_text)
         else:
             case = lookup.get(entity.get('first_established', ''))
             case_title = case['title'] if case else ''
@@ -119,35 +142,35 @@ def build_meta(entity, entity_type, series, lookup):
 
     elif entity_type == 'cases':
         title = enforce_title_cap(f'{name}{SEP}{series_name}{SEP}{SITE}')
-        description = first_sentences(entity.get('synopsis', ''))  # NEVER read 'solution'
+        description = first_sentences(prose_text(entity, 'synopsis'))  # NEVER read 'solution'
 
     elif entity_type == 'events':
         base_title = f'{name}{SEP}{series_name}'
         title = enforce_title_cap(base_title if len(base_title) > 50 else f'{base_title}{SEP}{SITE}')
         date_part = entity.get('date_or_position', '')
         date_part = (date_part + '. ').lstrip('. ') if date_part else ''
-        description = truncate(date_part + first_sentences(entity.get('description', ''), MAX_DESC - len(date_part)))
+        description = truncate(date_part + first_sentences(prose_text(entity, 'description'), MAX_DESC - len(date_part)))
 
     elif entity_type == 'books':
         title = enforce_title_cap(f'{name}{SEP}{series_name}{SEP}{SITE}')
-        base = first_sentences(entity.get('description', ''), 130)
+        base = first_sentences(prose_text(entity, 'description'), 130)
         year_tag = f" Published {entity['publication_year']}." if entity.get('publication_year') else ''
         description = base + year_tag if len(base + year_tag) <= MAX_DESC else base
 
     elif entity_type == 'characters':
         title = enforce_title_cap(f'{name}{SEP}{series_name}{SEP}{SITE}')
-        bio = entity.get('biography', '')
+        bio = prose_text(entity, 'biography')
         description = first_sentences(bio) if bio else f"{entity.get('role', 'Character').capitalize()} in {series_name}."
 
     elif entity_type == 'artifacts':
         title = enforce_title_cap(f'{name}{SEP}{series_name}{SEP}{SITE}')
-        base = first_sentences(entity.get('description', ''), 130)
-        sig = entity.get('significance', '')
+        base = first_sentences(prose_text(entity, 'description'), 130)
+        sig = prose_text(entity, 'significance')
         description = base + (' ' + first_sentences(sig, MAX_DESC - len(base) - 1) if sig and len(base) < MAX_DESC - 20 else '')
 
     else:  # factions, locations, and any future types
         title = enforce_title_cap(f'{name}{SEP}{series_name}{SEP}{SITE}')
-        description = first_sentences(entity.get('description', ''))
+        description = first_sentences(prose_text(entity, 'description'))
 
     return title, description, og_type
 
@@ -156,8 +179,8 @@ def build_meta(entity, entity_type, series, lookup):
 def build_jsonld_for_entity(entity, entity_type, series, lookup, url):
     """Return a list of JSON-LD block dicts for one entity detail page."""
     desc = first_sentences(
-        entity.get('biography') or entity.get('synopsis') or
-        entity.get('description') or entity.get('notes') or ''
+        prose_text(entity, 'biography') or prose_text(entity, 'synopsis') or
+        prose_text(entity, 'description') or prose_text(entity, 'notes') or ''
     )
 
     if entity_type == 'characters':
@@ -211,7 +234,7 @@ def build_jsonld_for_entity(entity, entity_type, series, lookup, url):
         return [{
             '@context': 'https://schema.org', '@type': 'Article',
             'headline': entity.get('title', ''),
-            'description': first_sentences(entity.get('synopsis', '')),  # never solution
+            'description': first_sentences(prose_text(entity, 'synopsis')),  # never solution
             'url': url,
             'about': {
                 '@type': 'Book' if is_novel else 'ShortStory',

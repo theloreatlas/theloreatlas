@@ -24,6 +24,47 @@ function esc(s) {
   return d.innerHTML;
 }
 
+// ── Staged prose (Session 13.9) ─────────────────────────────────────────────
+//
+// A prose field (biography/description/synopsis/significance/notes) may be a
+// plain string, as before, or an array of segments:
+//   [{ text }, { text, from: { book, chapter } }, ...]
+// A segment without `from` always shows; one with `from` shows once the
+// reader position reaches it. See PK2 "Staged Prose (Session 13.9)".
+//
+// ⚠️  KEEP IN SYNC WITH scripts/build_pages.py's prose_text(). That twin is
+//     always canonical (it has no reading position to consult); this one
+//     takes { canonical: true } for the same effect at runtime.
+//
+// Every runtime read of a staged prose field must go through this function:
+// views.js (proseValue/proseSection), search.js (full-status matching),
+// graph.js (the panel description), and seo.js (canonical meta/JSON-LD).
+//
+// Returns { text, nextFrom }: `text` is the joined, currently-visible prose
+// (segments separated by a single space, '' if the field is empty); `nextFrom`
+// is the `from` of the earliest withheld segment, or null if none are withheld.
+function proseText(entity, field, seriesId, { canonical = false } = {}) {
+  const value = entity ? entity[field] : undefined;
+  if (!value) return { text: '', nextFrom: null };
+  if (typeof value === 'string') return { text: value, nextFrom: null };
+  if (!Array.isArray(value)) return { text: '', nextFrom: null };
+
+  const pos = canonical ? null : SpoilerGate.getPosition(seriesId);
+  const shown = [];
+  let nextFrom = null;
+  for (const seg of value) {
+    if (!seg || typeof seg.text !== 'string') continue;
+    const from = seg.from;
+    const visible = !from || !pos || SpoilerGate.comparePositions(pos, from) >= 0;
+    if (visible) {
+      shown.push(seg.text);
+    } else if (nextFrom === null) {
+      nextFrom = from;
+    }
+  }
+  return { text: shown.join(' '), nextFrom };
+}
+
 // ── Routing ──────────────────────────────────────────────────────────────────
 
 // Entity type → ID prefix. Used to round-trip clean URL slugs back into

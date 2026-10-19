@@ -125,6 +125,7 @@ const SpoilerGate = (() => {
     getRevealStatus,
     isRevealed,
     getChapterCount,
+    comparePositions,
   };
 
 })();
