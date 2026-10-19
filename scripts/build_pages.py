@@ -28,6 +28,7 @@ Usage:
   python3 scripts/build_pages.py --check   # verify only, write nothing; exit 1 if stale
 """
 
+import hashlib
 import html as html_mod
 import json
 import re
@@ -323,6 +324,42 @@ def inject_head(base_html, head_content):
     out = out.replace('</head>', head_content + '\n</head>', 1)
     return out
 
+# ── Cache-busting versions (Session 13.10 D) ─────────────────────────────────
+#
+# Every same-origin <script src> / <link rel="stylesheet"> in index.html carries
+# ?v=<first 8 hex of the file's SHA-256>, and manifest.json carries a
+# "data_version" (hash of every entity _index.json) that js/loader.js appends to
+# its data fetches. A deploy that changes a file therefore changes its URL, so
+# browsers can't pair new data with stale cached JS (the 13.9 incident). The
+# CSP is unaffected: query strings don't change what 'self' matches.
+
+ASSET_TAG_RE = re.compile(
+    r'(<script\b[^>]*?\bsrc="|<link\b[^>]*?\brel="stylesheet"[^>]*?\bhref=")(/[^"?]+)(?:\?v=[0-9a-f]+)?(")')
+
+def file_version(rel_path):
+    data = (REPO_ROOT / rel_path.lstrip('/')).read_bytes()
+    return hashlib.sha256(data).hexdigest()[:8]
+
+def version_assets(html):
+    """Rewrite same-origin asset URLs in index.html to carry a content hash."""
+    def sub(m):
+        return f'{m.group(1)}{m.group(2)}?v={file_version(m.group(2))}{m.group(3)}'
+    return ASSET_TAG_RE.sub(sub, html)
+
+def compute_data_version(manifest):
+    h = hashlib.sha256()
+    for series in manifest['series']:
+        for _, rel in sorted(series['entity_indexes'].items()):
+            h.update(rel.encode())
+            h.update((REPO_ROOT / rel).read_bytes())
+    return h.hexdigest()[:8]
+
+def with_data_version(manifest_text, version):
+    """Set "data_version" in manifest.json's text, leaving the rest byte-identical."""
+    if re.search(r'"data_version"\s*:', manifest_text):
+        return re.sub(r'("data_version"\s*:\s*")[^"]*(")', lambda m: m.group(1) + version + m.group(2), manifest_text, count=1)
+    return re.sub(r'("version"\s*:\s*"[^"]*",)', lambda m: m.group(1) + f'\n  "data_version": "{version}",', manifest_text, count=1)
+
 CHECK_MODE = False
 # Populated only in --check mode: stubs whose on-disk content differs from
 # what a fresh build would produce, stubs that don't exist yet, and stub
@@ -367,8 +404,23 @@ def main():
     global CHECK_MODE
     CHECK_MODE = '--check' in sys.argv[1:]
 
-    base_html = INDEX_HTML.read_text(encoding='utf-8')
-    manifest = json.loads((DATA_DIR / 'manifest.json').read_text())
+    raw_index = INDEX_HTML.read_text(encoding='utf-8')
+    base_html = version_assets(raw_index)
+    manifest_path = DATA_DIR / 'manifest.json'
+    manifest_text = manifest_path.read_text()
+    manifest = json.loads(manifest_text)
+    shell_problems = []
+    new_manifest_text = with_data_version(manifest_text, compute_data_version(manifest))
+    if CHECK_MODE:
+        if base_html != raw_index:
+            shell_problems.append('index.html (asset ?v= hashes are stale)')
+        if new_manifest_text != manifest_text:
+            shell_problems.append('data/manifest.json (data_version is stale)')
+    else:
+        if base_html != raw_index:
+            INDEX_HTML.write_text(base_html, encoding='utf-8')
+        if new_manifest_text != manifest_text:
+            manifest_path.write_text(new_manifest_text)
 
     sitemap_urls = [SITE_URL + '/']
     emitted = 0
@@ -505,9 +557,11 @@ def main():
 
     if CHECK_MODE:
         orphaned = find_orphaned_stubs(manifest)
-        problems = len(STALE) + len(MISSING) + len(orphaned) + (1 if sitemap_stale else 0)
+        problems = len(STALE) + len(MISSING) + len(orphaned) + len(shell_problems) + (1 if sitemap_stale else 0)
         if problems:
             print(f'--check found {problems} problem(s) (nothing was written):')
+            for path in shell_problems:
+                print(f'  stale: {path}')
             if sitemap_stale:
                 print('  stale: sitemap.xml (does not match a fresh build)')
             for path in STALE:

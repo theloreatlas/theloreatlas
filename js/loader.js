@@ -34,8 +34,8 @@ const LoreLoader = (() => {
   /**
    * Fetch a JSON file. Returns parsed object or throws on failure.
    */
-  async function fetchJSON(path) {
-    const res = await fetch(path);
+  async function fetchJSON(path, options) {
+    const res = await fetch(path, options);
     if (!res.ok) throw new Error(`Failed to fetch ${path}: ${res.status}`);
     return res.json();
   }
@@ -64,11 +64,16 @@ const LoreLoader = (() => {
     // and locally (file:// or localhost root)
     const base = getBasePath();
 
-    // 1. Fetch manifest and meta-config in parallel
+    // 1. Fetch manifest and meta-config in parallel. Both are revalidated
+    //    (cache: 'no-cache'): the manifest carries data_version, the key that
+    //    versions every other data fetch (Session 13.10 D, set by build_pages.py).
     [manifest, metaConfig] = await Promise.all([
-      fetchJSON(`${base}data/manifest.json`),
-      fetchJSON(`${base}data/meta-config.json`),
+      fetchJSON(`${base}data/manifest.json`, { cache: 'no-cache' }),
+      fetchJSON(`${base}data/meta-config.json`, { cache: 'no-cache' }),
     ]);
+    const versionQuery = manifest.data_version
+      ? `?v=${encodeURIComponent(manifest.data_version)}`
+      : '';
 
     // 2. For each series, fetch all entity type indexes in parallel
     for (const series of manifest.series) {
@@ -76,7 +81,7 @@ const LoreLoader = (() => {
 
       const fetches = Object.entries(series.entity_indexes).map(
         async ([entityType, indexPath]) => {
-          const entities = await fetchJSON(`${base}${indexPath}`);
+          const entities = await fetchJSON(`${base}${indexPath}${versionQuery}`);
           store[series.id][entityType] = entities;
           indexEntities(entities);
         }
