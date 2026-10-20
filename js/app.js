@@ -4,6 +4,7 @@
  */
 
 async function onRouteChange() {
+  teardownGraphPage(); // the graph page's own listeners (Session 16)
   const parts = parseRoute();
   const content = document.getElementById('main-content');
   if (!content) return;

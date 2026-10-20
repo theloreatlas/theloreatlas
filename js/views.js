@@ -513,14 +513,71 @@ function renderRelationshipDetail(entity, status) {
   `;
 }
 
-// The graph page's live view (Session 16), so a reading-position change can
-// update it in place instead of re-rendering the route. `refresh` returns true
-// when it handled the change.
+// ── Graph page (Session 16: list mode, in-place position changes) ────────────
+
+// The graph page's live view, so a reading-position change can update it in
+// place instead of re-rendering the route. `refresh` returns true when it
+// handled the change.
 let activeGraphView = null;
+let graphPageTeardown = null;
 
 function refreshGraphViewInPlace() {
   const v = activeGraphView;
   return !!(v && v.container.isConnected && v.refresh());
+}
+
+// Called at the start of every route change: drops the graph page's media-query
+// listener and its live view.
+function teardownGraphPage() {
+  if (graphPageTeardown) graphPageTeardown();
+  graphPageTeardown = null;
+  activeGraphView = null;
+}
+
+const GRAPH_VIEW_KEY = 'graph-view-mode';
+
+function readGraphViewMode() {
+  try { return localStorage.getItem(GRAPH_VIEW_KEY) === 'list' ? 'list' : 'graph'; } catch (e) { return 'graph'; }
+}
+
+function writeGraphViewMode(mode) {
+  try { localStorage.setItem(GRAPH_VIEW_KEY, mode); } catch (e) { /* storage unavailable: the choice just isn't remembered */ }
+}
+
+/**
+ * What list mode shows, and what the graph shows with no layers: the characters
+ * revealed at the reader's position, each with the revealed relationships whose
+ * two ends are both visible, by name. One helper, so the list and an oracle test
+ * can be checked against the same filter.
+ * Returns [{ id, name, partners: [{ id, name, type }] }].
+ */
+function graphListData(seriesId) {
+  const chars = LoreLoader.getAll(seriesId, 'characters').filter(c => SpoilerGate.isRevealed(c, seriesId));
+  const byId = new Map(chars.map(c => [c.id, c]));
+  const rels = LoreLoader.getAll(seriesId, 'relationships').filter(r =>
+    SpoilerGate.isRevealed(r, seriesId) && byId.has(r.character_a) && byId.has(r.character_b));
+  const byName = (a, b) => a.name.localeCompare(b.name);
+  return chars.map(c => ({
+    id: c.id,
+    name: c.name,
+    partners: rels
+      .filter(r => r.character_a === c.id || r.character_b === c.id)
+      .map(r => {
+        const pid = r.character_a === c.id ? r.character_b : r.character_a;
+        return { id: pid, name: byId.get(pid).name, type: r.relationship_type || 'other' };
+      })
+      .sort(byName),
+  })).sort(byName);
+}
+
+function graphListHtml(seriesId) {
+  const items = graphListData(seriesId);
+  if (!items.length) return '<p class="state-loading">No characters visible at your current reading position.</p>';
+  return '<ul class="graph-list">' + items.map(c => `
+    <li class="graph-list-char" data-id="${esc(c.id)}">${entityLink(c.id)}${c.partners.length
+      ? '<ul class="graph-list-rels">' + c.partners.map(p =>
+          `<li data-id="${esc(p.id)}" data-type="${esc(p.type)}">${entityLink(p.id)} <span class="graph-list-type">${esc(p.type)}</span></li>`).join('') + '</ul>'
+      : '<p class="graph-list-none">No connections at your reading position.</p>'}</li>`).join('') + '</ul>';
 }
 
 function renderGraph(container, seriesId) {
@@ -537,6 +594,10 @@ function renderGraph(container, seriesId) {
       </div>
       <h1>Relationship Graph</h1>
     </div>
+    <div class="graph-view-toggle" role="group" aria-label="Graph view">
+      <button type="button" data-mode="graph" aria-pressed="true">Graph</button>
+      <button type="button" data-mode="list" aria-pressed="false">List</button>
+    </div>
     <div class="graph-wrap">
       <div id="graph-container"></div>
       <p class="graph-hint" id="graph-after" tabindex="-1">
@@ -544,6 +605,7 @@ function renderGraph(container, seriesId) {
         <span class="hint-fine">Scroll to zoom &nbsp;·&nbsp; Drag to pan &nbsp;·&nbsp; Click any node for details</span>
       </p>
     </div>
+    <div class="graph-list-view" hidden></div>
   `;
 
   // A fragment navigation would fire popstate, and the router re-renders on
@@ -555,9 +617,77 @@ function renderGraph(container, seriesId) {
     if (target) target.focus();
   });
 
+  const wrap = container.querySelector('.graph-wrap');
+  const listEl = container.querySelector('.graph-list-view');
   const graphContainer = document.getElementById('graph-container');
-  const controller = LoreGraph.init(graphContainer, seriesId);
-  activeGraphView = { container: graphContainer, refresh: () => !!controller && controller.refresh() };
+  const buttons = [...container.querySelectorAll('.graph-view-toggle button')];
+  const wide = window.matchMedia('(min-width: 768px)');
+  let mode = readGraphViewMode(); // 'graph' | 'list'; list applies only below 768px
+  let controller = null;
+  let initialized = false;
+
+  const listActive = () => mode === 'list' && !wide.matches;
+
+  // The graph is built lazily: a page that opens in list mode doesn't pay for it
+  // until the reader switches to Graph or the viewport reaches 768px.
+  function showGraph() {
+    const wasHidden = wrap.hidden;
+    listEl.hidden = true;
+    wrap.hidden = false;
+    skip.hidden = false;
+    if (!initialized) {
+      initialized = true;
+      controller = LoreGraph.init(graphContainer, seriesId) || null;
+    } else if (wasHidden && controller) {
+      controller.relayout(); // a rotation while hidden measured 0
+    }
+  }
+
+  function showList() {
+    if (controller && controller.getSelectedEntityId()) controller.closePanel({ restoreFocus: false });
+    wrap.hidden = true;
+    skip.hidden = true;
+    listEl.hidden = false;
+    listEl.innerHTML = graphListHtml(seriesId);
+  }
+
+  function apply() {
+    for (const b of buttons) b.setAttribute('aria-pressed', String(b.dataset.mode === mode));
+    if (listActive()) showList(); else showGraph();
+  }
+
+  for (const b of buttons) {
+    b.addEventListener('click', () => {
+      mode = b.dataset.mode;
+      writeGraphViewMode(mode);
+      apply();
+    });
+  }
+
+  function onWideChange() {
+    if (!graphContainer.isConnected) { wide.removeEventListener('change', onWideChange); return; }
+    apply();
+  }
+  wide.addEventListener('change', onWideChange);
+  graphPageTeardown = () => wide.removeEventListener('change', onWideChange);
+
+  apply();
+
+  activeGraphView = {
+    container: graphContainer,
+    refresh: () => {
+      if (listActive()) {
+        // The hidden graph would be stale: drop it, and it is rebuilt on the
+        // next switch to Graph.
+        if (controller) { controller.destroy(); controller = null; }
+        graphContainer.replaceChildren();
+        initialized = false;
+        listEl.innerHTML = graphListHtml(seriesId);
+        return true;
+      }
+      return !!controller && controller.refresh();
+    },
+  };
 }
 
 function renderNotFound(container) {

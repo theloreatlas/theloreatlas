@@ -1166,19 +1166,24 @@ const LoreGraph = (() => {
         return;
       }
       clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(() => {
-        const w = container.clientWidth;
-        if (!w) return;
-        height = heightFor(w);
-        svg.attr('height', height);
-        zoom.scaleExtent([fitMinScale(), 5]);
-        svg.classed('is-zoomed-out', d3.zoomTransform(svg.node()).k < labelMinScale());
-        recenter();
-        fitPending = true;
-        simulation.alpha(0.3).restart();
-      }, 150);
+      resizeTimer = setTimeout(relayout, 150);
     }
     window.addEventListener('resize', onResize);
+
+    // Re-measure and re-fit for the current viewport: the body of the debounced
+    // resize. Also called when the graph is shown again after being hidden (list
+    // mode, Session 16), since a resize while it was hidden measured a width of 0.
+    function relayout() {
+      const w = container.clientWidth;
+      if (!w) return;
+      height = heightFor(w);
+      svg.attr('height', height);
+      zoom.scaleExtent([fitMinScale(), 5]);
+      svg.classed('is-zoomed-out', d3.zoomTransform(svg.node()).k < labelMinScale());
+      recenter();
+      fitPending = true;
+      simulation.alpha(0.3).restart();
+    }
 
     // ── Legend ───────────────────────────────────────────────────────────────
 
@@ -1368,6 +1373,8 @@ const LoreGraph = (() => {
       closePanel,
       setLayers,
       refresh,
+      relayout,
+      destroy: teardown,
       getLayers: () => activeLayers.slice(),
       getSelectedEntityId: () => selectedEntityId,
     };

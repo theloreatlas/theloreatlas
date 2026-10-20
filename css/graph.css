@@ -553,3 +553,84 @@
 .graph-svg.is-zoomed-out .graph-node.is-focus:not(.graph-node-layer):not(.is-anchor) .graph-label {
   display: block;
 }
+
+/* ── List mode (Session 16) ───────────────────────────────────────────────── */
+
+/* The Graph / List switch is for phones only. */
+.graph-view-toggle {
+  display: none;
+}
+
+@media (max-width: 767px) {
+  .graph-view-toggle {
+    display: inline-flex;
+    margin-bottom: 0.75rem;
+    border: 1px solid var(--border-strong, rgba(180, 160, 120, 0.6));
+    border-radius: 3px;
+    overflow: hidden;
+  }
+}
+
+.graph-view-toggle button {
+  min-width: 44px;
+  min-height: 44px;
+  box-sizing: border-box;
+  padding: 0.4rem 1.1rem;
+  background: var(--parchment-warm, #ede4d0);
+  border: none;
+  font-family: var(--font-body, 'EB Garamond', Georgia, serif);
+  font-size: 0.95rem;
+  color: var(--ink-soft, #2e2318);
+  cursor: pointer;
+}
+
+.graph-view-toggle button + button {
+  border-left: 1px solid var(--border-strong, rgba(180, 160, 120, 0.6));
+}
+
+.graph-view-toggle button[aria-pressed="true"] {
+  background: var(--ink, #1a130a);
+  color: var(--gold-bright, #e2bb72);
+}
+
+.graph-view-toggle button:focus-visible {
+  outline: 2px solid var(--gold, #c9a55a);
+  outline-offset: -2px;
+}
+
+.graph-list,
+.graph-list-rels {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.graph-list-char {
+  padding: 0.6rem 0;
+  border-bottom: 1px solid var(--border, rgba(180, 160, 120, 0.35));
+  font-family: var(--font-body, 'EB Garamond', Georgia, serif);
+  font-size: 1.05rem;
+}
+
+.graph-list-char > a {
+  font-weight: 600;
+}
+
+.graph-list-rels {
+  margin-top: 0.25rem;
+  padding-left: 1rem;
+  font-size: 0.95rem;
+}
+
+.graph-list-type {
+  font-size: 0.8rem;
+  font-style: italic;
+  color: var(--text-muted, #6b5c45);
+}
+
+.graph-list-none {
+  margin: 0.2rem 0 0 1rem;
+  font-size: 0.9rem;
+  font-style: italic;
+  color: var(--text-muted, #6b5c45);
+}
