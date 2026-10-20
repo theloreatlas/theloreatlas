@@ -93,7 +93,6 @@
     "series": "sherlock_holmes",
     "name": "Colonel Sebastian Moran",
     "aliases": [
-      "The Tiger of San Pedro",
       "Moran"
     ],
     "role": "antagonist",
@@ -315,7 +314,14 @@
     ],
     "biography": [
       {
-        "text": "Inspector Athelney Jones is the Scotland Yard detective assigned to the Pondicherry Lodge murder in The Sign of the Four. He arrives at the crime scene with great confidence, immediately theorizing about the case and making an early arrest based on circumstantial evidence — only to find himself wrong. He is not unintelligent but is prone to the same over-hasty conclusions Holmes criticizes in all Yarders."
+        "text": "Inspector Athelney Jones is the Scotland Yard detective assigned to the Pondicherry Lodge murder in The Sign of the Four. He arrives at the crime scene with great confidence, immediately theorizing about the case and making an early arrest based on circumstantial evidence. He is not unintelligent but is prone to the same over-hasty conclusions Holmes criticizes in all Yarders."
+      },
+      {
+        "text": "In the end he is to find himself wrong.",
+        "from": {
+          "book": 2,
+          "chapter": 9
+        }
       },
       {
         "text": "He proves adaptable enough to partner with Holmes on the Thames boat chase that ends the case, showing practical competence even when his deductive theories have been dismantled.",
@@ -796,8 +802,20 @@
     "series": "sherlock_holmes",
     "name": "Mary Morstan",
     "aliases": [
-      "Mrs. Watson",
-      "Mary Watson"
+      {
+        "name": "Mrs. Watson",
+        "from": {
+          "book": 2,
+          "chapter": 12
+        }
+      },
+      {
+        "name": "Mary Watson",
+        "from": {
+          "book": 2,
+          "chapter": 12
+        }
+      }
     ],
     "role": "supporting",
     "status": "deceased",
@@ -925,7 +943,6 @@
     "series": "sherlock_holmes",
     "name": "Mrs. Hudson",
     "aliases": [
-      "Martha Hudson",
       "The Landlady"
     ],
     "role": "supporting",
@@ -1115,8 +1132,20 @@
     "aliases": [
       "Mr. Holmes",
       "The Detective",
-      "Sigerson",
-      "Altamont"
+      {
+        "name": "Sigerson",
+        "from": {
+          "book": 6,
+          "chapter": 1
+        }
+      },
+      {
+        "name": "Altamont",
+        "from": {
+          "book": 8,
+          "chapter": 8
+        }
+      }
     ],
     "role": "protagonist",
     "status": "active",
@@ -1326,8 +1355,20 @@
     "series": "sherlock_holmes",
     "name": "Jack Stapleton",
     "aliases": [
-      "Rodger Baskerville",
-      "Mr. Vandeleur",
+      {
+        "name": "Rodger Baskerville",
+        "from": {
+          "book": 5,
+          "chapter": 15
+        }
+      },
+      {
+        "name": "Mr. Vandeleur",
+        "from": {
+          "book": 5,
+          "chapter": 13
+        }
+      },
       "The Naturalist"
     ],
     "role": "antagonist",
