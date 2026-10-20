@@ -139,6 +139,17 @@ PROSE_FIELDS = {
 STAGED_PROSE_FIELDS = ['biography', 'description', 'synopsis', 'significance', 'notes']
 
 
+def alias_names(entity):
+    """Every alias name (string entries and {name, from} objects). Twin of
+    scripts/build_pages.py's alias_names() and js/core.js's aliasNames()."""
+    out = []
+    for a in entity.get('aliases') or []:
+        if isinstance(a, str):
+            out.append(a)
+        elif isinstance(a, dict) and isinstance(a.get('name'), str):
+            out.append(a['name'])
+    return out
+
 def load_all():
     """Return {entity_type: [entities]} and a flat {id: (entity, entity_type)} lookup."""
     manifest = json.loads((DATA_DIR / 'manifest.json').read_text())
@@ -307,6 +318,45 @@ def main():
                                       f"(previous segment's from is {last_from})")
                     last_from = cur
 
+    # ── Check 5b: staged aliases (Session 14.3) ──────────────────────────────
+    # An `aliases` entry is a string or {name, from}. Errors: an entry that is
+    # neither a string nor an object with a non-empty string `name`; a `from`
+    # that is malformed or out of range; a `from` earlier than the entity's own
+    # first_mention (a plain string would do); a duplicate name.
+    for et, entities in by_type.items():
+        for ent in entities:
+            aliases = ent.get('aliases')
+            if aliases is None:
+                continue
+            eid = ent.get('id', '?')
+            if not isinstance(aliases, list):
+                errors.append(f"[alias] {eid}.aliases must be an array, got {type(aliases).__name__}")
+                continue
+            seen = set()
+            for i, a in enumerate(aliases):
+                label = f"{eid}.aliases[{i}]"
+                if isinstance(a, str):
+                    name = a
+                elif isinstance(a, dict) and isinstance(a.get('name'), str) and a['name'].strip():
+                    name = a['name']
+                    if 'from' not in a:
+                        errors.append(f"[alias] {label} is an object without 'from' (use a plain string)")
+                    else:
+                        msg = check_from(label, a['from'])
+                        if msg:
+                            errors.append(msg.replace('[prose]', '[alias]', 1))
+                        elif ent.get('first_mention') and pos_tuple(a['from']) < pos_tuple(ent['first_mention']):
+                            errors.append(f"[alias] {label}.from {a['from']} is earlier than the entity's "
+                                          f"first_mention {ent['first_mention']} (use a plain string)")
+                else:
+                    errors.append(f"[alias] {label} must be a string or an object with a non-empty "
+                                  f"string 'name', got {a!r}")
+                    continue
+                key = name.strip().casefold()
+                if key in seen:
+                    errors.append(f"[alias] {label} duplicates an earlier alias ({name!r})")
+                seen.add(key)
+
     # ── Check 4: back-references agree on both sides ─────────────────────────
     def symmetric_list(a_id, a_field, a_list, b_type, b_field):
         """Every id in a_list must have a back-reference (a_id in its b_field list)."""
@@ -417,7 +467,7 @@ def main():
                 names.append(ent['name'])
             if ent.get('title'):
                 names.append(ent['title'])
-            names.extend(ent.get('aliases') or [])
+            names.extend(alias_names(ent))
             for name in names:
                 if len(name) > 5:
                     name_index.append((re.compile(r'\b' + re.escape(name) + r'\b', re.IGNORECASE),

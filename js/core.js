@@ -67,6 +67,33 @@ function proseText(entity, field, seriesId, { canonical = false } = {}) {
   return { text: shown.join(' '), nextFrom };
 }
 
+// ── Staged aliases (Session 14.3) ────────────────────────────────────────────
+//
+// An `aliases` entry is a plain string (shown whenever the entity is visible) or
+// { name, from: { book, chapter } } (shown once the reader's position is >= from).
+// With no position set, or { canonical: true }, every alias shows.
+//
+// ⚠️  KEEP IN SYNC WITH scripts/build_pages.py's alias_names() (always canonical)
+//     and scripts/validate_data.py's alias_names().
+//
+// Every runtime read of `aliases` must go through this function: views.js
+// ("Also Known As"), search.js (alias matching) and seo.js (canonical
+// alternateName).
+//
+// Returns the visible alias names as an array of strings.
+function aliasNames(entity, seriesId, { canonical = false } = {}) {
+  const list = entity ? entity.aliases : undefined;
+  if (!Array.isArray(list)) return [];
+  const pos = canonical ? null : SpoilerGate.getPosition(seriesId);
+  const names = [];
+  for (const a of list) {
+    if (typeof a === 'string') { names.push(a); continue; }
+    if (!a || typeof a.name !== 'string') continue;
+    if (!a.from || !pos || SpoilerGate.comparePositions(pos, a.from) >= 0) names.push(a.name);
+  }
+  return names;
+}
+
 // ── Routing ──────────────────────────────────────────────────────────────────
 
 // Entity type → ID prefix. Used to round-trip clean URL slugs back into

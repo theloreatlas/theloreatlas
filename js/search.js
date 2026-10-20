@@ -76,7 +76,9 @@ function entityMatchesQuery(entity, entityType, q, seriesId) {
     if (typeof f === 'string' && f.toLowerCase().includes(q)) return true;
   }
 
-  const arrays = [entity.aliases, entity.tags];
+  // Aliases go through aliasNames() (Session 14.3): a staged alias isn't
+  // searchable before its `from`, just as it isn't shown in "Also Known As".
+  const arrays = [aliasNames(entity, seriesId), entity.tags];
   for (const arr of arrays) {
     if (Array.isArray(arr)) {
       for (const item of arr) {

@@ -20,6 +20,7 @@ Also regenerates sitemap.xml from the same walk.
       build_jsonld_for_entity ↔ buildEntityJsonLd
       build_breadcrumb_jsonld ↔ buildBreadcrumbJsonLd
       prose_text (always canonical) ↔ core.js's proseText(..., { canonical: true })
+      alias_names (always canonical) ↔ core.js's aliasNames(..., { canonical: true })
     Change one side → change the other, then re-run this script and confirm a
     deployed page's view-source matches the runtime DOM head.
 
@@ -38,6 +39,7 @@ from pathlib import Path
 REPO_ROOT = Path(__file__).resolve().parent.parent
 DATA_DIR = REPO_ROOT / 'data'
 INDEX_HTML = REPO_ROOT / 'index.html'
+NOT_FOUND_HTML = REPO_ROOT / '404.html'
 SITEMAP = REPO_ROOT / 'sitemap.xml'
 META_CONFIG_PATH = DATA_DIR / 'meta-config.json'
 
@@ -119,6 +121,19 @@ def prose_text(entity, field):
             if isinstance(seg, dict) and isinstance(seg.get('text'), str)
         )
     return ''
+
+def alias_names(entity):
+    """Canonical (every) alias name for a character, mirroring js/core.js's
+    aliasNames(entity, seriesId, { canonical: true }). An `aliases` entry is a
+    plain string or, since Session 14.3, {"name": ..., "from": {...}}; the
+    `from` only gates the runtime display and search, never SEO."""
+    out = []
+    for a in entity.get('aliases') or []:
+        if isinstance(a, str):
+            out.append(a)
+        elif isinstance(a, dict) and isinstance(a.get('name'), str):
+            out.append(a['name'])
+    return out
 
 def enforce_title_cap(title):
     if len(title) <= MAX_TITLE:
@@ -205,8 +220,8 @@ def build_jsonld_for_entity(entity, entity_type, series, lookup, url):
     if entity_type == 'characters':
         block = {'@context': 'https://schema.org', '@type': 'Person',
                  'name': entity.get('name', ''), 'description': desc, 'url': url}
-        if entity.get('aliases'):
-            block['alternateName'] = entity['aliases']
+        if alias_names(entity):
+            block['alternateName'] = alias_names(entity)
         return [block]
 
     if entity_type == 'books':
@@ -427,16 +442,22 @@ def main():
     manifest_path = DATA_DIR / 'manifest.json'
     manifest_text = manifest_path.read_text()
     manifest = json.loads(manifest_text)
+    raw_404 = NOT_FOUND_HTML.read_text(encoding='utf-8')
+    versioned_404 = version_assets(raw_404)
     shell_problems = []
     new_manifest_text = with_data_version(manifest_text, compute_data_version(manifest))
     if CHECK_MODE:
         if base_html != raw_index:
             shell_problems.append('index.html (asset ?v= hashes are stale)')
+        if versioned_404 != raw_404:
+            shell_problems.append('404.html (asset ?v= hashes are stale)')
         if new_manifest_text != manifest_text:
             shell_problems.append('data/manifest.json (data_version is stale)')
     else:
         if base_html != raw_index:
             INDEX_HTML.write_text(base_html, encoding='utf-8')
+        if versioned_404 != raw_404:
+            NOT_FOUND_HTML.write_text(versioned_404, encoding='utf-8')
         if new_manifest_text != manifest_text:
             manifest_path.write_text(new_manifest_text)
 

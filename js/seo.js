@@ -11,6 +11,7 @@
  *       buildEntityJsonLd     ↔ build_jsonld_for_entity
  *       buildBreadcrumbJsonLd ↔ build_breadcrumb_jsonld
  *       canonProse (core.js's proseText, canonical: true) ↔ prose_text (scripts/build_pages.py)
+ *       aliasNames (core.js, canonical: true)             ↔ alias_names (scripts/build_pages.py)
  *     Change one side → change the other, then re-run build_pages.py and confirm
  *     a deployed page's view-source matches the runtime DOM head.
  *     (Full DRY would require a Node build step running this JS — deferred; see PK3.)
@@ -203,6 +204,7 @@ function buildEntityJsonLd(entity, entityType, seriesObj, url) {
     canonProse(entity, 'biography') || canonProse(entity, 'synopsis') ||
     canonProse(entity, 'description') || canonProse(entity, 'notes') || ''
   );
+  const aliases = aliasNames(entity, null, { canonical: true }); // SEO stays canonical
 
   switch (entityType) {
     case 'characters':
@@ -210,7 +212,7 @@ function buildEntityJsonLd(entity, entityType, seriesObj, url) {
         '@context': 'https://schema.org',
         '@type': 'Person',
         'name': entity.name,
-        ...(entity.aliases && entity.aliases.length ? { 'alternateName': entity.aliases } : {}),
+        ...(aliases.length ? { 'alternateName': aliases } : {}),
         'description': desc,
         'url': url
       };

@@ -309,8 +309,9 @@ function renderEntityDetail(container, seriesId, entityType, id) {
 }
 
 function renderCharacterDetail(entity, status) {
-  const aliases = entity.aliases && entity.aliases.length
-    ? entity.aliases.map(a => esc(a)).join(', ')
+  const aliasList = aliasNames(entity, entity.series);
+  const aliases = aliasList.length
+    ? aliasList.map(a => esc(a)).join(', ')
     : '<span class="detail-none">None</span>';
 
   const tags = entity.tags && entity.tags.length
