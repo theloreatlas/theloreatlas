@@ -780,5 +780,35 @@
     },
     "created_by": "theloreatlas",
     "last_edited_by": "theloreatlas"
+  },
+  {
+    "id": "rel_holmes-athelney-jones-professional",
+    "series": "sherlock_holmes",
+    "character_a": "char_sherlock-holmes",
+    "character_b": "char_inspector-athelney-jones",
+    "relationship_type": "professional",
+    "first_established": "case_the-sign-of-the-four",
+    "notes": [
+      {
+        "text": "Holmes and Inspector Athelney Jones first meet at Pondicherry Lodge, where Jones takes charge of the murder case with loud confidence and a settled theory. Holmes treats his reasoning with dry contempt, while Jones dismisses Holmes as “the theorist” and credits his past successes to luck. Ignoring the evidence Holmes puts in front of him, Jones fastens on Thaddeus Sholto and has him arrested."
+      },
+      {
+        "text": "By the night of the Thames chase Jones has dropped his bluster: he has admitted that his theory failed, agreed to act under Holmes's direction in return for the official credit, and dined with Holmes and Watson before joining them on the police launch, where he works the search-light in the pursuit of the Aurora.",
+        "from": {
+          "book": 2,
+          "chapter": 10
+        }
+      }
+    ],
+    "first_mention": {
+      "book": 2,
+      "chapter": 6
+    },
+    "full_reveal": {
+      "book": 2,
+      "chapter": 6
+    },
+    "created_by": "theloreatlas",
+    "last_edited_by": "theloreatlas"
   }
 ]

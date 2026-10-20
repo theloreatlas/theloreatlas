@@ -269,10 +269,10 @@
         "text": "Sir Henry Baskerville is the last surviving heir to the Baskerville estate on Dartmoor, and the client at the center of Holmes's most famous case. A Canadian by upbringing, Henry knows little of the Baskerville legend until Dr. Mortimer brings him to Baker Street after his uncle Sir Charles dies under mysterious circumstances. He is robust, straightforward, and courageous — qualities that make him an appealing client but also a dangerous one to protect, since his stubbornness leads him to walk the moor at night against Holmes's instructions. His arrival in England is immediately marked by strange occurrences: a warning note, a stolen boot, and the sense of being watched."
       },
       {
-        "text": "He eventually marries and settles abroad after the case is resolved, the estate's curse finally lifted.",
+        "text": "After the case, he and Dr. Mortimer set off on a voyage round the world so that he can recover from his shattered nerves.",
         "from": {
           "book": 5,
-          "chapter": 15
+          "chapter": 14
         }
       }
     ],
@@ -298,16 +298,18 @@
     "status": "active",
     "first_mention": {
       "book": 2,
-      "chapter": 5
+      "chapter": 1
     },
     "full_reveal": {
       "book": 2,
-      "chapter": 5
+      "chapter": 6
     },
     "affiliations": [
       "faction_scotland-yard"
     ],
-    "relationships": [],
+    "relationships": [
+      "rel_holmes-athelney-jones-professional"
+    ],
     "cases": [
       "case_the-sign-of-the-four"
     ],
@@ -1155,7 +1157,8 @@
       "rel_holmes-shinwell-johnson-professional",
       "rel_holmes-jabez-wilson-professional",
       "rel_holmes-neville-st-clair-professional",
-      "rel_holmes-james-ryder-professional"
+      "rel_holmes-james-ryder-professional",
+      "rel_holmes-athelney-jones-professional"
     ],
     "cases": [
       "case_a-study-in-scarlet",
@@ -1346,10 +1349,17 @@
     ],
     "biography": [
       {
-        "text": "Jack Stapleton is the villain of The Hound of the Baskervilles — a naturalist living near Baskerville Hall whose true identity is the central twist of the novel. He presents himself as a genial neighbour and amateur entomologist, deeply knowledgeable about Dartmoor's flora and fauna. In reality he is Rodger Baskerville, a descendant of the family line who has engineered the deaths of Charles Baskerville and now plots to kill Henry in order to inherit the estate. He has trained a large dog — painted with phosphorus to create a hellish appearance — to serve as the legendary Hound. Holmes deduces his identity partly from a family portrait resemblance. When Holmes springs the trap in chapter 14, Stapleton flees into Grimpen Mire and is presumed drowned."
+        "text": "Jack Stapleton is the villain of The Hound of the Baskervilles — a naturalist living near Baskerville Hall whose true identity is the central twist of the novel. He presents himself as a genial neighbour and amateur entomologist, deeply knowledgeable about Dartmoor's flora and fauna. In reality he is a Baskerville, a descendant of the family line who has engineered the deaths of Charles Baskerville and now plots to kill Henry in order to inherit the estate. He has trained a large dog — painted with phosphorus to create a hellish appearance — to serve as the legendary Hound. Holmes deduces his identity partly from a family portrait resemblance. When Holmes springs the trap in chapter 14, Stapleton flees into Grimpen Mire and is presumed drowned."
       },
       {
         "text": "The full account of his true identity and methods is laid out in chapter 15.",
+        "from": {
+          "book": 5,
+          "chapter": 15
+        }
+      },
+      {
+        "text": "His real name, like his father's, is Rodger Baskerville.",
         "from": {
           "book": 5,
           "chapter": 15
