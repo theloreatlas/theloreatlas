@@ -269,7 +269,7 @@ function connectionsSection(entity, entityType) {
     <div class="detail-section detail-connections" aria-label="Connections graph">
       <h2>Connections</h2>
       <div class="mini-graph" data-focus-id="${esc(entity.id)}"></div>
-      <p class="mini-graph-link"><a href="${esc(href)}">Open in full graph &rarr;</a></p>
+      <p class="mini-graph-link"><a href="${esc(href)}">Open in full graph &rarr;</a> <span class="mini-graph-hint">&middot; Pinch or Ctrl/&#8984; + scroll to zoom</span></p>
     </div>`;
 }
 

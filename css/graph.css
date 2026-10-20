@@ -474,6 +474,18 @@
   font-size: 0.95rem;
 }
 
+.mini-graph-hint {
+  font-size: 0.85rem;
+  font-style: italic;
+  color: var(--text-muted, #6b5c45);
+}
+
+/* Mini-graphs: hand one-finger vertical drags to the page (graph.js also filters
+   the zoom and node-drag touch input). */
+.graph-svg.is-mini {
+  touch-action: pan-y;
+}
+
 /* The centre node: a heavier outline, a default cursor (clicking it does
    nothing), and its label always shown (layer-node and small-scale label rules
    would otherwise hide it). */

@@ -160,6 +160,11 @@ const LoreGraph = (() => {
     };
   }
 
+  // Live graph instances (Session 15b). Each init() registers a teardown; the
+  // next init() tears down every instance whose container has left the DOM, so
+  // stale document/window listeners are bounded to the current page's.
+  const liveInstances = new Set();
+
   // Nodes in the ego network (the centre counts, whatever its type), or 0.
   function egoNodeCount(seriesId, focusId) {
     const net = egoNetwork(seriesId, focusId);
@@ -172,6 +177,9 @@ const LoreGraph = (() => {
   //   network around that entity; no ring, layers, toolbar or legend.
   // opts.height: SVG height in px, or a function returning it (re-read on resize).
   function init(container, seriesId, opts = {}) {
+    for (const inst of [...liveInstances]) {
+      if (!inst.container.isConnected) inst.teardown();
+    }
     const syncUrl = opts.syncUrl !== false;
     const focusId = opts.focusId || null;
     const writeQuery = syncUrl ? writeGraphQuery : () => {};
@@ -384,6 +392,19 @@ const LoreGraph = (() => {
         // Small scales: hide most character labels (CSS keys off this class).
         svg.classed('is-zoomed-out', event.transform.k < LABEL_MIN_SCALE);
       });
+    if (focusId) {
+      // Mini-graph scroll safety (Session 15b): the graph sits in the middle of a
+      // scrolling page, so a plain wheel and a one-finger drag must scroll the
+      // page. Wheel zooms only with Ctrl/⌘ (a macOS trackpad pinch arrives as
+      // ctrl+wheel); touch zooms and pans only with two or more fingers; the
+      // mouse is unchanged (d3's own default filter).
+      zoom.filter((event) => {
+        if (event.type === 'wheel') return event.ctrlKey || event.metaKey;
+        if (event.type.startsWith('touch')) return event.touches.length >= 2;
+        return !event.ctrlKey && !event.button;
+      });
+      svg.classed('is-mini', true); // CSS: touch-action: pan-y
+    }
     svg.call(zoom);
 
     const linkLayer = g.append('g').attr('class', 'graph-links');
@@ -433,10 +454,17 @@ const LoreGraph = (() => {
     // Called once this graph's DOM is gone (from a tick, or from the toolbar
     // observer, which fires when the toolbar is detached even after a settled
     // simulation has stopped ticking).
+    let resizeTimer = null; // the debounce timer of onResize (declared here for teardown)
     function teardown() {
       simulation.stop();
       if (toolbarObserver) { toolbarObserver.disconnect(); toolbarObserver = null; }
+      document.removeEventListener('keydown', onKeyDown);
+      window.removeEventListener('resize', onResize);
+      clearTimeout(resizeTimer);
+      liveInstances.delete(instance);
     }
+    const instance = { container, teardown };
+    liveInstances.add(instance);
 
     // The simulation's centre and usable box. recenter() keeps this current
     // (it shifts left when the desktop panel opens); the ring targets read it.
@@ -640,6 +668,11 @@ const LoreGraph = (() => {
             .attr('aria-label', d => d.kind === 'layer' ? `${LAYER_CONFIG[d.layer].singular}: ${d.name}` : d.name)
             .call(
               d3.drag()
+                // Mini-graph node drag is mouse-only (Session 15b), so a finger
+                // landing on a node while scrolling doesn't grab it; a tap still
+                // clicks through to the panel.
+                .filter((event) => !event.ctrlKey && !event.button
+                  && !(focusId && event.type.startsWith('touch')))
                 .on('start', dragstarted)
                 .on('drag',  dragged)
                 .on('end',   dragended)
@@ -1002,7 +1035,6 @@ const LoreGraph = (() => {
     // Keep the layout correct when the viewport changes (device rotation, window
     // resize, desktop↔mobile breakpoint crossings). Debounced; self-removing once
     // the graph DOM is replaced by SPA navigation, matching the keydown handler.
-    let resizeTimer = null;
     function onResize() {
       if (!document.body.contains(container)) {
         window.removeEventListener('resize', onResize);
