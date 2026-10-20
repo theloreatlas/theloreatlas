@@ -677,6 +677,12 @@ const LoreGraph = (() => {
                 .on('drag',  dragged)
                 .on('end',   dragended)
             );
+          // d3-drag writes an inline touch-action: none on every node it can drag
+          // (touch devices only), which beats the .is-mini class on the SVG. In a
+          // mini-graph set it back, after the drag call, so a swipe that starts on
+          // a node still scrolls the page (Session 15c). CSSOM via d3, which the
+          // CSP allows. The main graph keeps d3's none: dragging is wanted there.
+          if (focusId) n.style('touch-action', 'pan-y');
 
           // Characters are circles sized by relationship degree; layer nodes are
           // fixed-size shapes (shape + colour, so colour is never the only cue).
