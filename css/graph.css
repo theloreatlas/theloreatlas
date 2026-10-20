@@ -446,3 +446,19 @@
   font-style: italic;
   color: var(--text-muted, #6b5c45);
 }
+
+/* ── Small scales (Session 14.1) ──────────────────────────────────────────── */
+
+/* Below the label scale threshold (set by graph.js as .is-zoomed-out on the SVG)
+   character labels show only for anchors, hover, focus, the selected node and its
+   drawn neighbours. */
+.graph-svg.is-zoomed-out .graph-node:not(.graph-node-layer):not(.is-anchor) .graph-label {
+  display: none;
+}
+
+.graph-svg.is-zoomed-out .graph-node:not(.graph-node-layer):hover .graph-label,
+.graph-svg.is-zoomed-out .graph-node:not(.graph-node-layer):focus .graph-label,
+.graph-svg.is-zoomed-out .graph-node:not(.graph-node-layer).is-selected .graph-label,
+.graph-svg.is-zoomed-out .graph-node:not(.graph-node-layer).is-neighbor .graph-label {
+  display: block;
+}

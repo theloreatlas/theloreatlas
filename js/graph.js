@@ -53,6 +53,11 @@ const LoreGraph = (() => {
   const RING_RADIUS_FRAC  = 0.42;  // ring radius = this x min(usable width, height)
   const RING_STRENGTH     = 0.3;
   const LAYER_EDGE_DIST   = 70;
+  const RING_PAD          = 64;    // adaptive ring: p90 of the inner nodes' distance from the centre + this
+  const RING_SMOOTH       = 0.1;   // adaptive ring: R moves this fraction of the way to its target each tick
+  const FIT_PAD           = 24;    // zoom-to-fit padding (px)
+  const FIT_MS            = 300;
+  const LABEL_MIN_SCALE   = 0.5;   // below this zoom scale, non-anchor character labels are hidden
   const MAX_LAYER_CHIPS   = 5;     // character panel: chips shown per active layer
 
   function layerEntityName(e) {
@@ -264,11 +269,22 @@ const LoreGraph = (() => {
 
     const g = svg.append('g').attr('class', 'graph-g');
 
-    svg.call(
-      d3.zoom()
-        .scaleExtent([0.25, 5])
-        .on('zoom', (event) => g.attr('transform', event.transform))
-    );
+    // Zoom to fit (Session 14.1): once the simulation settles, and again after a
+    // layer toggle settles, the view is fitted to every node, unless the reader
+    // has zoomed or panned themselves (zoom events with a sourceEvent: wheel,
+    // drag, touch), in which case their view is left alone.
+    let userTransformed = false;
+    let fitPending = true;
+
+    const zoom = d3.zoom()
+      .scaleExtent([0.25, 5])
+      .on('zoom', (event) => {
+        g.attr('transform', event.transform);
+        if (event.sourceEvent) userTransformed = true;
+        // Small scales: hide most character labels (CSS keys off this class).
+        svg.classed('is-zoomed-out', event.transform.k < LABEL_MIN_SCALE);
+      });
+    svg.call(zoom);
 
     const linkLayer = g.append('g').attr('class', 'graph-links');
     const nodeLayer = g.append('g').attr('class', 'graph-nodes');
@@ -315,10 +331,13 @@ const LoreGraph = (() => {
 
     // The simulation's centre and usable box. recenter() keeps this current
     // (it shifts left when the desktop panel opens); the ring targets read it.
-    const layout = { cx: width / 2, cy: height / 2, w: width, h: height };
+    // R is the ring's current (adaptive) radius, 0 until the first tick.
+    const layout = { cx: width / 2, cy: height / 2, w: width, h: height, R: 0 };
+
+    const baseRingRadius = () => RING_RADIUS_FRAC * Math.min(layout.w, layout.h);
 
     function ringTarget(d) {
-      const R = RING_RADIUS_FRAC * Math.min(layout.w, layout.h);
+      const R = layout.R || baseRingRadius();
       const a = -Math.PI / 2 + (2 * Math.PI * d.ringIdx) / d.ringN; // 12 o'clock, clockwise
       return { x: layout.cx + R * Math.cos(a), y: layout.cy + R * Math.sin(a) };
     }
@@ -329,16 +348,28 @@ const LoreGraph = (() => {
     // alpha, the pull dies away just as the repulsion from ~100 other nodes does
     // not (repulsion falls off as 1/d), and the ring bulges well outside its
     // radius; unscaled, the ring settles on its radius as the simulation cools.
+    //
+    // The radius adapts (Session 14.1): each tick R eases toward
+    // max(base radius, p90 of the other nodes' distance from the centre + 40px),
+    // so the ring always encloses the interior however far it spreads.
     function ringForce() {
       let ringNodes = [];
+      let inner = [];
       const force = () => {
+        if (ringNodes.length) {
+          const dist = inner.map(d => Math.hypot(d.x - layout.cx, d.y - layout.cy)).sort((a, b) => a - b);
+          const p90 = dist.length ? dist[Math.min(dist.length - 1, Math.ceil(0.9 * dist.length) - 1)] : 0;
+          const target = Math.max(baseRingRadius(), p90 + RING_PAD);
+          layout.R = (layout.R || baseRingRadius());
+          layout.R += RING_SMOOTH * (target - layout.R);
+        }
         for (const d of ringNodes) {
           const t = ringTarget(d);
           d.vx += (t.x - d.x) * RING_STRENGTH;
           d.vy += (t.y - d.y) * RING_STRENGTH;
         }
       };
-      force.initialize = (all) => { ringNodes = all.filter(d => d.ring); };
+      force.initialize = (all) => { ringNodes = all.filter(d => d.ring); inner = all.filter(d => !d.ring); };
       return force;
     }
 
@@ -351,6 +382,10 @@ const LoreGraph = (() => {
       .force('collision', d3.forceCollide().radius(collideRadius))
       .force('ring',      ringForce())
       .on('tick', () => {
+        // The route changed and this graph's DOM is gone: stop, rather than keep
+        // ticking (and fitting) a detached SVG.
+        if (!container.isConnected) { simulation.stop(); return; }
+
         link
           .attr('x1', d => d.source.x)
           .attr('y1', d => d.source.y)
@@ -358,7 +393,35 @@ const LoreGraph = (() => {
           .attr('y2', d => d.target.y);
 
         node.attr('transform', d => `translate(${d.x},${d.y})`);
+
+        if (fitPending && simulation.alpha() < 0.05) {
+          fitPending = false;
+          fitToView();
+        }
       });
+
+    // Fit every node (with its radius) into the usable box, FIT_PAD all round.
+    // Never scales above 1; clamped to the zoom's scaleExtent. 300ms ease, none
+    // under prefers-reduced-motion.
+    function fitToView() {
+      if (userTransformed || !nodes.length) return;
+      let x0 = Infinity, x1 = -Infinity, y0 = Infinity, y1 = -Infinity;
+      for (const n of nodes) {
+        const r = n.kind === 'layer' ? LAYER_COLLIDE_R : nodeRadius(n.degree);
+        x0 = Math.min(x0, n.x - r); x1 = Math.max(x1, n.x + r);
+        y0 = Math.min(y0, n.y - r); y1 = Math.max(y1, n.y + r);
+      }
+      const w = layout.w, h = layout.h;
+      const k = Math.max(0.25, Math.min(1,
+        (w - 2 * FIT_PAD) / Math.max(1, x1 - x0),
+        (h - 2 * FIT_PAD) / Math.max(1, y1 - y0)));
+      const t = d3.zoomIdentity
+        .translate(w / 2 - k * (x0 + x1) / 2, h / 2 - k * (y0 + y1) / 2)
+        .scale(k);
+      const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduce) svg.call(zoom.transform, t);
+      else svg.transition().duration(FIT_MS).call(zoom.transform, t);
+    }
 
     // Rebuild the graph for the current reading position and layers, in place:
     // keyed joins, and existing node objects are kept so their x/y carry over.
@@ -433,7 +496,8 @@ const LoreGraph = (() => {
         .data(nodes, d => d.id)
         .join(enter => {
           const n = enter.append('g')
-            .attr('class', d => d.kind === 'layer' ? 'graph-node graph-node-layer' : 'graph-node')
+            .attr('class', d => d.kind === 'layer' ? 'graph-node graph-node-layer'
+              : (anchorIds.has(d.id) ? 'graph-node is-anchor' : 'graph-node'))
             .attr('tabindex', 0)
             .attr('role', 'button')
             .attr('aria-label', d => d.kind === 'layer' ? `${LAYER_CONFIG[d.layer].singular}: ${d.name}` : d.name)
@@ -801,6 +865,7 @@ const LoreGraph = (() => {
         height = Math.max(600, Math.round(w * 0.65));
         svg.attr('height', height);
         recenter();
+        fitPending = true;
         simulation.alpha(0.3).restart();
       }, 150);
     }
@@ -927,6 +992,7 @@ const LoreGraph = (() => {
       if (next.join(',') === activeLayers.join(',')) return;
       activeLayers = next;
       writeGraphQuery({ layers: activeLayers });
+      fitPending = true;
       update(0.5);
 
       if (selectedEntityId !== null) {
