@@ -344,7 +344,7 @@ def inject_head(base_html, head_content):
 
 # ── Cache-busting versions (Session 13.10 D) ─────────────────────────────────
 #
-# Every same-origin <script src> / <link rel="stylesheet"> in index.html carries
+# Every same-origin <script src> / <link rel="stylesheet"> / <link rel="icon"> in index.html carries
 # ?v=<first 8 hex of the file's SHA-256>, and manifest.json carries a
 # "data_version" (hash of every entity _index.json) that js/loader.js appends to
 # its data fetches. A deploy that changes a file therefore changes its URL, so
@@ -352,7 +352,7 @@ def inject_head(base_html, head_content):
 # CSP is unaffected: query strings don't change what 'self' matches.
 
 ASSET_TAG_RE = re.compile(
-    r'(<script\b[^>]*?\bsrc="|<link\b[^>]*?\brel="stylesheet"[^>]*?\bhref=")(/[^"?]+)(?:\?v=[0-9a-f]+)?(")')
+    r'(<script\b[^>]*?\bsrc="|<link\b[^>]*?\brel="(?:stylesheet|icon)"[^>]*?\bhref=")(/[^"?]+)(?:\?v=[0-9a-f]+)?(")')
 
 def file_version(rel_path):
     data = (REPO_ROOT / rel_path.lstrip('/')).read_bytes()
