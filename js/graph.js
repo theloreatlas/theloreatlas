@@ -37,6 +37,40 @@ const LoreGraph = (() => {
   // Layer ids in canonical (URL, toolbar and legend) order. Session 14.
   const LAYER_ORDER = ['cases', 'locations', 'artifacts', 'factions'];
 
+  // Per-layer config. Each layer's entities become nodes linked to characters
+  // only (bipartite). `anchorEdges: false` hides the edges to protagonists
+  // ("anchors"), which would otherwise hairball: Holmes is in every case. The
+  // shape means colour is never the only signal; every colour is >= 4.3:1
+  // against the graph background (#ede4d3).
+  const LAYER_CONFIG = {
+    cases:     { label: 'Cases',     singular: 'Case',     glyph: '■', shape: d3.symbolSquare,   color: '#6e5a8a', anchorEdges: false, descField: 'synopsis' },
+    locations: { label: 'Locations', singular: 'Location', glyph: '◆', shape: d3.symbolDiamond,  color: '#3f7364', anchorEdges: false, descField: 'description' },
+    artifacts: { label: 'Artifacts', singular: 'Artifact', glyph: '▲', shape: d3.symbolTriangle, color: '#9a5a22', anchorEdges: false, descField: 'description' },
+    factions:  { label: 'Factions',  singular: 'Faction',  glyph: '★', shape: d3.symbolStar,     color: '#56602a', anchorEdges: true,  descField: 'description' },
+  };
+  const LAYER_SYMBOL_AREA = 80;
+  const LAYER_COLLIDE_R   = 9;
+  const RING_RADIUS_FRAC  = 0.42;  // ring radius = this x min(usable width, height)
+  const RING_STRENGTH     = 0.3;
+  const LAYER_EDGE_DIST   = 70;
+  const MAX_LAYER_CHIPS   = 5;     // character panel: chips shown per active layer
+
+  function layerEntityName(e) {
+    return e.name || e.title || e.id;
+  }
+
+  // first_mention comparator (a missing first_mention sorts first).
+  function byFirstMention(a, b) {
+    const fa = a.first_mention || { book: 0, chapter: 0 };
+    const fb = b.first_mention || { book: 0, chapter: 0 };
+    return (fa.book - fb.book) || (fa.chapter - fb.chapter);
+  }
+
+  // Reading order: first_mention, then name.
+  function byReadingOrder(a, b) {
+    return byFirstMention(a, b) || layerEntityName(a).localeCompare(layerEntityName(b));
+  }
+
   // Dedupe, drop unknown ids and put the rest in canonical order.
   function canonicalLayers(list) {
     const wanted = new Set(list);
@@ -91,6 +125,56 @@ const LoreGraph = (() => {
       return;
     }
 
+    // ── Layer data (Session 14) ──────────────────────────────────────────────
+    //
+    // Gating (locked rule): a layer entity renders iff SpoilerGate.isRevealed();
+    // a layer<->character link renders iff both endpoints render, and an
+    // artifact's ownership link also needs the reading position to have reached
+    // that ownership_chain entry's `from`. Nothing here shows more than the
+    // entity detail pages already list. Computed once: a position change
+    // re-initialises the graph.
+
+    const position = SpoilerGate.getPosition(seriesId);
+    const anchorIds = new Set(allChars.filter(c => c.role === 'protagonist').map(c => c.id));
+
+    // layerData[layer] = { entities, byId, links: [{ entityId, charId }] },
+    // visible entities and links only (each link deduped).
+    const layerData = {};
+    for (const layer of LAYER_ORDER) {
+      const entities = LoreLoader.getAll(seriesId, layer)
+        .filter(e => SpoilerGate.isRevealed(e, seriesId))
+        .sort(byReadingOrder);
+      const byId = new Map(entities.map(e => [e.id, e]));
+      const links = [];
+      const seen = new Set();
+      const add = (entityId, charId, from) => {
+        if (!byId.has(entityId) || !charIds.has(charId)) return;
+        if (from && position && SpoilerGate.comparePositions(position, from) < 0) return;
+        const key = entityId + '>' + charId;
+        if (seen.has(key)) return;
+        seen.add(key);
+        links.push({ entityId, charId });
+      };
+      for (const e of LoreLoader.getAll(seriesId, layer)) {
+        if (layer === 'cases')     (e.characters_involved || []).forEach(c => add(e.id, c));
+        if (layer === 'locations') (e.characters_associated || []).forEach(c => add(e.id, c));
+        if (layer === 'artifacts') (e.ownership_chain || []).forEach(o => add(e.id, o.character_id, o.from));
+        if (layer === 'factions')  (e.key_members || []).forEach(c => add(e.id, c));
+      }
+      if (layer === 'factions') {
+        for (const c of allChars) (c.affiliations || []).forEach(f => add(f, c.id));
+      }
+      layerData[layer] = { entities, byId, links };
+    }
+
+    // Names of the visible anchors for the ring legend ("Holmes and Watson"),
+    // built from the data: the last word of each name, alphabetical.
+    function anchorNames() {
+      const names = chars.filter(c => anchorIds.has(c.id)).map(c => c.name.trim().split(/\s+/).pop()).sort();
+      if (names.length <= 1) return names.join('');
+      return names.slice(0, -1).join(', ') + ' and ' + names[names.length - 1];
+    }
+
     // Canonicalise ?layers= up front (dedupe, drop unknowns, fix the order) and
     // rewrite the URL if that changed it.
     let activeLayers = readLayersParam();
@@ -102,7 +186,7 @@ const LoreGraph = (() => {
     // Everything the graph shows at the current reading position and layer
     // selection. Pure: returns fresh spec objects, so update() can merge them
     // into the live nodes without losing their positions.
-    function buildGraphData(layers) { // eslint-disable-line no-unused-vars
+    function buildGraphData(layers) {
       // Degree count for node sizing
       const degree = {};
       for (const c of chars) degree[c.id] = 0;
@@ -111,27 +195,60 @@ const LoreGraph = (() => {
         degree[r.character_b] = (degree[r.character_b] || 0) + 1;
       }
 
-      return {
-        nodes: chars.map(c => ({
-          id:     c.id,
-          name:   c.name,
-          role:   c.role || '',
-          degree: degree[c.id] || 0,
-        })),
-        links: rels.map(r => ({
-          source: r.character_a,
-          target: r.character_b,
-          type:   r.relationship_type || 'other',
-          relId:  r.id,
-          key:    'rel:' + r.id,
-        })),
-      };
+      // Node size comes from relationship degree only, so layers never inflate
+      // Holmes.
+      const nodes = chars.map(c => ({
+        id:     c.id,
+        kind:   'character',
+        name:   c.name,
+        role:   c.role || '',
+        degree: degree[c.id] || 0,
+        ring:   false,
+      }));
+      const links = rels.map(r => ({
+        source: r.character_a,
+        target: r.character_b,
+        type:   r.relationship_type || 'other',
+        relId:  r.id,
+        key:    'rel:' + r.id,
+      }));
+
+      // Layer nodes (every visible entity) and their drawn edges.
+      const layerNodes = [];
+      const drawn = new Map();
+      for (const layer of layers) {
+        const cfg = LAYER_CONFIG[layer];
+        for (const e of layerData[layer].entities) {
+          const n = { id: e.id, kind: 'layer', layer, name: layerEntityName(e), degree: 0, ring: false,
+                      first_mention: e.first_mention };
+          layerNodes.push(n);
+          drawn.set(e.id, 0);
+        }
+        for (const { entityId, charId } of layerData[layer].links) {
+          if (anchorIds.has(charId) && !cfg.anchorEdges) continue;
+          links.push({ source: entityId, target: charId, type: layer, layer, key: 'layer:' + entityId + '>' + charId });
+          drawn.set(entityId, drawn.get(entityId) + 1);
+        }
+      }
+
+      // Layer nodes with no drawn edge sit on an outer ring, in reading order
+      // across all active layers (first_mention, layer order, name).
+      const layerRank = id => LAYER_ORDER.indexOf(id);
+      const ring = layerNodes.filter(n => drawn.get(n.id) === 0).sort((a, b) =>
+        byFirstMention(a, b)
+        || (layerRank(a.layer) - layerRank(b.layer))
+        || a.name.localeCompare(b.name));
+      ring.forEach((n, i) => { n.ring = true; n.ringIdx = i; n.ringN = ring.length; });
+
+      return { nodes: nodes.concat(layerNodes), links };
     }
 
     let nodes = [];
     let links = [];
     let nodeById = {};   // node-by-id lookup, rebuilt by update()
-    let neighbors = {};  // neighbour adjacency built from links, rebuilt by update()
+    let neighbors = {};  // relationship neighbours (the panel's "Connected to"), rebuilt by update()
+    let toolbar = null;  // the layer toolbar element (null when opts.layerControls is false)
+    let drawnAdj = {};   // every drawn edge, either direction (label highlighting)
 
     const width  = container.clientWidth || 800;
     let   height = Math.max(600, Math.round(width * 0.65)); // recomputed on resize
@@ -196,11 +313,43 @@ const LoreGraph = (() => {
 
     // ── Force simulation ─────────────────────────────────────────────────────
 
+    // The simulation's centre and usable box. recenter() keeps this current
+    // (it shifts left when the desktop panel opens); the ring targets read it.
+    const layout = { cx: width / 2, cy: height / 2, w: width, h: height };
+
+    function ringTarget(d) {
+      const R = RING_RADIUS_FRAC * Math.min(layout.w, layout.h);
+      const a = -Math.PI / 2 + (2 * Math.PI * d.ringIdx) / d.ringN; // 12 o'clock, clockwise
+      return { x: layout.cx + R * Math.cos(a), y: layout.cy + R * Math.sin(a) };
+    }
+
+    // Pulls each ring node toward its target (strength RING_STRENGTH, via
+    // d3.forceX/forceY's rule: velocity += offset x strength). Unlike forceX/Y
+    // it is *not* scaled by alpha, and it reads the layout box live. Scaled by
+    // alpha, the pull dies away just as the repulsion from ~100 other nodes does
+    // not (repulsion falls off as 1/d), and the ring bulges well outside its
+    // radius; unscaled, the ring settles on its radius as the simulation cools.
+    function ringForce() {
+      let ringNodes = [];
+      const force = () => {
+        for (const d of ringNodes) {
+          const t = ringTarget(d);
+          d.vx += (t.x - d.x) * RING_STRENGTH;
+          d.vy += (t.y - d.y) * RING_STRENGTH;
+        }
+      };
+      force.initialize = (all) => { ringNodes = all.filter(d => d.ring); };
+      return force;
+    }
+
+    const collideRadius = d => d.kind === 'layer' ? LAYER_COLLIDE_R : nodeRadius(d.degree) + 5;
+
     const simulation = d3.forceSimulation(nodes)
-      .force('link',      d3.forceLink(links).id(d => d.id).distance(90))
+      .force('link',      d3.forceLink(links).id(d => d.id).distance(d => d.layer ? LAYER_EDGE_DIST : 90))
       .force('charge',    d3.forceManyBody().strength(-220))
       .force('center',    d3.forceCenter(width / 2, height / 2))
-      .force('collision', d3.forceCollide().radius(d => nodeRadius(d.degree) + 5))
+      .force('collision', d3.forceCollide().radius(collideRadius))
+      .force('ring',      ringForce())
       .on('tick', () => {
         link
           .attr('x1', d => d.source.x)
@@ -213,24 +362,45 @@ const LoreGraph = (() => {
 
     // Rebuild the graph for the current reading position and layers, in place:
     // keyed joins, and existing node objects are kept so their x/y carry over.
-    // `alpha` (optional) reheats the simulation; the first call leaves it at 1.
+    // New layer nodes spawn at the centroid of their drawn neighbours, or at
+    // their ring target. `alpha` (optional) reheats the simulation; the first
+    // call leaves it at 1.
     function update(alpha) {
       const data = buildGraphData(activeLayers);
 
       const prev = new Map(nodes.map(n => [n.id, n]));
       nodes = data.nodes.map(spec => {
         const old = prev.get(spec.id);
-        return old ? Object.assign(old, spec) : spec;
+        if (!old) return spec;
+        delete old.ringIdx; delete old.ringN;
+        return Object.assign(old, spec);
       });
       links = data.links;
 
       nodeById = {};
       for (const n of nodes) nodeById[n.id] = n;
       neighbors = {};
-      for (const n of nodes) neighbors[n.id] = [];
+      drawnAdj = {};
+      for (const n of nodes) { neighbors[n.id] = []; drawnAdj[n.id] = []; }
       for (const l of links) {
+        drawnAdj[l.source].push(l.target);
+        drawnAdj[l.target].push(l.source);
+        if (l.layer) continue; // `neighbors` is relationships only (the panel's "Connected to")
         neighbors[l.source].push({ id: l.target, type: l.type });
         neighbors[l.target].push({ id: l.source, type: l.type });
+      }
+
+      recenter();
+      for (const n of nodes) {
+        if (n.x !== undefined || n.kind !== 'layer') continue;
+        const near = drawnAdj[n.id].map(id => nodeById[id]).filter(m => m && m.x !== undefined);
+        if (near.length) {
+          n.x = near.reduce((t, m) => t + m.x, 0) / near.length + (Math.random() - 0.5) * 4;
+          n.y = near.reduce((t, m) => t + m.y, 0) / near.length + (Math.random() - 0.5) * 4;
+        } else if (n.ring) {
+          const t = ringTarget(n);
+          n.x = t.x; n.y = t.y;
+        }
       }
 
       simulation.nodes(nodes);
@@ -241,15 +411,17 @@ const LoreGraph = (() => {
       link = linkLayer.selectAll('line')
         .data(links, d => d.key)
         .join(enter => enter.append('line')
-          .attr('class', 'graph-link')
-          .attr('stroke', d => relColor(d.type))
-          .attr('stroke-width', 1.5)
-          .attr('stroke-opacity', 0.55)
+          .attr('class', d => d.layer ? 'graph-link graph-link-layer' : 'graph-link')
+          .attr('stroke', d => d.layer ? LAYER_CONFIG[d.layer].color : relColor(d.type))
+          .attr('stroke-width', d => d.layer ? 1 : 1.5)
+          .attr('stroke-opacity', d => d.layer ? 0.35 : 0.55)
+          .attr('stroke-dasharray', d => d.layer ? '4 3' : null)
           .on('mouseover', (event, d) => {
             const srcName = typeof d.source === 'object' ? d.source.name : d.source;
             const tgtName = typeof d.target === 'object' ? d.target.name : d.target;
+            const kind = d.layer ? LAYER_CONFIG[d.layer].singular.toLowerCase() : d.type;
             showTooltip(event,
-              `<span class="tt-role">${esc(d.type)}</span><br>${esc(srcName)} ↔ ${esc(tgtName)}`
+              `<span class="tt-role">${esc(kind)}</span><br>${esc(srcName)} ↔ ${esc(tgtName)}`
             );
           })
           .on('mousemove', moveTooltip)
@@ -261,10 +433,10 @@ const LoreGraph = (() => {
         .data(nodes, d => d.id)
         .join(enter => {
           const n = enter.append('g')
-            .attr('class', 'graph-node')
+            .attr('class', d => d.kind === 'layer' ? 'graph-node graph-node-layer' : 'graph-node')
             .attr('tabindex', 0)
             .attr('role', 'button')
-            .attr('aria-label', d => d.name)
+            .attr('aria-label', d => d.kind === 'layer' ? `${LAYER_CONFIG[d.layer].singular}: ${d.name}` : d.name)
             .call(
               d3.drag()
                 .on('start', dragstarted)
@@ -272,19 +444,34 @@ const LoreGraph = (() => {
                 .on('end',   dragended)
             );
 
-          n.append('circle')
+          // Characters are circles sized by relationship degree; layer nodes are
+          // fixed-size shapes (shape + colour, so colour is never the only cue).
+          n.filter(d => d.kind !== 'layer').append('circle')
             .attr('r', d => nodeRadius(d.degree))
             .attr('fill', d => nodeColor(d.role))
             .attr('stroke', '#1a1510')
             .attr('stroke-width', 1);
 
+          n.filter(d => d.kind === 'layer').append('path')
+            .attr('d', d => d3.symbol().type(LAYER_CONFIG[d.layer].shape).size(LAYER_SYMBOL_AREA)())
+            .attr('fill', d => LAYER_CONFIG[d.layer].color)
+            .attr('stroke', '#1a1510')
+            .attr('stroke-width', 1);
+
           n.append('text')
             .attr('class', 'graph-label')
-            .attr('dy', d => nodeRadius(d.degree) + 13)
+            .attr('dy', d => d.kind === 'layer' ? 22 : nodeRadius(d.degree) + 13)
             .attr('text-anchor', 'middle')
             .text(d => d.name);
 
           n.on('mouseover', (event, d) => {
+              if (d.kind === 'layer') {
+                const cnt = layerData[d.layer].links.filter(l => l.entityId === d.id).length;
+                showTooltip(event,
+                  `<strong>${esc(d.name)}</strong><br><span class="tt-role">${esc(LAYER_CONFIG[d.layer].singular)}</span>`
+                  + `<br><span class="tt-degree">${cnt} character${cnt !== 1 ? 's' : ''}</span>`);
+                return;
+              }
               const roleLabel = d.role ? `<br><span class="tt-role">${esc(d.role.replace(/_/g, ' '))}</span>` : '';
               const degLabel  = `<br><span class="tt-degree">${d.degree} connection${d.degree !== 1 ? 's' : ''}</span>`;
               showTooltip(event, `<strong>${esc(d.name)}</strong>${roleLabel}${degLabel}`);
@@ -302,8 +489,18 @@ const LoreGraph = (() => {
           return n;
         });
 
+      markSelection();
       renderLegend();
+      renderToolbar();
       if (alpha !== undefined) simulation.alpha(alpha).restart();
+    }
+
+    // Labels on layer nodes are hidden by default (CSS); the selected node and
+    // its drawn neighbours get these classes so theirs show.
+    function markSelection() {
+      const near = new Set(selectedEntityId && drawnAdj[selectedEntityId] ? drawnAdj[selectedEntityId] : []);
+      node.classed('is-selected', d => d.id === selectedEntityId)
+          .classed('is-neighbor', d => near.has(d.id));
     }
 
     // ── Info panel (Session 13) ──────────────────────────────────────────────
@@ -333,6 +530,7 @@ const LoreGraph = (() => {
       const entity = LoreLoader.getById(id);
       const closeBtn = '<button class="panel-close" type="button" aria-label="Close panel">&times;</button>';
       if (!entity) return closeBtn + '<p class="panel-empty">Entity unavailable.</p>';
+      if (nodeById[id] && nodeById[id].kind === 'layer') return renderLayerPanel(entity, nodeById[id].layer, closeBtn);
 
       const status = SpoilerGate.getRevealStatus(entity, seriesId);
       const name = entity.name || id;
@@ -373,8 +571,66 @@ const LoreGraph = (() => {
         <div class="panel-badges">${roleBadge}</div>
         <p class="panel-desc">${desc}</p>
         <p class="panel-count">Connected to ${count} ${count === 1 ? 'entity' : 'entities'}</p>
-        ${chips ? `<div class="panel-chips">${chips}</div>` : ''}
+        ${chips ? `<div class="panel-chips">${chips}</div>` : ''}${renderLayerSections(id)}
         <a class="panel-view-full" href="${entityPath(seriesId, 'characters', id)}">View full page &rarr;</a>
+      `;
+    }
+
+    // A chip that swaps the panel to another node. The colour travels in a
+    // data-* attribute and is applied via CSSOM in bindPanelControls().
+    function chipHtml(id, name, color) {
+      return `<button class="panel-chip" type="button" data-entity="${esc(id)}" `
+           + `data-chip-color="${esc(color)}">${esc(name)}</button>`;
+    }
+
+    // Character panel: one section per active layer, from the data's visible
+    // links (not the drawn edges, which leave out the anchors), so Holmes's 60
+    // cases show here even though none is drawn. First 5 in reading order.
+    function renderLayerSections(charId) {
+      return activeLayers.map(layer => {
+        const ids = new Set(layerData[layer].links.filter(l => l.charId === charId).map(l => l.entityId));
+        if (ids.size === 0) return '';
+        const cfg = LAYER_CONFIG[layer];
+        const ents = layerData[layer].entities.filter(e => ids.has(e.id)); // already reading order
+        const chips = ents.slice(0, MAX_LAYER_CHIPS)
+          .map(e => chipHtml(e.id, layerEntityName(e), cfg.color)).join('');
+        const more = ents.length > MAX_LAYER_CHIPS
+          ? `<span class="panel-more">+${ents.length - MAX_LAYER_CHIPS} more</span>` : '';
+        return `<p class="panel-count">${esc(cfg.label)} (${ents.length})</p>`
+             + `<div class="panel-chips">${chips}${more}</div>`;
+      }).join('');
+    }
+
+    // Layer-node panel: title, type badge, description, every visible linked
+    // character (anchors included), full-page link.
+    function renderLayerPanel(entity, layer, closeBtn) {
+      const cfg = LAYER_CONFIG[layer];
+      const status = SpoilerGate.getRevealStatus(entity, seriesId);
+      let desc;
+      if (status === 'partial') {
+        desc = redactedProse(entity);
+      } else {
+        const { text, nextFrom } = proseText(entity, cfg.descField, seriesId);
+        desc = text ? esc(firstSentencesForMeta(text, 120)) : '<span class="panel-empty">No description available.</span>';
+        if (nextFrom) {
+          desc += ` <span class="prose-more">[More after Book ${esc(nextFrom.book)}, Ch. ${esc(nextFrom.chapter)}]</span>`;
+        }
+      }
+
+      const linked = layerData[layer].links
+        .filter(l => l.entityId === entity.id)
+        .map(l => allChars.find(c => c.id === l.charId))
+        .sort((a, b) => a.name.localeCompare(b.name));
+      const chips = linked.map(c => chipHtml(c.id, c.name, cfg.color)).join('');
+
+      return `
+        ${closeBtn}
+        <h2 class="panel-name">${esc(layerEntityName(entity))}</h2>
+        <div class="panel-badges"><span class="badge badge-layer badge-layer-${esc(layer)}">${esc(cfg.singular)}</span></div>
+        <p class="panel-desc">${desc}</p>
+        <p class="panel-count">Characters (${linked.length})</p>
+        ${chips ? `<div class="panel-chips">${chips}</div>` : ''}
+        <a class="panel-view-full" href="${entityPath(seriesId, layer, entity.id)}">View full page &rarr;</a>
       `;
     }
 
@@ -407,7 +663,8 @@ const LoreGraph = (() => {
     function recenter() {
       const w = container.clientWidth || width;
       const usable = (isDesktopWidth() && selectedEntityId !== null) ? w - PANEL_W : w;
-      simulation.force('center', d3.forceCenter(usable / 2, height / 2));
+      layout.cx = usable / 2; layout.cy = height / 2; layout.w = usable; layout.h = height;
+      simulation.force('center', d3.forceCenter(layout.cx, layout.cy));
     }
 
     function openPanel(id, opts) {
@@ -417,6 +674,7 @@ const LoreGraph = (() => {
       bindPanelControls();
       panel.hidden = false;
       requestAnimationFrame(() => panel.classList.add('open'));
+      markSelection();
       if (!restore) {
         recenter();
         simulation.alpha(0.3).restart();
@@ -430,12 +688,16 @@ const LoreGraph = (() => {
       selectedEntityId = id;
       panel.innerHTML = renderPanelContent(id);
       bindPanelControls();
+      markSelection();
       writeGraphQuery({ selected: id });
     }
 
-    function closePanel() {
+    // opts.restoreFocus === false skips returning focus to the last node (used
+    // when a layer toggle closes the panel and focus should stay on the toolbar).
+    function closePanel(opts) {
       if (selectedEntityId === null) return;
       selectedEntityId = null;
+      markSelection();
       panel.classList.remove('open');
       writeGraphQuery({ selected: null });
       recenter();
@@ -448,7 +710,7 @@ const LoreGraph = (() => {
       panel.addEventListener('transitionend', finish);
       setTimeout(finish, 260); // fallback if transitionend doesn't fire
 
-      focusNode(lastFocusedNodeId);
+      if (!(opts && opts.restoreFocus === false)) focusNode(lastFocusedNodeId);
     }
 
     function focusNode(id) {
@@ -510,6 +772,7 @@ const LoreGraph = (() => {
 
     // Build the graph, then restore selection from URL (?selected=…) — only if
     // the entity is present in the built (spoiler-gated) node set.
+    createToolbar();
     update();
 
     const requested = new URLSearchParams(location.search).get('selected');
@@ -548,21 +811,132 @@ const LoreGraph = (() => {
     function renderLegend() {
       d3.select(container).select('.graph-legend').remove();
 
-      const presentTypes = [...new Set(links.map(l => l.type))].sort();
-      if (presentTypes.length === 0) return;
+      const presentTypes = [...new Set(links.filter(l => !l.layer).map(l => l.type))].sort();
+      const hasRing = nodes.some(n => n.ring);
+      if (presentTypes.length === 0 && activeLayers.length === 0) return;
 
       const legend = d3.select(container)
         .append('div')
         .attr('class', 'graph-legend');
 
-      legend.append('p').attr('class', 'graph-legend-title').text('Relationship types');
+      if (presentTypes.length > 0) {
+        legend.append('p').attr('class', 'graph-legend-title').text('Relationship types');
 
-      for (const type of presentTypes) {
-        const item = legend.append('div').attr('class', 'graph-legend-item');
-        item.append('span')
-          .attr('class', 'graph-legend-swatch')
-          .style('background', relColor(type));
-        item.append('span').text(type);
+        for (const type of presentTypes) {
+          const item = legend.append('div').attr('class', 'graph-legend-item');
+          item.append('span')
+            .attr('class', 'graph-legend-swatch')
+            .style('background', relColor(type));
+          item.append('span').text(type);
+        }
+      }
+
+      if (activeLayers.length > 0) {
+        legend.append('p').attr('class', 'graph-legend-title').text('Layers');
+
+        for (const layer of activeLayers) {
+          const cfg = LAYER_CONFIG[layer];
+          const item = legend.append('div').attr('class', 'graph-legend-item graph-legend-layer');
+          item.append('span')
+            .attr('class', 'graph-legend-glyph')
+            .attr('aria-hidden', 'true')
+            .style('color', cfg.color)
+            .text(cfg.glyph);
+          item.append('span').text(cfg.label);
+        }
+
+        if (hasRing) {
+          const who = anchorNames();
+          legend.append('p')
+            .attr('class', 'graph-legend-note')
+            .text(`Outer ring: linked only to ${who || 'no visible character'}${who ? ', or to no character' : ''}.`);
+        }
+      }
+    }
+
+    // ── Layer toolbar (Session 14) ───────────────────────────────────────────
+    //
+    // Persistent (not the contextual info panel, which closes). First child of
+    // the container, above the SVG. Default is all layers off.
+
+    function createToolbar() {
+      if (opts.layerControls === false) return;
+      toolbar = document.createElement('div');
+      toolbar.className = 'graph-layers';
+      toolbar.setAttribute('role', 'group');
+      toolbar.setAttribute('aria-label', 'Graph layers');
+      container.insertBefore(toolbar, container.firstChild);
+
+      for (const layer of LAYER_ORDER) {
+        const cfg = LAYER_CONFIG[layer];
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'graph-layer-btn';
+        btn.dataset.layer = layer;
+        btn.innerHTML =
+          `<span class="graph-layer-glyph" aria-hidden="true">${cfg.glyph}</span>`
+          + `<span class="graph-layer-label">${esc(cfg.label)}</span>`
+          + `<span class="graph-layer-count"></span>`
+          + `<span class="graph-layer-hint"></span>`;
+        btn.querySelector('.graph-layer-glyph').style.setProperty('color', cfg.color);
+        btn.style.setProperty('--layer-color', cfg.color);
+        btn.addEventListener('click', () => {
+          if (btn.getAttribute('aria-disabled') === 'true') return;
+          toggleLayer(layer);
+        });
+        toolbar.appendChild(btn);
+      }
+
+      // The desktop info panel docks to the container's right edge; start it
+      // below the toolbar so it never covers the toggles. Set via CSSOM (the
+      // CSP drops inline style attributes).
+      const syncPanelTop = () => {
+        container.style.setProperty('--graph-toolbar-h', toolbar.offsetHeight + 'px');
+      };
+      syncPanelTop();
+      if (typeof ResizeObserver !== 'undefined') new ResizeObserver(syncPanelTop).observe(toolbar);
+    }
+
+    // Counts show nodes visible *now* at the reading position. A layer with none
+    // is aria-disabled with a hint, but keeps its state in the URL so it lights
+    // up once the reader gets there.
+    function renderToolbar() {
+      if (!toolbar) return;
+      for (const btn of toolbar.querySelectorAll('.graph-layer-btn')) {
+        const layer = btn.dataset.layer;
+        const n = layerData[layer].entities.length;
+        const disabled = n === 0;
+        btn.setAttribute('aria-pressed', activeLayers.includes(layer) ? 'true' : 'false');
+        btn.setAttribute('aria-disabled', disabled ? 'true' : 'false');
+        btn.classList.toggle('is-disabled', disabled);
+        btn.querySelector('.graph-layer-count').textContent = String(n);
+        btn.querySelector('.graph-layer-hint').textContent = disabled ? 'None yet at your reading position' : '';
+      }
+    }
+
+    function toggleLayer(layer) {
+      setLayers(activeLayers.includes(layer)
+        ? activeLayers.filter(l => l !== layer)
+        : activeLayers.concat(layer));
+    }
+
+    // Set the active layers, in place (no re-init). Writes ?layers=, keeps or
+    // closes the open panel depending on whether its node survived.
+    function setLayers(list) {
+      const next = canonicalLayers(list);
+      if (next.join(',') === activeLayers.join(',')) return;
+      activeLayers = next;
+      writeGraphQuery({ layers: activeLayers });
+      update(0.5);
+
+      if (selectedEntityId !== null) {
+        if (nodeById[selectedEntityId]) {
+          // Counts and sections change with the layers, so re-render in place.
+          panel.innerHTML = renderPanelContent(selectedEntityId);
+          bindPanelControls();
+        } else {
+          closePanel({ restoreFocus: false });
+        }
       }
     }
 
@@ -592,6 +966,8 @@ const LoreGraph = (() => {
       openPanel,
       swapPanel,
       closePanel,
+      setLayers,
+      getLayers: () => activeLayers.slice(),
       getSelectedEntityId: () => selectedEntityId,
     };
   }

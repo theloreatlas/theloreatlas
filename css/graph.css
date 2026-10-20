@@ -310,3 +310,139 @@
     background: var(--parchment-dark, #c8bda5);
   }
 }
+
+/* ── Layer toolbar (Session 14) ───────────────────────────────────────────── */
+
+.graph-layers {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.6rem;
+}
+
+.graph-layer-btn {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.15rem 0.45rem;
+  min-width: 44px;
+  min-height: 44px;
+  box-sizing: border-box;
+  padding: 0.4rem 0.8rem;
+  background: var(--parchment-warm, #ede4d0);
+  border: 1px solid var(--border, rgba(180, 160, 120, 0.35));
+  border-left: 3px solid var(--layer-color, var(--gold, #c9a55a));
+  border-radius: 3px;
+  font-family: var(--font-body, 'EB Garamond', Georgia, serif);
+  font-size: 0.95rem;
+  color: var(--ink-soft, #2e2318);
+  cursor: pointer;
+  transition: background 0.12s;
+}
+
+.graph-layer-btn:hover {
+  background: var(--parchment-mid, #ddd4bc);
+}
+
+.graph-layer-btn:focus-visible {
+  outline: 2px solid var(--gold, #c9a55a);
+  outline-offset: 2px;
+}
+
+.graph-layer-btn[aria-pressed="true"] {
+  background: var(--layer-color, var(--gold, #c9a55a));
+  border-color: var(--layer-color, var(--gold, #c9a55a));
+  color: #fff;
+}
+
+.graph-layer-btn[aria-pressed="true"] .graph-layer-glyph {
+  color: #fff !important; /* overrides the CSSOM-set per-layer colour */
+}
+
+.graph-layer-btn.is-disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.graph-layer-count {
+  font-size: 0.8rem;
+  opacity: 0.85;
+}
+
+.graph-layer-count::before { content: '('; }
+.graph-layer-count::after  { content: ')'; }
+
+.graph-layer-hint {
+  flex-basis: 100%;
+  font-size: 0.72rem;
+  font-style: italic;
+}
+
+.graph-layer-hint:empty {
+  display: none;
+}
+
+/* The desktop info panel starts below the toolbar (--graph-toolbar-h is set by
+   graph.js via CSSOM). */
+@media (min-width: 768px) {
+  .graph-info-panel {
+    top: calc(var(--graph-toolbar-h, 0px) + 0.6rem);
+    height: calc(100% - var(--graph-toolbar-h, 0px) - 0.6rem);
+  }
+}
+
+/* ── Layer nodes, edges and labels ────────────────────────────────────────── */
+
+.graph-node:focus path {
+  stroke: var(--gold, #c9a55a);
+  stroke-width: 2.5;
+}
+
+.graph-node:hover path {
+  opacity: 0.85;
+}
+
+/* Layer-node labels are hidden until the node is hovered, focused or selected,
+   or is a drawn neighbour of the selected node. */
+.graph-node-layer .graph-label {
+  display: none;
+}
+
+.graph-node-layer:hover .graph-label,
+.graph-node-layer:focus .graph-label,
+.graph-node-layer.is-selected .graph-label,
+.graph-node-layer.is-neighbor .graph-label {
+  display: block;
+}
+
+.graph-link-layer {
+  pointer-events: stroke;
+}
+
+/* ── Legend: layers ───────────────────────────────────────────────────────── */
+
+.graph-legend-glyph {
+  font-size: 0.9rem;
+  line-height: 1;
+}
+
+.graph-legend-note {
+  width: 100%;
+  margin: 0.2rem 0 0;
+  font-style: italic;
+  color: #6a5a3a;
+}
+
+/* ── Panel: layer badges and overflow text ────────────────────────────────── */
+
+.badge-layer-cases     { background: rgba(110, 90, 138, 0.1); color: #6e5a8a; border-color: rgba(110, 90, 138, 0.25); }
+.badge-layer-locations { background: rgba(63, 115, 100, 0.1); color: #3f7364; border-color: rgba(63, 115, 100, 0.25); }
+.badge-layer-artifacts { background: rgba(154, 90, 34, 0.1);  color: #9a5a22; border-color: rgba(154, 90, 34, 0.25); }
+.badge-layer-factions  { background: rgba(86, 96, 42, 0.1);  color: #56602a; border-color: rgba(86, 96, 42, 0.25); }
+
+.panel-more {
+  align-self: center;
+  font-size: 0.85rem;
+  font-style: italic;
+  color: var(--text-muted, #6b5c45);
+}
