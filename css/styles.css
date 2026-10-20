@@ -1253,3 +1253,48 @@ body.nav-open .nav-toggle-bar:nth-child(3) {
     white-space: normal;
   }
 }
+
+/* --- Accessibility helpers (Session 16) --- */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Hidden until focused, then a >= 44px bar in the site's colours. */
+.skip-link {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}
+
+.skip-link:focus {
+  position: static;
+  display: flex;
+  align-items: center;
+  width: auto;
+  height: auto;
+  min-height: 44px;
+  margin: 0 0 0.75rem;
+  padding: 0 1rem;
+  overflow: visible;
+  clip: auto;
+  background: var(--ink);
+  color: var(--gold-bright);
+  border: 1px solid var(--gold-dim);
+  border-radius: 3px;
+  font-family: var(--font-display, 'Cinzel', serif);
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+}

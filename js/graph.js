@@ -176,6 +176,7 @@ const LoreGraph = (() => {
   // next init() tears down every instance whose container has left the DOM, so
   // stale document/window listeners are bounded to the current page's.
   const liveInstances = new Set();
+  let graphSeq = 0; // unique ids for each instance's aria-describedby help text (Session 16)
 
   // Nodes in the ego network (the centre counts, whatever its type), or 0.
   function egoNodeCount(seriesId, focusId) {
@@ -392,6 +393,17 @@ const LoreGraph = (() => {
       .attr('class', 'graph-svg')
       .attr('aria-label', 'Relationship graph');
 
+    // Keyboard instructions, read after the SVG's label (Session 16). Each
+    // instance gets its own id, so a page with a mini-graph and a main graph
+    // can't collide.
+    const helpId = 'graph-help-' + (++graphSeq);
+    const help = document.createElement('p');
+    help.id = helpId;
+    help.className = 'visually-hidden';
+    help.textContent = 'Use the arrow keys to move between nodes and Enter to open details.';
+    container.appendChild(help);
+    svg.attr('aria-describedby', helpId);
+
     const g = svg.append('g').attr('class', 'graph-g');
 
     // Zoom to fit (Session 14.1): once the simulation settles, and again after a
@@ -468,6 +480,7 @@ const LoreGraph = (() => {
     function activateNode(d) {
       if (focusId && d.id === focusId) return; // the centre of a mini-graph: nothing to open
       lastFocusedNodeId = d.id;
+      setCurrentNode(d.id);
       if (selectedEntityId === d.id) closePanel();
       else if (selectedEntityId) swapPanel(d.id);
       else openPanel(d.id);
@@ -743,20 +756,68 @@ const LoreGraph = (() => {
             .on('mousemove', moveTooltip)
             .on('mouseleave', hideTooltip)
             .on('click', (event, d) => activateNode(d))
+            .on('focus', (event, d) => setCurrentNode(d.id))
             .on('keydown', (event, d) => {
               if (event.key === 'Enter' || event.key === ' ') {
                 event.preventDefault();
                 activateNode(d);
+              } else if (!event.altKey && !event.ctrlKey && !event.metaKey
+                  && ['ArrowRight', 'ArrowDown', 'ArrowLeft', 'ArrowUp', 'Home', 'End'].includes(event.key)) {
+                event.preventDefault(); // keep the page from scrolling
+                moveNodeFocus(d.id, event.key);
               }
             });
 
           return n;
         });
 
+      syncRoving();
       markSelection();
       renderLegend();
       renderToolbar();
       if (alpha !== undefined) simulation.alpha(alpha).restart();
+    }
+
+    // ── Roving tabindex (Session 16) ─────────────────────────────────────────
+    //
+    // One node at a time is a tab stop (tabindex 0, the rest -1); the arrow keys
+    // move between them. The current node is the last one focused or activated,
+    // initially the first in order. Main graph: characters by name, then layer
+    // nodes in LAYER_ORDER and reading order. Ego mode: the centre, then the rest
+    // by name.
+    let navOrder = [];
+    let currentNodeId = null;
+
+    function computeNavOrder() {
+      const byName = (a, b) => a.name.localeCompare(b.name);
+      if (focusId) {
+        const rest = nodes.filter(n => n.id !== focusId).sort(byName);
+        return nodes.filter(n => n.id === focusId).concat(rest).map(n => n.id);
+      }
+      const chars = nodes.filter(n => n.kind === 'character').sort(byName);
+      const layered = LAYER_ORDER.flatMap(l => nodes.filter(n => n.kind === 'layer' && n.layer === l).sort(byReadingOrder));
+      return chars.concat(layered).map(n => n.id);
+    }
+
+    function setCurrentNode(id) {
+      currentNodeId = id;
+      node.attr('tabindex', d => d.id === id ? 0 : -1);
+    }
+
+    // After any update(): recompute the order; a vanished current node falls
+    // back to the first.
+    function syncRoving() {
+      navOrder = computeNavOrder();
+      setCurrentNode(navOrder.includes(currentNodeId) ? currentNodeId : (navOrder[0] || null));
+    }
+
+    function moveNodeFocus(fromId, key) {
+      const n = navOrder.length;
+      if (!n) return;
+      const i = Math.max(0, navOrder.indexOf(fromId));
+      const j = key === 'Home' ? 0 : key === 'End' ? n - 1
+        : (key === 'ArrowRight' || key === 'ArrowDown') ? (i + 1) % n : (i - 1 + n) % n;
+      focusNode(navOrder[j]);
     }
 
     // Labels on layer nodes are hidden by default (CSS); the selected node and
@@ -992,6 +1053,7 @@ const LoreGraph = (() => {
 
     function focusNode(id) {
       if (!id) return;
+      setCurrentNode(id);
       const el = node.filter(d => d.id === id).node();
       if (el && el.focus) el.focus();
     }

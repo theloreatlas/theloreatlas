@@ -518,6 +518,7 @@ function renderGraph(container, seriesId) {
   if (!series) { renderNotFound(container); return; }
 
   container.innerHTML = `
+    <a class="skip-link" href="#graph-after">Skip past the graph</a>
     <div class="page-header">
       <div class="breadcrumb">
         <a href="/">Home</a> &rsaquo;
@@ -528,12 +529,21 @@ function renderGraph(container, seriesId) {
     </div>
     <div class="graph-wrap">
       <div id="graph-container"></div>
-      <p class="graph-hint">
+      <p class="graph-hint" id="graph-after" tabindex="-1">
         <span class="hint-coarse">Pinch to zoom &nbsp;·&nbsp; Drag to pan &nbsp;·&nbsp; Tap a node for details</span>
         <span class="hint-fine">Scroll to zoom &nbsp;·&nbsp; Drag to pan &nbsp;·&nbsp; Click any node for details</span>
       </p>
     </div>
   `;
+
+  // A fragment navigation would fire popstate, and the router re-renders on
+  // popstate: focus the target by hand instead.
+  const skip = container.querySelector('.skip-link');
+  skip.addEventListener('click', (e) => {
+    e.preventDefault();
+    const target = document.getElementById('graph-after');
+    if (target) target.focus();
+  });
 
   LoreGraph.init(document.getElementById('graph-container'), seriesId);
 }
