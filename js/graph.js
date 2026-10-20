@@ -111,9 +111,70 @@ const LoreGraph = (() => {
     history.replaceState(null, '', location.pathname + (qs ? '?' + qs : ''));
   }
 
+  // ── Ego network (Session 15) ─────────────────────────────────────────────
+  //
+  // The one-hop, induced network around one character, case or location, at the
+  // reader's position. Gating is the main graph's: a node renders iff
+  // SpoilerGate.isRevealed(), an edge iff both endpoints render. Anchors are
+  // kept (no anchor suppression in ego mode). Returns null when the centre is
+  // missing, hidden or not a character, case or location; otherwise
+  //   { centre, layer, charIds, rels, layerLinks }
+  // where `layer` is null for a character centre, `charIds` are the visible
+  // characters in the view (the centre first, for a character centre), `rels`
+  // the revealed relationships whose two ends are both in the view, and
+  // `layerLinks` the centre's own links (case/location centres only).
+  const EGO_TYPES = { char: null, case: 'cases', loc: 'locations' };
+
+  function egoNetwork(seriesId, focusId) {
+    const prefix = String(focusId || '').split('_')[0];
+    if (!(prefix in EGO_TYPES)) return null;
+    const centre = LoreLoader.getById(focusId);
+    if (!centre || !SpoilerGate.isRevealed(centre, seriesId)) return null;
+
+    const charOk = new Set(LoreLoader.getAll(seriesId, 'characters')
+      .filter(c => SpoilerGate.isRevealed(c, seriesId)).map(c => c.id));
+    const rels = LoreLoader.getAll(seriesId, 'relationships').filter(r =>
+      SpoilerGate.isRevealed(r, seriesId) && charOk.has(r.character_a) && charOk.has(r.character_b));
+
+    const layer = EGO_TYPES[prefix];
+    let charIds;
+    if (!layer) {
+      if (!charOk.has(focusId)) return null;
+      charIds = [focusId];
+      for (const r of rels) {
+        if (r.character_a === focusId) charIds.push(r.character_b);
+        else if (r.character_b === focusId) charIds.push(r.character_a);
+      }
+    } else {
+      const field = layer === 'cases' ? 'characters_involved' : 'characters_associated';
+      charIds = (centre[field] || []).filter(id => charOk.has(id));
+    }
+    charIds = [...new Set(charIds)];
+    const inView = new Set(charIds);
+    return {
+      centre,
+      layer,
+      charIds,
+      rels: rels.filter(r => inView.has(r.character_a) && inView.has(r.character_b)),
+      layerLinks: layer ? charIds.map(charId => ({ entityId: focusId, charId })) : [],
+    };
+  }
+
+  // Nodes in the ego network (the centre counts, whatever its type), or 0.
+  function egoNodeCount(seriesId, focusId) {
+    const net = egoNetwork(seriesId, focusId);
+    return net ? net.charIds.length + (net.layer ? 1 : 0) : 0;
+  }
+
   // opts.layerControls (default true): whether the layer toolbar is shown.
-  // Session 15 mini-graphs pass false and drive layers through the controller.
+  // opts.syncUrl (default true): false = nothing reads or writes `location`.
+  // opts.focusId: switches on ego mode (Session 15 mini-graphs): the one-hop
+  //   network around that entity; no ring, layers, toolbar or legend.
+  // opts.height: SVG height in px, or a function returning it (re-read on resize).
   function init(container, seriesId, opts = {}) {
+    const syncUrl = opts.syncUrl !== false;
+    const focusId = opts.focusId || null;
+    const writeQuery = syncUrl ? writeGraphQuery : () => {};
     const allChars = LoreLoader.getAll(seriesId, 'characters');
     const allRels  = LoreLoader.getAll(seriesId, 'relationships');
 
@@ -184,10 +245,10 @@ const LoreGraph = (() => {
 
     // Canonicalise ?layers= up front (dedupe, drop unknowns, fix the order) and
     // rewrite the URL if that changed it.
-    let activeLayers = readLayersParam();
-    const rawLayers = new URLSearchParams(location.search).get('layers');
+    let activeLayers = syncUrl ? readLayersParam() : [];
+    const rawLayers = syncUrl ? new URLSearchParams(location.search).get('layers') : null;
     if (rawLayers !== null && rawLayers !== activeLayers.join(',')) {
-      writeGraphQuery({ layers: activeLayers });
+      writeQuery({ layers: activeLayers });
     }
 
     // Everything the graph shows at the current reading position and layer
@@ -201,6 +262,8 @@ const LoreGraph = (() => {
         degree[r.character_a] = (degree[r.character_a] || 0) + 1;
         degree[r.character_b] = (degree[r.character_b] || 0) + 1;
       }
+
+      if (focusId) return buildEgoData(degree);
 
       // Node size comes from relationship degree only, so layers never inflate
       // Holmes.
@@ -250,6 +313,36 @@ const LoreGraph = (() => {
       return { nodes: nodes.concat(layerNodes), links };
     }
 
+    // Ego mode (Session 15): the one-hop network around focusId. Character nodes
+    // keep their *global* relationship-degree radius (Holmes is the same size
+    // everywhere); a case or location centre is a layer-shaped node whose edges
+    // to characters use the layer-edge style. No ring, and anchors are drawn.
+    function buildEgoData(degree) {
+      const net = egoNetwork(seriesId, focusId);
+      if (!net) return { nodes: [], links: [] };
+      const byId = new Map(chars.map(c => [c.id, c]));
+      const nodes = net.charIds.map(id => {
+        const c = byId.get(id);
+        return { id, kind: 'character', name: c.name, role: c.role || '', degree: degree[id] || 0, ring: false };
+      });
+      const links = net.rels.map(r => ({
+        source: r.character_a,
+        target: r.character_b,
+        type:   r.relationship_type || 'other',
+        relId:  r.id,
+        key:    'rel:' + r.id,
+      }));
+      if (net.layer) {
+        nodes.unshift({ id: focusId, kind: 'layer', layer: net.layer, name: layerEntityName(net.centre),
+                        degree: 0, ring: false, first_mention: net.centre.first_mention });
+        for (const { entityId, charId } of net.layerLinks) {
+          links.push({ source: entityId, target: charId, type: net.layer, layer: net.layer,
+                       key: 'layer:' + entityId + '>' + charId });
+        }
+      }
+      return { nodes, links };
+    }
+
     let nodes = [];
     let links = [];
     let nodeById = {};   // node-by-id lookup, rebuilt by update()
@@ -258,7 +351,10 @@ const LoreGraph = (() => {
     let drawnAdj = {};   // every drawn edge, either direction (label highlighting)
 
     const width  = container.clientWidth || 800;
-    let   height = Math.max(600, Math.round(width * 0.65)); // recomputed on resize
+    const heightFor = w => opts.height
+      ? (typeof opts.height === 'function' ? opts.height() : opts.height)
+      : Math.max(600, Math.round(w * 0.65));
+    let   height = heightFor(width); // recomputed on resize
 
     // ── SVG + zoom layer ─────────────────────────────────────────────────────
 
@@ -325,6 +421,7 @@ const LoreGraph = (() => {
 
     // Click and Enter/Space both land here.
     function activateNode(d) {
+      if (focusId && d.id === focusId) return; // the centre of a mini-graph: nothing to open
       lastFocusedNodeId = d.id;
       if (selectedEntityId === d.id) closePanel();
       else if (selectedEntityId) swapPanel(d.id);
@@ -535,8 +632,9 @@ const LoreGraph = (() => {
         .data(nodes, d => d.id)
         .join(enter => {
           const n = enter.append('g')
-            .attr('class', d => d.kind === 'layer' ? 'graph-node graph-node-layer'
+            .attr('class', d => (d.kind === 'layer' ? 'graph-node graph-node-layer'
               : (anchorIds.has(d.id) ? 'graph-node is-anchor' : 'graph-node'))
+              + (focusId && d.id === focusId ? ' is-focus' : ''))
             .attr('tabindex', 0)
             .attr('role', 'button')
             .attr('aria-label', d => d.kind === 'layer' ? `${LAYER_CONFIG[d.layer].singular}: ${d.name}` : d.name)
@@ -612,7 +710,9 @@ const LoreGraph = (() => {
     // Read live rather than capturing at init: the panel switches between
     // right-dock and bottom-sheet at the same 768px breakpoint the CSS uses, so
     // a resize must change which layout the re-centring logic assumes.
-    const isDesktopWidth = () => (container.clientWidth || width) >= 768;
+    // Session 15: measure the viewport, as the CSS does, not the container (a
+    // 740px mini-graph on a wide screen is a desktop layout).
+    const isDesktopWidth = () => window.matchMedia('(min-width: 768px)').matches;
 
     let selectedEntityId = null;
     let lastFocusedNodeId = null;
@@ -657,7 +757,18 @@ const LoreGraph = (() => {
       uniq.sort((a, b) =>
         (nodeById[a.id]?.name || '').localeCompare(nodeById[b.id]?.name || ''));
 
-      const count = uniq.length;
+      // Ego mode: chips only for nodes in the view (a swap needs a node, and the
+      // centre does nothing), but the count is the full gated number.
+      let count = uniq.length;
+      if (focusId) {
+        const partners = new Set();
+        for (const r of rels) {
+          if (r.character_a === id) partners.add(r.character_b);
+          else if (r.character_b === id) partners.add(r.character_a);
+        }
+        count = partners.size;
+        for (let i = uniq.length - 1; i >= 0; i--) if (uniq[i].id === focusId) uniq.splice(i, 1);
+      }
       const chips = uniq.slice(0, 5).map(x => {
         const nm = nodeById[x.id]?.name || x.id;
         // Colour goes in a data-* attribute, not style="" — the site's CSP omits
@@ -781,7 +892,7 @@ const LoreGraph = (() => {
       if (!restore) {
         recenter();
         simulation.alpha(0.3).restart();
-        writeGraphQuery({ selected: id });
+        writeQuery({ selected: id });
         panel.focus();
       }
     }
@@ -792,7 +903,7 @@ const LoreGraph = (() => {
       panel.innerHTML = renderPanelContent(id);
       bindPanelControls();
       markSelection();
-      writeGraphQuery({ selected: id });
+      writeQuery({ selected: id });
     }
 
     // opts.restoreFocus === false skips returning focus to the last node (used
@@ -802,7 +913,7 @@ const LoreGraph = (() => {
       selectedEntityId = null;
       markSelection();
       panel.classList.remove('open');
-      writeGraphQuery({ selected: null });
+      writeQuery({ selected: null });
       recenter();
       simulation.alpha(0.3).restart();
 
@@ -878,13 +989,13 @@ const LoreGraph = (() => {
     createToolbar();
     update();
 
-    const requested = new URLSearchParams(location.search).get('selected');
+    const requested = syncUrl ? new URLSearchParams(location.search).get('selected') : null;
     if (requested) {
       if (nodeById[requested]) {
         lastFocusedNodeId = requested;
         openPanel(requested, { restore: true });
       } else {
-        writeGraphQuery({ selected: null });
+        writeQuery({ selected: null });
       }
     }
 
@@ -901,7 +1012,7 @@ const LoreGraph = (() => {
       resizeTimer = setTimeout(() => {
         const w = container.clientWidth;
         if (!w) return;
-        height = Math.max(600, Math.round(w * 0.65));
+        height = heightFor(w);
         svg.attr('height', height);
         recenter();
         fitPending = true;
@@ -914,6 +1025,7 @@ const LoreGraph = (() => {
 
     function renderLegend() {
       d3.select(container).select('.graph-legend').remove();
+      if (focusId) return; // mini-graphs have no legend
 
       const presentTypes = [...new Set(links.filter(l => !l.layer).map(l => l.type))].sort();
       const hasRing = nodes.some(n => n.ring);
@@ -1034,7 +1146,7 @@ const LoreGraph = (() => {
       const next = canonicalLayers(list);
       if (next.join(',') === activeLayers.join(',')) return;
       activeLayers = next;
-      writeGraphQuery({ layers: activeLayers });
+      writeQuery({ layers: activeLayers });
       fitPending = true;
       update(0.5);
 
@@ -1081,6 +1193,6 @@ const LoreGraph = (() => {
     };
   }
 
-  return { init };
+  return { init, egoNodeCount };
 
 })();
