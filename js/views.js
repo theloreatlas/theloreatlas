@@ -252,6 +252,38 @@ function thresholdFooter(entity, extra = '') {
   `;
 }
 
+// ── Mini-graph (Session 15) ───────────────────────────────────────────────────
+
+// Characters, cases and locations get a "Connections" graph: the one-hop network
+// around the entity, only when the gated network has at least 3 nodes (else the
+// section is left out, with no empty state). The section's markup is built by
+// connectionsSection(); mountMiniGraph() runs after the detail HTML is in the DOM.
+const MINI_GRAPH_MIN_NODES = 3;
+
+function connectionsSection(entity, entityType) {
+  if (!['characters', 'cases', 'locations'].includes(entityType)) return '';
+  if (LoreGraph.egoNodeCount(entity.series, entity.id) < MINI_GRAPH_MIN_NODES) return '';
+  const layers = entityType === 'cases' ? '&layers=cases' : entityType === 'locations' ? '&layers=locations' : '';
+  const href = `/${encodeURIComponent(entity.series)}/graph/?selected=${encodeURIComponent(entity.id)}${layers}`;
+  return `
+    <div class="detail-section detail-connections" aria-label="Connections graph">
+      <h2>Connections</h2>
+      <div class="mini-graph" data-focus-id="${esc(entity.id)}"></div>
+      <p class="mini-graph-link"><a href="${esc(href)}">Open in full graph &rarr;</a></p>
+    </div>`;
+}
+
+function mountMiniGraph(container, seriesId) {
+  const el = container.querySelector('.mini-graph');
+  if (!el) return;
+  LoreGraph.init(el, seriesId, {
+    layerControls: false,
+    syncUrl: false,
+    focusId: el.dataset.focusId,
+    height: () => (window.matchMedia('(max-width: 767px)').matches ? 300 : 360),
+  });
+}
+
 // ── Entity detail ─────────────────────────────────────────────────────────────
 
 function renderEntityDetail(container, seriesId, entityType, id) {
@@ -306,6 +338,7 @@ function renderEntityDetail(container, seriesId, entityType, id) {
   }
 
   container.innerHTML = breadcrumb + `<div class="entity-detail">${body}</div>`;
+  mountMiniGraph(container, seriesId);
 }
 
 function renderCharacterDetail(entity, status) {
@@ -324,6 +357,7 @@ function renderCharacterDetail(entity, status) {
       ${entity.status === 'deceased' ? '<span class="badge badge-deceased">deceased</span>' : ''}
     </div>
     ${proseSection('Biography', entity, status, 'biography')}
+    ${connectionsSection(entity, 'characters')}
     <div class="detail-section"><h2>Also Known As</h2><p class="detail-prose">${aliases}</p></div>
     ${linkSection('Affiliations', entity.affiliations)}
     ${linkSection('Cases', entity.cases)}
@@ -373,6 +407,7 @@ function renderCaseDetail(entity, status) {
       ${entity.case_nickname ? `<span class="detail-meta-item detail-nickname">&ldquo;${esc(entity.case_nickname)}&rdquo;</span>` : ''}
     </div>
     ${proseSection('Synopsis', entity, status, 'synopsis')}
+    ${connectionsSection(entity, 'cases')}
     ${solutionSection}
     ${linkSection('Characters Involved', entity.characters_involved)}
     ${linkSection('Locations', entity.locations)}
@@ -418,6 +453,7 @@ function renderLocationDetail(entity, status) {
       ${entity.real_world_basis ? `<span class="detail-meta-item detail-real-world">Real world: ${esc(entity.real_world_basis)}</span>` : ''}
     </div>
     ${proseSection('Description', entity, status, 'description')}
+    ${connectionsSection(entity, 'locations')}
     ${linkSection('Associated Characters', entity.characters_associated)}
     ${linkSection('Cases Occurring Here', entity.cases_occurring_here)}
     ${thresholdFooter(entity)}

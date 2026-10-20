@@ -462,3 +462,35 @@
 .graph-svg.is-zoomed-out .graph-node:not(.graph-node-layer).is-neighbor .graph-label {
   display: block;
 }
+
+/* ── Mini-graphs on detail pages (Session 15) ─────────────────────────────── */
+
+.detail-connections .mini-graph {
+  position: relative;
+}
+
+.mini-graph-link {
+  margin: 0.6rem 0 0;
+  font-size: 0.95rem;
+}
+
+/* The centre node: a heavier outline, a default cursor (clicking it does
+   nothing), and its label always shown (layer-node and small-scale label rules
+   would otherwise hide it). */
+.graph-node.is-focus {
+  cursor: default;
+}
+
+.graph-node.is-focus circle,
+.graph-node.is-focus path {
+  stroke: var(--ink, #1a130a);
+  stroke-width: 3;
+}
+
+.graph-node-layer.is-focus .graph-label {
+  display: block;
+}
+
+.graph-svg.is-zoomed-out .graph-node.is-focus:not(.graph-node-layer):not(.is-anchor) .graph-label {
+  display: block;
+}
