@@ -528,7 +528,10 @@ function renderGraph(container, seriesId) {
     </div>
     <div class="graph-wrap">
       <div id="graph-container"></div>
-      <p class="graph-hint">Scroll to zoom &nbsp;·&nbsp; Drag to pan &nbsp;·&nbsp; Click any node for details</p>
+      <p class="graph-hint">
+        <span class="hint-coarse">Pinch to zoom &nbsp;·&nbsp; Drag to pan &nbsp;·&nbsp; Tap a node for details</span>
+        <span class="hint-fine">Scroll to zoom &nbsp;·&nbsp; Drag to pan &nbsp;·&nbsp; Click any node for details</span>
+      </p>
     </div>
   `;
 

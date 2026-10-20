@@ -59,7 +59,19 @@ const LoreGraph = (() => {
   const RING_SMOOTH       = 0.1;   // adaptive ring: R moves this fraction of the way to its target each tick
   const FIT_PAD           = 24;    // zoom-to-fit padding (px)
   const FIT_MS            = 300;
-  const LABEL_MIN_SCALE   = 0.5;   // below this zoom scale, non-anchor character labels are hidden
+  const TAP_RADIUS_PX     = 22;    // touch/pen tap: nearest node within this many screen px (a 44px target)
+  const TAP_MOVE_MOUSE    = 6;     // a press that moves this far (px) is a drag, not a tap
+  const TAP_MOVE_TOUCH    = 10;
+  const TAP_MAX_MS        = 500;   // a longer press is a long-press (reserved), not a tap
+
+  // Phone layout (Session 16). Read live, so a resize across the breakpoint
+  // re-reads it. >= 768px is the desktop layout, unchanged.
+  const isNarrow = () => window.matchMedia('(max-width: 767px)').matches;
+  // Below this zoom scale, non-anchor character labels are hidden. On a phone a
+  // label shows only if it renders at >= 8px (0.8rem x 0.625).
+  const labelMinScale = () => isNarrow() ? 0.625 : 0.5;
+  // The smallest scale a fit or a manual zoom-out may reach.
+  const fitMinScale = () => isNarrow() ? 0.12 : 0.25;
   const MAX_LAYER_CHIPS   = 5;     // character panel: chips shown per active layer
 
   function layerEntityName(e) {
@@ -359,9 +371,16 @@ const LoreGraph = (() => {
     let drawnAdj = {};   // every drawn edge, either direction (label highlighting)
 
     const width  = container.clientWidth || 800;
+    // Phone main graph: the whole SVG fits under the sticky header once the
+    // reader scrolls to it (320-600px). Desktop is unchanged.
+    const phoneHeight = () => {
+      const header = document.querySelector('header');
+      const headerH = header ? header.offsetHeight : 62;
+      return Math.max(320, Math.min(600, window.innerHeight - (headerH + 24)));
+    };
     const heightFor = w => opts.height
       ? (typeof opts.height === 'function' ? opts.height() : opts.height)
-      : Math.max(600, Math.round(w * 0.65));
+      : (isNarrow() ? phoneHeight() : Math.max(600, Math.round(w * 0.65)));
     let   height = heightFor(width); // recomputed on resize
 
     // ── SVG + zoom layer ─────────────────────────────────────────────────────
@@ -384,13 +403,15 @@ const LoreGraph = (() => {
     let earlyFitPending = true; // load only: a first, un-eased fit at alpha < 0.3
     let toolbarObserver = null; // the toolbar's ResizeObserver, disconnected with the simulation
 
+    let lastPointerType = null; // pointerType of the last pointerdown on the SVG (mini-graph double-tap)
+
     const zoom = d3.zoom()
-      .scaleExtent([0.25, 5])
+      .scaleExtent([fitMinScale(), 5])
       .on('zoom', (event) => {
         g.attr('transform', event.transform);
         if (event.sourceEvent) userTransformed = true;
         // Small scales: hide most character labels (CSS keys off this class).
-        svg.classed('is-zoomed-out', event.transform.k < LABEL_MIN_SCALE);
+        svg.classed('is-zoomed-out', event.transform.k < labelMinScale());
       });
     if (focusId) {
       // Mini-graph scroll safety (Session 15b): the graph sits in the middle of a
@@ -401,6 +422,9 @@ const LoreGraph = (() => {
       zoom.filter((event) => {
         if (event.type === 'wheel') return event.ctrlKey || event.metaKey;
         if (event.type.startsWith('touch')) return event.touches.length >= 2;
+        // A double-tap must not zoom a mini-graph (Session 16): dblclick zooms
+        // only when the last pointerdown was a mouse's.
+        if (event.type === 'dblclick') return lastPointerType === 'mouse' && !event.ctrlKey && !event.button;
         return !event.ctrlKey && !event.button;
       });
       svg.classed('is-mini', true); // CSS: touch-action: pan-y
@@ -576,7 +600,7 @@ const LoreGraph = (() => {
         y0 = Math.min(y0, n.y - r); y1 = Math.max(y1, n.y + r);
       }
       const w = layout.w, h = layout.h;
-      const k = Math.max(0.25, Math.min(1,
+      const k = Math.max(fitMinScale(), Math.min(1,
         (w - 2 * FIT_PAD) / Math.max(1, x1 - x0),
         (h - 2 * FIT_PAD) / Math.max(1, y1 - y0)));
       const t = d3.zoomIdentity
@@ -668,11 +692,11 @@ const LoreGraph = (() => {
             .attr('aria-label', d => d.kind === 'layer' ? `${LAYER_CONFIG[d.layer].singular}: ${d.name}` : d.name)
             .call(
               d3.drag()
-                // Mini-graph node drag is mouse-only (Session 15b), so a finger
-                // landing on a node while scrolling doesn't grab it; a tap still
-                // clicks through to the panel.
+                // Node drag is mouse-only in both modes (Session 15b, 16): a
+                // finger that lands on a node scrolls (mini-graph) or pans (main
+                // graph) like blank space, and a tap resolves to the nearest node.
                 .filter((event) => !event.ctrlKey && !event.button
-                  && !(focusId && event.type.startsWith('touch')))
+                  && !event.type.startsWith('touch'))
                 .on('start', dragstarted)
                 .on('drag',  dragged)
                 .on('end',   dragended)
@@ -972,29 +996,44 @@ const LoreGraph = (() => {
       if (el && el.focus) el.focus();
     }
 
-    // Background-click dismissal with 6px movement threshold (decision 2).
-    let downPos = null;
-    svg.on('mousedown', (event) => { downPos = { x: event.clientX, y: event.clientY }; });
-    svg.on('mouseup', (event) => {
-      if (selectedEntityId === null || !downPos) { downPos = null; return; }
-      if (event.target === svg.node()) {
-        const dist = Math.abs(event.clientX - downPos.x) + Math.abs(event.clientY - downPos.y);
-        if (dist < 6) closePanel();
-      }
-      downPos = null;
+    // One tap handler on Pointer Events (Session 16), replacing the old mouse and
+    // touch handlers: d3-zoom's mousedown/touchstart call stopImmediatePropagation(),
+    // so those never ran and background-click dismissal was dead. d3 never stops
+    // Pointer Events. A tap is one pointer, moved < 6px (mouse) or < 10px (touch,
+    // pen), pressed < 500ms, that did not land on a node (a node's own click
+    // handles that). A touch or pen tap opens the nearest node within 22 screen px
+    // (so small, crowded nodes are reachable); with none, it closes an open panel.
+    // A mouse tap on the background closes an open panel.
+    const pointers = new Map();
+    let multi = false;
+    svg.on('pointerdown', (event) => {
+      lastPointerType = event.pointerType;
+      // A mouse released outside the SVG never sends us a pointerup: forget it.
+      if (event.pointerType === 'mouse') pointers.clear();
+      pointers.set(event.pointerId, { x: event.clientX, y: event.clientY, t: event.timeStamp, type: event.pointerType });
+      if (pointers.size > 1) multi = true;
     });
-    svg.on('touchstart', (event) => {
-      const t = event.touches[0];
-      downPos = t ? { x: t.clientX, y: t.clientY } : null;
+    svg.on('pointercancel', (event) => {
+      pointers.delete(event.pointerId);
+      if (!pointers.size) multi = false;
     });
-    svg.on('touchend', (event) => {
-      if (selectedEntityId === null || !downPos) { downPos = null; return; }
-      const t = event.changedTouches[0];
-      if (t && event.target === svg.node()) {
-        const dist = Math.abs(t.clientX - downPos.x) + Math.abs(t.clientY - downPos.y);
-        if (dist < 6) closePanel();
+    svg.on('pointerup', (event) => {
+      const start = pointers.get(event.pointerId);
+      pointers.delete(event.pointerId);
+      const wasMulti = multi;
+      if (!pointers.size) multi = false;
+      if (!start || wasMulti) return;
+      const mouse = start.type === 'mouse';
+      if (Math.hypot(event.clientX - start.x, event.clientY - start.y) >= (mouse ? TAP_MOVE_MOUSE : TAP_MOVE_TOUCH)) return;
+      if (event.timeStamp - start.t >= TAP_MAX_MS) return;
+      if (event.target.closest && event.target.closest('.graph-node')) return;
+      if (!mouse) {
+        const t = d3.zoomTransform(svg.node());
+        const [gx, gy] = t.invert(d3.pointer(event, svg.node()));
+        const d = simulation.find(gx, gy, TAP_RADIUS_PX / t.k);
+        if (d) { activateNode(d); return; }
       }
-      downPos = null;
+      if (selectedEntityId !== null) closePanel();
     });
 
     // Swipe-down on the mobile bottom sheet dismisses it.
@@ -1052,6 +1091,8 @@ const LoreGraph = (() => {
         if (!w) return;
         height = heightFor(w);
         svg.attr('height', height);
+        zoom.scaleExtent([fitMinScale(), 5]);
+        svg.classed('is-zoomed-out', d3.zoomTransform(svg.node()).k < labelMinScale());
         recenter();
         fitPending = true;
         simulation.alpha(0.3).restart();

@@ -50,6 +50,13 @@
   user-select: none;
 }
 
+/* Phone: labels render at >= 8px at the 0.625 label scale (graph.js). */
+@media (max-width: 767px) {
+  .graph-label {
+    font-size: 0.8rem;
+  }
+}
+
 /* ── Tooltip ──────────────────────────────────────────────────────────────── */
 
 .graph-tooltip {
@@ -137,6 +144,21 @@
   color: #8a7a5a;
   font-style: italic;
   text-align: center;
+}
+
+/* Two spans, swapped by CSS only: the touch wording on coarse pointers. */
+.hint-coarse {
+  display: none;
+}
+
+@media (pointer: coarse) {
+  .hint-coarse {
+    display: inline;
+  }
+
+  .hint-fine {
+    display: none;
+  }
 }
 
 /* ── Info panel (Session 13) ──────────────────────────────────────────────── */
@@ -308,6 +330,31 @@
     height: 4px;
     border-radius: 2px;
     background: var(--parchment-dark, #c8bda5);
+  }
+}
+
+/* Coarse pointers: 44px targets in the panel (Session 16). */
+@media (pointer: coarse) {
+  .panel-close {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    top: 0.25rem;
+    right: 0.4rem;
+  }
+
+  .panel-name {
+    margin-right: 2.8rem;
+  }
+
+  .panel-chip,
+  .panel-view-full {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
   }
 }
 
