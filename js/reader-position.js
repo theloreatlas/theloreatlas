@@ -7,6 +7,17 @@
 
 let readerPickerInitialized = false;
 
+// The position is saved to localStorage but nothing else reads it until the
+// next render, so re-render the current route right away (it reads `location`,
+// so ?layers= / ?selected= survive). Keeps the scroll offset: onRouteChange
+// swaps in a short "Loading…" placeholder that would otherwise jump the page
+// to the top.
+async function rerenderForPositionChange() {
+  const y = window.scrollY;
+  await onRouteChange();
+  window.scrollTo(0, y);
+}
+
 function initReaderPositionPicker() {
   if (readerPickerInitialized) return;
 
@@ -56,6 +67,7 @@ function initReaderPositionPicker() {
       chapSelect.disabled = true;
       SpoilerGate.clearPosition(seriesId);
       statusEl.textContent = '';
+      rerenderForPositionChange();
       return;
     }
     populateChapters(bookNum, books, chapSelect);
@@ -63,6 +75,7 @@ function initReaderPositionPicker() {
     chapSelect.value = '1';
     SpoilerGate.setPosition(seriesId, bookNum, 1);
     rpUpdateStatus({ book: bookNum, chapter: 1 }, books, statusEl);
+    rerenderForPositionChange();
   });
 
   // Chapter change → save
@@ -72,6 +85,7 @@ function initReaderPositionPicker() {
     if (isNaN(bookNum) || isNaN(chapterNum)) return;
     SpoilerGate.setPosition(seriesId, bookNum, chapterNum);
     rpUpdateStatus({ book: bookNum, chapter: chapterNum }, books, statusEl);
+    rerenderForPositionChange();
   });
 
   // Clear → reset to ungated
@@ -81,6 +95,7 @@ function initReaderPositionPicker() {
     chapSelect.innerHTML = '<option value="">Ch. —</option>';
     chapSelect.disabled = true;
     statusEl.textContent = '';
+    rerenderForPositionChange();
   });
 
   bar.hidden = false;

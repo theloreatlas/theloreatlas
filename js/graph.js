@@ -34,7 +34,45 @@ const LoreGraph = (() => {
     return Math.max(6, Math.min(20, 6 + degree * 1.5));
   }
 
-  function init(container, seriesId) {
+  // Layer ids in canonical (URL, toolbar and legend) order. Session 14.
+  const LAYER_ORDER = ['cases', 'locations', 'artifacts', 'factions'];
+
+  // Dedupe, drop unknown ids and put the rest in canonical order.
+  function canonicalLayers(list) {
+    const wanted = new Set(list);
+    return LAYER_ORDER.filter(l => wanted.has(l));
+  }
+
+  function readLayersParam() {
+    const raw = new URLSearchParams(location.search).get('layers');
+    return canonicalLayers(raw ? raw.split(',') : []);
+  }
+
+  // The one place the graph writes its query string. Merges into the existing
+  // params (so ?layers= survives a ?selected= change and vice versa). Keys
+  // absent from `patch` are left alone; `selected: null` or an empty `layers`
+  // removes that param.
+  function writeGraphQuery(patch) {
+    const params = new URLSearchParams(location.search);
+    if ('selected' in patch) {
+      if (patch.selected) params.set('selected', patch.selected);
+      else params.delete('selected');
+    }
+    if ('layers' in patch) {
+      const layers = canonicalLayers(patch.layers || []);
+      if (layers.length) params.set('layers', layers.join(','));
+      else params.delete('layers');
+    }
+    const qs = [...params].map(([k, v]) =>
+      encodeURIComponent(k) + '=' +
+      (k === 'layers' ? v.split(',').map(encodeURIComponent).join(',') : encodeURIComponent(v))
+    ).join('&');
+    history.replaceState(null, '', location.pathname + (qs ? '?' + qs : ''));
+  }
+
+  // opts.layerControls (default true): whether the layer toolbar is shown.
+  // Session 15 mini-graphs pass false and drive layers through the controller.
+  function init(container, seriesId, opts = {}) {
     const allChars = LoreLoader.getAll(seriesId, 'characters');
     const allRels  = LoreLoader.getAll(seriesId, 'relationships');
 
@@ -53,27 +91,47 @@ const LoreGraph = (() => {
       return;
     }
 
-    // Degree count for node sizing
-    const degree = {};
-    for (const c of chars) degree[c.id] = 0;
-    for (const r of rels) {
-      degree[r.character_a] = (degree[r.character_a] || 0) + 1;
-      degree[r.character_b] = (degree[r.character_b] || 0) + 1;
+    // Canonicalise ?layers= up front (dedupe, drop unknowns, fix the order) and
+    // rewrite the URL if that changed it.
+    let activeLayers = readLayersParam();
+    const rawLayers = new URLSearchParams(location.search).get('layers');
+    if (rawLayers !== null && rawLayers !== activeLayers.join(',')) {
+      writeGraphQuery({ layers: activeLayers });
     }
 
-    const nodes = chars.map(c => ({
-      id:     c.id,
-      name:   c.name,
-      role:   c.role || '',
-      degree: degree[c.id] || 0,
-    }));
+    // Everything the graph shows at the current reading position and layer
+    // selection. Pure: returns fresh spec objects, so update() can merge them
+    // into the live nodes without losing their positions.
+    function buildGraphData(layers) { // eslint-disable-line no-unused-vars
+      // Degree count for node sizing
+      const degree = {};
+      for (const c of chars) degree[c.id] = 0;
+      for (const r of rels) {
+        degree[r.character_a] = (degree[r.character_a] || 0) + 1;
+        degree[r.character_b] = (degree[r.character_b] || 0) + 1;
+      }
 
-    const links = rels.map(r => ({
-      source: r.character_a,
-      target: r.character_b,
-      type:   r.relationship_type || 'other',
-      relId:  r.id,
-    }));
+      return {
+        nodes: chars.map(c => ({
+          id:     c.id,
+          name:   c.name,
+          role:   c.role || '',
+          degree: degree[c.id] || 0,
+        })),
+        links: rels.map(r => ({
+          source: r.character_a,
+          target: r.character_b,
+          type:   r.relationship_type || 'other',
+          relId:  r.id,
+          key:    'rel:' + r.id,
+        })),
+      };
+    }
+
+    let nodes = [];
+    let links = [];
+    let nodeById = {};   // node-by-id lookup, rebuilt by update()
+    let neighbors = {};  // neighbour adjacency built from links, rebuilt by update()
 
     const width  = container.clientWidth || 800;
     let   height = Math.max(600, Math.round(width * 0.65)); // recomputed on resize
@@ -95,45 +153,10 @@ const LoreGraph = (() => {
         .on('zoom', (event) => g.attr('transform', event.transform))
     );
 
-    // ── Links ────────────────────────────────────────────────────────────────
-
-    const link = g.append('g').attr('class', 'graph-links')
-      .selectAll('line')
-      .data(links)
-      .join('line')
-      .attr('class', 'graph-link')
-      .attr('stroke', d => relColor(d.type))
-      .attr('stroke-width', 1.5)
-      .attr('stroke-opacity', 0.55);
-
-    // ── Nodes ────────────────────────────────────────────────────────────────
-
-    const node = g.append('g').attr('class', 'graph-nodes')
-      .selectAll('g')
-      .data(nodes)
-      .join('g')
-      .attr('class', 'graph-node')
-      .attr('tabindex', 0)
-      .attr('role', 'button')
-      .attr('aria-label', d => d.name)
-      .call(
-        d3.drag()
-          .on('start', dragstarted)
-          .on('drag',  dragged)
-          .on('end',   dragended)
-      );
-
-    node.append('circle')
-      .attr('r', d => nodeRadius(d.degree))
-      .attr('fill', d => nodeColor(d.role))
-      .attr('stroke', '#1a1510')
-      .attr('stroke-width', 1);
-
-    node.append('text')
-      .attr('class', 'graph-label')
-      .attr('dy', d => nodeRadius(d.degree) + 13)
-      .attr('text-anchor', 'middle')
-      .text(d => d.name);
+    const linkLayer = g.append('g').attr('class', 'graph-links');
+    const nodeLayer = g.append('g').attr('class', 'graph-nodes');
+    let link = linkLayer.selectAll('line');
+    let node = nodeLayer.selectAll('g');
 
     // ── Tooltip ──────────────────────────────────────────────────────────────
 
@@ -163,40 +186,13 @@ const LoreGraph = (() => {
       tooltip.style('opacity', 0);
     }
 
-    node
-      .on('mouseover', (event, d) => {
-        const roleLabel = d.role ? `<br><span class="tt-role">${d.role.replace(/_/g, ' ')}</span>` : '';
-        const degLabel  = `<br><span class="tt-degree">${d.degree} connection${d.degree !== 1 ? 's' : ''}</span>`;
-        showTooltip(event, `<strong>${d.name}</strong>${roleLabel}${degLabel}`);
-      })
-      .on('mousemove', moveTooltip)
-      .on('mouseleave', hideTooltip)
-      .on('click', (event, d) => {
-        lastFocusedNodeId = d.id;
-        if (selectedEntityId === d.id) closePanel();
-        else if (selectedEntityId) swapPanel(d.id);
-        else openPanel(d.id);
-      })
-      .on('keydown', (event, d) => {
-        if (event.key === 'Enter' || event.key === ' ') {
-          event.preventDefault();
-          lastFocusedNodeId = d.id;
-          if (selectedEntityId === d.id) closePanel();
-          else if (selectedEntityId) swapPanel(d.id);
-          else openPanel(d.id);
-        }
-      });
-
-    link
-      .on('mouseover', (event, d) => {
-        const srcName = typeof d.source === 'object' ? d.source.name : d.source;
-        const tgtName = typeof d.target === 'object' ? d.target.name : d.target;
-        showTooltip(event,
-          `<span class="tt-role">${d.type}</span><br>${srcName} ↔ ${tgtName}`
-        );
-      })
-      .on('mousemove', moveTooltip)
-      .on('mouseleave', hideTooltip);
+    // Click and Enter/Space both land here.
+    function activateNode(d) {
+      lastFocusedNodeId = d.id;
+      if (selectedEntityId === d.id) closePanel();
+      else if (selectedEntityId) swapPanel(d.id);
+      else openPanel(d.id);
+    }
 
     // ── Force simulation ─────────────────────────────────────────────────────
 
@@ -214,6 +210,101 @@ const LoreGraph = (() => {
 
         node.attr('transform', d => `translate(${d.x},${d.y})`);
       });
+
+    // Rebuild the graph for the current reading position and layers, in place:
+    // keyed joins, and existing node objects are kept so their x/y carry over.
+    // `alpha` (optional) reheats the simulation; the first call leaves it at 1.
+    function update(alpha) {
+      const data = buildGraphData(activeLayers);
+
+      const prev = new Map(nodes.map(n => [n.id, n]));
+      nodes = data.nodes.map(spec => {
+        const old = prev.get(spec.id);
+        return old ? Object.assign(old, spec) : spec;
+      });
+      links = data.links;
+
+      nodeById = {};
+      for (const n of nodes) nodeById[n.id] = n;
+      neighbors = {};
+      for (const n of nodes) neighbors[n.id] = [];
+      for (const l of links) {
+        neighbors[l.source].push({ id: l.target, type: l.type });
+        neighbors[l.target].push({ id: l.source, type: l.type });
+      }
+
+      simulation.nodes(nodes);
+      simulation.force('link').links(links);
+
+      // ── Links ──────────────────────────────────────────────────────────────
+
+      link = linkLayer.selectAll('line')
+        .data(links, d => d.key)
+        .join(enter => enter.append('line')
+          .attr('class', 'graph-link')
+          .attr('stroke', d => relColor(d.type))
+          .attr('stroke-width', 1.5)
+          .attr('stroke-opacity', 0.55)
+          .on('mouseover', (event, d) => {
+            const srcName = typeof d.source === 'object' ? d.source.name : d.source;
+            const tgtName = typeof d.target === 'object' ? d.target.name : d.target;
+            showTooltip(event,
+              `<span class="tt-role">${esc(d.type)}</span><br>${esc(srcName)} ↔ ${esc(tgtName)}`
+            );
+          })
+          .on('mousemove', moveTooltip)
+          .on('mouseleave', hideTooltip));
+
+      // ── Nodes ──────────────────────────────────────────────────────────────
+
+      node = nodeLayer.selectAll('g.graph-node')
+        .data(nodes, d => d.id)
+        .join(enter => {
+          const n = enter.append('g')
+            .attr('class', 'graph-node')
+            .attr('tabindex', 0)
+            .attr('role', 'button')
+            .attr('aria-label', d => d.name)
+            .call(
+              d3.drag()
+                .on('start', dragstarted)
+                .on('drag',  dragged)
+                .on('end',   dragended)
+            );
+
+          n.append('circle')
+            .attr('r', d => nodeRadius(d.degree))
+            .attr('fill', d => nodeColor(d.role))
+            .attr('stroke', '#1a1510')
+            .attr('stroke-width', 1);
+
+          n.append('text')
+            .attr('class', 'graph-label')
+            .attr('dy', d => nodeRadius(d.degree) + 13)
+            .attr('text-anchor', 'middle')
+            .text(d => d.name);
+
+          n.on('mouseover', (event, d) => {
+              const roleLabel = d.role ? `<br><span class="tt-role">${esc(d.role.replace(/_/g, ' '))}</span>` : '';
+              const degLabel  = `<br><span class="tt-degree">${d.degree} connection${d.degree !== 1 ? 's' : ''}</span>`;
+              showTooltip(event, `<strong>${esc(d.name)}</strong>${roleLabel}${degLabel}`);
+            })
+            .on('mousemove', moveTooltip)
+            .on('mouseleave', hideTooltip)
+            .on('click', (event, d) => activateNode(d))
+            .on('keydown', (event, d) => {
+              if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                activateNode(d);
+              }
+            });
+
+          return n;
+        });
+
+      renderLegend();
+      if (alpha !== undefined) simulation.alpha(alpha).restart();
+    }
 
     // ── Info panel (Session 13) ──────────────────────────────────────────────
 
@@ -237,18 +328,6 @@ const LoreGraph = (() => {
     panel.setAttribute('tabindex', '-1');
     panel.hidden = true;
     container.appendChild(panel);
-
-    // Lookups: node-by-id and neighbour adjacency (built from links).
-    const nodeById = {};
-    for (const n of nodes) nodeById[n.id] = n;
-
-    const neighbors = {};
-    for (const c of chars) neighbors[c.id] = [];
-    for (const r of rels) {
-      const t = r.relationship_type || 'other';
-      neighbors[r.character_a].push({ id: r.character_b, type: t });
-      neighbors[r.character_b].push({ id: r.character_a, type: t });
-    }
 
     function renderPanelContent(id) {
       const entity = LoreLoader.getById(id);
@@ -341,7 +420,7 @@ const LoreGraph = (() => {
       if (!restore) {
         recenter();
         simulation.alpha(0.3).restart();
-        history.replaceState(null, '', `${location.pathname}?selected=${encodeURIComponent(id)}`);
+        writeGraphQuery({ selected: id });
         panel.focus();
       }
     }
@@ -351,14 +430,14 @@ const LoreGraph = (() => {
       selectedEntityId = id;
       panel.innerHTML = renderPanelContent(id);
       bindPanelControls();
-      history.replaceState(null, '', `${location.pathname}?selected=${encodeURIComponent(id)}`);
+      writeGraphQuery({ selected: id });
     }
 
     function closePanel() {
       if (selectedEntityId === null) return;
       selectedEntityId = null;
       panel.classList.remove('open');
-      history.replaceState(null, '', location.pathname);
+      writeGraphQuery({ selected: null });
       recenter();
       simulation.alpha(0.3).restart();
 
@@ -429,15 +508,17 @@ const LoreGraph = (() => {
     }
     document.addEventListener('keydown', onKeyDown);
 
-    // Restore selection from URL (?selected=…) on load — only if the entity is
-    // present in the current spoiler-gated node set.
+    // Build the graph, then restore selection from URL (?selected=…) — only if
+    // the entity is present in the built (spoiler-gated) node set.
+    update();
+
     const requested = new URLSearchParams(location.search).get('selected');
     if (requested) {
       if (nodeById[requested]) {
         lastFocusedNodeId = requested;
         openPanel(requested, { restore: true });
       } else {
-        history.replaceState(null, '', location.pathname);
+        writeGraphQuery({ selected: null });
       }
     }
 
@@ -464,9 +545,12 @@ const LoreGraph = (() => {
 
     // ── Legend ───────────────────────────────────────────────────────────────
 
-    const presentTypes = [...new Set(links.map(l => l.type))].sort();
+    function renderLegend() {
+      d3.select(container).select('.graph-legend').remove();
 
-    if (presentTypes.length > 0) {
+      const presentTypes = [...new Set(links.map(l => l.type))].sort();
+      if (presentTypes.length === 0) return;
+
       const legend = d3.select(container)
         .append('div')
         .attr('class', 'graph-legend');
