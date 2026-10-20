@@ -53,6 +53,8 @@ const LoreGraph = (() => {
   const RING_RADIUS_FRAC  = 0.42;  // ring radius = this x min(usable width, height)
   const RING_STRENGTH     = 0.3;
   const LAYER_EDGE_DIST   = 70;
+  const ISOLATE_STRENGTH  = 0.08;  // pull toward the centre for nodes with no drawn links
+  const EARLY_FIT_ALPHA   = 0.3;   // load only: first, un-eased fit below this alpha
   const RING_PAD          = 64;    // adaptive ring: p90 of the inner nodes' distance from the centre + this
   const RING_SMOOTH       = 0.1;   // adaptive ring: R moves this fraction of the way to its target each tick
   const FIT_PAD           = 24;    // zoom-to-fit padding (px)
@@ -274,7 +276,9 @@ const LoreGraph = (() => {
     // has zoomed or panned themselves (zoom events with a sourceEvent: wheel,
     // drag, touch), in which case their view is left alone.
     let userTransformed = false;
-    let fitPending = true;
+    let fitPending = true;      // the final fit (alpha < 0.05, eased)
+    let earlyFitPending = true; // load only: a first, un-eased fit at alpha < 0.3
+    let toolbarObserver = null; // the toolbar's ResizeObserver, disconnected with the simulation
 
     const zoom = d3.zoom()
       .scaleExtent([0.25, 5])
@@ -329,6 +333,14 @@ const LoreGraph = (() => {
 
     // ── Force simulation ─────────────────────────────────────────────────────
 
+    // Called once this graph's DOM is gone (from a tick, or from the toolbar
+    // observer, which fires when the toolbar is detached even after a settled
+    // simulation has stopped ticking).
+    function teardown() {
+      simulation.stop();
+      if (toolbarObserver) { toolbarObserver.disconnect(); toolbarObserver = null; }
+    }
+
     // The simulation's centre and usable box. recenter() keeps this current
     // (it shifts left when the desktop panel opens); the ring targets read it.
     // R is the ring's current (adaptive) radius, 0 until the first tick.
@@ -350,7 +362,7 @@ const LoreGraph = (() => {
     // radius; unscaled, the ring settles on its radius as the simulation cools.
     //
     // The radius adapts (Session 14.1): each tick R eases toward
-    // max(base radius, p90 of the other nodes' distance from the centre + 40px),
+    // max(base radius, p90 of the other nodes' distance from the centre + RING_PAD),
     // so the ring always encloses the interior however far it spreads.
     function ringForce() {
       let ringNodes = [];
@@ -373,6 +385,23 @@ const LoreGraph = (() => {
       return force;
     }
 
+    // Isolate gravity (Session 14.1b): a node with no drawn links in this view,
+    // and not on the ring, has nothing pulling it in, so repulsion flings it far
+    // out and stretches the fit. Give it a weak, unscaled pull to the centre
+    // (velocity += offset x ISOLATE_STRENGTH). Reads drawnAdj and layout live.
+    function isolateForce() {
+      let all = [];
+      const force = () => {
+        for (const d of all) {
+          if (d.ring || (drawnAdj[d.id] && drawnAdj[d.id].length)) continue;
+          d.vx += (layout.cx - d.x) * ISOLATE_STRENGTH;
+          d.vy += (layout.cy - d.y) * ISOLATE_STRENGTH;
+        }
+      };
+      force.initialize = (nodesIn) => { all = nodesIn; };
+      return force;
+    }
+
     const collideRadius = d => d.kind === 'layer' ? LAYER_COLLIDE_R : nodeRadius(d.degree) + 5;
 
     const simulation = d3.forceSimulation(nodes)
@@ -381,10 +410,11 @@ const LoreGraph = (() => {
       .force('center',    d3.forceCenter(width / 2, height / 2))
       .force('collision', d3.forceCollide().radius(collideRadius))
       .force('ring',      ringForce())
+      .force('isolate',   isolateForce())
       .on('tick', () => {
         // The route changed and this graph's DOM is gone: stop, rather than keep
         // ticking (and fitting) a detached SVG.
-        if (!container.isConnected) { simulation.stop(); return; }
+        if (!container.isConnected) { teardown(); return; }
 
         link
           .attr('x1', d => d.source.x)
@@ -394,16 +424,25 @@ const LoreGraph = (() => {
 
         node.attr('transform', d => `translate(${d.x},${d.y})`);
 
-        if (fitPending && simulation.alpha() < 0.05) {
+        // Two-stage fit on load: a quick un-eased fit once the layout has taken
+        // shape, then the eased final fit at settle. Toggles and resizes do only
+        // the final fit (they set fitPending alone).
+        const alpha = simulation.alpha();
+        if (earlyFitPending && alpha < EARLY_FIT_ALPHA) {
+          earlyFitPending = false;
+          fitToView(true);
+        }
+        if (fitPending && alpha < 0.05) {
           fitPending = false;
+          earlyFitPending = false;
           fitToView();
         }
       });
 
     // Fit every node (with its radius) into the usable box, FIT_PAD all round.
     // Never scales above 1; clamped to the zoom's scaleExtent. 300ms ease, none
-    // under prefers-reduced-motion.
-    function fitToView() {
+    // under prefers-reduced-motion or when `instant` (the early fit).
+    function fitToView(instant) {
       if (userTransformed || !nodes.length) return;
       let x0 = Infinity, x1 = -Infinity, y0 = Infinity, y1 = -Infinity;
       for (const n of nodes) {
@@ -419,7 +458,7 @@ const LoreGraph = (() => {
         .translate(w / 2 - k * (x0 + x1) / 2, h / 2 - k * (y0 + y1) / 2)
         .scale(k);
       const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      if (reduce) svg.call(zoom.transform, t);
+      if (reduce || instant) svg.call(zoom.transform, t);
       else svg.transition().duration(FIT_MS).call(zoom.transform, t);
     }
 
@@ -956,10 +995,14 @@ const LoreGraph = (() => {
       // below the toolbar so it never covers the toggles. Set via CSSOM (the
       // CSP drops inline style attributes).
       const syncPanelTop = () => {
+        if (!container.isConnected) { teardown(); return; }
         container.style.setProperty('--graph-toolbar-h', toolbar.offsetHeight + 'px');
       };
       syncPanelTop();
-      if (typeof ResizeObserver !== 'undefined') new ResizeObserver(syncPanelTop).observe(toolbar);
+      if (typeof ResizeObserver !== 'undefined') {
+        toolbarObserver = new ResizeObserver(syncPanelTop);
+        toolbarObserver.observe(toolbar);
+      }
     }
 
     // Counts show nodes visible *now* at the reading position. A layer with none
