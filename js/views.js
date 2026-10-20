@@ -513,6 +513,16 @@ function renderRelationshipDetail(entity, status) {
   `;
 }
 
+// The graph page's live view (Session 16), so a reading-position change can
+// update it in place instead of re-rendering the route. `refresh` returns true
+// when it handled the change.
+let activeGraphView = null;
+
+function refreshGraphViewInPlace() {
+  const v = activeGraphView;
+  return !!(v && v.container.isConnected && v.refresh());
+}
+
 function renderGraph(container, seriesId) {
   const series = LoreLoader.getSeriesById(seriesId);
   if (!series) { renderNotFound(container); return; }
@@ -545,7 +555,9 @@ function renderGraph(container, seriesId) {
     if (target) target.focus();
   });
 
-  LoreGraph.init(document.getElementById('graph-container'), seriesId);
+  const graphContainer = document.getElementById('graph-container');
+  const controller = LoreGraph.init(graphContainer, seriesId);
+  activeGraphView = { container: graphContainer, refresh: () => !!controller && controller.refresh() };
 }
 
 function renderNotFound(container) {

@@ -199,61 +199,68 @@ const LoreGraph = (() => {
     const allChars = LoreLoader.getAll(seriesId, 'characters');
     const allRels  = LoreLoader.getAll(seriesId, 'relationships');
 
-    // Spoiler-gate: only revealed entities
-    const chars  = allChars.filter(c => SpoilerGate.isRevealed(c, seriesId));
-    const charIds = new Set(chars.map(c => c.id));
+    const anchorIds = new Set(allChars.filter(c => c.role === 'protagonist').map(c => c.id));
 
-    const rels = allRels.filter(r =>
-      SpoilerGate.isRevealed(r, seriesId) &&
-      charIds.has(r.character_a) &&
-      charIds.has(r.character_b)
-    );
+    // ── Gated data ───────────────────────────────────────────────────────────
+    //
+    // Gating (locked rule, Session 14): only revealed entities; a layer entity
+    // renders iff SpoilerGate.isRevealed(); a layer<->character link renders iff
+    // both endpoints render, and an artifact's ownership link also needs the
+    // reading position to have reached that ownership_chain entry's `from`.
+    // Nothing here shows more than the entity detail pages already list.
+    // computeGating() runs at init and again from refresh() (Session 16: a
+    // reading-position change updates the graph in place).
+    let position = null;
+    let chars = [];
+    let charIds = new Set();
+    let rels = [];
+    // layerData[layer] = { entities, byId, links: [{ entityId, charId }] },
+    // visible entities and links only (each link deduped).
+    let layerData = {};
+
+    function computeGating() {
+      chars = allChars.filter(c => SpoilerGate.isRevealed(c, seriesId));
+      charIds = new Set(chars.map(c => c.id));
+      rels = allRels.filter(r =>
+        SpoilerGate.isRevealed(r, seriesId) &&
+        charIds.has(r.character_a) &&
+        charIds.has(r.character_b)
+      );
+      position = SpoilerGate.getPosition(seriesId);
+      layerData = {};
+      for (const layer of LAYER_ORDER) {
+        const entities = LoreLoader.getAll(seriesId, layer)
+          .filter(e => SpoilerGate.isRevealed(e, seriesId))
+          .sort(byReadingOrder);
+        const byId = new Map(entities.map(e => [e.id, e]));
+        const links = [];
+        const seen = new Set();
+        const add = (entityId, charId, from) => {
+          if (!byId.has(entityId) || !charIds.has(charId)) return;
+          if (from && position && SpoilerGate.comparePositions(position, from) < 0) return;
+          const key = entityId + '>' + charId;
+          if (seen.has(key)) return;
+          seen.add(key);
+          links.push({ entityId, charId });
+        };
+        for (const e of LoreLoader.getAll(seriesId, layer)) {
+          if (layer === 'cases')     (e.characters_involved || []).forEach(c => add(e.id, c));
+          if (layer === 'locations') (e.characters_associated || []).forEach(c => add(e.id, c));
+          if (layer === 'artifacts') (e.ownership_chain || []).forEach(o => add(e.id, o.character_id, o.from));
+          if (layer === 'factions')  (e.key_members || []).forEach(c => add(e.id, c));
+        }
+        if (layer === 'factions') {
+          for (const c of allChars) (c.affiliations || []).forEach(f => add(f, c.id));
+        }
+        layerData[layer] = { entities, byId, links };
+      }
+    }
+
+    computeGating();
 
     if (chars.length === 0) {
       container.innerHTML = '<p class="state-loading">No characters visible at your current reading position.</p>';
       return;
-    }
-
-    // ── Layer data (Session 14) ──────────────────────────────────────────────
-    //
-    // Gating (locked rule): a layer entity renders iff SpoilerGate.isRevealed();
-    // a layer<->character link renders iff both endpoints render, and an
-    // artifact's ownership link also needs the reading position to have reached
-    // that ownership_chain entry's `from`. Nothing here shows more than the
-    // entity detail pages already list. Computed once: a position change
-    // re-initialises the graph.
-
-    const position = SpoilerGate.getPosition(seriesId);
-    const anchorIds = new Set(allChars.filter(c => c.role === 'protagonist').map(c => c.id));
-
-    // layerData[layer] = { entities, byId, links: [{ entityId, charId }] },
-    // visible entities and links only (each link deduped).
-    const layerData = {};
-    for (const layer of LAYER_ORDER) {
-      const entities = LoreLoader.getAll(seriesId, layer)
-        .filter(e => SpoilerGate.isRevealed(e, seriesId))
-        .sort(byReadingOrder);
-      const byId = new Map(entities.map(e => [e.id, e]));
-      const links = [];
-      const seen = new Set();
-      const add = (entityId, charId, from) => {
-        if (!byId.has(entityId) || !charIds.has(charId)) return;
-        if (from && position && SpoilerGate.comparePositions(position, from) < 0) return;
-        const key = entityId + '>' + charId;
-        if (seen.has(key)) return;
-        seen.add(key);
-        links.push({ entityId, charId });
-      };
-      for (const e of LoreLoader.getAll(seriesId, layer)) {
-        if (layer === 'cases')     (e.characters_involved || []).forEach(c => add(e.id, c));
-        if (layer === 'locations') (e.characters_associated || []).forEach(c => add(e.id, c));
-        if (layer === 'artifacts') (e.ownership_chain || []).forEach(o => add(e.id, o.character_id, o.from));
-        if (layer === 'factions')  (e.key_members || []).forEach(c => add(e.id, c));
-      }
-      if (layer === 'factions') {
-        for (const c of allChars) (c.affiliations || []).forEach(f => add(f, c.id));
-      }
-      layerData[layer] = { entities, byId, links };
     }
 
     // Names of the visible anchors for the ring legend ("Holmes and Watson"),
@@ -366,6 +373,7 @@ const LoreGraph = (() => {
 
     let nodes = [];
     let links = [];
+    let hasRendered = false; // true once update() has run (the spawn rule differs after the first)
     let nodeById = {};   // node-by-id lookup, rebuilt by update()
     let neighbors = {};  // relationship neighbours (the panel's "Connected to"), rebuilt by update()
     let toolbar = null;  // the layer toolbar element (null when opts.layerControls is false)
@@ -655,8 +663,14 @@ const LoreGraph = (() => {
       }
 
       recenter();
+      // Spawn rule. The first update() leaves characters to d3's own initial
+      // layout and places only layer nodes. Later updates (a layer toggle or a
+      // reading-position change, Session 16) place a new node of any kind at the
+      // centroid of its drawn neighbours that already have positions; failing
+      // that, a ring node at its ring target and anything else at the centre.
       for (const n of nodes) {
-        if (n.x !== undefined || n.kind !== 'layer') continue;
+        if (n.x !== undefined) continue;
+        if (!hasRendered && n.kind !== 'layer') continue;
         const near = drawnAdj[n.id].map(id => nodeById[id]).filter(m => m && m.x !== undefined);
         if (near.length) {
           n.x = near.reduce((t, m) => t + m.x, 0) / near.length + (Math.random() - 0.5) * 4;
@@ -664,6 +678,9 @@ const LoreGraph = (() => {
         } else if (n.ring) {
           const t = ringTarget(n);
           n.x = t.x; n.y = t.y;
+        } else if (hasRendered) {
+          n.x = layout.cx + (Math.random() - 0.5) * 4;
+          n.y = layout.cy + (Math.random() - 0.5) * 4;
         }
       }
 
@@ -771,6 +788,7 @@ const LoreGraph = (() => {
           return n;
         });
 
+      hasRendered = true;
       syncRoving();
       markSelection();
       renderLegend();
@@ -1302,6 +1320,26 @@ const LoreGraph = (() => {
       }
     }
 
+    // Re-gate for the current reading position and update in place (Session 16),
+    // keeping the SVG, zoom and pan, the layers and the open panel. Returns false
+    // when nothing is visible any more, so the caller falls back to a full
+    // re-render (which shows the empty state).
+    function refresh() {
+      computeGating();
+      if (chars.length === 0) return false;
+      fitPending = true; // the fit skips itself when the reader has zoomed or panned
+      update(0.5);
+      if (selectedEntityId !== null) {
+        if (nodeById[selectedEntityId]) {
+          panel.innerHTML = renderPanelContent(selectedEntityId);
+          bindPanelControls();
+        } else {
+          closePanel({ restoreFocus: false });
+        }
+      }
+      return true;
+    }
+
     // ── Drag handlers ────────────────────────────────────────────────────────
 
     function dragstarted(event, d) {
@@ -1329,6 +1367,7 @@ const LoreGraph = (() => {
       swapPanel,
       closePanel,
       setLayers,
+      refresh,
       getLayers: () => activeLayers.slice(),
       getSelectedEntityId: () => selectedEntityId,
     };

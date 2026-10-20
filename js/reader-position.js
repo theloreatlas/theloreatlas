@@ -12,7 +12,12 @@ let readerPickerInitialized = false;
 // so ?layers= / ?selected= survive). Keeps the scroll offset: onRouteChange
 // swaps in a short "Loading…" placeholder that would otherwise jump the page
 // to the top.
+//
+// The graph page is the exception (Session 16): it re-gates in place, keeping
+// the SVG, zoom, pan, layers and panel; the route is re-rendered only if that
+// can't (refreshGraphViewInPlace() returns false).
 async function rerenderForPositionChange() {
+  if (refreshGraphViewInPlace()) return;
   const y = window.scrollY;
   await onRouteChange();
   window.scrollTo(0, y);
