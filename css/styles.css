@@ -113,7 +113,7 @@ summary:focus-visible,
 }
 
 .universe-caret {
-  font-size: 0.85em;
+  flex-shrink: 0;
 }
 
 #site-nav {
@@ -142,7 +142,7 @@ summary:focus-visible,
 #site-search {
   position: relative;
   flex: 0 1 240px;
-  min-width: 0;
+  min-width: 180px;
   margin-left: auto;
 }
 
@@ -279,8 +279,12 @@ summary:focus-visible,
 
 .bm-caret {
   margin-left: 8px;
-  font-size: 13px;
   color: var(--muted);
+  vertical-align: middle;
+}
+
+.bm-title[aria-expanded="true"] .bm-caret {
+  color: var(--accent);
 }
 
 .bm-short {
@@ -1169,6 +1173,20 @@ summary:focus-visible,
   }
 }
 
+/* Between the tab bar and a roomy header: keep the search at a usable width by
+   squeezing the gaps and gutter instead. */
+@media (max-width: 1100px) {
+  #site-header {
+    gap: 14px;
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  #site-nav {
+    gap: 12px;
+  }
+}
+
 @media (max-width: 899px) {
   #site-nav-wrap,
   #site-search,
@@ -1315,7 +1333,7 @@ summary:focus-visible,
 
   .bm-unit::before {
     content: '\00b7';
-    margin: 0 0.4em;
+    margin: 0 0.3em 0 0;
   }
 
   .bm-caret {
@@ -1401,4 +1419,651 @@ summary:focus-visible,
   font-family: var(--font-ui);
   font-size: 0.875rem;
   text-decoration: none;
+}
+
+/* ============================================================
+   Bookmark picker (dialog) and first-visit prompt
+   ============================================================ */
+
+.pk-label {
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--accent);
+}
+
+/* --- Picker: desktop popover --- */
+dialog.picker {
+  position: fixed;
+  inset: auto;
+  margin: 0;
+  padding: 0;
+  width: 760px;
+  max-width: calc(100vw - 2 * var(--gutter));
+  height: 560px;
+  background: var(--popover);
+  color: var(--text-body);
+  border: 1px solid var(--line-35);
+  border-radius: var(--r-panel);
+  box-shadow: var(--shadow-pop);
+  overflow: hidden;
+}
+
+dialog.picker[open] {
+  display: grid;
+  grid-template-columns: 320px minmax(0, 1fr);
+  grid-template-rows: minmax(0, 1fr);
+}
+
+dialog.picker::backdrop {
+  background: transparent;
+}
+
+.pk-handle,
+.pk-sheet-title {
+  display: none;
+}
+
+.pk-books {
+  min-height: 0;
+  overflow-y: auto;
+  padding: 24px 12px 16px 20px;
+  border-right: 1px solid var(--line-20);
+}
+
+.pk-books .pk-label {
+  margin-bottom: 14px;
+  padding-left: 14px;
+}
+
+.pk-booklist {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.pk-book {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+  padding: 10px 14px;
+  border: 0;
+  border-radius: var(--r-row);
+  background: transparent;
+  font-family: var(--font-ui);
+  text-align: left;
+  color: var(--ink);
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.pk-book:hover {
+  background: var(--hover);
+}
+
+.pk-book.is-later {
+  color: var(--muted);
+}
+
+.pk-book.is-selected {
+  background: var(--raised);
+  box-shadow: inset 3px 0 0 var(--accent-bright);
+}
+
+.pk-book-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.pk-book-title {
+  font-size: 15px;
+  line-height: 1.3;
+}
+
+.pk-book-short {
+  display: none;
+}
+
+.pk-book-year {
+  flex-shrink: 0;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.pk-book-bar {
+  display: block;
+  height: 3px;
+  border-radius: 2px;
+  background: var(--track);
+  overflow: hidden;
+}
+
+.pk-book-fill {
+  display: block;
+  height: 100%;
+  background: var(--accent-bright);
+}
+
+.pk-detail {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 24px 24px 20px;
+}
+
+.pk-unit-label {
+  margin-bottom: 6px;
+}
+
+.pk-book-name {
+  font-family: var(--font-display);
+  font-size: 30px;
+  font-weight: 400;
+  line-height: 1.1;
+  color: var(--ink);
+}
+
+.pk-count {
+  margin: 4px 0 20px;
+  font-size: 15px;
+  color: var(--muted);
+}
+
+.pk-units.is-grid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.pk-units.is-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.pk-cell,
+.pk-story {
+  font-family: var(--font-ui);
+  border-radius: var(--r-cell);
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.pk-cell {
+  height: 44px;
+  font-size: 16px;
+}
+
+.pk-story {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-height: 46px;
+  padding: 6px 16px;
+  font-size: 15px;
+  text-align: left;
+}
+
+.pk-story-n {
+  flex: 0 0 1.5em;
+  font-size: 13px;
+  opacity: 0.8;
+}
+
+.pk-cell[data-state="read"],
+.pk-story[data-state="read"],
+.pk-swatch[data-state="read"] {
+  background: var(--cell-read-bg);
+  border: 1px solid var(--cell-read-bd);
+  color: var(--cell-read-ink);
+}
+
+.pk-cell[data-state="current"],
+.pk-story[data-state="current"],
+.pk-swatch[data-state="current"] {
+  background: var(--cell-cur-bg);
+  border: 1px solid var(--cell-cur-bg);
+  color: var(--cell-cur-ink);
+}
+
+.pk-cell[data-state="unread"],
+.pk-story[data-state="unread"],
+.pk-swatch[data-state="unread"] {
+  background: transparent;
+  border: 1px dashed var(--cell-unread-bd);
+  color: var(--cell-unread-ink);
+}
+
+.pk-story[data-state="unread"] {
+  color: var(--muted);
+}
+
+.pk-cell[data-state="unread"]:hover,
+.pk-story[data-state="unread"]:hover {
+  background: var(--hover);
+}
+
+.pk-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+  margin-top: 16px;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.pk-legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+.pk-swatch {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+}
+
+.pk-foot {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: auto;
+  padding-top: 14px;
+  border-top: 1px solid var(--line-20);
+}
+
+.pk-detail .pk-legend-slot + .pk-foot {
+  margin-top: auto;
+}
+
+.pk-legend-slot {
+  margin-bottom: 24px;
+}
+
+.pk-legend-slot[hidden] {
+  display: none;
+}
+
+.pk-clear {
+  padding: 0;
+  border: 0;
+  background: none;
+  font-family: var(--font-ui);
+  font-size: 14px;
+  color: var(--accent);
+  text-decoration: underline;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: color 0.15s ease;
+}
+
+.pk-clear:hover {
+  color: var(--accent-bright);
+}
+
+.pk-clear[hidden] {
+  display: none;
+}
+
+.pk-current {
+  flex: 1;
+  min-width: 0;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.pk-current strong {
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.pk-done {
+  min-height: 44px;
+  padding: 10px 26px;
+  border: 0;
+  border-radius: var(--r-pill);
+  background: var(--primary-bg);
+  color: var(--primary-ink);
+  font-family: var(--font-ui);
+  font-size: 15px;
+  font-weight: 500;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+}
+
+.pk-done:hover:not(:disabled) {
+  opacity: 0.9;
+}
+
+.pk-done:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* --- First visit --- */
+dialog.first-visit {
+  position: fixed;
+  inset: 0;
+  margin: auto;
+  width: 720px;
+  max-width: calc(100vw - 2 * var(--gutter));
+  max-height: calc(100vh - 32px);
+  overflow-y: auto;
+  padding: 40px;
+  background: var(--bg);
+  color: var(--text-body);
+  border: 1px solid var(--line-25);
+  border-radius: var(--r-panel);
+  box-shadow: var(--shadow-pop);
+}
+
+/* The README's scrim value; the one literal colour outside the tokens (also
+   used for the phone sheet's backdrop below). */
+dialog.first-visit::backdrop {
+  background: rgba(5, 10, 15, 0.55);
+}
+
+.fv-title {
+  margin: 14px 0 12px;
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 6vw, 2.75rem);
+  font-weight: 400;
+  line-height: 1.1;
+  color: var(--ink);
+}
+
+.fv-lead {
+  margin-bottom: 24px;
+  font-size: 16px;
+  color: var(--text-2);
+}
+
+.fv-options {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.fv-option {
+  display: block;
+  width: 100%;
+  padding: 18px 20px;
+  border: 1px solid var(--line-25);
+  border-radius: var(--r-block);
+  background: transparent;
+  font-family: var(--font-ui);
+  text-align: left;
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.fv-option:hover,
+.fv-option[aria-expanded="true"] {
+  background: var(--raised);
+  border-color: var(--line-45);
+}
+
+.fv-option[aria-expanded="true"] {
+  border-color: var(--accent);
+}
+
+.fv-option strong {
+  display: block;
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.fv-option span {
+  display: block;
+  margin-top: 4px;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.fv-pick {
+  padding: 18px 20px 20px;
+  border: 1px solid var(--line-25);
+  border-radius: var(--r-block);
+  background: var(--raised);
+}
+
+.fv-pick[hidden] {
+  display: none;
+}
+
+.fv-books {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 18px;
+  padding-bottom: 4px;
+  overflow-x: auto;
+}
+
+.fv-pick .pk-legend-slot {
+  margin-bottom: 18px;
+}
+
+.fv-set {
+  display: block;
+  margin-left: auto;
+}
+
+.fv-note {
+  margin-top: 20px;
+  font-size: 13px;
+  color: var(--faint);
+}
+
+/* Book chips: first-visit always, the picker on phones. They scroll sideways
+   without a visible bar. */
+.fv-books,
+.pk-booklist {
+  scrollbar-width: none;
+}
+
+.fv-books::-webkit-scrollbar,
+.pk-booklist::-webkit-scrollbar {
+  display: none;
+}
+
+.fv-books .pk-book {
+  flex: none;
+  width: auto;
+  height: 40px;
+  flex-direction: row;
+  align-items: center;
+  padding: 0 14px;
+  border: 1px solid var(--line-45);
+  border-radius: var(--r-pill);
+  box-shadow: none;
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+.fv-books .pk-book-title,
+.fv-books .pk-book-year,
+.fv-books .pk-book-bar {
+  display: none;
+}
+
+.fv-books .pk-book-short {
+  display: inline;
+  font-size: 14px;
+}
+
+.fv-books .pk-book.is-selected {
+  background: var(--primary-bg);
+  color: var(--primary-ink);
+}
+
+@media (max-width: 760px) {
+  dialog.picker {
+    top: auto;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    max-height: 85vh;
+    padding-bottom: env(safe-area-inset-bottom);
+    border-width: 1px 0 0;
+    border-radius: 20px 20px 0 0;
+    overflow-y: auto;
+  }
+
+  dialog.picker[open] {
+    display: block;
+  }
+
+  dialog.picker::backdrop {
+    background: rgba(5, 10, 15, 0.55);
+  }
+
+  .pk-handle {
+    display: block;
+    width: 40px;
+    height: 4px;
+    margin: 10px auto 0;
+    border-radius: 2px;
+    background: var(--track);
+  }
+
+  .pk-sheet-title {
+    display: block;
+    padding: 14px var(--gutter) 0;
+    font-family: var(--font-display);
+    font-size: 28px;
+    line-height: 1.15;
+    color: var(--ink);
+  }
+
+  .pk-books {
+    overflow: visible;
+    padding: 16px var(--gutter) 0;
+    border-right: 0;
+  }
+
+  .pk-books .pk-label {
+    display: none;
+  }
+
+  .pk-booklist {
+    flex-direction: row;
+    gap: 8px;
+    margin: 0 calc(-1 * var(--gutter));
+    padding: 0 var(--gutter) 4px;
+    overflow-x: auto;
+  }
+
+  .pk-booklist .pk-book {
+    flex: none;
+    width: auto;
+    height: 44px;
+    flex-direction: row;
+    align-items: center;
+    padding: 0 16px;
+    border: 1px solid var(--line-45);
+    border-radius: var(--r-pill);
+    box-shadow: none;
+    font-size: 14px;
+    white-space: nowrap;
+  }
+
+  .pk-booklist .pk-book-title,
+  .pk-booklist .pk-book-year,
+  .pk-booklist .pk-book-bar {
+    display: none;
+  }
+
+  .pk-booklist .pk-book-short {
+    display: inline;
+    font-size: 14px;
+  }
+
+  .pk-booklist .pk-book.is-selected {
+    background: var(--primary-bg);
+    color: var(--primary-ink);
+  }
+
+  .pk-detail {
+    overflow: visible;
+    padding: 18px var(--gutter) 20px;
+  }
+
+  .pk-unit-label {
+    display: none;
+  }
+
+  .pk-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+
+  .pk-book-name {
+    font-family: var(--font-ui);
+    font-size: 16px;
+    font-weight: 500;
+  }
+
+  .pk-count {
+    flex-shrink: 0;
+    margin: 0;
+    font-size: 14px;
+  }
+
+  .pk-cell {
+    height: 48px;
+  }
+
+  .pk-units.is-list {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .pk-legend-slot {
+    margin-bottom: 20px;
+  }
+
+  .pk-foot {
+    gap: 10px;
+    margin-top: 0;
+    padding-top: 0;
+    border-top: 0;
+  }
+
+  .pk-current {
+    display: none;
+  }
+
+  .pk-clear,
+  .pk-foot .pk-done {
+    flex: 1;
+    min-height: 48px;
+    border-radius: var(--r-pill);
+    font-size: 15px;
+    text-align: center;
+    text-decoration: none;
+  }
+
+  .pk-clear {
+    border: 1px solid var(--line-45);
+    color: var(--ink);
+  }
+
+  dialog.first-visit {
+    padding: 28px 20px;
+  }
 }

@@ -117,11 +117,13 @@ function initBookmarkBar() {
   els.prev.addEventListener('click', () => stepBookmark(-1));
   els.next.addEventListener('click', () => stepBookmark(1));
   els.clear.addEventListener('click', clearBookmark);
-  // #bookmark-title has no click handler yet: the book/chapter picker is Phase 3.
+  els.title.setAttribute('aria-expanded', 'false');
+  els.title.addEventListener('click', () => openBookmarkPicker(els.title));
 
   bookmarkBar = { seriesId, seriesName, books, els };
   renderBookmarkBar();
   bar.hidden = false;
+  maybeShowFirstVisit();
 }
 
 // The pill is a plain link to the universe hub until the switcher (Phase 6).
