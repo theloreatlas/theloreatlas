@@ -5,21 +5,25 @@
 
 const LoreGraph = (() => {
 
+  // Colours are CSS var() strings so the graph follows the theme with no
+  // re-render. Apply them to SVG with .style(), never .attr(): var() does not
+  // resolve inside SVG presentation attributes.
+  // The design has five relationship types; professional and mentor fall into "other".
   const REL_COLORS = {
-    ally:         '#c4a55a',
-    enemy:        '#8b2020',
-    family:       '#6a8a5a',
-    professional: '#4a6a8a',
-    romantic:     '#8a5a6a',
-    mentor:       '#a07030',
-    other:        '#7a7060',
+    ally:         'var(--rel-ally)',
+    enemy:        'var(--rel-adversary)',
+    family:       'var(--rel-family)',
+    professional: 'var(--rel-other)',
+    romantic:     'var(--rel-romantic)',
+    mentor:       'var(--rel-other)',
+    other:        'var(--rel-other)',
   };
 
   const ROLE_COLORS = {
-    protagonist: '#c4a55a',
-    antagonist:  '#8b2020',
-    supporting:  '#4a6a8a',
-    client:      '#6a8a5a',
+    protagonist: 'var(--role-protagonist)',
+    antagonist:  'var(--role-antagonist)',
+    supporting:  'var(--role-supporting)',
+    client:      'var(--type-character)',
   };
 
   function relColor(type) {
@@ -27,7 +31,7 @@ const LoreGraph = (() => {
   }
 
   function nodeColor(role) {
-    return ROLE_COLORS[role] || '#7a7060';
+    return ROLE_COLORS[role] || 'var(--type-character)';
   }
 
   function nodeRadius(degree) {
@@ -40,13 +44,13 @@ const LoreGraph = (() => {
   // Per-layer config. Each layer's entities become nodes linked to characters
   // only (bipartite). `anchorEdges: false` hides the edges to protagonists
   // ("anchors"), which would otherwise hairball: Holmes is in every case. The
-  // shape means colour is never the only signal; every colour is >= 4.3:1
-  // against the graph background (#ede4d3).
+  // shape means colour is never the only signal. The colours are the --type-*
+  // tokens, which are tuned per theme against the graph background (--panel).
   const LAYER_CONFIG = {
-    cases:     { label: 'Cases',     singular: 'Case',     glyph: '■', shape: d3.symbolSquare,   color: '#6e5a8a', anchorEdges: false, descField: 'synopsis' },
-    locations: { label: 'Locations', singular: 'Location', glyph: '◆', shape: d3.symbolDiamond,  color: '#3f7364', anchorEdges: false, descField: 'description' },
-    artifacts: { label: 'Artifacts', singular: 'Artifact', glyph: '▲', shape: d3.symbolTriangle, color: '#9a5a22', anchorEdges: false, descField: 'description' },
-    factions:  { label: 'Factions',  singular: 'Faction',  glyph: '★', shape: d3.symbolStar,     color: '#56602a', anchorEdges: true,  descField: 'description' },
+    cases:     { label: 'Cases',     singular: 'Case',     glyph: '■', shape: d3.symbolSquare,   color: 'var(--type-case)', anchorEdges: false, descField: 'synopsis' },
+    locations: { label: 'Locations', singular: 'Location', glyph: '◆', shape: d3.symbolDiamond,  color: 'var(--type-location)', anchorEdges: false, descField: 'description' },
+    artifacts: { label: 'Artifacts', singular: 'Artifact', glyph: '▲', shape: d3.symbolTriangle, color: 'var(--type-artifact)', anchorEdges: false, descField: 'description' },
+    factions:  { label: 'Factions',  singular: 'Faction',  glyph: '★', shape: d3.symbolStar,     color: 'var(--type-faction)', anchorEdges: true,  descField: 'description' },
   };
   const LAYER_SYMBOL_AREA = 80;
   const LAYER_COLLIDE_R   = 9;
@@ -693,7 +697,7 @@ const LoreGraph = (() => {
         .data(links, d => d.key)
         .join(enter => enter.append('line')
           .attr('class', d => d.layer ? 'graph-link graph-link-layer' : 'graph-link')
-          .attr('stroke', d => d.layer ? LAYER_CONFIG[d.layer].color : relColor(d.type))
+          .style('stroke', d => d.layer ? LAYER_CONFIG[d.layer].color : relColor(d.type))
           .attr('stroke-width', d => d.layer ? 1 : 1.5)
           .attr('stroke-opacity', d => d.layer ? 0.35 : 0.55)
           .attr('stroke-dasharray', d => d.layer ? '4 3' : null)
@@ -742,14 +746,12 @@ const LoreGraph = (() => {
           // fixed-size shapes (shape + colour, so colour is never the only cue).
           n.filter(d => d.kind !== 'layer').append('circle')
             .attr('r', d => nodeRadius(d.degree))
-            .attr('fill', d => nodeColor(d.role))
-            .attr('stroke', '#1a1510')
+            .style('fill', d => nodeColor(d.role))
             .attr('stroke-width', 1);
 
           n.filter(d => d.kind === 'layer').append('path')
             .attr('d', d => d3.symbol().type(LAYER_CONFIG[d.layer].shape).size(LAYER_SYMBOL_AREA)())
-            .attr('fill', d => LAYER_CONFIG[d.layer].color)
-            .attr('stroke', '#1a1510')
+            .style('fill', d => LAYER_CONFIG[d.layer].color)
             .attr('stroke-width', 1);
 
           n.append('text')

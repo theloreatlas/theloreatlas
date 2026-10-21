@@ -1,0 +1,54 @@
+/* The Lore Atlas design tokens. Dark is default; light applies with [data-theme="light"] on <html>.
+   Per-universe overrides go on [data-universe="<id>"] (see Adding a Universe.md). */
+:root{
+  --font-ui:'Outfit',system-ui,sans-serif;
+  --font-display:'Libre Caslon Display',Georgia,serif;
+  --font-body:'Libre Caslon Text',Georgia,serif;
+
+  --bg:#0e1822; --raised:#15222f; --panel:#111e2a; --popover:#0f1b26; --hover:#1b2b3a;
+  --track:#2a3a4a; --skeleton:#1a2836;
+  --ink:#ece5d6; --text-body:#dfe3e6; --text-2:#c8cfd6; --muted:#a9b3bd; --faint:#7f8b96;
+  --accent:#c9a96b; --accent-bright:#e7c98b; --on-accent:#0e1822;
+  --primary-bg:#c9a96b; --primary-ink:#0e1822;
+  --line-14:rgba(201,169,107,.14); --line-20:rgba(201,169,107,.2); --line-25:rgba(201,169,107,.25); --line-35:rgba(201,169,107,.35); --line-45:rgba(201,169,107,.45);
+  --fog-a:#15222f; --fog-b:#122030;
+  --fog:repeating-linear-gradient(135deg,var(--fog-a) 0 10px,var(--fog-b) 10px 20px);
+  --strip-fog:repeating-linear-gradient(135deg,#132131 0 8px,#101c28 8px 16px); --strip-fog-edge:#24333f;
+  --grid-line:rgba(201,169,107,.06);
+
+  --cell-read-bg:#5f5640; --cell-read-bd:#7a6c4c; --cell-read-ink:#f3ead6;
+  --cell-cur-bg:#e7c98b; --cell-cur-ink:#0e1822;
+  --cell-unread-bd:rgba(169,179,189,.45); --cell-unread-ink:#8c97a2;
+
+  --type-character:#c9a96b; --type-protagonist:#e7c98b; --type-case:#8fb3d1; --type-location:#9cc5a1;
+  --type-artifact:#d9a07a; --type-faction:#c58fb0; --type-unreached:#2a3a4a;
+  --rel-ally:#e7c98b; --rel-family:#8fb3d1; --rel-adversary:#e0806e; --rel-romantic:#e3a1c0; --rel-other:rgba(236,229,214,.35);
+  --role-protagonist:#e7c98b; --role-supporting:#8fb3d1; --role-antagonist:#e0806e;
+  --chip-finished-bg:rgba(143,179,209,.16); --chip-finished-ink:#bcd3e6;
+
+  --r-cell-strip:3px; --r-cell:8px; --r-row:10px; --r-block:14px; --r-card:16px; --r-panel:18px; --r-pill:999px;
+  --shadow-pop:0 30px 60px -20px rgba(0,0,0,.7);
+  --sp-1:4px; --sp-2:8px; --sp-3:12px; --sp-4:16px; --sp-5:24px; --sp-6:32px; --sp-7:48px; --sp-8:64px; --sp-9:72px;
+  --gutter:48px; --tap:44px;
+}
+[data-theme="light"]{
+  --bg:#f4efe4; --raised:#fbf8f1; --panel:#fbf8f1; --popover:#fbf8f1; --hover:#efe8da;
+  --track:#ddd5c5; --skeleton:#e6dfd1;
+  --ink:#16212c; --text-body:#24303b; --text-2:#36414c; --muted:#55606b; --faint:#6f6a60;
+  --accent:#7a5c22; --accent-bright:#9a7228; --on-accent:#f4efe4;
+  --primary-bg:#16212c; --primary-ink:#f4efe4;
+  --line-14:rgba(22,33,44,.1); --line-20:rgba(138,106,44,.2); --line-25:rgba(22,33,44,.14); --line-35:rgba(138,106,44,.45); --line-45:rgba(138,106,44,.5);
+  --fog-a:#ebe4d6; --fog-b:#e3dbcb;
+  --strip-fog:repeating-linear-gradient(135deg,#ebe4d6 0 8px,#e3dbcb 8px 16px); --strip-fog-edge:#d8cfbf;
+  --grid-line:rgba(22,33,44,.05);
+  --cell-read-bg:rgba(138,106,44,.32); --cell-read-bd:rgba(138,106,44,.5); --cell-read-ink:#16212c;
+  --cell-cur-bg:#16212c; --cell-cur-ink:#f4efe4;
+  --cell-unread-bd:rgba(22,33,44,.3); --cell-unread-ink:#6f6a60;
+  --type-character:#8a6a2c; --type-protagonist:#9a7228; --type-case:#3d6f96; --type-location:#4f8a5a;
+  --type-artifact:#b0643a; --type-faction:#9a5a82; --type-unreached:#cdc4b2;
+  --rel-ally:#a07a2e; --rel-family:#3d6f96; --rel-adversary:#b8483a; --rel-romantic:#b0507e; --rel-other:rgba(22,33,44,.25);
+  --role-protagonist:#9a7228; --role-supporting:#3d6f96; --role-antagonist:#b8483a;
+  --chip-finished-bg:rgba(61,111,150,.12); --chip-finished-ink:#2d5a7d;
+  --shadow-pop:0 30px 60px -20px rgba(22,33,44,.22);
+}
+@media (max-width:760px){ :root{ --gutter:20px; } }
