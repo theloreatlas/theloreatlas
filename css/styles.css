@@ -61,32 +61,24 @@ summary:focus-visible,
 
 /* --- Header --- */
 #site-header {
-  background: var(--bg);
-  color: var(--ink);
-  padding: 0 2.5rem;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  height: 62px;
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  border-bottom: 1px solid var(--line-20);
+  gap: 36px;
+  padding: 22px var(--gutter);
+  background: var(--bg);
+  color: var(--ink);
 }
 
 #site-logo {
   font-family: var(--font-ui);
-  font-size: 0.8125rem;
+  font-size: 13px;
   font-weight: 500;
   letter-spacing: 0.26em;
   color: var(--ink);
   text-decoration: none;
   text-transform: uppercase;
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  transition: color 0.15s ease;
   white-space: nowrap;
+  transition: color 0.15s ease;
 }
 
 #site-logo:hover {
@@ -94,46 +86,50 @@ summary:focus-visible,
   text-decoration: none;
 }
 
-.logo-ornament {
+/* Universe pill: a plain link to the hub until the switcher exists (Phase 6). */
+.universe-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+  padding: 6px 12px;
+  border: 1px solid var(--line-35);
+  border-radius: var(--r-pill);
+  font-size: 14px;
+  line-height: 1.4;
   color: var(--accent);
-  font-size: 0.6rem;
+  white-space: nowrap;
+  transition: color 0.15s ease, border-color 0.15s ease;
 }
 
-#site-header nav {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
+.universe-pill:hover {
+  color: var(--accent-bright);
+  border-color: var(--line-45);
+  text-decoration: none;
+}
+
+.universe-name-short {
+  display: none;
+}
+
+.universe-caret {
+  font-size: 0.85em;
 }
 
 #site-nav {
   display: flex;
-  gap: 0.25rem;
+  gap: 28px;
   align-items: center;
   list-style: none;
 }
 
 #site-nav a {
+  display: block;
+  padding: 6px 0;
+  font-size: 14px;
   color: var(--muted);
-  font-family: var(--font-ui);
-  font-size: 0.8125rem;
-  text-decoration: none;
-  padding: 0.3rem 0.5rem;
-  border-radius: var(--r-cell);
-  transition: color 0.15s ease, background-color 0.15s ease;
-  position: relative;
   white-space: nowrap;
-}
-
-#site-nav a::after {
-  content: '';
-  position: absolute;
-  bottom: -1px;
-  left: 50%;
-  width: 0;
-  height: 1px;
-  background: var(--accent);
-  transform: translateX(-50%);
-  transition: width 0.15s ease;
+  transition: color 0.15s ease;
 }
 
 #site-nav a:hover,
@@ -142,9 +138,45 @@ summary:focus-visible,
   text-decoration: none;
 }
 
-#site-nav a:hover::after,
-#site-nav a.active::after {
-  width: calc(100% - 1rem);
+/* --- Header search --- */
+#site-search {
+  position: relative;
+  flex: 0 1 240px;
+  min-width: 0;
+  margin-left: auto;
+}
+
+#site-search .search-icon {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--muted);
+  pointer-events: none;
+}
+
+#site-search-input {
+  width: 100%;
+  padding: 9px 16px 9px 42px;
+  border: 1px solid transparent;
+  border-radius: var(--r-pill);
+  background: var(--raised);
+  font-family: var(--font-ui);
+  font-size: 14px;
+  color: var(--ink);
+  -webkit-appearance: none;
+  appearance: none;
+  transition: border-color 0.15s ease;
+}
+
+#site-search-input::placeholder {
+  color: var(--muted);
+}
+
+/* README: a 1px accent ring instead of the global outline. */
+#site-search-input:focus-visible {
+  outline: none;
+  border-color: var(--accent);
 }
 
 /* --- Theme switch --- */
@@ -186,108 +218,201 @@ summary:focus-visible,
   }
 }
 
-/* --- Reader Position Bar --- */
-#reader-position-bar {
-  background: var(--raised);
-  border-bottom: 1px solid var(--line-20);
-  padding: 0 2.5rem;
-  display: flex;
-  align-items: center;
-  gap: 1.25rem;
-  height: 42px;
-  position: sticky;
-  top: 62px;
-  z-index: 99;
+/* --- Bookmark bar --- */
+#bookmark-bar {
+  padding: 8px var(--gutter) 0;
 }
 
-#reader-position-bar[hidden] {
+#bookmark-bar[hidden] {
   display: none;
 }
 
-.rp-label {
-  font-family: var(--font-ui);
-  font-size: 0.75rem;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.16em;
-  color: var(--accent);
-  white-space: nowrap;
-  flex-shrink: 0;
+.bm-progress {
+  display: none;
 }
 
-.rp-controls {
+.bm-row {
   display: flex;
   align-items: center;
-  gap: 0.45rem;
+  gap: 14px;
+  margin-bottom: 14px;
 }
 
-/* Native arrow on purpose: it follows color-scheme in both themes. */
-#rp-book,
-#rp-chapter {
-  background: var(--bg);
-  border: 1px solid var(--line-35);
-  border-radius: var(--r-cell);
-  color: var(--text-body);
+.bm-label {
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--accent);
+  white-space: nowrap;
+}
+
+.bm-title {
+  min-width: 0;
+  padding: 0;
+  border: 0;
+  background: none;
   font-family: var(--font-ui);
-  font-size: 0.875rem;
-  padding: 0.28rem 0.5rem;
+  color: inherit;
+  text-align: left;
   cursor: pointer;
-  transition: border-color 0.15s ease;
 }
 
-#rp-book {
-  min-width: 17rem;
+.bm-title-line {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
-#rp-chapter {
-  min-width: 6rem;
+.bm-book {
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--ink);
 }
 
-#rp-book:focus,
-#rp-chapter:focus {
-  border-color: var(--accent);
+.bm-unit {
+  margin-left: 12px;
+  font-size: 15px;
+  color: var(--muted);
 }
 
-#rp-chapter:disabled {
+.bm-caret {
+  margin-left: 8px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.bm-short {
+  display: none;
+}
+
+.bm-steps {
+  display: flex;
+  gap: 8px;
+}
+
+.bm-step {
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border: 1px solid var(--line-45);
+  border-radius: var(--r-pill);
+  background: transparent;
+  font-family: var(--font-ui);
+  font-size: 16px;
+  line-height: 1;
+  color: var(--ink);
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.bm-step:hover:not(:disabled) {
+  background: var(--hover);
+}
+
+.bm-step:disabled {
   opacity: 0.35;
   cursor: not-allowed;
 }
 
-.rp-clear-btn {
-  background: transparent;
-  border: 1px solid var(--line-35);
-  border-radius: var(--r-cell);
-  color: var(--muted);
-  font-family: var(--font-ui);
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  padding: 0.3rem 0.7rem;
-  cursor: pointer;
-  transition: border-color 0.15s ease, color 0.15s ease, background-color 0.15s ease;
-}
-
-.rp-clear-btn:hover {
-  border-color: var(--line-45);
-  color: var(--accent-bright);
-  background-color: var(--hover);
-}
-
-.rp-status {
-  font-family: var(--font-ui);
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: var(--accent);
+.bm-note {
   margin-left: auto;
+  font-size: 13px;
+  color: var(--muted);
+  text-align: right;
+}
+
+.bm-clear {
+  padding: 0;
+  border: 0;
+  background: none;
+  font-family: var(--font-ui);
+  font-size: 13px;
+  color: var(--accent);
+  text-decoration: underline;
   white-space: nowrap;
+  cursor: pointer;
+  transition: color 0.15s ease;
+}
+
+.bm-clear:hover {
+  color: var(--accent-bright);
+}
+
+.bm-clear[hidden] {
+  display: none;
+}
+
+/* Book strip: one segment per book, widths proportional to chapter/story count
+   (flex-grow is set from JS). */
+.bm-strip {
+  display: flex;
+  gap: 3px;
+}
+
+.bm-seg {
+  position: relative;
+  flex: 1 1 0;
+  min-width: 0;
+  padding: 12px 10px 14px;
+  border: 0;
+  border-top: 2px solid var(--line-45);
+  background: var(--raised);
+  font-family: var(--font-ui);
+  text-align: left;
+  color: var(--text-body);
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.bm-seg:hover {
+  background: var(--hover);
+}
+
+.bm-seg.is-later {
+  border-top-color: var(--strip-fog-edge);
+  background: var(--strip-fog);
+  color: var(--faint);
+}
+
+.bm-seg.is-later:hover {
+  background: var(--hover);
+}
+
+.bm-seg-title,
+.bm-seg-year {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.bm-seg-title {
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.bm-seg-year {
+  font-size: 11px;
+  line-height: 1.4;
+  color: var(--faint);
+}
+
+/* Progress line over the segment's top border; width is set from JS. */
+.bm-line {
+  position: absolute;
+  top: -2px;
+  left: 0;
+  height: 2px;
+  background: var(--accent-bright);
 }
 
 /* --- Layout --- */
 #main-content {
-  max-width: 980px;
+  max-width: calc(916px + 2 * var(--gutter));
   margin: 0 auto;
-  padding: 3rem 2rem 5rem;
+  padding: 3rem var(--gutter) 5rem;
 }
 
 /* Content reveal: a plain fade, no movement. */
@@ -975,8 +1100,12 @@ summary:focus-visible,
 /* --- Footer --- */
 #site-footer {
   border-top: 1px solid var(--line-25);
-  padding: 2rem 2.5rem;
+  padding: 2rem var(--gutter);
   text-align: center;
+}
+
+#site-footer .theme-switch {
+  margin-top: 1.25rem;
 }
 
 .footer-ornament {
@@ -1019,177 +1148,200 @@ summary:focus-visible,
 }
 
 /* ============================================================
-   Mobile Responsiveness (Session 13.8; breakpoint aligned in the
-   13.8 follow-up, Session 13.9 Step 0)
-   Breakpoints: max-width 1119px (nav collapses into the hamburger; the
-   11 Outfit nav links plus the theme switch need ~1100px), 991px
-   (reader-bar) and 480px (phone).
-   graph.css keeps its own pre-existing max-width: 767px breakpoint,
-   a stricter subset of this one.
-   Content pages only — the graph panel's mobile rules live in
-   graph.css and are untouched here.
+   Responsive page frame (README: Mobile chrome, Tablet)
+   Below 900px the header nav and search hide and the bottom tab
+   bar takes over. At 760px and below the bookmark bar becomes a
+   sticky strip with a segment progress bar.
    ============================================================ */
 
-/* --- Nav toggle (hamburger) --- */
-.nav-toggle {
+/* Bottom tab bar: hidden on desktop. */
+#tab-bar {
   display: none;
-  width: 44px;
-  height: 44px;
-  padding: 0;
-  border: 1px solid var(--line-35);
-  border-radius: var(--r-cell);
-  background: transparent;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 5px;
-  cursor: pointer;
-  flex-shrink: 0;
 }
 
-.nav-toggle-bar {
-  display: block;
-  width: 20px;
-  height: 2px;
-  background: var(--accent);
-  border-radius: 1px;
-  transition: transform 0.2s ease, opacity 0.2s ease;
-}
-
-body.nav-open .nav-toggle-bar:nth-child(1) {
-  transform: translateY(7px) rotate(45deg);
-}
-
-body.nav-open .nav-toggle-bar:nth-child(2) {
-  opacity: 0;
-}
-
-body.nav-open .nav-toggle-bar:nth-child(3) {
-  transform: translateY(-7px) rotate(-45deg);
-}
-
-@media (max-width: 1119px) {
-  /* --- Header / Nav --- */
-  .nav-toggle {
-    display: flex;
-  }
-
-  #site-header nav {
-    display: none;
-    position: fixed;
-    top: 62px;
-    left: 0;
-    right: 0;
-    background: var(--bg);
-    border-bottom: 1px solid var(--line-25);
-    box-shadow: var(--shadow-pop);
-    max-height: calc(100vh - 62px);
-    overflow-y: auto;
-    z-index: 150;
-  }
-
-  body.nav-open #site-header nav {
-    display: block;
+@media (max-width: 1200px) {
+  #site-header {
+    gap: 20px;
   }
 
   #site-nav {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0;
-    padding: 0.5rem 0;
-  }
-
-  #site-nav a {
-    display: flex;
-    align-items: center;
-    padding: 0.85rem 1.5rem;
-    font-size: 1rem;
-    min-height: 44px;
-    border-radius: 0;
-    box-sizing: border-box;
-  }
-
-  #site-nav a::after {
-    display: none;
-  }
-
-  /* The theme switch lives inside the open menu on small screens. */
-  .theme-switch {
-    display: flex;
-    width: max-content;
-    margin: 0.25rem 1.5rem 1.25rem;
+    gap: 20px;
   }
 }
 
-@media (max-width: 991px) {
-  /* --- Reader position bar: two rows --- */
-  #reader-position-bar {
-    position: static;
-    flex-wrap: wrap;
-    height: auto;
-    padding: 0.6rem 1rem;
-    row-gap: 0.5rem;
-    column-gap: 0.75rem;
+@media (max-width: 899px) {
+  #site-nav-wrap,
+  #site-search,
+  #site-header > .theme-switch {
+    display: none;
   }
 
-  .rp-label {
-    order: 1;
-  }
-
-  .rp-status {
-    order: 2;
-    margin-left: auto;
-  }
-
-  .rp-controls {
-    order: 3;
-    flex-basis: 100%;
-    width: 100%;
-    flex-wrap: nowrap;
-    gap: 0.4rem;
-  }
-
-  #rp-book,
-  #rp-chapter {
-    font-size: 1rem;
-    min-height: 44px;
-    box-sizing: border-box;
-  }
-
-  #rp-book {
-    min-width: 0;
-    flex: 1 1 auto;
-    width: auto;
-  }
-
-  #rp-chapter {
-    min-width: 0;
-    flex: 0 1 4.5rem;
-  }
-
-  .rp-clear-btn {
-    min-height: 44px;
-    box-sizing: border-box;
-    flex: 0 0 auto;
-    white-space: nowrap;
-  }
-
-  /* --- Header padding --- */
   #site-header {
-    padding: 0 1.25rem;
+    justify-content: space-between;
+  }
+
+  #tab-bar {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 100;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    padding: 4px 0 calc(18px + env(safe-area-inset-bottom));
+    background: var(--bg);
+    border-top: 1px solid var(--line-20);
+  }
+
+  #tab-bar a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    font-size: 12px;
+    color: var(--muted);
+    transition: color 0.15s ease;
+  }
+
+  #tab-bar a:hover {
+    text-decoration: none;
+  }
+
+  #tab-bar a.active {
+    color: var(--accent-bright);
+  }
+
+  /* Keep the footer clear of the fixed bar (44 + 4 + 18 + border). */
+  body {
+    padding-bottom: calc(67px + env(safe-area-inset-bottom));
+  }
+}
+
+@media (max-width: 760px) {
+  #site-header {
+    gap: 12px;
+    padding: 16px var(--gutter) 12px;
+  }
+
+  #site-logo {
+    font-size: 12px;
+    letter-spacing: 0.24em;
+  }
+
+  .universe-pill {
+    font-size: 13px;
+  }
+
+  .universe-name {
+    display: none;
+  }
+
+  .universe-name-short {
+    display: inline;
+  }
+
+  #bookmark-bar {
+    position: sticky;
+    top: 0;
+    z-index: 90;
+    padding: 10px var(--gutter) 12px;
+    background: var(--raised);
+    border-top: 1px solid var(--line-20);
+    border-bottom: 1px solid var(--line-20);
+  }
+
+  .bm-strip,
+  .bm-note,
+  .bm-clear {
+    display: none;
+  }
+
+  .bm-progress {
+    display: flex;
+    gap: 2px;
+    margin-bottom: 10px;
+  }
+
+  .bm-prog-seg {
+    flex: 1 1 0;
+    height: 4px;
+    background: var(--track);
+  }
+
+  .bm-prog-fill {
+    display: block;
+    height: 100%;
+    background: var(--accent-bright);
+  }
+
+  .bm-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas:
+      "label steps"
+      "title steps";
+    align-items: center;
+    column-gap: 12px;
+    row-gap: 2px;
+    margin-bottom: 0;
+  }
+
+  .bm-label {
+    grid-area: label;
+    font-size: 11px;
+  }
+
+  /* 44px tap target; the negative margin tucks it up under the label so the
+     bar stays about as tall as the steppers. */
+  .bm-title {
+    grid-area: title;
+    width: 100%;
+    min-height: 44px;
+    margin-top: -12px;
+  }
+
+  .bm-title-line {
+    line-height: 44px;
+  }
+
+  .bm-book {
+    font-size: 15px;
+  }
+
+  .bm-unit {
+    margin-left: 0;
+    font-size: 15px;
+  }
+
+  .bm-unit::before {
+    content: '\00b7';
+    margin: 0 0.4em;
+  }
+
+  .bm-caret {
+    display: none;
+  }
+
+  .bm-long {
+    display: none;
+  }
+
+  .bm-short {
+    display: inline;
+  }
+
+  .bm-steps {
+    grid-area: steps;
+  }
+
+  .bm-step {
+    width: 44px;
+    height: 44px;
+    font-size: 18px;
   }
 }
 
 @media (max-width: 480px) {
-  /* --- Header --- */
-  #site-header {
-    padding: 0 1rem;
-  }
-
-  .logo-ornament {
-    display: none;
-  }
-
   .detail-prose {
     font-size: 1.0625rem;
     line-height: 1.65;

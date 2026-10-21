@@ -3,48 +3,60 @@
  * Part of The Lore Atlas SPA (split from app.js, Session 13.5).
  */
 
-// ── Nav active state ─────────────────────────────────────────────────────────
+// ── Site chrome: nav active state, header search ─────────────────────────────
 
+// Which primary nav item a route belongs to: 'atlas' | 'browse' | 'timeline' |
+// 'graph' | 'search' | null. Browse covers every list and entry page except
+// the timeline (events) and the graph.
+function navKeyForRoute(parts) {
+  if (parts.length === 0) return 'atlas';
+  if (parts[0] === 'search') return 'search';
+  if (parts[0] === 'series') return 'atlas';
+  if (!LoreLoader.getSeriesById(parts[0])) return null;
+  if (parts.length === 1) return 'atlas';
+  if (parts[1] === 'events') return 'timeline';
+  if (parts[1] === 'graph') return 'graph';
+  return ENTITY_TYPES.some(t => t.key === parts[1]) ? 'browse' : null;
+}
+
+// Covers both the header nav and the bottom tab bar (each link has data-nav).
 function updateNavActive(parts) {
-  document.querySelectorAll('#site-nav a').forEach(a => a.classList.remove('active'));
-  if (parts.length === 0) {
-    const homeLink = document.querySelector('#site-nav a[href="/"]');
-    if (homeLink) homeLink.classList.add('active');
-  }
+  const key = navKeyForRoute(parts);
+  document.querySelectorAll('[data-nav]').forEach(a => {
+    const on = a.dataset.nav === key;
+    a.classList.toggle('active', on);
+    if (on) a.setAttribute('aria-current', 'page');
+    else a.removeAttribute('aria-current');
+  });
 }
 
-// ── Mobile nav toggle (hamburger, ≤768px) ───────────────────────────────────
+let siteSearchInitialized = false;
 
-let navToggleInitialized = false;
+function initSiteSearch() {
+  if (siteSearchInitialized) return;
+  const form  = document.getElementById('site-search');
+  const input = document.getElementById('site-search-input');
+  if (!form || !input) return;
 
-function initNavToggle() {
-  if (navToggleInitialized) return;
-  const toggle = document.getElementById('nav-toggle');
-  const nav    = document.getElementById('site-nav');
-  if (!toggle || !nav) return;
-
-  toggle.addEventListener('click', () => {
-    const isOpen = document.body.classList.toggle('nav-open');
-    toggle.setAttribute('aria-expanded', String(isOpen));
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const q = input.value.trim();
+    input.blur();
+    navigate(searchPath(q));
   });
 
-  // Close on link click (route change also closes it, but a click on the
-  // already-active link doesn't trigger a route change).
-  nav.addEventListener('click', (e) => {
-    if (e.target.closest('a')) closeNavMenu();
-  });
-
+  // "/" jumps to search, unless the reader is typing somewhere or the field is
+  // hidden (below 900px the tab bar's Search link takes over).
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') closeNavMenu();
+    if (e.key !== '/' || e.metaKey || e.ctrlKey || e.altKey) return;
+    const t = e.target;
+    if (t && (t.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName))) return;
+    if (!input.offsetParent) return;
+    e.preventDefault();
+    input.focus();
   });
 
-  navToggleInitialized = true;
-}
-
-function closeNavMenu() {
-  document.body.classList.remove('nav-open');
-  const toggle = document.getElementById('nav-toggle');
-  if (toggle) toggle.setAttribute('aria-expanded', 'false');
+  siteSearchInitialized = true;
 }
 
 // ── Views ────────────────────────────────────────────────────────────────────

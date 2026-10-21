@@ -12,7 +12,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Libre+Caslon+Display:wght@400&family=Libre+Caslon+Text:wght@400&display=swap" rel="stylesheet">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=bb2bcdfe">
   <link rel="stylesheet" href="/css/tokens.css?v=3e275d54">
-  <link rel="stylesheet" href="/css/styles.css?v=87a28dff">
+  <link rel="stylesheet" href="/css/styles.css?v=b7adea66">
   <link rel="stylesheet" href="/css/graph.css?v=2408ecee">
               <script src="/js/spa-redirect.js?v=0d367250"></script>
   <title>Sherlock Holmes and Mrs. Hudson | The Lore Atlas</title>
@@ -89,50 +89,50 @@
 <body>
 
   <header id="site-header">
-    <a href="/" id="site-logo">
-      <span class="logo-ornament">&loz;</span>
-      The Lore Atlas
-      <span class="logo-ornament">&loz;</span>
+    <a href="/" id="site-logo">The Lore Atlas</a>
+    <a href="/sherlock_holmes/" id="universe-pill" class="universe-pill">
+      <span class="universe-name">Sherlock Holmes</span><span class="universe-name-short">Holmes</span>
+      <span class="universe-caret" aria-hidden="true">&#9662;</span>
     </a>
-    <button id="nav-toggle" class="nav-toggle" type="button" aria-controls="site-nav" aria-expanded="false" aria-label="Menu">
-      <span class="nav-toggle-bar"></span>
-      <span class="nav-toggle-bar"></span>
-      <span class="nav-toggle-bar"></span>
-    </button>
-    <nav>
+    <nav id="site-nav-wrap" aria-label="Primary">
       <ul id="site-nav">
-        <li><a href="/">Home</a></li>
-        <li><a href="/sherlock_holmes/characters/">Characters</a></li>
-        <li><a href="/sherlock_holmes/cases/">Cases</a></li>
-        <li><a href="/sherlock_holmes/books/">Books</a></li>
-        <li><a href="/sherlock_holmes/locations/">Locations</a></li>
-        <li><a href="/sherlock_holmes/artifacts/">Artifacts</a></li>
-        <li><a href="/sherlock_holmes/factions/">Factions</a></li>
-        <li><a href="/sherlock_holmes/events/">Timeline</a></li>
-        <li><a href="/sherlock_holmes/relationships/">Relationships</a></li>
-        <li><a href="/sherlock_holmes/graph/">Graph</a></li>
-        <li><a href="/search">Search</a></li>
+        <li><a href="/sherlock_holmes/" data-nav="atlas">Atlas</a></li>
+        <li><a href="/sherlock_holmes/characters/" data-nav="browse">Browse</a></li>
+        <li><a href="/sherlock_holmes/events/" data-nav="timeline">Timeline</a></li>
+        <li><a href="/sherlock_holmes/graph/" data-nav="graph">Graph</a></li>
       </ul>
-      <div class="theme-switch" role="group" aria-label="Theme">
-        <button type="button" data-theme-option="dark" aria-pressed="true">Dark</button>
-        <button type="button" data-theme-option="light" aria-pressed="false">Light</button>
-      </div>
     </nav>
+    <form id="site-search" role="search" action="/search" method="get">
+      <svg class="search-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="7" r="5"/><path d="M11 11l3.5 3.5"/></svg>
+      <input type="search" id="site-search-input" name="q" placeholder="Search the atlas" aria-label="Search the atlas" autocomplete="off">
+    </form>
+    <div class="theme-switch" role="group" aria-label="Theme">
+      <button type="button" data-theme-option="dark" aria-pressed="true">Dark</button>
+      <button type="button" data-theme-option="light" aria-pressed="false">Light</button>
+    </div>
   </header>
 
-  <div id="reader-position-bar" hidden aria-label="Reading position filter">
-    <span class="rp-label">Reading position</span>
-    <div class="rp-controls">
-      <select id="rp-book" aria-label="Select book">
-        <option value="">— Select a book —</option>
-      </select>
-      <select id="rp-chapter" aria-label="Select chapter" disabled>
-        <option value="">Ch. —</option>
-      </select>
-      <button id="rp-clear" type="button" class="rp-clear-btn">Clear</button>
+  <section id="bookmark-bar" aria-label="Your bookmark" hidden>
+    <div class="bm-progress" aria-hidden="true"></div>
+    <div class="bm-row">
+      <span class="bm-label">Your bookmark</span>
+      <button type="button" id="bookmark-title" class="bm-title" aria-haspopup="dialog">
+        <span class="bm-title-line">
+          <span class="bm-book"><span class="bm-long"></span><span class="bm-short"></span></span>
+          <span class="bm-unit"><span class="bm-long"></span><span class="bm-short"></span></span>
+          <span class="bm-caret" aria-hidden="true">&#9662;</span>
+        </span>
+      </button>
+      <div class="bm-steps">
+        <button type="button" id="bookmark-prev" class="bm-step" aria-label="Previous chapter">&minus;</button>
+        <button type="button" id="bookmark-next" class="bm-step" aria-label="Next chapter">+</button>
+      </div>
+      <span class="bm-note" id="bookmark-note"></span>
+      <button type="button" id="bookmark-clear" class="bm-clear">Show everything</button>
     </div>
-    <span id="rp-status" class="rp-status" aria-live="polite"></span>
-  </div>
+    <div class="bm-strip"></div>
+    <p class="visually-hidden" id="bookmark-live" aria-live="polite"></p>
+  </section>
 
   <main id="main-content">
     <p class="state-loading">Loading…</p>
@@ -141,18 +141,29 @@
   <footer id="site-footer">
     <div class="footer-ornament" aria-hidden="true">&#10053; &#10053; &#10053;</div>
     <p>An encyclopedia of public domain literary universes</p>
+    <div class="theme-switch" role="group" aria-label="Theme">
+      <button type="button" data-theme-option="dark" aria-pressed="true">Dark</button>
+      <button type="button" data-theme-option="light" aria-pressed="false">Light</button>
+    </div>
   </footer>
+
+  <nav id="tab-bar" aria-label="Primary mobile">
+    <a href="/sherlock_holmes/" data-nav="atlas">Atlas</a>
+    <a href="/sherlock_holmes/characters/" data-nav="browse">Browse</a>
+    <a href="/sherlock_holmes/graph/" data-nav="graph">Graph</a>
+    <a href="/search" data-nav="search">Search</a>
+  </nav>
 
   <script src="/js/spoiler.js?v=06e527e2"></script>
   <script src="/js/loader.js?v=fdfafb3a"></script>
   <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js" integrity="sha384-CjloA8y00+1SDAUkjs099PVfnY2KmDC2BZnws9kh8D/lX1s46w6EPhpXdqMfjK6i" crossorigin="anonymous"></script>
   <script src="/js/graph.js?v=e9e8c180"></script>
   <script src="/js/core.js?v=0e4b4bd6"></script>
-  <script src="/js/views.js?v=a4c12cbb"></script>
+  <script src="/js/views.js?v=41074e2a"></script>
   <script src="/js/search.js?v=9b99e8b5"></script>
-  <script src="/js/reader-position.js?v=a07cf359"></script>
+  <script src="/js/reader-position.js?v=616e3f67"></script>
   <script src="/js/seo.js?v=7db2f5d5"></script>
-  <script src="/js/app.js?v=1e647958"></script>
+  <script src="/js/app.js?v=a6b65b93"></script>
 
 </body>
 </html>
