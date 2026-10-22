@@ -40,7 +40,7 @@ async function onRouteChange() {
     _seriesObj = LoreLoader.getSeriesById(parts[0]);
     const seriesName = _seriesObj ? _seriesObj.name : '';
     setMetaTags(parts, null, null, seriesName, !_seriesObj);
-    renderHome(content);
+    if (_seriesObj) renderHome(content, parts[0]); else renderNotFound(content);
   } else if (parts.length === 2) {
     const [seriesId, entityType] = parts;
     _seriesObj = LoreLoader.getSeriesById(seriesId);

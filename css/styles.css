@@ -276,6 +276,7 @@ summary:focus-visible,
   font-size: 18px;
   font-weight: 500;
   color: var(--ink);
+  white-space: nowrap;
 }
 
 .bm-unit {
@@ -1197,14 +1198,6 @@ a.row:hover {
 
 .panel-head a {
   font-size: 13px;
-}
-
-/* The 40px grid texture behind the graph. */
-.mini-graph {
-  background-image:
-    linear-gradient(var(--grid-line) 1px, transparent 1px),
-    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
-  background-size: 40px 40px;
 }
 
 .conn-chips {

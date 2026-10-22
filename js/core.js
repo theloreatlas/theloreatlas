@@ -127,6 +127,15 @@ function relTypeGroup(type) {
   }
 }
 
+// The five groups, in sidebar and legend order.
+const REL_GROUPS = [
+  { key: 'ally',      label: 'Ally' },
+  { key: 'family',    label: 'Family' },
+  { key: 'adversary', label: 'Adversary' },
+  { key: 'romantic',  label: 'Romantic' },
+  { key: 'other',     label: 'Other' },
+];
+
 // ── Routing ──────────────────────────────────────────────────────────────────
 
 // Entity type → ID prefix. Used to round-trip clean URL slugs back into

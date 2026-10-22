@@ -59,45 +59,6 @@ function initSiteSearch() {
   siteSearchInitialized = true;
 }
 
-// ── Views ────────────────────────────────────────────────────────────────────
-
-function renderHome(container) {
-  const series = LoreLoader.getSeries();
-  let html = `
-    <div class="home-hero">
-      <h1>The Lore Atlas</h1>
-      <p class="tagline">The interactive encyclopedia for public domain literary universes.</p>
-    </div>
-  `;
-
-  for (const s of series) {
-    html += `<div class="series-section">`;
-    html += `<h2><span class="series-label">Universe</span></h2>`;
-    html += `<p class="series-universe-name">${esc(s.name)}</p>`;
-    if (s.description) {
-      html += `<p class="series-description">${esc(s.description)}</p>`;
-    }
-    html += `<div class="entity-type-grid">`;
-
-    for (const et of ENTITY_TYPES) {
-      const entities = LoreLoader.getAll(s.id, et.key);
-      if (entities.length === 0) continue;
-      html += `
-        <a class="entity-type-card" href="${entityListPath(s.id, et.key)}">
-          <div class="card-label">Browse</div>
-          <div class="card-title">${et.label}</div>
-          <div class="card-count">${entities.length} ${entities.length === 1 ? et.singular : et.label}</div>
-        </a>
-      `;
-    }
-
-    html += `</div></div>`;
-  }
-
-  container.innerHTML = html;
-}
-
-
 // ── Lists ─────────────────────────────────────────────────────────────────────
 
 // Filter and sort state per list. It lives in the module so it survives a
@@ -741,7 +702,6 @@ function mountMiniGraph(container, seriesId) {
   const el = container.querySelector('.mini-graph');
   if (!el) return;
   const mount = () => LoreGraph.init(el, seriesId, {
-    layerControls: false,
     syncUrl: false,
     focusId: el.dataset.focusId,
     height: 300,
@@ -1141,32 +1101,87 @@ function graphListHtml(seriesId) {
       : '<p class="graph-list-none">No connections at your reading position.</p>'}</li>`).join('') + '</ul>';
 }
 
+// "6 met so far · 14 hidden by your bookmark", or "30 characters" with no bookmark.
+function graphSummary(seriesId) {
+  const total = LoreLoader.getAll(seriesId, 'characters').length;
+  const shown = graphListData(seriesId).length;
+  if (!SpoilerGate.getPosition(seriesId)) return `${total} characters`;
+  return `${shown} met so far · ${total - shown} hidden by your bookmark`;
+}
+
+// The sidebar's rows. Characters are always drawn, so that row is checked and
+// disabled; the four layers and five relationship groups toggle. Layer glyphs
+// match the shapes on the canvas (shape + colour, never colour alone).
+function graphSideHtml() {
+  const layerRows = LoreGraph.LAYER_ORDER.map(l => `
+    <li><label class="graph-check">
+      <input type="checkbox" data-layer="${esc(l)}">
+      <span class="graph-check-box" aria-hidden="true"></span>
+      <span class="graph-check-mark" data-layer="${esc(l)}" aria-hidden="true">${esc(LoreGraph.LAYER_CONFIG[l].glyph)}</span>
+      <span class="graph-check-label">${esc(LoreGraph.LAYER_CONFIG[l].label)}</span>
+      <span class="graph-check-count"></span>
+    </label></li>`).join('');
+  const relRows = REL_GROUPS.map(g => `
+    <li><label class="graph-check">
+      <input type="checkbox" data-rel="${esc(g.key)}">
+      <span class="graph-check-box" aria-hidden="true"></span>
+      <span class="graph-check-line" data-rel="${esc(g.key)}" aria-hidden="true"></span>
+      <span class="graph-check-label">${esc(g.label)}</span>
+    </label></li>`).join('');
+  return `
+    <h2 class="label">Show</h2>
+    <ul class="graph-checks">
+      <li><label class="graph-check">
+        <input type="checkbox" checked disabled>
+        <span class="graph-check-box" aria-hidden="true"></span>
+        <span class="graph-check-mark" data-layer="characters" aria-hidden="true">&#9679;</span>
+        <span class="graph-check-label">Characters</span>
+      </label></li>${layerRows}
+    </ul>
+    <h2 class="label">Relationships</h2>
+    <ul class="graph-checks">${relRows}</ul>
+    <p class="graph-ring-note" hidden></p>
+    <div class="graph-fog" hidden></div>`;
+}
+
 function renderGraph(container, seriesId) {
   const series = LoreLoader.getSeriesById(seriesId);
   if (!series) { renderNotFound(container); return; }
 
   container.innerHTML = `
-    <a class="skip-link" href="#graph-after">Skip past the graph</a>
-    <div class="page-header">
-      <div class="breadcrumb">
-        <a href="/">Home</a> &rsaquo;
-        <span class="series-label">${esc(series.name)}</span> &rsaquo;
-        Relationship Graph
+    <div class="graph-page">
+      <a class="skip-link" href="#graph-after">Skip past the graph</a>
+      <header class="graph-head">
+        ${crumbsHtml(seriesId, [{ label: 'Graph' }])}
+        <div class="graph-head-row">
+          <h1>Graph</h1>
+          <p class="graph-summary"></p>
+          <div class="graph-view-toggle" role="group" aria-label="Graph view">
+            <button type="button" data-mode="graph" aria-pressed="true">Graph</button>
+            <button type="button" data-mode="list" aria-pressed="false">List</button>
+          </div>
+        </div>
+      </header>
+      <div class="graph-body">
+        <aside class="graph-side" aria-label="Graph filters">
+          <button type="button" class="graph-side-toggle" aria-expanded="false" aria-controls="graph-side-body">
+            <span>Filters</span>
+            <svg class="sort-caret" width="10" height="6" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 1l4 4 4-4"/></svg>
+          </button>
+          <div class="graph-side-body" id="graph-side-body">${graphSideHtml()}</div>
+        </aside>
+        <div class="graph-stage">
+          <div class="graph-wrap">
+            <div id="graph-container"></div>
+            <p class="graph-hint" id="graph-after" tabindex="-1">
+              <span class="hint-coarse">Pinch to zoom &nbsp;·&nbsp; Drag to pan &nbsp;·&nbsp; Tap a node for details</span>
+              <span class="hint-fine">Scroll to zoom &nbsp;·&nbsp; Drag to pan &nbsp;·&nbsp; Click any node for details</span>
+            </p>
+          </div>
+          <div class="graph-list-view" hidden></div>
+        </div>
       </div>
-      <h1>Relationship Graph</h1>
     </div>
-    <div class="graph-view-toggle" role="group" aria-label="Graph view">
-      <button type="button" data-mode="graph" aria-pressed="true">Graph</button>
-      <button type="button" data-mode="list" aria-pressed="false">List</button>
-    </div>
-    <div class="graph-wrap">
-      <div id="graph-container"></div>
-      <p class="graph-hint" id="graph-after" tabindex="-1">
-        <span class="hint-coarse">Pinch to zoom &nbsp;·&nbsp; Drag to pan &nbsp;·&nbsp; Tap a node for details</span>
-        <span class="hint-fine">Scroll to zoom &nbsp;·&nbsp; Drag to pan &nbsp;·&nbsp; Click any node for details</span>
-      </p>
-    </div>
-    <div class="graph-list-view" hidden></div>
   `;
 
   // A fragment navigation would fire popstate, and the router re-renders on
@@ -1178,27 +1193,78 @@ function renderGraph(container, seriesId) {
     if (target) target.focus();
   });
 
+  const side = container.querySelector('.graph-side');
+  const sideToggle = container.querySelector('.graph-side-toggle');
   const wrap = container.querySelector('.graph-wrap');
   const listEl = container.querySelector('.graph-list-view');
+  const summaryEl = container.querySelector('.graph-summary');
   const graphContainer = document.getElementById('graph-container');
   const buttons = [...container.querySelectorAll('.graph-view-toggle button')];
-  const wide = window.matchMedia('(min-width: 768px)');
-  let mode = readGraphViewMode(); // 'graph' | 'list'; list applies only below 768px
+  const wide = window.matchMedia('(min-width: 761px)');
+  let mode = readGraphViewMode(); // 'graph' | 'list'; list applies only on phones
   let controller = null;
   let initialized = false;
 
   const listActive = () => mode === 'list' && !wide.matches;
 
+  // ── Sidebar ────────────────────────────────────────────────────────────────
+  // Redrawn in place from the graph's stats after every update, so a focused
+  // checkbox keeps focus.
+  function renderSide(stats) {
+    summaryEl.textContent = graphSummary(seriesId);
+    for (const input of side.querySelectorAll('input[data-layer]')) {
+      const layer = input.dataset.layer;
+      const n = stats.layerCounts[layer];
+      const on = stats.layers.includes(layer);
+      input.checked = on;
+      input.disabled = n === 0 && !on; // nothing to show yet at this bookmark
+      input.closest('label').querySelector('.graph-check-count').textContent = n === 0 ? 'none yet' : String(n);
+    }
+    for (const input of side.querySelectorAll('input[data-rel]')) {
+      input.checked = stats.relGroups.includes(input.dataset.rel);
+    }
+    const ring = side.querySelector('.graph-ring-note');
+    ring.textContent = stats.ringNote;
+    ring.hidden = !stats.ringNote;
+    const fog = side.querySelector('.graph-fog');
+    const n = stats.hiddenCount;
+    fog.hidden = n === 0;
+    fog.innerHTML = n === 0 ? ''
+      : fogBlock(`${n} ${n === 1 ? 'entry is' : 'entries are'} shown as ${n === 1 ? 'an unlabeled dot' : 'unlabeled dots'}.`);
+  }
+
+  side.addEventListener('change', (e) => {
+    const input = e.target;
+    if (!controller || !input.matches('input[type="checkbox"]')) return;
+    if (input.dataset.layer) {
+      const set = new Set(controller.getLayers());
+      if (input.checked) set.add(input.dataset.layer); else set.delete(input.dataset.layer);
+      controller.setLayers([...set]);
+    } else if (input.dataset.rel) {
+      const set = new Set(controller.getRelGroups());
+      if (input.checked) set.add(input.dataset.rel); else set.delete(input.dataset.rel);
+      controller.setRelGroups([...set]);
+    }
+  });
+
+  // Phones: the filters sit behind a disclosure above the canvas.
+  sideToggle.addEventListener('click', () => {
+    const open = side.classList.toggle('is-open');
+    sideToggle.setAttribute('aria-expanded', String(open));
+  });
+
   // The graph is built lazily: a page that opens in list mode doesn't pay for it
-  // until the reader switches to Graph or the viewport reaches 768px.
+  // until the reader switches to Graph or the viewport reaches 761px.
   function showGraph() {
     const wasHidden = wrap.hidden;
     listEl.hidden = true;
     wrap.hidden = false;
+    side.hidden = false;
     skip.hidden = false;
     if (!initialized) {
       initialized = true;
-      controller = LoreGraph.init(graphContainer, seriesId) || null;
+      controller = LoreGraph.init(graphContainer, seriesId, { onUpdate: renderSide }) || null;
+      side.hidden = !controller; // nothing visible: just the empty-state message
     } else if (wasHidden && controller) {
       controller.relayout(); // a rotation while hidden measured 0
     }
@@ -1207,9 +1273,11 @@ function renderGraph(container, seriesId) {
   function showList() {
     if (controller && controller.getSelectedEntityId()) controller.closePanel({ restoreFocus: false });
     wrap.hidden = true;
+    side.hidden = true;
     skip.hidden = true;
     listEl.hidden = false;
     listEl.innerHTML = graphListHtml(seriesId);
+    summaryEl.textContent = graphSummary(seriesId);
   }
 
   function apply() {
@@ -1244,6 +1312,7 @@ function renderGraph(container, seriesId) {
         graphContainer.replaceChildren();
         initialized = false;
         listEl.innerHTML = graphListHtml(seriesId);
+        summaryEl.textContent = graphSummary(seriesId);
         return true;
       }
       return !!controller && controller.refresh();

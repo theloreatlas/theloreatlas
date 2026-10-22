@@ -8,37 +8,28 @@ const LoreGraph = (() => {
   // Colours are CSS var() strings so the graph follows the theme with no
   // re-render. Apply them to SVG with .style(), never .attr(): var() does not
   // resolve inside SVG presentation attributes.
-  // The design has five relationship types; professional and mentor fall into "other".
-  const REL_COLORS = {
-    ally:         'var(--rel-ally)',
-    enemy:        'var(--rel-adversary)',
-    family:       'var(--rel-family)',
-    professional: 'var(--rel-other)',
-    romantic:     'var(--rel-romantic)',
-    mentor:       'var(--rel-other)',
-    other:        'var(--rel-other)',
-  };
-
-  const ROLE_COLORS = {
-    protagonist: 'var(--role-protagonist)',
-    antagonist:  'var(--role-antagonist)',
-    supporting:  'var(--role-supporting)',
-    client:      'var(--type-character)',
-  };
-
+  // Relationships colour by the design's five groups (relTypeGroup in core.js);
+  // the label keeps the data's own type.
   function relColor(type) {
-    return REL_COLORS[type] || REL_COLORS.other;
+    return `var(--rel-${relTypeGroup(type)})`;
   }
 
+  // Nodes are coloured by entity type (design 3a/8a): every character is the
+  // character gold, protagonists a brighter gold. Role shows in the panel.
   function nodeColor(role) {
-    return ROLE_COLORS[role] || 'var(--type-character)';
+    return role === 'protagonist' ? 'var(--type-protagonist)' : 'var(--type-character)';
   }
 
-  function nodeRadius(degree) {
-    return Math.max(6, Math.min(20, 6 + degree * 1.5));
+  // Node radius from connection count among the visible edges, relative to the
+  // busiest node in the same view (square root, so a hub does not swamp the
+  // rest). lo/hi are the radius range in px.
+  function radiusFor(degree, maxDegree, lo, hi) {
+    return lo + (hi - lo) * Math.sqrt(Math.min(1, degree / Math.max(1, maxDegree)));
   }
+  const NODE_R_MIN = 5;
+  const NODE_R_MAX = 12;
 
-  // Layer ids in canonical (URL, toolbar and legend) order. Session 14.
+  // Layer ids in canonical (URL and sidebar) order. Session 14.
   const LAYER_ORDER = ['cases', 'locations', 'artifacts', 'factions'];
 
   // Per-layer config. Each layer's entities become nodes linked to characters
@@ -54,6 +45,7 @@ const LoreGraph = (() => {
   };
   const LAYER_SYMBOL_AREA = 80;
   const LAYER_COLLIDE_R   = 9;
+  const LAYER_RING_R      = 8;     // a layer node's selection ring sits outside this radius
   const RING_RADIUS_FRAC  = 0.42;  // ring radius = this x min(usable width, height)
   const RING_STRENGTH     = 0.3;
   const LAYER_EDGE_DIST   = 70;
@@ -61,7 +53,13 @@ const LoreGraph = (() => {
   const EARLY_FIT_ALPHA   = 0.3;   // load only: first, un-eased fit below this alpha
   const RING_PAD          = 64;    // adaptive ring: p90 of the inner nodes' distance from the centre + this
   const RING_SMOOTH       = 0.1;   // adaptive ring: R moves this fraction of the way to its target each tick
-  const FIT_PAD           = 24;    // zoom-to-fit padding (px)
+  const FIT_PAD           = 28;    // zoom-to-fit padding (px)
+  const FIT_MAX_SCALE     = 1.6;   // a small graph is magnified this far at most
+  const CANVAS_H          = 640;   // the full graph's canvas height on desktop (px)
+  const LABEL_CHAR_W      = 6.4;   // approx. width of a 12px label character, for the fit box
+  const labelCharW        = () => isNarrow() ? 7.4 : LABEL_CHAR_W; // phone labels are 0.8rem
+  const LABEL_GAP         = 6;     // node edge to label
+  const DOT_R             = 3;     // unreached dot radius (a 6px dot)
   const FIT_MS            = 300;
   const TAP_RADIUS_PX     = 22;    // touch/pen tap: nearest node within this many screen px (a 44px target)
   const TAP_MOVE_MOUSE    = 6;     // a press that moves this far (px) is a drag, not a tap
@@ -69,8 +67,8 @@ const LoreGraph = (() => {
   const TAP_MAX_MS        = 500;   // a longer press is a long-press (reserved), not a tap
 
   // Phone layout (Session 16). Read live, so a resize across the breakpoint
-  // re-reads it. >= 768px is the desktop layout, unchanged.
-  const isNarrow = () => window.matchMedia('(max-width: 767px)').matches;
+  // re-reads it. > 760px is the desktop layout, unchanged.
+  const isNarrow = () => window.matchMedia('(max-width: 760px)').matches;
   // Below this zoom scale, non-anchor character labels are hidden. On a phone a
   // label shows only if it renders at >= 8px (0.8rem x 0.625).
   const labelMinScale = () => isNarrow() ? 0.625 : 0.5;
@@ -105,10 +103,29 @@ const LoreGraph = (() => {
     return canonicalLayers(raw ? raw.split(',') : []);
   }
 
+  // ?rel= lists the relationship groups drawn; absent means all, "none" means
+  // none. Unknown names are dropped and the order is the sidebar's.
+  function canonicalRel(list) {
+    const wanted = new Set(list);
+    return REL_GROUPS.map(g => g.key).filter(k => wanted.has(k));
+  }
+
+  function relParamValue(list) {
+    const groups = canonicalRel(list);
+    if (groups.length === REL_GROUPS.length) return null;
+    return groups.length ? groups.join(',') : 'none';
+  }
+
+  function readRelParam() {
+    const raw = new URLSearchParams(location.search).get('rel');
+    if (raw === null) return REL_GROUPS.map(g => g.key);
+    return raw === 'none' ? [] : canonicalRel(raw.split(','));
+  }
+
   // The one place the graph writes its query string. Merges into the existing
   // params (so ?layers= survives a ?selected= change and vice versa). Keys
-  // absent from `patch` are left alone; `selected: null` or an empty `layers`
-  // removes that param.
+  // absent from `patch` are left alone; `selected: null`, an empty `layers` or
+  // a full `rel` removes that param.
   function writeGraphQuery(patch) {
     const params = new URLSearchParams(location.search);
     if ('selected' in patch) {
@@ -120,9 +137,14 @@ const LoreGraph = (() => {
       if (layers.length) params.set('layers', layers.join(','));
       else params.delete('layers');
     }
+    if ('rel' in patch) {
+      const value = relParamValue(patch.rel || []);
+      if (value) params.set('rel', value);
+      else params.delete('rel');
+    }
     const qs = [...params].map(([k, v]) =>
       encodeURIComponent(k) + '=' +
-      (k === 'layers' ? v.split(',').map(encodeURIComponent).join(',') : encodeURIComponent(v))
+      (k === 'layers' || k === 'rel' ? v.split(',').map(encodeURIComponent).join(',') : encodeURIComponent(v))
     ).join('&');
     history.replaceState(null, '', location.pathname + (qs ? '?' + qs : ''));
   }
@@ -176,6 +198,199 @@ const LoreGraph = (() => {
     };
   }
 
+  // ── Shared gated data ────────────────────────────────────────────────────
+  //
+  // One place applies the spoiler rules, for the full graph, the hub and its
+  // thumbnails. Gating (locked rule, Session 14): only revealed entities; a
+  // layer entity renders iff SpoilerGate.isRevealed(); a layer<->character link
+  // renders iff both endpoints render, and an artifact's ownership link also
+  // needs the reading position to have reached that ownership_chain entry's
+  // `from`. Nothing here shows more than the entity detail pages already list.
+  //
+  // Returns { allChars, chars, charIds, rels, layerData, eventData, position }.
+  // layerData[layer] / eventData = { entities, byId, links: [{ entityId, charId }],
+  // total }: visible entities and links only (each link deduped); `total`
+  // counts every entity of the type, so total - entities.length is how many are
+  // past the bookmark (a number, never names).
+  function gateData(seriesId) {
+    const allChars = LoreLoader.getAll(seriesId, 'characters');
+    const chars = allChars.filter(c => SpoilerGate.isRevealed(c, seriesId));
+    const charIds = new Set(chars.map(c => c.id));
+    const rels = LoreLoader.getAll(seriesId, 'relationships').filter(r =>
+      SpoilerGate.isRevealed(r, seriesId) && charIds.has(r.character_a) && charIds.has(r.character_b));
+    const position = SpoilerGate.getPosition(seriesId);
+
+    const collect = (type, sourceEdges, fromOf) => {
+      const all = LoreLoader.getAll(seriesId, type);
+      const entities = all.filter(e => SpoilerGate.isRevealed(e, seriesId)).sort(byReadingOrder);
+      const byId = new Map(entities.map(e => [e.id, e]));
+      const links = [];
+      const seen = new Set();
+      const add = (entityId, charId, from) => {
+        if (!byId.has(entityId) || !charIds.has(charId)) return;
+        if (from && position && SpoilerGate.comparePositions(position, from) < 0) return;
+        const key = entityId + '>' + charId;
+        if (seen.has(key)) return;
+        seen.add(key);
+        links.push({ entityId, charId });
+      };
+      sourceEdges(all, add);
+      return { entities, byId, links, total: all.length };
+    };
+
+    const layerData = {};
+    for (const layer of LAYER_ORDER) {
+      layerData[layer] = collect(layer, (all, add) => {
+        for (const e of all) {
+          if (layer === 'cases')     (e.characters_involved || []).forEach(c => add(e.id, c));
+          if (layer === 'locations') (e.characters_associated || []).forEach(c => add(e.id, c));
+          if (layer === 'artifacts') (e.ownership_chain || []).forEach(o => add(e.id, o.character_id, o.from));
+          if (layer === 'factions')  (e.key_members || []).forEach(c => add(e.id, c));
+        }
+        if (layer === 'factions') {
+          for (const c of allChars) (c.affiliations || []).forEach(f => add(f, c.id));
+        }
+      });
+    }
+    const eventData = collect('events', (all, add) => {
+      for (const e of all) (e.characters_involved || []).forEach(c => add(e.id, c));
+    });
+    return { allChars, chars, charIds, rels, layerData, eventData, position };
+  }
+
+  // The hub and the full graph's node and edge set. Pure: fresh objects on
+  // every call, and hidden entities appear only in `hiddenCount` (never as
+  // objects with ids), so callers cannot leak them.
+  //   o.characters  'all' (default) | 'linked' (only characters linked to a
+  //                 shown layer entity) | 'none'
+  //   o.layers      layer ids to include (cases, locations, artifacts, factions)
+  //   o.events      include timeline events as a layer-style type
+  //   o.anchors     'all' (default) draws every layer link; 'config' hides the
+  //                 protagonist links the layer config marks as hairball
+  //   o.relGroups   Set of relationship groups to draw (default: all)
+  //   o.relationships  draw character-character edges (default: iff characters 'all')
+  // Returns { nodes, links, hiddenCount }. A node is
+  // { id, kind: 'character' | 'layer', layer?, name, role, degree, first_mention };
+  // a link { source, target, type, layer?, key } with ids; `degree` counts the
+  // links returned.
+  function assemble(gate, o) {
+    const layers = o.layers || [];
+    const charMode = o.characters || 'all';
+    const anchorIds = new Set(gate.allChars.filter(c => c.role === 'protagonist').map(c => c.id));
+    const drawRels = o.relationships !== undefined ? o.relationships : charMode === 'all';
+
+    const links = [];
+    if (drawRels) {
+      for (const r of gate.rels) {
+        if (o.relGroups && !o.relGroups.has(relTypeGroup(r.relationship_type))) continue;
+        links.push({ source: r.character_a, target: r.character_b, type: r.relationship_type || 'other',
+                     key: 'rel:' + r.id });
+      }
+    }
+
+    const layerNodes = [];
+    const addLayer = (layer, data, cfg) => {
+      for (const e of data.entities) {
+        layerNodes.push({ id: e.id, kind: 'layer', layer, name: layerEntityName(e), role: '', degree: 0,
+                          first_mention: e.first_mention });
+      }
+      for (const { entityId, charId } of data.links) {
+        if (o.anchors === 'config' && cfg && !cfg.anchorEdges && anchorIds.has(charId)) continue;
+        links.push({ source: entityId, target: charId, type: layer, layer, key: layer + ':' + entityId + '>' + charId });
+      }
+    };
+    for (const layer of layers) addLayer(layer, gate.layerData[layer], LAYER_CONFIG[layer]);
+    if (o.events) addLayer('events', gate.eventData, null);
+
+    let charList = gate.chars;
+    if (charMode === 'none') charList = [];
+    else if (charMode === 'linked') {
+      const linked = new Set(links.filter(l => l.layer).map(l => l.target));
+      charList = gate.chars.filter(c => linked.has(c.id));
+    }
+    const nodes = charList.map(c => ({ id: c.id, kind: 'character', name: c.name, role: c.role || '', degree: 0,
+                                       first_mention: c.first_mention }));
+    nodes.push(...layerNodes);
+
+    // A link survives only when both ends are in the node set (a 'linked'
+    // character list can be filtered by the layer, and events carry no ring).
+    const have = new Set(nodes.map(n => n.id));
+    const kept = links.filter(l => have.has(l.source) && have.has(l.target));
+    const deg = new Map();
+    for (const l of kept) {
+      deg.set(l.source, (deg.get(l.source) || 0) + 1);
+      deg.set(l.target, (deg.get(l.target) || 0) + 1);
+    }
+    for (const n of nodes) n.degree = deg.get(n.id) || 0;
+
+    let hiddenCount = 0;
+    if (charMode === 'all') hiddenCount += gate.allChars.length - gate.chars.length;
+    for (const layer of layers) hiddenCount += gate.layerData[layer].total - gate.layerData[layer].entities.length;
+    if (o.events) hiddenCount += gate.eventData.total - gate.eventData.entities.length;
+    return { nodes, links: kept, hiddenCount };
+  }
+
+  function buildData(seriesId, opts) {
+    return assemble(gateData(seriesId), opts || {});
+  }
+
+  // ── Static layout and unreached dots ─────────────────────────────────────
+  //
+  // layoutStatic() runs a d3 force simulation synchronously (no animation) and
+  // returns Map id -> { x, y } in simulation space; the caller fits that to its
+  // box. Deterministic: d3's forces use fixed-seed jiggle, and nodes keep the
+  // order they were given. `aspect` (width / height) widens the layout so a wide
+  // thumbnail is not filled by a round blob.
+  function layoutStatic(data, { aspect = 1.4, ticks = 300, distance = 46 } = {}) {
+    const nodes = data.nodes.map(n => ({ id: n.id }));
+    const links = data.links.map(l => ({ source: l.source, target: l.target }));
+    const sim = d3.forceSimulation(nodes)
+      .force('link',    d3.forceLink(links).id(d => d.id).distance(distance).strength(0.7))
+      .force('charge',  d3.forceManyBody().strength(-95))
+      .force('x',       d3.forceX().strength(0.045))
+      .force('y',       d3.forceY().strength(0.045 * Math.max(1, aspect) * 1.4))
+      .force('collide', d3.forceCollide(11))
+      .stop();
+    for (let i = 0; i < ticks; i++) sim.tick();
+    return new Map(nodes.map(n => [n.id, { x: n.x, y: n.y }]));
+  }
+
+  // Seeded pseudo-random in [0, 1): mulberry32.
+  function seededRandom(seed) {
+    let a = seed >>> 0;
+    return () => {
+      a = (a + 0x6D2B79F5) | 0;
+      let t = Math.imul(a ^ (a >>> 15), 1 | a);
+      t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+  }
+
+  // Unlabeled "past your bookmark" dots. Positions come from a constant seed
+  // and the dot's index alone: the Nth dot is in the same place whichever
+  // entity it stands for, so a position can never identify a hidden entry. Each
+  // dot tries a few candidates and takes the first that clears `avoid` (rects
+  // {x0,y0,x1,y1} around the labeled nodes) and the dots already placed.
+  const DOT_SEED = 0x10A7A5;
+  function scatterDots(count, box, avoid) {
+    const out = [];
+    const gap = 9;
+    const clear = (p) =>
+      !avoid.some(r => p.x > r.x0 && p.x < r.x1 && p.y > r.y0 && p.y < r.y1)
+      && !out.some(q => Math.abs(q.x - p.x) < gap && Math.abs(q.y - p.y) < gap);
+    for (let i = 0; i < count; i++) {
+      const rnd = seededRandom(DOT_SEED + i * 7919);
+      let pick = null;
+      for (let t = 0; t < 14; t++) {
+        const p = { x: box.x0 + rnd() * (box.x1 - box.x0), y: box.y0 + rnd() * (box.y1 - box.y0) };
+        if (!pick) pick = p;
+        if (clear(p)) { pick = p; break; }
+      }
+      out.push(pick);
+    }
+    return out;
+  }
+
   // Live graph instances (Session 15b). Each init() registers a teardown; the
   // next init() tears down every instance whose container has left the DOM, so
   // stale document/window listeners are bounded to the current page's.
@@ -188,11 +403,14 @@ const LoreGraph = (() => {
     return net ? net.charIds.length + (net.layer ? 1 : 0) : 0;
   }
 
-  // opts.layerControls (default true): whether the layer toolbar is shown.
   // opts.syncUrl (default true): false = nothing reads or writes `location`.
   // opts.focusId: switches on ego mode (Session 15 mini-graphs): the one-hop
-  //   network around that entity; no ring, layers, toolbar or legend.
+  //   network around that entity; no ring, layers, zoom controls or dots.
   // opts.height: SVG height in px, or a function returning it (re-read on resize).
+  // opts.onUpdate(stats): called after every update with layer counts, the
+  //   active layers and relationship groups, the unreached count and the
+  //   outer-ring note, for the page's sidebar. The layer and relationship
+  //   toggles live there, driving setLayers() and setRelGroups() on the handle.
   function init(container, seriesId, opts = {}) {
     for (const inst of [...liveInstances]) {
       if (!inst.container.isConnected) inst.teardown();
@@ -201,63 +419,34 @@ const LoreGraph = (() => {
     const focusId = opts.focusId || null;
     const writeQuery = syncUrl ? writeGraphQuery : () => {};
     const allChars = LoreLoader.getAll(seriesId, 'characters');
-    const allRels  = LoreLoader.getAll(seriesId, 'relationships');
-
     const anchorIds = new Set(allChars.filter(c => c.role === 'protagonist').map(c => c.id));
 
     // ── Gated data ───────────────────────────────────────────────────────────
     //
-    // Gating (locked rule, Session 14): only revealed entities; a layer entity
-    // renders iff SpoilerGate.isRevealed(); a layer<->character link renders iff
-    // both endpoints render, and an artifact's ownership link also needs the
-    // reading position to have reached that ownership_chain entry's `from`.
-    // Nothing here shows more than the entity detail pages already list.
-    // computeGating() runs at init and again from refresh() (Session 16: a
-    // reading-position change updates the graph in place).
+    // gateData() applies the spoiler rules (see "Shared gated data"). It runs at
+    // init and again from refresh() (Session 16: a reading-position change
+    // updates the graph in place).
+    let gate = null;
     let position = null;
     let chars = [];
     let charIds = new Set();
     let rels = [];
-    // layerData[layer] = { entities, byId, links: [{ entityId, charId }] },
+    // layerData[layer] = { entities, byId, links: [{ entityId, charId }], total },
     // visible entities and links only (each link deduped).
     let layerData = {};
+    let relDegree = {};    // visible relationships per character (ego-mode node size)
+    let maxRelDegree = 1;
 
     function computeGating() {
-      chars = allChars.filter(c => SpoilerGate.isRevealed(c, seriesId));
-      charIds = new Set(chars.map(c => c.id));
-      rels = allRels.filter(r =>
-        SpoilerGate.isRevealed(r, seriesId) &&
-        charIds.has(r.character_a) &&
-        charIds.has(r.character_b)
-      );
-      position = SpoilerGate.getPosition(seriesId);
-      layerData = {};
-      for (const layer of LAYER_ORDER) {
-        const entities = LoreLoader.getAll(seriesId, layer)
-          .filter(e => SpoilerGate.isRevealed(e, seriesId))
-          .sort(byReadingOrder);
-        const byId = new Map(entities.map(e => [e.id, e]));
-        const links = [];
-        const seen = new Set();
-        const add = (entityId, charId, from) => {
-          if (!byId.has(entityId) || !charIds.has(charId)) return;
-          if (from && position && SpoilerGate.comparePositions(position, from) < 0) return;
-          const key = entityId + '>' + charId;
-          if (seen.has(key)) return;
-          seen.add(key);
-          links.push({ entityId, charId });
-        };
-        for (const e of LoreLoader.getAll(seriesId, layer)) {
-          if (layer === 'cases')     (e.characters_involved || []).forEach(c => add(e.id, c));
-          if (layer === 'locations') (e.characters_associated || []).forEach(c => add(e.id, c));
-          if (layer === 'artifacts') (e.ownership_chain || []).forEach(o => add(e.id, o.character_id, o.from));
-          if (layer === 'factions')  (e.key_members || []).forEach(c => add(e.id, c));
-        }
-        if (layer === 'factions') {
-          for (const c of allChars) (c.affiliations || []).forEach(f => add(f, c.id));
-        }
-        layerData[layer] = { entities, byId, links };
+      gate = gateData(seriesId);
+      ({ chars, charIds, rels, layerData, position } = gate);
+      relDegree = {};
+      for (const c of chars) relDegree[c.id] = 0;
+      for (const r of rels) {
+        relDegree[r.character_a] += 1;
+        relDegree[r.character_b] += 1;
       }
+      maxRelDegree = Math.max(1, ...Object.values(relDegree));
     }
 
     computeGating();
@@ -275,87 +464,56 @@ const LoreGraph = (() => {
       return names.slice(0, -1).join(', ') + ' and ' + names[names.length - 1];
     }
 
-    // Canonicalise ?layers= up front (dedupe, drop unknowns, fix the order) and
-    // rewrite the URL if that changed it.
+    // Canonicalise ?layers= and ?rel= up front (dedupe, drop unknowns, fix the
+    // order) and rewrite the URL if that changed it.
     let activeLayers = syncUrl ? readLayersParam() : [];
     const rawLayers = syncUrl ? new URLSearchParams(location.search).get('layers') : null;
     if (rawLayers !== null && rawLayers !== activeLayers.join(',')) {
       writeQuery({ layers: activeLayers });
     }
+    // Relationship groups to draw between characters (all by default).
+    let activeRel = syncUrl ? readRelParam() : REL_GROUPS.map(g => g.key);
+    const rawRel = syncUrl ? new URLSearchParams(location.search).get('rel') : null;
+    if (rawRel !== null && rawRel !== relParamValue(activeRel)) writeQuery({ rel: activeRel });
 
-    // Everything the graph shows at the current reading position and layer
-    // selection. Pure: returns fresh spec objects, so update() can merge them
-    // into the live nodes without losing their positions.
+    // Everything the graph shows at the current reading position, layers and
+    // relationship filter. Pure: returns fresh spec objects, so update() can
+    // merge them into the live nodes without losing their positions.
     function buildGraphData(layers) {
-      // Degree count for node sizing
-      const degree = {};
-      for (const c of chars) degree[c.id] = 0;
-      for (const r of rels) {
-        degree[r.character_a] = (degree[r.character_a] || 0) + 1;
-        degree[r.character_b] = (degree[r.character_b] || 0) + 1;
-      }
+      if (focusId) return buildEgoData();
 
-      if (focusId) return buildEgoData(degree);
-
-      // Node size comes from relationship degree only, so layers never inflate
-      // Holmes.
-      const nodes = chars.map(c => ({
-        id:     c.id,
-        kind:   'character',
-        name:   c.name,
-        role:   c.role || '',
-        degree: degree[c.id] || 0,
-        ring:   false,
-      }));
-      const links = rels.map(r => ({
-        source: r.character_a,
-        target: r.character_b,
-        type:   r.relationship_type || 'other',
-        relId:  r.id,
-        key:    'rel:' + r.id,
-      }));
-
-      // Layer nodes (every visible entity) and their drawn edges.
-      const layerNodes = [];
-      const drawn = new Map();
-      for (const layer of layers) {
-        const cfg = LAYER_CONFIG[layer];
-        for (const e of layerData[layer].entities) {
-          const n = { id: e.id, kind: 'layer', layer, name: layerEntityName(e), degree: 0, ring: false,
-                      first_mention: e.first_mention };
-          layerNodes.push(n);
-          drawn.set(e.id, 0);
-        }
-        for (const { entityId, charId } of layerData[layer].links) {
-          if (anchorIds.has(charId) && !cfg.anchorEdges) continue;
-          links.push({ source: entityId, target: charId, type: layer, layer, key: 'layer:' + entityId + '>' + charId });
-          drawn.set(entityId, drawn.get(entityId) + 1);
-        }
-      }
+      const data = assemble(gate, {
+        characters: 'all',
+        layers,
+        anchors: 'config',
+        relGroups: new Set(activeRel),
+      });
 
       // Layer nodes with no drawn edge sit on an outer ring, in reading order
       // across all active layers (first_mention, layer order, name).
       const layerRank = id => LAYER_ORDER.indexOf(id);
-      const ring = layerNodes.filter(n => drawn.get(n.id) === 0).sort((a, b) =>
+      for (const n of data.nodes) n.ring = false;
+      const ring = data.nodes.filter(n => n.kind === 'layer' && n.degree === 0).sort((a, b) =>
         byFirstMention(a, b)
         || (layerRank(a.layer) - layerRank(b.layer))
         || a.name.localeCompare(b.name));
       ring.forEach((n, i) => { n.ring = true; n.ringIdx = i; n.ringN = ring.length; });
-
-      return { nodes: nodes.concat(layerNodes), links };
+      return data;
     }
 
     // Ego mode (Session 15): the one-hop network around focusId. Character nodes
     // keep their *global* relationship-degree radius (Holmes is the same size
     // everywhere); a case or location centre is a layer-shaped node whose edges
-    // to characters use the layer-edge style. No ring, and anchors are drawn.
-    function buildEgoData(degree) {
+    // to characters use the layer-edge style. No ring, anchors are drawn, and no
+    // unreached dots (the ego network is small; the entry's lists count what is
+    // past the bookmark).
+    function buildEgoData() {
       const net = egoNetwork(seriesId, focusId);
-      if (!net) return { nodes: [], links: [] };
+      if (!net) return { nodes: [], links: [], hiddenCount: 0 };
       const byId = new Map(chars.map(c => [c.id, c]));
       const nodes = net.charIds.map(id => {
         const c = byId.get(id);
-        return { id, kind: 'character', name: c.name, role: c.role || '', degree: degree[id] || 0, ring: false };
+        return { id, kind: 'character', name: c.name, role: c.role || '', degree: relDegree[id] || 0, ring: false };
       });
       const links = net.rels.map(r => ({
         source: r.character_a,
@@ -372,7 +530,7 @@ const LoreGraph = (() => {
                        key: 'layer:' + entityId + '>' + charId });
         }
       }
-      return { nodes, links };
+      return { nodes, links, hiddenCount: 0 };
     }
 
     let nodes = [];
@@ -380,7 +538,6 @@ const LoreGraph = (() => {
     let hasRendered = false; // true once update() has run (the spawn rule differs after the first)
     let nodeById = {};   // node-by-id lookup, rebuilt by update()
     let neighbors = {};  // relationship neighbours (the panel's "Connected to"), rebuilt by update()
-    let toolbar = null;  // the layer toolbar element (null when opts.layerControls is false)
     let drawnAdj = {};   // every drawn edge, either direction (label highlighting)
 
     const width  = container.clientWidth || 800;
@@ -393,7 +550,7 @@ const LoreGraph = (() => {
     };
     const heightFor = w => opts.height
       ? (typeof opts.height === 'function' ? opts.height() : opts.height)
-      : (isNarrow() ? phoneHeight() : Math.max(600, Math.round(w * 0.65)));
+      : (isNarrow() ? phoneHeight() : CANVAS_H);
     let   height = heightFor(width); // recomputed on resize
 
     // ── SVG + zoom layer ─────────────────────────────────────────────────────
@@ -425,7 +582,6 @@ const LoreGraph = (() => {
     let userTransformed = false;
     let fitPending = true;      // the final fit (alpha < 0.05, eased)
     let earlyFitPending = true; // load only: a first, un-eased fit at alpha < 0.3
-    let toolbarObserver = null; // the toolbar's ResizeObserver, disconnected with the simulation
 
     let lastPointerType = null; // pointerType of the last pointerdown on the SVG (mini-graph double-tap)
 
@@ -455,10 +611,16 @@ const LoreGraph = (() => {
     }
     svg.call(zoom);
 
+    // Unreached dots sit under the edges and nodes. aria-hidden: they are
+    // decoration, and the count is the only thing about them that is exposed.
+    const dotLayer = g.append('g').attr('class', 'graph-dots').attr('aria-hidden', 'true');
     const linkLayer = g.append('g').attr('class', 'graph-links');
     const nodeLayer = g.append('g').attr('class', 'graph-nodes');
     let link = linkLayer.selectAll('line');
     let node = nodeLayer.selectAll('g');
+    let hiddenCount = 0;   // entries past the bookmark, drawn as dots (set by update())
+    let maxDegree = 1;     // the busiest character's degree: the radius scale
+    const nodeR = d => radiusFor(d.degree, maxDegree, NODE_R_MIN, NODE_R_MAX);
 
     // ── Tooltip ──────────────────────────────────────────────────────────────
 
@@ -500,13 +662,10 @@ const LoreGraph = (() => {
 
     // ── Force simulation ─────────────────────────────────────────────────────
 
-    // Called once this graph's DOM is gone (from a tick, or from the toolbar
-    // observer, which fires when the toolbar is detached even after a settled
-    // simulation has stopped ticking).
+    // Called once this graph's DOM is gone (from a tick, or from a resize).
     let resizeTimer = null; // the debounce timer of onResize (declared here for teardown)
     function teardown() {
       simulation.stop();
-      if (toolbarObserver) { toolbarObserver.disconnect(); toolbarObserver = null; }
       document.removeEventListener('keydown', onKeyDown);
       window.removeEventListener('resize', onResize);
       clearTimeout(resizeTimer);
@@ -576,7 +735,7 @@ const LoreGraph = (() => {
       return force;
     }
 
-    const collideRadius = d => d.kind === 'layer' ? LAYER_COLLIDE_R : nodeRadius(d.degree) + 5;
+    const collideRadius = d => d.kind === 'layer' ? LAYER_COLLIDE_R : nodeR(d) + 5;
 
     const simulation = d3.forceSimulation(nodes)
       .force('link',      d3.forceLink(links).id(d => d.id).distance(d => d.layer ? LAYER_EDGE_DIST : 90))
@@ -613,27 +772,59 @@ const LoreGraph = (() => {
         }
       });
 
-    // Fit every node (with its radius) into the usable box, FIT_PAD all round.
-    // Never scales above 1; clamped to the zoom's scaleExtent. 300ms ease, none
-    // under prefers-reduced-motion or when `instant` (the early fit).
+    // Fit every node (with its radius, and a character's label to its right)
+    // into the usable box, FIT_PAD all round. Never scales above FIT_MAX_SCALE;
+    // clamped to the zoom's scaleExtent. 300ms ease, none under prefers-reduced-motion or
+    // when `instant` (the early fit). The unreached dots are then scattered over
+    // the view the fit produces, so they fill the canvas around the graph.
     function fitToView(instant) {
-      if (userTransformed || !nodes.length) return;
+      if (!nodes.length) return;
+      if (userTransformed) { placeDots(); return; }
       let x0 = Infinity, x1 = -Infinity, y0 = Infinity, y1 = -Infinity;
       for (const n of nodes) {
-        const r = n.kind === 'layer' ? LAYER_COLLIDE_R : nodeRadius(n.degree);
-        x0 = Math.min(x0, n.x - r); x1 = Math.max(x1, n.x + r);
+        const r = n.kind === 'layer' ? LAYER_COLLIDE_R : nodeR(n);
+        const labelW = n.kind === 'layer' ? 0 : LABEL_GAP + n.name.length * labelCharW();
+        x0 = Math.min(x0, n.x - r); x1 = Math.max(x1, n.x + r + labelW);
         y0 = Math.min(y0, n.y - r); y1 = Math.max(y1, n.y + r);
       }
       const w = layout.w, h = layout.h;
-      const k = Math.max(fitMinScale(), Math.min(1,
+      const k = Math.max(fitMinScale(), Math.min(isNarrow() ? 1 : FIT_MAX_SCALE,
         (w - 2 * FIT_PAD) / Math.max(1, x1 - x0),
         (h - 2 * FIT_PAD) / Math.max(1, y1 - y0)));
       const t = d3.zoomIdentity
         .translate(w / 2 - k * (x0 + x1) / 2, h / 2 - k * (y0 + y1) / 2)
         .scale(k);
+      dotView = { k, x: t.x, y: t.y, w, h };
       const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       if (reduce || instant) svg.call(zoom.transform, t);
       else svg.transition().duration(FIT_MS).call(zoom.transform, t);
+      placeDots();
+    }
+
+    // ── Unreached dots ───────────────────────────────────────────────────────
+    //
+    // `hiddenCount` anonymous dots, positioned by scatterDots() from a constant
+    // seed and the dot's index only (see its comment), over the world-space
+    // rectangle the last fit made visible, away from the nodes. No identity is
+    // attached: no id, name, title, class, link or tabindex, and no force acts
+    // on them.
+    let dotView = null; // the last fit: { k, x, y, w, h }
+    function placeDots() {
+      if (focusId) return;
+      const v = dotView || { k: 1, x: 0, y: 0, w: layout.w, h: layout.h };
+      const box = { x0: -v.x / v.k, y0: -v.y / v.k, x1: (v.w - v.x) / v.k, y1: (v.h - v.y) / v.k };
+      const avoid = nodes.filter(n => n.x !== undefined).map(n => {
+        const r = (n.kind === 'layer' ? LAYER_COLLIDE_R : nodeR(n)) + 10;
+        const labelW = n.kind === 'layer' ? 0 : LABEL_GAP + n.name.length * labelCharW();
+        return { x0: n.x - r, x1: n.x + r + labelW, y0: n.y - r, y1: n.y + r };
+      });
+      const pts = scatterDots(hiddenCount, box, avoid);
+      dotLayer.selectAll('circle').data(pts)
+        .join('circle')
+        .attr('class', 'graph-dot')
+        .attr('r', DOT_R / Math.max(0.5, v.k)) // about 3px on screen at the fit zoom
+        .attr('cx', d => Math.round(d.x * 10) / 10)
+        .attr('cy', d => Math.round(d.y * 10) / 10);
     }
 
     // Rebuild the graph for the current reading position and layers, in place:
@@ -652,6 +843,8 @@ const LoreGraph = (() => {
         return Object.assign(old, spec);
       });
       links = data.links;
+      hiddenCount = data.hiddenCount;
+      maxDegree = Math.max(1, ...nodes.filter(n => n.kind === 'character').map(n => n.degree));
 
       nodeById = {};
       for (const n of nodes) nodeById[n.id] = n;
@@ -699,7 +892,7 @@ const LoreGraph = (() => {
           .attr('class', d => d.layer ? 'graph-link graph-link-layer' : 'graph-link')
           .style('stroke', d => d.layer ? LAYER_CONFIG[d.layer].color : relColor(d.type))
           .attr('stroke-width', d => d.layer ? 1 : 1.5)
-          .attr('stroke-opacity', d => d.layer ? 0.35 : 0.55)
+          .attr('stroke-opacity', d => d.layer ? 0.4 : 0.75)
           .attr('stroke-dasharray', d => d.layer ? '4 3' : null)
           .on('mouseover', (event, d) => {
             const srcName = typeof d.source === 'object' ? d.source.name : d.source;
@@ -742,22 +935,28 @@ const LoreGraph = (() => {
           // CSP allows. The main graph keeps d3's none: dragging is wanted there.
           if (focusId) n.style('touch-action', 'pan-y');
 
-          // Characters are circles sized by relationship degree; layer nodes are
-          // fixed-size shapes (shape + colour, so colour is never the only cue).
+          // Selection ring (shown by CSS on .is-selected): a --bg gap, then an
+          // accent ring, as the design's 0 0 0 3px bg, 0 0 0 5px accent. Radii
+          // are set below on every update, since a node's size follows its degree.
+          n.append('circle').attr('class', 'node-halo');
+          n.append('circle').attr('class', 'node-ring');
+
+          // Characters are circles sized by their visible connections; layer
+          // nodes are fixed-size shapes (shape + colour, so colour is never the
+          // only cue).
           n.filter(d => d.kind !== 'layer').append('circle')
-            .attr('r', d => nodeRadius(d.degree))
-            .style('fill', d => nodeColor(d.role))
-            .attr('stroke-width', 1);
+            .attr('class', 'node-shape')
+            .style('fill', d => nodeColor(d.role));
 
           n.filter(d => d.kind === 'layer').append('path')
+            .attr('class', 'node-shape')
             .attr('d', d => d3.symbol().type(LAYER_CONFIG[d.layer].shape).size(LAYER_SYMBOL_AREA)())
-            .style('fill', d => LAYER_CONFIG[d.layer].color)
-            .attr('stroke-width', 1);
+            .style('fill', d => LAYER_CONFIG[d.layer].color);
 
           n.append('text')
             .attr('class', 'graph-label')
-            .attr('dy', d => d.kind === 'layer' ? 22 : nodeRadius(d.degree) + 13)
-            .attr('text-anchor', 'middle')
+            .attr('dy', '0.35em')
+            .attr('text-anchor', 'start')
             .text(d => d.name);
 
           n.on('mouseover', (event, d) => {
@@ -790,11 +989,18 @@ const LoreGraph = (() => {
           return n;
         });
 
+      // Sizes follow the current degrees on every update, not just on enter.
+      const ringR = d => d.kind === 'layer' ? LAYER_RING_R : nodeR(d);
+      node.select('circle.node-shape').attr('r', nodeR);
+      node.select('.node-halo').attr('r', d => ringR(d) + 1.5);
+      node.select('.node-ring').attr('r', d => ringR(d) + 4);
+      node.select('.graph-label').attr('x', d => (d.kind === 'layer' ? LAYER_RING_R : nodeR(d)) + LABEL_GAP);
+
       hasRendered = true;
       syncRoving();
       markSelection();
-      renderLegend();
-      renderToolbar();
+      placeDots();
+      reportStats();
       if (alpha !== undefined) simulation.alpha(alpha).restart();
     }
 
@@ -850,13 +1056,13 @@ const LoreGraph = (() => {
 
     // ── Info panel (Session 13) ──────────────────────────────────────────────
 
-    const PANEL_W = 320;
+    const PANEL_W = 352; // the 320px panel plus its 16px inset each side
     // Read live rather than capturing at init: the panel switches between
-    // right-dock and bottom-sheet at the same 768px breakpoint the CSS uses, so
+    // right-dock and bottom-sheet at the same 760px breakpoint the CSS uses, so
     // a resize must change which layout the re-centring logic assumes.
     // Session 15: measure the viewport, as the CSS does, not the container (a
     // 740px mini-graph on a wide screen is a desktop layout).
-    const isDesktopWidth = () => window.matchMedia('(min-width: 768px)').matches;
+    const isDesktopWidth = () => window.matchMedia('(min-width: 761px)').matches;
 
     let selectedEntityId = null;
     let lastFocusedNodeId = null;
@@ -873,18 +1079,41 @@ const LoreGraph = (() => {
     panel.hidden = true;
     container.appendChild(panel);
 
+    // A "Connected to" row that swaps the panel to another node. The dash takes
+    // its colour from data-rel (a relationship group) or data-layer (a layer)
+    // via CSS.
+    function linkRow(id, name, attr, detail) {
+      return `<li><button class="panel-link" type="button" data-entity="${esc(id)}" ${attr}>`
+           + `<span class="panel-dash" aria-hidden="true"></span>`
+           + `<span class="panel-link-name">${esc(name)}</span>`
+           + (detail ? `<span class="panel-link-type">${esc(detail)}</span>` : '')
+           + `</button></li>`;
+    }
+
+    function panelHtml(entity, typeLabel, name, desc, connectedHtml, href) {
+      const closeBtn = '<button class="panel-close" type="button" aria-label="Close panel">&times;</button>';
+      const first = entity.first_mention
+        ? `<p class="panel-first">First appears in ${esc(formatPosition(entity.first_mention, seriesId))}</p>` : '';
+      return `
+        ${closeBtn}
+        <div class="panel-scroll">
+          <p class="panel-type">${esc(typeLabel)}</p>
+          <h2 class="panel-name">${esc(name)}</h2>
+          ${first}
+          <p class="panel-desc">${desc}</p>
+          ${connectedHtml}
+        </div>
+        <a class="btn btn-primary panel-view-full" href="${href}">Open entry &rarr;</a>
+      `;
+    }
+
     function renderPanelContent(id) {
       const entity = LoreLoader.getById(id);
       const closeBtn = '<button class="panel-close" type="button" aria-label="Close panel">&times;</button>';
       if (!entity) return closeBtn + '<p class="panel-empty">Entity unavailable.</p>';
-      if (nodeById[id] && nodeById[id].kind === 'layer') return renderLayerPanel(entity, nodeById[id].layer, closeBtn);
+      if (nodeById[id] && nodeById[id].kind === 'layer') return renderLayerPanel(entity, nodeById[id].layer);
 
       const status = SpoilerGate.getRevealStatus(entity, seriesId);
-      const name = entity.name || id;
-      const roleBadge = entity.role
-        ? `<span class="badge badge-${esc(entity.role.replace(/_/g, '-'))}">${esc(entity.role.replace(/_/g, ' '))}</span>`
-        : '';
-
       const bioText = proseText(entity, 'biography', seriesId).text;
       const desc = status === 'partial'
         ? redactedProse(entity)
@@ -892,7 +1121,8 @@ const LoreGraph = (() => {
             ? esc(firstSentencesForMeta(bioText, 120))
             : '<span class="panel-empty">No description available.</span>');
 
-      // Unique neighbours, alphabetical (no edge-weight data → name sort).
+      // Every relationship drawn at this node, once per partner, by name. The
+      // list is complete: nothing is capped, so it matches what the canvas draws.
       const seen = new Set();
       const uniq = [];
       for (const x of (neighbors[id] || [])) {
@@ -900,68 +1130,52 @@ const LoreGraph = (() => {
       }
       uniq.sort((a, b) =>
         (nodeById[a.id]?.name || '').localeCompare(nodeById[b.id]?.name || ''));
-
-      // Ego mode: chips only for nodes in the view (a swap needs a node, and the
-      // centre does nothing), but the count is the full gated number.
-      let count = uniq.length;
+      // Ego mode lists only the nodes in the view (a swap needs a node, and the
+      // centre does nothing); the rest are counted below the list.
+      let hiddenNote = '';
       if (focusId) {
+        for (let i = uniq.length - 1; i >= 0; i--) if (uniq[i].id === focusId) uniq.splice(i, 1);
         const partners = new Set();
         for (const r of rels) {
           if (r.character_a === id) partners.add(r.character_b);
           else if (r.character_b === id) partners.add(r.character_a);
         }
-        count = partners.size;
-        for (let i = uniq.length - 1; i >= 0; i--) if (uniq[i].id === focusId) uniq.splice(i, 1);
+        partners.delete(focusId);
+        const more = partners.size - uniq.length;
+        if (more > 0) hiddenNote = `<p class="panel-more">+${more} more in the full graph</p>`;
       }
-      const chips = uniq.slice(0, 5).map(x => {
-        const nm = nodeById[x.id]?.name || x.id;
-        // Colour goes in a data-* attribute, not style="" — the site's CSP omits
-        // 'unsafe-inline' from style-src, so a style attribute is silently
-        // dropped (chips would all fall back to gold). bindPanelControls()
-        // applies it via CSSOM, which CSP does allow.
-        return `<button class="panel-chip" type="button" data-entity="${esc(x.id)}" `
-             + `data-chip-color="${esc(relColor(x.type))}">${esc(nm)}</button>`;
-      }).join('');
+      const rows = uniq.map(x => linkRow(x.id, nodeById[x.id]?.name || x.id,
+        `data-rel="${esc(relTypeGroup(x.type))}"`, humanize(x.type))).join('');
+      const connected = rows
+        ? `<h3 class="panel-count">Connected to</h3><ul class="panel-links">${rows}</ul>${hiddenNote}`
+        : '<p class="panel-empty">No connections at your reading position.</p>';
 
-      return `
-        ${closeBtn}
-        <h2 class="panel-name">${esc(name)}</h2>
-        <div class="panel-badges">${roleBadge}</div>
-        <p class="panel-desc">${desc}</p>
-        <p class="panel-count">Connected to ${count} ${count === 1 ? 'entity' : 'entities'}</p>
-        ${chips ? `<div class="panel-chips">${chips}</div>` : ''}${renderLayerSections(id)}
-        <a class="panel-view-full" href="${entityPath(seriesId, 'characters', id)}">View full page &rarr;</a>
-      `;
-    }
-
-    // A chip that swaps the panel to another node. The colour travels in a
-    // data-* attribute and is applied via CSSOM in bindPanelControls().
-    function chipHtml(id, name, color) {
-      return `<button class="panel-chip" type="button" data-entity="${esc(id)}" `
-           + `data-chip-color="${esc(color)}">${esc(name)}</button>`;
+      return panelHtml(entity, 'Character', entity.name || id, desc,
+        connected + renderLayerSections(id), entityPath(seriesId, 'characters', id));
     }
 
     // Character panel: one section per active layer, from the data's visible
     // links (not the drawn edges, which leave out the anchors), so Holmes's 60
-    // cases show here even though none is drawn. First 5 in reading order.
+    // cases show here even though none is drawn. First 5 in reading order, with
+    // the total in the heading and "+N more" under the list.
     function renderLayerSections(charId) {
       return activeLayers.map(layer => {
         const ids = new Set(layerData[layer].links.filter(l => l.charId === charId).map(l => l.entityId));
         if (ids.size === 0) return '';
         const cfg = LAYER_CONFIG[layer];
         const ents = layerData[layer].entities.filter(e => ids.has(e.id)); // already reading order
-        const chips = ents.slice(0, MAX_LAYER_CHIPS)
-          .map(e => chipHtml(e.id, layerEntityName(e), cfg.color)).join('');
+        const rows = ents.slice(0, MAX_LAYER_CHIPS)
+          .map(e => linkRow(e.id, layerEntityName(e), `data-layer="${esc(layer)}"`)).join('');
         const more = ents.length > MAX_LAYER_CHIPS
-          ? `<span class="panel-more">+${ents.length - MAX_LAYER_CHIPS} more</span>` : '';
-        return `<p class="panel-count">${esc(cfg.label)} (${ents.length})</p>`
-             + `<div class="panel-chips">${chips}${more}</div>`;
+          ? `<p class="panel-more">+${ents.length - MAX_LAYER_CHIPS} more</p>` : '';
+        return `<h3 class="panel-count">${esc(cfg.label)} (${ents.length})</h3>`
+             + `<ul class="panel-links">${rows}</ul>${more}`;
       }).join('');
     }
 
-    // Layer-node panel: title, type badge, description, every visible linked
-    // character (anchors included), full-page link.
-    function renderLayerPanel(entity, layer, closeBtn) {
+    // Layer-node panel: title, type, first appearance, description, every
+    // visible linked character (anchors included), entry link.
+    function renderLayerPanel(entity, layer) {
       const cfg = LAYER_CONFIG[layer];
       const status = SpoilerGate.getRevealStatus(entity, seriesId);
       let desc;
@@ -979,27 +1193,20 @@ const LoreGraph = (() => {
         .filter(l => l.entityId === entity.id)
         .map(l => allChars.find(c => c.id === l.charId))
         .sort((a, b) => a.name.localeCompare(b.name));
-      const chips = linked.map(c => chipHtml(c.id, c.name, cfg.color)).join('');
+      const rows = linked.map(c => linkRow(c.id, c.name, `data-layer="${esc(layer)}"`)).join('');
+      const connected = rows
+        ? `<h3 class="panel-count">Connected to</h3><ul class="panel-links">${rows}</ul>`
+        : '<p class="panel-empty">No characters linked at your reading position.</p>';
 
-      return `
-        ${closeBtn}
-        <h2 class="panel-name">${esc(layerEntityName(entity))}</h2>
-        <div class="panel-badges"><span class="badge badge-layer badge-layer-${esc(layer)}">${esc(cfg.singular)}</span></div>
-        <p class="panel-desc">${desc}</p>
-        <p class="panel-count">Characters (${linked.length})</p>
-        ${chips ? `<div class="panel-chips">${chips}</div>` : ''}
-        <a class="panel-view-full" href="${entityPath(seriesId, layer, entity.id)}">View full page &rarr;</a>
-      `;
+      return panelHtml(entity, cfg.singular, layerEntityName(entity), desc, connected,
+        entityPath(seriesId, layer, entity.id));
     }
 
     function bindPanelControls() {
       const closeBtn = panel.querySelector('.panel-close');
       if (closeBtn) closeBtn.addEventListener('click', closePanel);
 
-      panel.querySelectorAll('.panel-chip').forEach(btn => {
-        if (btn.dataset.chipColor) {
-          btn.style.setProperty('--chip-color', btn.dataset.chipColor);
-        }
+      panel.querySelectorAll('.panel-link').forEach(btn => {
         btn.addEventListener('click', () => {
           lastFocusedNodeId = btn.dataset.entity;
           swapPanel(btn.dataset.entity);
@@ -1033,6 +1240,7 @@ const LoreGraph = (() => {
       panel.hidden = false;
       requestAnimationFrame(() => panel.classList.add('open'));
       markSelection();
+      if (restore) recenter(); // the first fit has not run yet: fit into the area the panel leaves
       if (!restore) {
         recenter();
         simulation.alpha(0.3).restart();
@@ -1051,7 +1259,7 @@ const LoreGraph = (() => {
     }
 
     // opts.restoreFocus === false skips returning focus to the last node (used
-    // when a layer toggle closes the panel and focus should stay on the toolbar).
+    // when a filter toggle closes the panel and focus should stay on the sidebar).
     function closePanel(opts) {
       if (selectedEntityId === null) return;
       selectedEntityId = null;
@@ -1146,7 +1354,6 @@ const LoreGraph = (() => {
 
     // Build the graph, then restore selection from URL (?selected=…) — only if
     // the entity is present in the built (spoiler-gated) node set.
-    createToolbar();
     update();
 
     const requested = syncUrl ? new URLSearchParams(location.search).get('selected') : null;
@@ -1187,118 +1394,30 @@ const LoreGraph = (() => {
       simulation.alpha(0.3).restart();
     }
 
-    // ── Legend ───────────────────────────────────────────────────────────────
-
-    function renderLegend() {
-      d3.select(container).select('.graph-legend').remove();
-      if (focusId) return; // mini-graphs have no legend
-
-      const presentTypes = [...new Set(links.filter(l => !l.layer).map(l => l.type))].sort();
-      const hasRing = nodes.some(n => n.ring);
-      if (presentTypes.length === 0 && activeLayers.length === 0) return;
-
-      const legend = d3.select(container)
-        .append('div')
-        .attr('class', 'graph-legend');
-
-      if (presentTypes.length > 0) {
-        legend.append('p').attr('class', 'graph-legend-title').text('Relationship types');
-
-        for (const type of presentTypes) {
-          const item = legend.append('div').attr('class', 'graph-legend-item');
-          item.append('span')
-            .attr('class', 'graph-legend-swatch')
-            .style('background', relColor(type));
-          item.append('span').text(type);
-        }
-      }
-
-      if (activeLayers.length > 0) {
-        legend.append('p').attr('class', 'graph-legend-title').text('Layers');
-
-        for (const layer of activeLayers) {
-          const cfg = LAYER_CONFIG[layer];
-          const item = legend.append('div').attr('class', 'graph-legend-item graph-legend-layer');
-          item.append('span')
-            .attr('class', 'graph-legend-glyph')
-            .attr('aria-hidden', 'true')
-            .style('color', cfg.color)
-            .text(cfg.glyph);
-          item.append('span').text(cfg.label);
-        }
-
-        if (hasRing) {
-          const who = anchorNames();
-          legend.append('p')
-            .attr('class', 'graph-legend-note')
-            .text(`Outer ring: linked only to ${who || 'no visible character'}${who ? ', or to no character' : ''}.`);
-        }
-      }
-    }
-
-    // ── Layer toolbar (Session 14) ───────────────────────────────────────────
+    // ── Stats for the page chrome ────────────────────────────────────────────
     //
-    // Persistent (not the contextual info panel, which closes). First child of
-    // the container, above the SVG. Default is all layers off.
-
-    function createToolbar() {
-      if (opts.layerControls === false) return;
-      toolbar = document.createElement('div');
-      toolbar.className = 'graph-layers';
-      toolbar.setAttribute('role', 'group');
-      toolbar.setAttribute('aria-label', 'Graph layers');
-      container.insertBefore(toolbar, container.firstChild);
-
-      for (const layer of LAYER_ORDER) {
-        const cfg = LAYER_CONFIG[layer];
-        const btn = document.createElement('button');
-        btn.type = 'button';
-        btn.className = 'graph-layer-btn';
-        btn.dataset.layer = layer;
-        btn.innerHTML =
-          `<span class="graph-layer-glyph" aria-hidden="true">${cfg.glyph}</span>`
-          + `<span class="graph-layer-label">${esc(cfg.label)}</span>`
-          + `<span class="graph-layer-count"></span>`
-          + `<span class="graph-layer-hint"></span>`;
-        btn.querySelector('.graph-layer-glyph').style.setProperty('color', cfg.color);
-        btn.style.setProperty('--layer-color', cfg.color);
-        btn.addEventListener('click', () => {
-          if (btn.getAttribute('aria-disabled') === 'true') return;
-          toggleLayer(layer);
-        });
-        toolbar.appendChild(btn);
-      }
-
-      // The desktop info panel docks to the container's right edge; start it
-      // below the toolbar so it never covers the toggles. Set via CSSOM (the
-      // CSP drops inline style attributes).
-      const syncPanelTop = () => {
-        if (!container.isConnected) { teardown(); return; }
-        container.style.setProperty('--graph-toolbar-h', toolbar.offsetHeight + 'px');
-      };
-      syncPanelTop();
-      if (typeof ResizeObserver !== 'undefined') {
-        toolbarObserver = new ResizeObserver(syncPanelTop);
-        toolbarObserver.observe(toolbar);
-      }
+    // The sidebar (views.js) draws the layer and relationship toggles, the fog
+    // note and the outer-ring note. It gets what it needs from here after every
+    // update(): counts only, no names of anything past the bookmark.
+    function anchorsOnRing() {
+      const who = anchorNames();
+      return `Outer ring: linked only to ${who || 'no visible character'}${who ? ', or to no character' : ''}.`;
     }
 
-    // Counts show nodes visible *now* at the reading position. A layer with none
-    // is aria-disabled with a hint, but keeps its state in the URL so it lights
-    // up once the reader gets there.
-    function renderToolbar() {
-      if (!toolbar) return;
-      for (const btn of toolbar.querySelectorAll('.graph-layer-btn')) {
-        const layer = btn.dataset.layer;
-        const n = layerData[layer].entities.length;
-        const disabled = n === 0;
-        btn.setAttribute('aria-pressed', activeLayers.includes(layer) ? 'true' : 'false');
-        btn.setAttribute('aria-disabled', disabled ? 'true' : 'false');
-        btn.classList.toggle('is-disabled', disabled);
-        btn.querySelector('.graph-layer-count').textContent = String(n);
-        btn.querySelector('.graph-layer-hint').textContent = disabled ? 'None yet at your reading position' : '';
-      }
+    function reportStats() {
+      if (!opts.onUpdate) return;
+      const layerCounts = {};
+      for (const layer of LAYER_ORDER) layerCounts[layer] = layerData[layer].entities.length;
+      opts.onUpdate({
+        hiddenCount,
+        layerCounts,
+        layers: activeLayers.slice(),
+        relGroups: activeRel.slice(),
+        ringNote: nodes.some(n => n.ring) ? anchorsOnRing() : '',
+      });
     }
+
+    // ── Layers and relationship filter ───────────────────────────────────────
 
     function toggleLayer(layer) {
       setLayers(activeLayers.includes(layer)
@@ -1313,12 +1432,25 @@ const LoreGraph = (() => {
       if (next.join(',') === activeLayers.join(',')) return;
       activeLayers = next;
       writeQuery({ layers: activeLayers });
+      afterFilterChange();
+    }
+
+    // Which relationship groups are drawn between characters, in place. Writes
+    // ?rel= (absent = all).
+    function setRelGroups(list) {
+      const next = canonicalRel(list);
+      if (next.join(',') === activeRel.join(',')) return;
+      activeRel = next;
+      writeQuery({ rel: activeRel });
+      afterFilterChange();
+    }
+
+    function afterFilterChange() {
       fitPending = true;
       update(0.5);
-
       if (selectedEntityId !== null) {
         if (nodeById[selectedEntityId]) {
-          // Counts and sections change with the layers, so re-render in place.
+          // Connections and sections change with the filters, so re-render in place.
           panel.innerHTML = renderPanelContent(selectedEntityId);
           bindPanelControls();
         } else {
@@ -1347,6 +1479,30 @@ const LoreGraph = (() => {
       return true;
     }
 
+    // ── Zoom controls ────────────────────────────────────────────────────────
+    //
+    // 40px +, - and Fit buttons at the canvas's bottom-left (main graph only).
+    // Fit hands the view back to the automatic fit.
+    function createZoomControls() {
+      const bar = document.createElement('div');
+      bar.className = 'graph-zoom';
+      bar.setAttribute('role', 'group');
+      bar.setAttribute('aria-label', 'Zoom');
+      bar.innerHTML =
+        '<button type="button" data-zoom="in" aria-label="Zoom in">+</button>'
+        + '<button type="button" data-zoom="out" aria-label="Zoom out">&minus;</button>'
+        + '<button type="button" data-zoom="fit" aria-label="Fit graph to view">Fit</button>';
+      bar.addEventListener('click', (e) => {
+        const btn = e.target.closest('button');
+        if (!btn) return;
+        if (btn.dataset.zoom === 'fit') { userTransformed = false; fitToView(); return; }
+        userTransformed = true; // a manual zoom, like a wheel: the auto-fit leaves the view alone
+        svg.transition().duration(180).call(zoom.scaleBy, btn.dataset.zoom === 'in' ? 1.4 : 1 / 1.4);
+      });
+      container.appendChild(bar);
+    }
+    if (!focusId) createZoomControls();
+
     // ── Drag handlers ────────────────────────────────────────────────────────
 
     function dragstarted(event, d) {
@@ -1374,14 +1530,16 @@ const LoreGraph = (() => {
       swapPanel,
       closePanel,
       setLayers,
+      setRelGroups,
       refresh,
       relayout,
       destroy: teardown,
       getLayers: () => activeLayers.slice(),
+      getRelGroups: () => activeRel.slice(),
       getSelectedEntityId: () => selectedEntityId,
     };
   }
 
-  return { init, egoNodeCount };
+  return { init, egoNodeCount, buildData, layoutStatic, scatterDots, radiusFor, LAYER_CONFIG, LAYER_ORDER };
 
 })();
