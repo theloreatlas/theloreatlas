@@ -39,17 +39,19 @@ function esc(s) {
 //     takes { canonical: true } for the same effect at runtime.
 //
 // Every runtime read of a staged prose field must go through this function:
-// views.js (proseValue/proseSection), search.js (full-status matching),
+// views.js (proseBody/proseSection), search.js (full-status matching),
 // graph.js (the panel description), and seo.js (canonical meta/JSON-LD).
 //
-// Returns { text, nextFrom }: `text` is the joined, currently-visible prose
-// (segments separated by a single space, '' if the field is empty); `nextFrom`
-// is the `from` of the earliest withheld segment, or null if none are withheld.
+// Returns { text, segments, nextFrom }: `text` is the joined, currently-visible
+// prose (segments separated by a single space, '' if the field is empty);
+// `segments` is the same visible prose as an array (detail pages render one
+// paragraph per segment); `nextFrom` is the `from` of the earliest withheld
+// segment, or null if none are withheld.
 function proseText(entity, field, seriesId, { canonical = false } = {}) {
   const value = entity ? entity[field] : undefined;
-  if (!value) return { text: '', nextFrom: null };
-  if (typeof value === 'string') return { text: value, nextFrom: null };
-  if (!Array.isArray(value)) return { text: '', nextFrom: null };
+  if (!value) return { text: '', segments: [], nextFrom: null };
+  if (typeof value === 'string') return { text: value, segments: [value], nextFrom: null };
+  if (!Array.isArray(value)) return { text: '', segments: [], nextFrom: null };
 
   const pos = canonical ? null : SpoilerGate.getPosition(seriesId);
   const shown = [];
@@ -64,7 +66,7 @@ function proseText(entity, field, seriesId, { canonical = false } = {}) {
       nextFrom = from;
     }
   }
-  return { text: shown.join(' '), nextFrom };
+  return { text: shown.join(' '), segments: shown, nextFrom };
 }
 
 // ── Staged aliases (Session 14.3) ────────────────────────────────────────────
@@ -92,6 +94,37 @@ function aliasNames(entity, seriesId, { canonical = false } = {}) {
     if (!a.from || !pos || SpoilerGate.comparePositions(pos, a.from) >= 0) names.push(a.name);
   }
   return names;
+}
+
+// ── Reading positions in words ───────────────────────────────────────────────
+
+function bookByNumber(seriesId, bookNum) {
+  return LoreLoader.getAll(seriesId, 'books').find(b => b.chronological_order === bookNum) || null;
+}
+
+// { book: 2, chapter: 12 } → "The Sign of the Four, Ch. 12"; a collection reads
+// "The Adventures of Sherlock Holmes, Story 3". bookUnitWord() lives in
+// reader-position.js (called at runtime, so load order doesn't matter).
+function formatPosition(pos, seriesId) {
+  if (!pos) return '—';
+  const book = bookByNumber(seriesId, pos.book);
+  if (!book) return `Book ${pos.book}, Ch. ${pos.chapter}`;
+  return `${book.title}, ${bookUnitWord(book)} ${pos.chapter}`;
+}
+
+// ── Relationship types ───────────────────────────────────────────────────────
+
+// The design colours relationships in five groups; the label still shows the
+// data's own type ("Professional", "Mentor"). Colour is applied by CSS from a
+// data-rel="<group>" attribute.
+function relTypeGroup(type) {
+  switch (type) {
+    case 'ally':     return 'ally';
+    case 'family':   return 'family';
+    case 'enemy':    return 'adversary';
+    case 'romantic': return 'romantic';
+    default:         return 'other';
+  }
 }
 
 // ── Routing ──────────────────────────────────────────────────────────────────

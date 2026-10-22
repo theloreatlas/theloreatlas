@@ -519,18 +519,14 @@
 
 /* ── Mini-graphs on detail pages (Session 15) ─────────────────────────────── */
 
-.detail-connections .mini-graph {
+.mini-graph {
   position: relative;
 }
 
-.mini-graph-link {
-  margin: 0.6rem 0 0;
-  font-size: 0.95rem;
-}
-
 .mini-graph-hint {
-  font-size: 0.875rem;
-  color: var(--muted);
+  padding: 8px 18px 12px;
+  font-size: 0.75rem;
+  color: var(--faint);
 }
 
 /* Mini-graphs: hand one-finger vertical drags to the page (graph.js also filters
