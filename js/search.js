@@ -12,6 +12,10 @@
 // Type chips: the five the design always shows, plus any other type once it has
 // a result. The selection is page-level state, so it survives a bookmark re-render.
 const SEARCH_CORE_TYPES = ['characters', 'cases', 'locations', 'artifacts', 'factions'];
+// Chip order follows the design (not ENTITY_TYPES order), and the events chip is
+// sentence case; the grouped results below keep the ENTITY_TYPES labels.
+const SEARCH_CHIP_ORDER = ['characters', 'cases', 'locations', 'artifacts', 'factions', 'books', 'events', 'relationships'];
+const SEARCH_CHIP_LABELS = { events: 'Timeline events' };
 const searchUi = { type: 'all' };
 
 const SEARCH_ICON = '<svg class="search-field-icon" width="22" height="22" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="7" r="5"/><path d="M11 11l3.5 3.5"/></svg>';
@@ -101,7 +105,7 @@ function entityMatchesQuery(entity, entityType, q, seriesId) {
   const fields = [
     entity.name,
     entity.title,
-    entity.case_nickname,
+    visibleNickname(entity, seriesId),
     entity.relationship_type,
   ];
 
@@ -120,7 +124,8 @@ function entityMatchesQuery(entity, entityType, q, seriesId) {
 
   // Aliases go through aliasNames() (Session 14.3): a staged alias isn't
   // searchable before its `from`, just as it isn't shown in "Also Known As".
-  const arrays = [aliasNames(entity, seriesId), entity.tags];
+  // Tags likewise go through visibleTags() (a tag naming a hidden entity is withheld).
+  const arrays = [aliasNames(entity, seriesId), visibleTags(entity, seriesId)];
   for (const arr of arrays) {
     if (Array.isArray(arr)) {
       for (const item of arr) {
@@ -202,7 +207,9 @@ function runSearch(q) {
 
   const counts = {};
   for (const r of found.results) counts[r.entityType] = (counts[r.entityType] || 0) + 1;
-  const types = ENTITY_TYPES.filter(et => SEARCH_CORE_TYPES.includes(et.key) || counts[et.key]);
+  const types = SEARCH_CHIP_ORDER
+    .map(key => ENTITY_TYPES.find(et => et.key === key))
+    .filter(et => SEARCH_CORE_TYPES.includes(et.key) || counts[et.key]);
   if (searchUi.type !== 'all' && !types.some(t => t.key === searchUi.type)) searchUi.type = 'all';
 
   const chip = (key, label, n) => `<button type="button" class="role-chip search-chip" data-type="${key}" aria-pressed="${searchUi.type === key}">`
@@ -210,7 +217,7 @@ function runSearch(q) {
   const chips = document.getElementById('search-chips');
   if (chips) {
     chips.innerHTML = chip('all', 'All', found.results.length)
-      + types.map(et => chip(et.key, et.label, counts[et.key] || 0)).join('');
+      + types.map(et => chip(et.key, SEARCH_CHIP_LABELS[et.key] || et.label, counts[et.key] || 0)).join('');
   }
 
   drawSearchResults();
@@ -287,7 +294,7 @@ function getEntityMeta(entity, entityType) {
     case 'characters':
       return entity.status === 'deceased' ? 'Deceased' : entity.role || '';
     case 'cases':
-      return entity.case_nickname || '';
+      return visibleNickname(entity, entity.series);
     case 'books':
       return entity.publication_year ? `${entity.publication_year}` : '';
     case 'factions':

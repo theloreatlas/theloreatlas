@@ -819,8 +819,9 @@ function characterView(entity, status) {
   const rels = visibleRelationships(entity);
   const relRows = rels.rows.map(({ other, type }) => `<li><a class="row" href="${entityRowHref(other)}"><span class="row-name">${esc(getEntityName(other, 'characters'))}</span><span class="row-note"><span class="rel-line" data-rel="${relTypeGroup(type)}"></span>${esc(humanize(type))}</span></a></li>`).join('');
 
-  const tags = entity.tags && entity.tags.length
-    ? `<section class="entry-list entry-list-wide"><h2 class="label">Tags</h2><div class="chips">${entity.tags.map(t => `<span class="chip chip-tag">${esc(t)}</span>`).join('')}</div></section>`
+  const tagList = visibleTags(entity, entity.series);
+  const tags = tagList.length
+    ? `<section class="entry-list entry-list-wide"><h2 class="label">Tags</h2><div class="chips">${tagList.map(t => `<span class="chip chip-tag">${esc(t)}</span>`).join('')}</div></section>`
     : '';
 
   return {
@@ -923,13 +924,15 @@ function caseView(entity, status) {
       ? `<section class="entry-list entry-list-wide"><h2 class="label">Notable elements</h2><ul class="bullets">${entity.notable_elements.map(e => `<li>${esc(e)}</li>`).join('')}</ul></section>`
       : '';
 
+  const nickname = visibleNickname(entity, entity.series);
+
   return {
     label: book ? `Case · ${book.type === 'novel' ? 'Novel' : 'Story'}` : 'Case',
     facts: [
       entity.source_book ? ['Book', entityLink(entity.source_book)] : null,
       entity.first_mention ? ['Opened', esc(formatPosition(entity.first_mention, entity.series))] : null,
       book && book.type === 'novel' ? ['Chapters', esc(String(SpoilerGate.getChapterCount(book)))] : null,
-      entity.case_nickname ? ['Nickname', esc(entity.case_nickname)] : null,
+      nickname ? ['Nickname', esc(nickname)] : null,
     ],
     prose: proseSection(entity, status, 'synopsis') + solutionBlock(entity, status),
     lists: itemList('People involved', entity.characters_involved, entity.series)

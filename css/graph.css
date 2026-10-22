@@ -570,6 +570,13 @@
   background: var(--hover);
 }
 
+@media (max-width: 760px), (pointer: coarse) {
+  .graph-zoom button {
+    width: var(--tap);
+    height: var(--tap);
+  }
+}
+
 /* ── Nodes, edges, labels, dots ───────────────────────────────────────────── */
 
 .graph-link {
@@ -632,9 +639,17 @@
   outline: none;
 }
 
-.graph-node:focus .node-shape {
-  stroke: var(--accent-bright);
-  stroke-width: 2.5;
+/* Keyboard focus only (mouse clicks select instead): an --ink stroke on the
+   shape, which reads on any node colour (gold included), plus the same
+   bg-gap + accent ring the selected node gets. */
+.graph-node:focus-visible .node-shape {
+  stroke: var(--ink);
+  stroke-width: 2;
+}
+
+.graph-node:focus-visible .node-halo,
+.graph-node:focus-visible .node-ring {
+  display: inline;
 }
 
 .graph-label {
@@ -1087,6 +1102,12 @@
   font-size: 14px;
   color: var(--text-body);
   cursor: pointer;
+}
+
+@media (max-width: 760px), (pointer: coarse) {
+  .graph-view-toggle button {
+    height: var(--tap);
+  }
 }
 
 .graph-view-toggle button[aria-pressed="true"] {

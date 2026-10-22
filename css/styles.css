@@ -122,6 +122,13 @@ summary:focus-visible,
   display: none;
 }
 
+/* Tap target: the pill grows to 44px on phones and touch screens. */
+@media (max-width: 760px), (pointer: coarse) {
+  .universe-pill {
+    min-height: var(--tap);
+  }
+}
+
 .universe-caret {
   flex-shrink: 0;
 }
@@ -332,6 +339,9 @@ summary:focus-visible,
 }
 
 .bm-note {
+  /* The note wraps, so it gives way first; otherwise the title button is
+     squeezed at ~900px and clips the end of the unit text. */
+  flex-shrink: 100;
   margin-left: auto;
   font-size: 13px;
   color: var(--muted);
@@ -676,6 +686,11 @@ summary:focus-visible,
   border-color: transparent;
   background: color-mix(in srgb, var(--accent) 16%, transparent);
   color: var(--accent-text);
+}
+
+/* Light theme: --accent-text on its own tint measures 4.37:1; darken it. */
+:root[data-theme="light"] .chip-status[data-status="partial"] {
+  color: color-mix(in srgb, var(--accent-text) 80%, var(--ink));
 }
 
 .chip-status[data-status="full"] {
@@ -1354,6 +1369,18 @@ a.row:hover {
 .list-sort option {
   background: var(--popover);
   color: var(--text-body);
+}
+
+/* Tap targets: filter, sort and role chips reach 44px on phones / touch. */
+@media (max-width: 760px), (pointer: coarse) {
+  .list-filter input,
+  .role-chip {
+    height: var(--tap);
+  }
+
+  .list-sort select {
+    min-height: var(--tap);
+  }
 }
 
 .sort-caret {
@@ -2808,7 +2835,8 @@ dialog.first-visit::backdrop {
 
 .search-chip-n {
   margin-left: 8px;
-  opacity: 0.65;
+  /* 0.65 measured 3.9:1 dark / 4.2:1 light; 0.85 clears 4.5:1 in both. */
+  opacity: 0.85;
 }
 
 @media (pointer: coarse) {
@@ -3134,8 +3162,9 @@ dialog.switcher::backdrop {
 
 .footer-theme {
   display: flex;
+  flex-wrap: wrap; /* the switch drops under its label in a narrow column (~768px) */
   align-items: center;
-  gap: 12px;
+  gap: 8px 12px;
   margin-bottom: 10px;
   font-size: 15px;
 }

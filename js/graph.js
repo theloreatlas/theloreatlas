@@ -1345,6 +1345,9 @@ const LoreGraph = (() => {
         document.removeEventListener('keydown', onKeyDown);
         return;
       }
+      // An open modal <dialog> (bookmark picker, universe switcher, first visit)
+      // owns Escape; clearing the selection here would eat its close.
+      if (document.querySelector('dialog[open]')) return;
       if (e.key === 'Escape' && selectedEntityId !== null) {
         e.preventDefault();
         closePanel();

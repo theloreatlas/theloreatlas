@@ -96,6 +96,63 @@ function aliasNames(entity, seriesId, { canonical = false } = {}) {
   return names;
 }
 
+// ── Spoiler-gated tags and nicknames ─────────────────────────────────────────
+//
+// A tag or a case nickname can carry the name of something the reader hasn't met
+// yet (Wiggins is tagged "Baker Street Irregulars", a faction still hidden early
+// on; "The Lauriston Gardens Murder" names a hidden location). hiddenNameSet()
+// collects the name/title and canonical aliases of every entity that is 'hidden'
+// at the bookmark.
+//
+// Every runtime read of `tags` must go through visibleTags(), and every read of
+// `case_nickname` through visibleNickname(): views.js (Tags chips, Nickname fact)
+// and search.js (matching and the case result's meta line).
+
+// Lowercased, trimmed, a leading "the" ignored: the tag "Baker Street
+// Irregulars" names the faction "The Baker Street Irregulars".
+function normalizeHiddenName(s) {
+  return String(s).trim().toLowerCase().replace(/^the\s+/, '');
+}
+
+// Cached per series + bookmark: search calls this for every entity on every
+// keystroke, and the data never changes at runtime.
+let hiddenNameCache = { key: null, names: null };
+
+function hiddenNameSet(seriesId) {
+  const key = seriesId + '|' + JSON.stringify(SpoilerGate.getPosition(seriesId));
+  if (hiddenNameCache.key === key) return hiddenNameCache.names;
+  const names = new Set();
+  for (const et of ENTITY_TYPES) {
+    for (const e of LoreLoader.getAll(seriesId, et.key)) {
+      if (SpoilerGate.getRevealStatus(e, seriesId) !== 'hidden') continue;
+      for (const n of [e.name, e.title, ...aliasNames(e, seriesId, { canonical: true })]) {
+        if (typeof n === 'string' && n.trim()) names.add(normalizeHiddenName(n));
+      }
+    }
+  }
+  hiddenNameCache = { key, names };
+  return names;
+}
+
+// Returns the visible tags as an array of strings: a tag equal to a hidden name
+// is withheld.
+function visibleTags(entity, seriesId) {
+  const list = entity ? entity.tags : undefined;
+  if (!Array.isArray(list) || !list.length) return [];
+  const hidden = hiddenNameSet(seriesId);
+  return list.filter(t => typeof t === 'string' && !hidden.has(normalizeHiddenName(t)));
+}
+
+// Returns the case nickname, or '' when it contains a hidden name (substring,
+// case-insensitive). Nicknames are plain strings, so they can't be staged.
+function visibleNickname(entity, seriesId) {
+  const nick = entity ? entity.case_nickname : undefined;
+  if (typeof nick !== 'string' || !nick.trim()) return '';
+  const low = normalizeHiddenName(nick);
+  for (const n of hiddenNameSet(seriesId)) if (low.includes(n)) return '';
+  return nick;
+}
+
 // ── Reading positions in words ───────────────────────────────────────────────
 
 function bookByNumber(seriesId, bookNum) {
