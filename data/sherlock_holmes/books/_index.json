@@ -87,7 +87,32 @@
       "case_the-adventure-of-the-beryl-coronet",
       "case_the-adventure-of-the-copper-beeches"
     ],
-    "description": "The first short story collection, containing 12 cases. Originally published in The Strand Magazine. Introduces several iconic cases including A Scandal in Bohemia (Irene Adler), The Red-Headed League, and The Adventure of the Speckled Band.",
+    "description": [
+      {
+        "text": "The first short story collection, containing 12 cases. Originally published in The Strand Magazine."
+      },
+      {
+        "text": "Introduces several iconic cases, beginning with A Scandal in Bohemia (Irene Adler).",
+        "from": {
+          "book": 3,
+          "chapter": 1
+        }
+      },
+      {
+        "text": "Among them is The Red-Headed League.",
+        "from": {
+          "book": 3,
+          "chapter": 2
+        }
+      },
+      {
+        "text": "Another is The Adventure of the Speckled Band.",
+        "from": {
+          "book": 3,
+          "chapter": 8
+        }
+      }
+    ],
     "created_by": "theloreatlas",
     "last_edited_by": "theloreatlas"
   },
@@ -176,10 +201,10 @@
     ],
     "description": [
       {
-        "text": "The third short story collection, containing 13 cases. Opens with The Adventure of the Empty House."
+        "text": "The third short story collection, containing 13 cases."
       },
       {
-        "text": "In it, Holmes dramatically returns from his apparent death at Reichenbach Falls, revealing he had faked his death to evade Moriarty's associates.",
+        "text": "Opens with The Adventure of the Empty House. In it, Holmes dramatically returns from his apparent death at Reichenbach Falls, revealing he had faked his death to evade Moriarty's associates.",
         "from": {
           "book": 6,
           "chapter": 1
@@ -199,7 +224,14 @@
     "stories_contained": ["case_the-valley-of-fear"],
     "description": [
       {
-        "text": "The fourth and final Holmes novel. A cipher message warns Holmes of a murder at Birlstone Manor."
+        "text": "The fourth and final Holmes novel."
+      },
+      {
+        "text": "A cipher message warns Holmes of a murder at Birlstone Manor.",
+        "from": {
+          "book": 7,
+          "chapter": 1
+        }
       },
       {
         "text": "The investigation reveals a complex plot with roots in a brutal American mining community known as the Valley of Fear.",
@@ -272,7 +304,18 @@
       "case_the-adventure-of-shoscombe-old-place",
       "case_the-adventure-of-the-retired-colourman"
     ],
-    "description": "The fifth and final short story collection, containing 12 cases. The last Holmes stories published by Doyle. Two stories (The Adventure of the Blanched Soldier and The Adventure of the Lion's Mane) are narrated by Holmes himself rather than Watson.",
+    "description": [
+      {
+        "text": "The fifth and final short story collection, containing 12 cases. The last Holmes stories published by Doyle."
+      },
+      {
+        "text": "Two stories (The Adventure of the Blanched Soldier and The Adventure of the Lion's Mane) are narrated by Holmes himself rather than Watson.",
+        "from": {
+          "book": 9,
+          "chapter": 9
+        }
+      }
+    ],
     "created_by": "theloreatlas",
     "last_edited_by": "theloreatlas"
   }

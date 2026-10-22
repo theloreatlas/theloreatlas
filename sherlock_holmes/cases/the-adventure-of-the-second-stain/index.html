@@ -6,12 +6,14 @@
   
   
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net https://static.cloudflareinsights.com; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://cloudflareinsights.com">
+  <script src="/js/theme.js?v=59a2d738"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cinzel:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Libre+Caslon+Display:wght@400&family=Libre+Caslon+Text:wght@400&display=swap" rel="stylesheet">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=bb2bcdfe">
-  <link rel="stylesheet" href="/css/styles.css?v=e097dd8d">
-  <link rel="stylesheet" href="/css/graph.css?v=e9d41cc5">
+  <link rel="stylesheet" href="/css/tokens.css?v=3e275d54">
+  <link rel="stylesheet" href="/css/styles.css?v=1fcf08b0">
+  <link rel="stylesheet" href="/css/graph.css?v=2b7ea583">
               <script src="/js/spa-redirect.js?v=0d367250"></script>
   <title>The Adventure of the Second Stain | Sherlock Holmes | The Lore Atlas</title>
   <meta name="description" content="The Prime Minister and the Secretary for European Affairs consult Holmes in the utmost secrecy: a sensitive diplomatic letter has been stolen from a…">
@@ -84,69 +86,119 @@
 </head>
 <body>
 
-  <div id="page-grain" aria-hidden="true"></div>
-
   <header id="site-header">
-    <a href="/" id="site-logo">
-      <span class="logo-ornament">&loz;</span>
-      The Lore Atlas
-      <span class="logo-ornament">&loz;</span>
-    </a>
-    <button id="nav-toggle" class="nav-toggle" type="button" aria-controls="site-nav" aria-expanded="false" aria-label="Menu">
-      <span class="nav-toggle-bar"></span>
-      <span class="nav-toggle-bar"></span>
-      <span class="nav-toggle-bar"></span>
+    <a href="/" id="site-logo">The Lore Atlas</a>
+    <button type="button" id="universe-pill" class="universe-pill" aria-haspopup="dialog" aria-expanded="false">
+      <span class="universe-name">Sherlock Holmes</span><span class="universe-name-short">Holmes</span>
+      <svg class="universe-caret" width="10" height="6" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 1l4 4 4-4"/></svg>
     </button>
-    <nav>
+    <nav id="site-nav-wrap" aria-label="Primary">
       <ul id="site-nav">
-        <li><a href="/">Home</a></li>
-        <li><a href="/sherlock_holmes/characters/">Characters</a></li>
-        <li><a href="/sherlock_holmes/cases/">Cases</a></li>
-        <li><a href="/sherlock_holmes/books/">Books</a></li>
-        <li><a href="/sherlock_holmes/locations/">Locations</a></li>
-        <li><a href="/sherlock_holmes/artifacts/">Artifacts</a></li>
-        <li><a href="/sherlock_holmes/factions/">Factions</a></li>
-        <li><a href="/sherlock_holmes/events/">Timeline</a></li>
-        <li><a href="/sherlock_holmes/relationships/">Relationships</a></li>
-        <li><a href="/sherlock_holmes/graph/">Graph</a></li>
-        <li><a href="/search">Search</a></li>
+        <li><a href="/sherlock_holmes/" data-nav="atlas">Atlas</a></li>
+        <li><a href="/sherlock_holmes/characters/" data-nav="browse">Browse</a></li>
+        <li><a href="/sherlock_holmes/events/" data-nav="timeline">Timeline</a></li>
+        <li><a href="/sherlock_holmes/graph/" data-nav="graph">Graph</a></li>
       </ul>
     </nav>
+    <form id="site-search" role="search" action="/search" method="get">
+      <svg class="search-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="7" r="5"/><path d="M11 11l3.5 3.5"/></svg>
+      <input type="search" id="site-search-input" name="q" placeholder="Search the atlas" aria-label="Search the atlas" autocomplete="off">
+    </form>
+    <div class="theme-switch" role="group" aria-label="Theme">
+      <button type="button" data-theme-option="dark" aria-pressed="true">Dark</button>
+      <button type="button" data-theme-option="light" aria-pressed="false">Light</button>
+    </div>
   </header>
 
-  <div id="reader-position-bar" hidden aria-label="Reading position filter">
-    <span class="rp-label">Reading position</span>
-    <div class="rp-controls">
-      <select id="rp-book" aria-label="Select book">
-        <option value="">— Select a book —</option>
-      </select>
-      <select id="rp-chapter" aria-label="Select chapter" disabled>
-        <option value="">Ch. —</option>
-      </select>
-      <button id="rp-clear" type="button" class="rp-clear-btn">Clear</button>
+  <section id="bookmark-bar" aria-label="Your bookmark" hidden>
+    <div class="bm-progress" aria-hidden="true"></div>
+    <div class="bm-row">
+      <span class="bm-label">Your bookmark</span>
+      <button type="button" id="bookmark-title" class="bm-title" aria-haspopup="dialog">
+        <span class="bm-title-line">
+          <span class="bm-book"><span class="bm-long"></span><span class="bm-short"></span></span>
+          <span class="bm-unit"><span class="bm-long"></span><span class="bm-short"></span></span>
+          <svg class="bm-caret" width="10" height="6" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 1l4 4 4-4"/></svg>
+        </span>
+      </button>
+      <div class="bm-steps">
+        <button type="button" id="bookmark-prev" class="bm-step" aria-label="Previous chapter">&minus;</button>
+        <button type="button" id="bookmark-next" class="bm-step" aria-label="Next chapter">+</button>
+      </div>
+      <span class="bm-note" id="bookmark-note"></span>
+      <button type="button" id="bookmark-clear" class="bm-clear">Show everything</button>
     </div>
-    <span id="rp-status" class="rp-status" aria-live="polite"></span>
-  </div>
+    <div class="bm-strip"></div>
+    <p class="visually-hidden" id="bookmark-live" aria-live="polite"></p>
+  </section>
 
-  <main id="main-content">
-    <p class="state-loading">Loading…</p>
+  <main id="main-content" aria-busy="true">
+    <div class="page-wide skeleton" aria-hidden="true">
+      <div class="skel-main">
+        <span class="skel-bar skel-crumb"></span>
+        <span class="skel-block skel-title"></span>
+        <div class="skel-pills"><span class="skel-pill skel-pill-sm"></span><span class="skel-pill skel-pill-lg"></span></div>
+        <span class="skel-bar skel-w1"></span><span class="skel-bar skel-w2"></span><span class="skel-bar skel-w3"></span><span class="skel-bar skel-w4"></span>
+      </div>
+      <div class="skel-side"><span class="skel-block skel-card skel-card-tall"></span><span class="skel-block skel-card"></span></div>
+    </div>
+    <span class="visually-hidden">Loading</span>
   </main>
 
   <footer id="site-footer">
-    <div class="footer-ornament" aria-hidden="true">&#10053; &#10053; &#10053;</div>
-    <p>An encyclopedia of public domain literary universes</p>
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <p class="footer-mark">The Lore Atlas</p>
+          <p class="footer-blurb">Guides to literary universes that only show what you've read.</p>
+        </div>
+        <nav class="footer-col" aria-labelledby="footer-universes-label">
+          <h2 class="label" id="footer-universes-label">Universes</h2>
+          <ul id="footer-universes">
+            <li><a href="/sherlock_holmes/">Sherlock Holmes</a></li>
+            <li class="footer-faint">More coming</li>
+          </ul>
+        </nav>
+        <div class="footer-col">
+          <h2 class="label">Settings</h2>
+          <div class="footer-theme">
+            <span id="footer-theme-label">Theme</span>
+            <div class="theme-switch" role="group" aria-labelledby="footer-theme-label">
+              <button type="button" data-theme-option="dark" aria-pressed="true">Dark</button>
+              <button type="button" data-theme-option="light" aria-pressed="false">Light</button>
+            </div>
+          </div>
+          <button type="button" id="reset-bookmarks" class="footer-link">Reset my bookmarks</button>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; The Lore Atlas</span>
+        <span>Bookmarks are saved on this device only.</span>
+      </div>
+    </div>
   </footer>
+
+  <nav id="tab-bar" aria-label="Primary mobile">
+    <a href="/sherlock_holmes/" data-nav="atlas">Atlas</a>
+    <a href="/sherlock_holmes/characters/" data-nav="browse">Browse</a>
+    <a href="/sherlock_holmes/graph/" data-nav="graph">Graph</a>
+    <a href="/search" data-nav="search">Search</a>
+  </nav>
 
   <script src="/js/spoiler.js?v=06e527e2"></script>
   <script src="/js/loader.js?v=fdfafb3a"></script>
   <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js" integrity="sha384-CjloA8y00+1SDAUkjs099PVfnY2KmDC2BZnws9kh8D/lX1s46w6EPhpXdqMfjK6i" crossorigin="anonymous"></script>
-  <script src="/js/graph.js?v=5d927c29"></script>
-  <script src="/js/core.js?v=0e4b4bd6"></script>
-  <script src="/js/views.js?v=a4c12cbb"></script>
-  <script src="/js/search.js?v=9b99e8b5"></script>
-  <script src="/js/reader-position.js?v=a07cf359"></script>
+  <script src="/js/graph.js?v=92231145"></script>
+  <script src="/js/hub.js?v=80cba7a5"></script>
+  <script src="/js/core.js?v=5c32395c"></script>
+  <script src="/js/views.js?v=9a18cffb"></script>
+  <script src="/js/timeline.js?v=c2ff340d"></script>
+  <script src="/js/search.js?v=66e85db4"></script>
+  <script src="/js/reader-position.js?v=d314dac1"></script>
+  <script src="/js/bookmark-picker.js?v=af75424e"></script>
+  <script src="/js/universe-switcher.js?v=e910db13"></script>
   <script src="/js/seo.js?v=7db2f5d5"></script>
-  <script src="/js/app.js?v=1e647958"></script>
+  <script src="/js/app.js?v=924f27f8"></script>
 
 </body>
 </html>

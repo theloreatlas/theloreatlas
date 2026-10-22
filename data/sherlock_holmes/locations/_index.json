@@ -15,7 +15,21 @@
       "case_the-final-problem",
       "case_the-adventure-of-the-empty-house"
     ],
-    "description": "221B Baker Street is the shared lodging of Sherlock Holmes and Dr. John Watson, and the operational base for nearly all of Holmes's cases. The rooms on the first floor above Mrs. Hudson's ground-floor quarters are famous for their organized chaos: chemical experiments on the table, correspondence pinned to the mantelpiece with a jack-knife, stacks of papers, Holmes's violin, and the initials V.R. shot into the wall with a revolver. Clients arrive here; Holmes receives telegrams and letters here; and it is here that he does the bulk of his thinking. The address has become the most iconic in English fiction.",
+    "description": [
+      {
+        "text": "221B Baker Street is the shared lodging of Sherlock Holmes and Dr. John Watson, and the operational base for nearly all of Holmes's cases."
+      },
+      {
+        "text": "Mrs. Hudson, the landlady, keeps the ground-floor quarters below.",
+        "from": {
+          "book": 2,
+          "chapter": 1
+        }
+      },
+      {
+        "text": "The first-floor rooms are famous for their organized chaos: chemical experiments on the table, correspondence pinned to the mantelpiece with a jack-knife, stacks of papers, Holmes's violin, and the initials V.R. shot into the wall with a revolver. Clients arrive here; Holmes receives telegrams and letters here; and it is here that he does the bulk of his thinking. The address has become the most iconic in English fiction."
+      }
+    ],
     "first_mention": {
       "book": 1,
       "chapter": 2
@@ -280,7 +294,14 @@
     ],
     "description": [
       {
-        "text": "Dartmoor is the bleak, fog-prone moorland that serves as the primary setting for The Hound of the Baskervilles. Its combination of desolate beauty, treacherous bogs, and atmospheric isolation makes it an ideal canvas for Gothic horror and detection alike. Watson spends weeks at Baskerville Hall observing and reporting; the landscape — particularly the Great Grimpen Mire — functions as both a physical danger and a psychological pressure on everyone involved."
+        "text": "Dartmoor is the bleak, fog-prone moorland that serves as the primary setting for The Hound of the Baskervilles. Its combination of desolate beauty, treacherous bogs, and atmospheric isolation makes it an ideal canvas for Gothic horror and detection alike. Watson spends weeks at Baskerville Hall observing and reporting."
+      },
+      {
+        "text": "The landscape — particularly the Great Grimpen Mire — functions as both a physical danger and a psychological pressure on everyone involved.",
+        "from": {
+          "book": 5,
+          "chapter": 2
+        }
       },
       {
         "text": "Holmes meanwhile conducts his own investigation in secret.",
@@ -661,10 +682,10 @@
     ],
     "description": [
       {
-        "text": "Holmes retires to a small farm on the Sussex Downs to keep bees — a detail announced in several late-canon stories and fully realized in His Last Bow and The Adventure of the Lion's Mane. The retirement is both a genuine withdrawal from London detective work and, as His Last Bow reveals, a cover for a wartime intelligence operation: Holmes has been living there as 'Altamont,' an Irish-American, while secretly working against German espionage ahead of the First World War."
+        "text": "Holmes retires to a small farm on the Sussex Downs to keep bees — a detail announced in several late-canon stories and fully realized in His Last Bow. The retirement is both a genuine withdrawal from London detective work and, as His Last Bow reveals, a cover for a wartime intelligence operation: Holmes has been living there as 'Altamont,' an Irish-American, while secretly working against German espionage ahead of the First World War."
       },
       {
-        "text": "In The Adventure of the Lion's Mane — narrated by Holmes himself — the downs and sea cliffs are the setting for a baffling death that Holmes solves from his retirement.",
+        "text": "It is also fully realized in The Adventure of the Lion's Mane — narrated by Holmes himself — where the downs and sea cliffs are the setting for a baffling death that Holmes solves from his retirement.",
         "from": {
           "book": 9,
           "chapter": 9

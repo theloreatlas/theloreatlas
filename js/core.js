@@ -39,17 +39,19 @@ function esc(s) {
 //     takes { canonical: true } for the same effect at runtime.
 //
 // Every runtime read of a staged prose field must go through this function:
-// views.js (proseValue/proseSection), search.js (full-status matching),
+// views.js (proseBody/proseSection), search.js (full-status matching),
 // graph.js (the panel description), and seo.js (canonical meta/JSON-LD).
 //
-// Returns { text, nextFrom }: `text` is the joined, currently-visible prose
-// (segments separated by a single space, '' if the field is empty); `nextFrom`
-// is the `from` of the earliest withheld segment, or null if none are withheld.
+// Returns { text, segments, nextFrom }: `text` is the joined, currently-visible
+// prose (segments separated by a single space, '' if the field is empty);
+// `segments` is the same visible prose as an array (detail pages render one
+// paragraph per segment); `nextFrom` is the `from` of the earliest withheld
+// segment, or null if none are withheld.
 function proseText(entity, field, seriesId, { canonical = false } = {}) {
   const value = entity ? entity[field] : undefined;
-  if (!value) return { text: '', nextFrom: null };
-  if (typeof value === 'string') return { text: value, nextFrom: null };
-  if (!Array.isArray(value)) return { text: '', nextFrom: null };
+  if (!value) return { text: '', segments: [], nextFrom: null };
+  if (typeof value === 'string') return { text: value, segments: [value], nextFrom: null };
+  if (!Array.isArray(value)) return { text: '', segments: [], nextFrom: null };
 
   const pos = canonical ? null : SpoilerGate.getPosition(seriesId);
   const shown = [];
@@ -64,7 +66,7 @@ function proseText(entity, field, seriesId, { canonical = false } = {}) {
       nextFrom = from;
     }
   }
-  return { text: shown.join(' '), nextFrom };
+  return { text: shown.join(' '), segments: shown, nextFrom };
 }
 
 // ── Staged aliases (Session 14.3) ────────────────────────────────────────────
@@ -93,6 +95,103 @@ function aliasNames(entity, seriesId, { canonical = false } = {}) {
   }
   return names;
 }
+
+// ── Spoiler-gated tags and nicknames ─────────────────────────────────────────
+//
+// A tag or a case nickname can carry the name of something the reader hasn't met
+// yet (Wiggins is tagged "Baker Street Irregulars", a faction still hidden early
+// on; "The Lauriston Gardens Murder" names a hidden location). hiddenNameSet()
+// collects the name/title and canonical aliases of every entity that is 'hidden'
+// at the bookmark.
+//
+// Every runtime read of `tags` must go through visibleTags(), and every read of
+// `case_nickname` through visibleNickname(): views.js (Tags chips, Nickname fact)
+// and search.js (matching and the case result's meta line).
+
+// Lowercased, trimmed, a leading "the" ignored: the tag "Baker Street
+// Irregulars" names the faction "The Baker Street Irregulars".
+function normalizeHiddenName(s) {
+  return String(s).trim().toLowerCase().replace(/^the\s+/, '');
+}
+
+// Cached per series + bookmark: search calls this for every entity on every
+// keystroke, and the data never changes at runtime.
+let hiddenNameCache = { key: null, names: null };
+
+function hiddenNameSet(seriesId) {
+  const key = seriesId + '|' + JSON.stringify(SpoilerGate.getPosition(seriesId));
+  if (hiddenNameCache.key === key) return hiddenNameCache.names;
+  const names = new Set();
+  for (const et of ENTITY_TYPES) {
+    for (const e of LoreLoader.getAll(seriesId, et.key)) {
+      if (SpoilerGate.getRevealStatus(e, seriesId) !== 'hidden') continue;
+      for (const n of [e.name, e.title, ...aliasNames(e, seriesId, { canonical: true })]) {
+        if (typeof n === 'string' && n.trim()) names.add(normalizeHiddenName(n));
+      }
+    }
+  }
+  hiddenNameCache = { key, names };
+  return names;
+}
+
+// Returns the visible tags as an array of strings: a tag equal to a hidden name
+// is withheld.
+function visibleTags(entity, seriesId) {
+  const list = entity ? entity.tags : undefined;
+  if (!Array.isArray(list) || !list.length) return [];
+  const hidden = hiddenNameSet(seriesId);
+  return list.filter(t => typeof t === 'string' && !hidden.has(normalizeHiddenName(t)));
+}
+
+// Returns the case nickname, or '' when it contains a hidden name (substring,
+// case-insensitive). Nicknames are plain strings, so they can't be staged.
+function visibleNickname(entity, seriesId) {
+  const nick = entity ? entity.case_nickname : undefined;
+  if (typeof nick !== 'string' || !nick.trim()) return '';
+  const low = normalizeHiddenName(nick);
+  for (const n of hiddenNameSet(seriesId)) if (low.includes(n)) return '';
+  return nick;
+}
+
+// ── Reading positions in words ───────────────────────────────────────────────
+
+function bookByNumber(seriesId, bookNum) {
+  return LoreLoader.getAll(seriesId, 'books').find(b => b.chronological_order === bookNum) || null;
+}
+
+// { book: 2, chapter: 12 } → "The Sign of the Four, Ch. 12"; a collection reads
+// "The Adventures of Sherlock Holmes, Story 3". bookUnitWord() lives in
+// reader-position.js (called at runtime, so load order doesn't matter).
+function formatPosition(pos, seriesId) {
+  if (!pos) return '—';
+  const book = bookByNumber(seriesId, pos.book);
+  if (!book) return `Book ${pos.book}, Ch. ${pos.chapter}`;
+  return `${book.title}, ${bookUnitWord(book)} ${pos.chapter}`;
+}
+
+// ── Relationship types ───────────────────────────────────────────────────────
+
+// The design colours relationships in five groups; the label still shows the
+// data's own type ("Professional", "Mentor"). Colour is applied by CSS from a
+// data-rel="<group>" attribute.
+function relTypeGroup(type) {
+  switch (type) {
+    case 'ally':     return 'ally';
+    case 'family':   return 'family';
+    case 'enemy':    return 'adversary';
+    case 'romantic': return 'romantic';
+    default:         return 'other';
+  }
+}
+
+// The five groups, in sidebar and legend order.
+const REL_GROUPS = [
+  { key: 'ally',      label: 'Ally' },
+  { key: 'family',    label: 'Family' },
+  { key: 'adversary', label: 'Adversary' },
+  { key: 'romantic',  label: 'Romantic' },
+  { key: 'other',     label: 'Other' },
+];
 
 // ── Routing ──────────────────────────────────────────────────────────────────
 

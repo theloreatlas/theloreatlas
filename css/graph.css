@@ -1,15 +1,539 @@
-/* ── Graph container ──────────────────────────────────────────────────────── */
+/* ============================================================
+   Graphs: the universe hub (hero panel and section tiles), the full graph
+   page, and the mini-graph on entry pages. All colours come from css/tokens.css.
+   SVG colours live here as CSS (var() does not work in SVG presentation
+   attributes), and nothing sets a style="" attribute (the CSP drops them).
+   ============================================================ */
 
-.graph-wrap {
+/* Node colour by type: the hub's SVG nodes carry data-tone, the CSS maps it. */
+.hub [data-tone="protagonist"] { --node: var(--type-protagonist); }
+.hub [data-tone="client"],
+.hub [data-tone="character"],
+.hub [data-tone="event"]       { --node: var(--type-character); }
+.hub [data-tone="case"]        { --node: var(--type-case); }
+.hub [data-tone="location"]    { --node: var(--type-location); }
+.hub [data-tone="artifact"]    { --node: var(--type-artifact); }
+.hub [data-tone="faction"]     { --node: var(--type-faction); }
+
+/* Relationship group colour, shared by the hub's coloured edges and legend and
+   by the graph page's sidebar and panel rows. */
+[data-rel="ally"]      { --rel: var(--rel-ally); }
+[data-rel="family"]    { --rel: var(--rel-family); }
+[data-rel="adversary"] { --rel: var(--rel-adversary); }
+[data-rel="romantic"]  { --rel: var(--rel-romantic); }
+[data-rel="other"]     { --rel: var(--rel-other); }
+
+/* The 40px grid texture behind a graph. */
+.hub-panel-body,
+.mini-graph {
+  background-image:
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* ── Universe hub ─────────────────────────────────────────────────────────── */
+
+#main-content:has(> .hub) {
+  max-width: calc(1184px + 2 * var(--gutter));
+  padding-top: 0;
+  padding-bottom: 4rem;
+}
+
+.hub-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 600px;
+  align-items: center;
+  gap: 56px;
+  padding: 64px 0 56px;
+}
+
+.hub-copy h1 {
+  margin-bottom: 36px;
+  font-family: var(--font-display);
+  font-size: clamp(64px, 9.1vw, 116px);
+  font-weight: 400;
+  line-height: 0.88;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+.hub-desc {
+  max-width: 38ch;
+  margin-bottom: 32px;
+  font-family: var(--font-body);
+  font-size: 19px;
+  line-height: 1.6;
+  color: var(--text-2);
+}
+
+.hub-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.hub-actions .btn {
+  padding: 12px 22px;
+  white-space: nowrap;
+}
+
+/* The graph panel. --halo is the colour behind node labels, so they stay
+   legible over edges. */
+.hub-panel {
+  --halo: var(--panel);
+  overflow: hidden;
+  border: 1px solid var(--line-25);
+  border-radius: var(--r-block);
+  background: var(--panel);
+}
+
+.hub-panel-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 14px;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--line-25);
+}
+
+.hub-panel-head .label {
+  margin: 0;
+}
+
+.hub-count {
+  margin-left: auto;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.hub-open {
+  font-size: 13px;
+  white-space: nowrap;
+  color: var(--accent-text);
+}
+
+.hub-panel-body {
   position: relative;
+  height: 420px;
+}
+
+.hub-panel-body.is-fresh .hub-svg {
+  animation: pageReveal 0.3s ease both;
+}
+
+.hub-svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.hub-empty {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-size: 14px;
+  color: var(--muted);
+  pointer-events: none;
+}
+
+.hub-legend {
+  position: absolute;
+  left: 16px;
+  bottom: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 16px;
+  list-style: none;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.hub-legend li {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.hub-legend-line {
+  width: 14px;
+  height: 2px;
+  border-radius: 1px;
+  background: var(--rel);
+}
+
+/* Edges: gold at 40% (both ends reached), or the relationship group's colour. */
+.hub-edge {
+  stroke: color-mix(in srgb, var(--accent) 40%, transparent);
+  stroke-width: 1;
+}
+
+.hub-edge-rel {
+  stroke: var(--rel);
+  stroke-width: 2;
+}
+
+.hub-shape {
+  fill: var(--node, var(--type-character));
+}
+
+.hub-glow {
+  fill: var(--accent-bright);
+  opacity: 0.12;
+}
+
+.hub-label {
+  font-family: var(--font-ui);
+  font-size: 12px;
+  fill: var(--text-body);
+  paint-order: stroke;
+  stroke: var(--halo);
+  stroke-width: 3px;
+  stroke-linejoin: round;
+  pointer-events: none;
+  user-select: none;
+}
+
+.hub-node {
+  cursor: pointer;
+  outline: none;
+}
+
+.hub-node:hover .hub-shape {
+  opacity: 0.85;
+}
+
+.hub-focus {
+  display: none;
+  fill: none;
+  stroke: var(--accent-bright);
+  stroke-width: 2;
+}
+
+.hub-node:focus-visible .hub-focus {
+  display: inline;
+}
+
+/* Unreached: plain 6px dots. Inert (no events, no focus), identity-free. */
+.hub-unreached {
+  pointer-events: none;
+}
+
+.hub-unreached circle {
+  fill: var(--type-unreached);
+}
+
+/* Section tiles */
+.hub-tiles {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  border-top: 1px solid var(--line-25);
+  border-left: 1px solid var(--line-25);
+}
+
+.hub-tile {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 22px 24px 26px;
+  border: 0;
+  border-right: 1px solid var(--line-25);
+  border-bottom: 1px solid var(--line-25);
+  background: transparent;
+  box-shadow: inset 0 2px 0 transparent;
+  font: inherit;
+  text-align: left;
+  color: inherit;
+  cursor: pointer;
+  transition: background-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.hub-tile:hover {
+  background: var(--raised);
+}
+
+[data-theme="light"] .hub-tile:hover {
+  background: var(--hover);
+}
+
+.hub-tile[aria-pressed="true"] {
+  background: var(--raised);
+  box-shadow: inset 0 2px 0 var(--accent-bright);
+}
+
+.hub-tile:focus-visible {
+  outline-offset: -3px;
+}
+
+.hub-thumb {
+  display: block;
+  width: 100%;
+  height: 112px;
+}
+
+.hub-tile-num {
+  margin-top: 14px;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  color: var(--accent-text);
+}
+
+.hub-tile-title {
+  margin-top: 6px;
+  font-family: var(--font-display);
+  font-size: 30px;
+  line-height: 1.1;
+  color: var(--ink);
+}
+
+.hub-tile-desc {
+  margin-top: 6px;
+  font-size: 14px;
+  line-height: 1.45;
+  color: var(--muted);
+}
+
+/* Tablet: the hero stacks and the tiles go to two columns. */
+@media (max-width: 1100px) {
+  .hub-hero {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 40px;
+    padding: 48px 0 40px;
+  }
+
+  .hub-tiles {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 760px) {
+  .hub-hero {
+    gap: 28px;
+    padding: 28px 0 32px;
+  }
+
+  .hub-copy h1 {
+    margin-bottom: 20px;
+    font-size: 44px;
+  }
+
+  .hub-desc {
+    margin-bottom: 24px;
+    font-size: 17px;
+  }
+
+  .hub-panel-body {
+    height: 320px;
+  }
+}
+
+@media (max-width: 600px) {
+  .hub-tiles {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hub-panel-body.is-fresh .hub-svg {
+    animation: none;
+  }
+}
+
+/* ── Full graph page ──────────────────────────────────────────────────────── */
+
+/* The page runs edge to edge: the sidebar's hairline and the canvas reach the
+   viewport. */
+#main-content:has(> .graph-page) {
+  max-width: none;
+  padding: 0 0 3rem;
+}
+
+.graph-head {
+  padding: 40px var(--gutter) 28px;
+}
+
+.graph-head .crumbs {
+  margin-bottom: 14px;
+}
+
+.graph-head-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px 24px;
+}
+
+.graph-head h1 {
+  font-family: var(--font-display);
+  font-size: 76px;
+  font-weight: 400;
+  line-height: 0.95;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+
+.graph-summary {
+  font-size: 15px;
+  color: var(--muted);
+}
+
+.graph-body {
+  display: grid;
+  grid-template-columns: 260px minmax(0, 1fr);
+  border-top: 1px solid var(--line-25);
+}
+
+/* Sidebar */
+.graph-side {
+  padding: 28px 24px;
+  border-right: 1px solid var(--line-25);
+}
+
+.graph-side-toggle {
+  display: none;
+}
+
+.graph-side-body {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.graph-side .label {
+  margin: 0 0 8px;
+}
+
+.graph-checks {
+  margin-bottom: 28px;
+  list-style: none;
+}
+
+.graph-check {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 40px;
+  font-size: 15px;
+  color: var(--ink);
+  cursor: pointer;
+}
+
+/* The real checkbox stays for keyboards and screen readers; the box is drawn. */
+.graph-check input {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 18px;
+  height: 18px;
+  margin: -9px 0 0;
+  opacity: 0;
+  cursor: inherit;
+}
+
+.graph-check-box {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 18px;
+  height: 18px;
+  border: 1px solid var(--line-45);
+  border-radius: 5px;
+}
+
+.graph-check input:checked + .graph-check-box {
+  border-color: var(--accent);
+  background: var(--accent);
+}
+
+.graph-check input:checked + .graph-check-box::after {
+  content: '\2713';
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--on-accent);
+}
+
+.graph-check input:focus-visible + .graph-check-box {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.graph-check input:disabled ~ * {
+  opacity: 0.55;
+}
+
+.graph-check:has(input:disabled) {
+  cursor: default;
+}
+
+.graph-check-mark {
+  flex: none;
+  width: 14px;
+  font-size: 13px;
+  line-height: 1;
+  text-align: center;
+  color: var(--faint);
+}
+
+.graph-check-mark[data-layer="characters"] { color: var(--type-character); }
+.graph-check-mark[data-layer="cases"]      { color: var(--type-case); }
+.graph-check-mark[data-layer="locations"]  { color: var(--type-location); }
+.graph-check-mark[data-layer="artifacts"]  { color: var(--type-artifact); }
+.graph-check-mark[data-layer="factions"]   { color: var(--type-faction); }
+
+.graph-check-line {
+  flex: none;
+  width: 14px;
+  height: 2px;
+  border-radius: 1px;
+  background: var(--rel);
+}
+
+.graph-check-count {
+  margin-left: auto;
+  font-size: 13px;
+  color: var(--faint);
+}
+
+.graph-ring-note {
+  margin-bottom: 20px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+/* The "past your bookmark" note sits at the sidebar's foot. */
+.graph-fog {
+  margin-top: auto;
+}
+
+.graph-fog .fog-block {
+  padding: 14px 16px;
+  border-radius: 12px;
+  font-size: 14px;
+}
+
+/* Canvas */
+.graph-stage {
+  min-width: 0;
+}
+
+#graph-container {
+  position: relative;
+  overflow: hidden;
+  background-image:
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+  background-size: 48px 48px;
 }
 
 .graph-svg {
+  --halo: var(--bg);
   display: block;
   width: 100%;
-  background: radial-gradient(ellipse at center, #f5efe4 0%, #ede4d3 100%);
-  border: 1px solid #c8b89a;
-  border-radius: 4px;
   cursor: grab;
 }
 
@@ -17,44 +541,170 @@
   cursor: grabbing;
 }
 
-/* ── Links ────────────────────────────────────────────────────────────────── */
+.graph-zoom {
+  position: absolute;
+  left: 20px;
+  bottom: 20px;
+  z-index: 5;
+  display: flex;
+  gap: 6px;
+}
+
+.graph-zoom button {
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 1px solid var(--line-35);
+  border-radius: var(--r-row);
+  background: var(--raised);
+  font-family: var(--font-ui);
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1;
+  color: var(--ink);
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.graph-zoom button:hover {
+  background: var(--hover);
+}
+
+@media (max-width: 760px), (pointer: coarse) {
+  .graph-zoom button {
+    width: var(--tap);
+    height: var(--tap);
+  }
+}
+
+/* ── Nodes, edges, labels, dots ───────────────────────────────────────────── */
 
 .graph-link {
   transition: stroke-opacity 0.15s;
 }
 
 .graph-link:hover {
-  stroke-opacity: 0.9;
+  stroke-opacity: 0.95;
   cursor: default;
 }
 
-/* ── Nodes ────────────────────────────────────────────────────────────────── */
+.graph-link-layer {
+  pointer-events: stroke;
+}
 
 .graph-node {
   cursor: pointer;
 }
 
-.graph-node circle {
-  transition: opacity 0.15s, r 0.15s;
+/* Node outline lives here, not in an SVG attribute: var() does not resolve in
+   presentation attributes, and an inline style would beat the focus rules below. */
+.graph-node .node-shape {
+  stroke: var(--halo, var(--bg));
+  stroke-width: 1;
 }
 
-.graph-node:hover circle {
+.graph-node circle.node-shape {
+  transition: opacity 0.15s ease;
+}
+
+.graph-node:hover .node-shape {
   opacity: 0.85;
 }
 
+/* Selection ring: a --bg gap, then an accent ring (the design's
+   0 0 0 3px bg, 0 0 0 5px accent). */
+.node-halo,
+.node-ring {
+  display: none;
+  fill: none;
+}
+
+.node-halo {
+  stroke: var(--halo, var(--bg));
+  stroke-width: 3;
+}
+
+.node-ring {
+  stroke: var(--accent-bright);
+  stroke-width: 2;
+}
+
+.graph-node.is-selected .node-halo,
+.graph-node.is-selected .node-ring {
+  display: inline;
+}
+
+/* Keyboard focus ring on nodes */
+.graph-node:focus {
+  outline: none;
+}
+
+/* Keyboard focus only (mouse clicks select instead): an --ink stroke on the
+   shape, which reads on any node colour (gold included), plus the same
+   bg-gap + accent ring the selected node gets. */
+.graph-node:focus-visible .node-shape {
+  stroke: var(--ink);
+  stroke-width: 2;
+}
+
+.graph-node:focus-visible .node-halo,
+.graph-node:focus-visible .node-ring {
+  display: inline;
+}
+
 .graph-label {
-  font-family: 'EB Garamond', Georgia, serif;
-  font-size: 0.7rem;
-  fill: #1a1510;
+  font-family: var(--font-ui);
+  font-size: 12px;
+  fill: var(--text-body);
+  paint-order: stroke;
+  stroke: var(--halo, var(--bg));
+  stroke-width: 3px;
+  stroke-linejoin: round;
   pointer-events: none;
   user-select: none;
 }
 
 /* Phone: labels render at >= 8px at the 0.625 label scale (graph.js). */
-@media (max-width: 767px) {
+@media (max-width: 760px) {
   .graph-label {
     font-size: 0.8rem;
   }
+}
+
+/* Layer-node labels are hidden until the node is hovered, focused or selected,
+   or is a drawn neighbour of the selected node. */
+.graph-node-layer .graph-label {
+  display: none;
+}
+
+.graph-node-layer:hover .graph-label,
+.graph-node-layer:focus .graph-label,
+.graph-node-layer.is-selected .graph-label,
+.graph-node-layer.is-neighbor .graph-label {
+  display: block;
+}
+
+/* Below the label scale threshold (set by graph.js as .is-zoomed-out on the SVG)
+   character labels show only for anchors, hover, focus, the selected node and its
+   drawn neighbours. */
+.graph-svg.is-zoomed-out .graph-node:not(.graph-node-layer):not(.is-anchor) .graph-label {
+  display: none;
+}
+
+.graph-svg.is-zoomed-out .graph-node:not(.graph-node-layer):hover .graph-label,
+.graph-svg.is-zoomed-out .graph-node:not(.graph-node-layer):focus .graph-label,
+.graph-svg.is-zoomed-out .graph-node:not(.graph-node-layer).is-selected .graph-label,
+.graph-svg.is-zoomed-out .graph-node:not(.graph-node-layer).is-neighbor .graph-label {
+  display: block;
+}
+
+/* Unreached entries: bare dots, no events. */
+.graph-dots {
+  pointer-events: none;
+}
+
+.graph-dot {
+  fill: var(--type-unreached);
 }
 
 /* ── Tooltip ──────────────────────────────────────────────────────────────── */
@@ -62,14 +712,14 @@
 .graph-tooltip {
   position: absolute;
   pointer-events: none;
-  background: #f5efe4;
-  border: 1px solid #c4a55a;
-  border-radius: 3px;
+  background: var(--popover);
+  border: 1px solid var(--line-35);
+  border-radius: var(--r-cell);
   padding: 0.45rem 0.65rem;
-  font-family: 'EB Garamond', Georgia, serif;
-  font-size: 0.85rem;
-  color: #1a1510;
-  box-shadow: 2px 3px 8px rgba(26, 21, 16, 0.18);
+  font-family: var(--font-ui);
+  font-size: 0.875rem;
+  color: var(--ink);
+  box-shadow: var(--shadow-pop);
   max-width: 200px;
   line-height: 1.45;
   transition: opacity 0.1s;
@@ -83,66 +733,22 @@
 }
 
 .tt-role {
-  color: #6a5a3a;
-  font-style: italic;
+  color: var(--muted);
   text-transform: capitalize;
 }
 
 .tt-degree {
-  color: #8a7a5a;
+  color: var(--faint);
   font-size: 0.78rem;
-}
-
-/* ── Legend ───────────────────────────────────────────────────────────────── */
-
-.graph-legend {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.5rem 1.2rem;
-  margin-top: 0.9rem;
-  padding: 0.6rem 0.9rem;
-  background: #f0e8d8;
-  border: 1px solid #c8b89a;
-  border-radius: 3px;
-  font-family: 'EB Garamond', Georgia, serif;
-  font-size: 0.82rem;
-  color: #3a3020;
-}
-
-.graph-legend-title {
-  font-family: 'Cinzel', serif;
-  font-size: 0.62rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: #6a5a3a;
-  width: 100%;
-  margin: 0 0 0.2rem;
-}
-
-.graph-legend-item {
-  display: flex;
-  align-items: center;
-  gap: 0.35rem;
-  text-transform: capitalize;
-}
-
-.graph-legend-swatch {
-  display: inline-block;
-  width: 0.75rem;
-  height: 0.75rem;
-  border-radius: 50%;
-  flex-shrink: 0;
 }
 
 /* ── Hint bar ─────────────────────────────────────────────────────────────── */
 
 .graph-hint {
-  margin-top: 0.5rem;
-  font-family: 'EB Garamond', Georgia, serif;
-  font-size: 0.78rem;
-  color: #8a7a5a;
-  font-style: italic;
+  padding: 10px var(--gutter) 0;
+  font-family: var(--font-ui);
+  font-size: 0.8125rem;
+  color: var(--muted);
   text-align: center;
 }
 
@@ -161,43 +767,31 @@
   }
 }
 
-/* ── Info panel (Session 13) ──────────────────────────────────────────────── */
-
-#graph-container {
-  position: relative;
-}
-
-/* Keyboard focus ring on nodes */
-.graph-node:focus {
-  outline: none;
-}
-
-.graph-node:focus circle {
-  stroke: var(--gold, #c9a55a);
-  stroke-width: 2.5;
-}
+/* ── Info panel (top right of the canvas; a bottom sheet on phones) ───────── */
 
 .graph-info-panel {
   position: absolute;
-  top: 0;
-  right: 0;
-  width: 320px;
-  height: 100%;
-  box-sizing: border-box;
-  padding: 1.5rem;
-  background: var(--card-bg, rgba(255, 252, 244, 0.96));
-  border: 1px solid var(--border-strong, rgba(180, 160, 120, 0.6));
-  border-radius: var(--radius-lg, 6px);
-  box-shadow: -4px 0 18px var(--shadow-warm, rgba(26, 19, 10, 0.14));
-  font-family: var(--font-body, 'EB Garamond', Georgia, serif);
-  color: var(--ink, #1a130a);
-  overflow-y: auto;
-  transform: translateX(100%);
-  transition: transform 200ms ease;
+  top: 16px;
+  right: 16px;
   z-index: 20;
+  display: flex;
+  flex-direction: column;
+  width: 320px;
+  max-height: calc(100% - 32px);
+  padding: 24px;
+  border: 1px solid var(--line-25);
+  border-radius: var(--r-card);
+  background: var(--raised);
+  box-shadow: var(--shadow-pop);
+  font-family: var(--font-ui);
+  color: var(--text-body);
+  opacity: 0;
+  transform: translateX(calc(100% + 24px));
+  transition: transform 200ms ease, opacity 200ms ease;
 }
 
 .graph-info-panel.open {
+  opacity: 1;
   transform: translateX(0);
 }
 
@@ -207,113 +801,161 @@
 
 .panel-close {
   position: absolute;
-  top: 0.55rem;
-  right: 0.8rem;
+  top: 14px;
+  right: 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 1px solid var(--line-35);
+  border-radius: 50%;
   background: none;
-  border: none;
-  font-size: 1.5rem;
+  font-size: 18px;
   line-height: 1;
-  color: var(--text-muted, #6b5c45);
+  color: var(--text-body);
   cursor: pointer;
-  padding: 0.2rem;
+  transition: background-color 0.15s ease;
 }
 
 .panel-close:hover {
-  color: var(--ink, #1a130a);
+  background: var(--hover);
+}
+
+/* A long "Connected to" list scrolls; the entry button stays in view. */
+.panel-scroll {
+  flex: 1 1 auto;
+  min-height: 0;
+  margin-right: -8px;
+  padding-right: 8px;
+  overflow-y: auto;
+}
+
+.panel-type {
+  margin-bottom: 10px;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
 }
 
 .panel-name {
-  font-family: var(--font-serif, 'Cormorant Garamond', Georgia, serif);
-  font-style: italic;
-  font-weight: 600;
-  font-size: 1.7rem;
-  line-height: 1.15;
-  margin: 0 1.6rem 0.45rem 0;
-  color: var(--ink, #1a130a);
+  margin: 0 40px 8px 0;
+  font-family: var(--font-display);
+  font-size: 32px;
+  font-weight: 400;
+  line-height: 1.1;
+  color: var(--ink);
 }
 
-.panel-badges {
-  margin-bottom: 0.85rem;
-}
-
-.panel-badges .badge {
-  margin-left: 0;
+.panel-first {
+  margin-bottom: 14px;
+  font-size: 14px;
+  color: var(--muted);
 }
 
 .panel-desc {
-  font-size: 1rem;
+  margin-bottom: 20px;
+  font-family: var(--font-body);
+  font-size: 17px;
   line-height: 1.5;
-  color: var(--ink-soft, #2e2318);
-  margin: 0 0 1rem;
+  color: var(--text-body);
+}
+
+.panel-desc .fog-block {
+  padding: 12px 14px;
+  border-radius: 10px;
+  font-size: 14px;
 }
 
 .panel-count {
-  font-family: var(--font-display, 'Cinzel', serif);
-  font-size: 0.6rem;
-  letter-spacing: 0.1em;
+  margin: 0 0 6px;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--text-muted, #6b5c45);
-  margin: 0 0 0.6rem;
+  color: var(--accent);
 }
 
-.panel-chips {
+.panel-links {
+  margin-bottom: 14px;
+  list-style: none;
+}
+
+.panel-link {
   display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem;
-  margin-bottom: 1.2rem;
-}
-
-.panel-chip {
-  font-family: var(--font-body, 'EB Garamond', Georgia, serif);
-  font-size: 0.85rem;
-  padding: 0.25em 0.7em;
-  background: var(--parchment-warm, #ede4d0);
-  border: 1px solid var(--border, rgba(180, 160, 120, 0.35));
-  border-left: 3px solid var(--chip-color, var(--gold, #c9a55a));
-  border-radius: 2px;
-  color: var(--ink-soft, #2e2318);
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  min-height: 40px;
+  padding: 8px 0;
+  border: 0;
+  border-bottom: 1px solid var(--line-14);
+  background: none;
+  font-family: var(--font-ui);
+  font-size: 15px;
+  text-align: left;
+  color: var(--ink);
   cursor: pointer;
-  transition: background 0.12s;
+  transition: color 0.15s ease;
 }
 
-.panel-chip:hover {
-  background: var(--parchment-mid, #ddd4bc);
+.panel-link:hover {
+  color: var(--accent-text);
+}
+
+.panel-dash {
+  flex: none;
+  width: 14px;
+  height: 2px;
+  border-radius: 1px;
+  background: var(--dash, var(--faint));
+}
+
+.panel-link[data-rel]               { --dash: var(--rel); }
+.panel-link[data-layer="cases"]     { --dash: var(--type-case); }
+.panel-link[data-layer="locations"] { --dash: var(--type-location); }
+.panel-link[data-layer="artifacts"] { --dash: var(--type-artifact); }
+.panel-link[data-layer="factions"]  { --dash: var(--type-faction); }
+
+.panel-link-type {
+  margin-left: auto;
+  font-size: 12px;
+  color: var(--faint);
+}
+
+.panel-more {
+  margin: -10px 0 18px;
+  font-size: 13px;
+  color: var(--muted);
 }
 
 .panel-view-full {
-  display: inline-block;
-  font-family: var(--font-display, 'Cinzel', serif);
-  font-size: 0.7rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--gold-dim, #9a7a3e);
-  text-decoration: none;
-  border-bottom: 1px solid transparent;
-}
-
-.panel-view-full:hover {
-  border-bottom-color: var(--gold-dim, #9a7a3e);
+  flex: none;
+  margin-top: 16px;
 }
 
 .panel-empty {
-  color: var(--text-subtle, #9a8870);
-  font-style: italic;
+  margin-bottom: 18px;
+  color: var(--muted);
 }
 
-/* Mobile: bottom sheet */
-@media (max-width: 767px) {
+/* Mobile: bottom sheet above the tab bar, links as wrapping pills. */
+@media (max-width: 760px) {
   .graph-info-panel {
     position: fixed;
     top: auto;
-    bottom: 0;
-    left: 0;
     right: 0;
-    width: 100%;
-    height: 55vh;
-    border-radius: 16px 16px 0 0;
-    box-shadow: 0 -4px 18px var(--shadow-warm, rgba(26, 19, 10, 0.14));
-    transform: translateY(100%);
-    padding-top: 1.9rem;
+    bottom: calc(67px + env(safe-area-inset-bottom));
+    left: 0;
+    width: auto;
+    max-height: 58vh;
+    padding: 30px 20px 20px;
+    border-width: 1px 0 0;
+    border-radius: 20px 20px 0 0;
+    transform: translateY(calc(100% + 80px));
   }
 
   .graph-info-panel.open {
@@ -323,208 +965,183 @@
   .graph-info-panel::before {
     content: '';
     position: absolute;
-    top: 0.6rem;
+    top: 10px;
     left: 50%;
-    transform: translateX(-50%);
     width: 40px;
     height: 4px;
     border-radius: 2px;
-    background: var(--parchment-dark, #c8bda5);
-  }
-}
-
-/* Coarse pointers: 44px targets in the panel (Session 16). */
-@media (pointer: coarse) {
-  .panel-close {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 44px;
-    height: 44px;
-    padding: 0;
-    top: 0.25rem;
-    right: 0.4rem;
+    background: var(--track);
+    transform: translateX(-50%);
   }
 
   .panel-name {
-    margin-right: 2.8rem;
+    font-size: 28px;
   }
 
-  .panel-chip,
-  .panel-view-full {
-    display: inline-flex;
-    align-items: center;
+  .panel-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .panel-link {
+    width: auto;
     min-height: 44px;
+    padding: 8px 14px;
+    border: 1px solid var(--line-35);
+    border-radius: var(--r-pill);
+  }
+
+  .panel-link-type {
+    display: none;
+  }
+
+  .panel-view-full {
+    display: flex;
+    width: 100%;
   }
 }
 
-/* ── Layer toolbar (Session 14) ───────────────────────────────────────────── */
+/* ── Graph page: phone layout ─────────────────────────────────────────────── */
 
-.graph-layers {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-bottom: 0.6rem;
+/* The Graph / List switch is for phones only. */
+.graph-view-toggle {
+  display: none;
 }
 
-.graph-layer-btn {
-  display: inline-flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.15rem 0.45rem;
+@media (max-width: 760px) {
+  .graph-head {
+    padding: 20px var(--gutter) 16px;
+  }
+
+  .graph-head .crumbs {
+    display: none;
+  }
+
+  .graph-head h1 {
+    font-size: 40px;
+  }
+
+  .graph-summary {
+    order: 3;
+    flex-basis: 100%;
+    font-size: 14px;
+  }
+
+  .graph-view-toggle {
+    display: inline-flex;
+    padding: 3px;
+    border: 1px solid var(--line-35);
+    border-radius: var(--r-pill);
+  }
+
+  .graph-body {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  /* Filters collapse behind a disclosure row above the canvas. */
+  .graph-side {
+    padding: 0 var(--gutter);
+    border-right: 0;
+    border-bottom: 1px solid var(--line-25);
+  }
+
+  .graph-side-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    min-height: 48px;
+    padding: 0;
+    border: 0;
+    background: none;
+    font-family: var(--font-ui);
+    font-size: 15px;
+    color: var(--ink);
+    cursor: pointer;
+  }
+
+  .graph-side-toggle .sort-caret {
+    position: static;
+    flex: none;
+    transition: transform 0.15s ease;
+  }
+
+  .graph-side.is-open .graph-side-toggle .sort-caret {
+    transform: rotate(180deg);
+  }
+
+  .graph-side:not(.is-open) .graph-side-body {
+    display: none;
+  }
+
+  .graph-side-body {
+    height: auto;
+    padding-bottom: 16px;
+  }
+
+  .graph-checks {
+    margin-bottom: 16px;
+  }
+
+  .graph-zoom {
+    left: 12px;
+    bottom: 12px;
+  }
+}
+
+.graph-view-toggle button {
   min-width: 44px;
-  min-height: 44px;
+  height: 40px;
   box-sizing: border-box;
-  padding: 0.4rem 0.8rem;
-  background: var(--parchment-warm, #ede4d0);
-  border: 1px solid var(--border, rgba(180, 160, 120, 0.35));
-  border-left: 3px solid var(--layer-color, var(--gold, #c9a55a));
-  border-radius: 3px;
-  font-family: var(--font-body, 'EB Garamond', Georgia, serif);
-  font-size: 0.95rem;
-  color: var(--ink-soft, #2e2318);
+  padding: 0 18px;
+  border: 0;
+  border-radius: var(--r-pill);
+  background: transparent;
+  font-family: var(--font-ui);
+  font-size: 14px;
+  color: var(--text-body);
   cursor: pointer;
-  transition: background 0.12s;
 }
 
-.graph-layer-btn:hover {
-  background: var(--parchment-mid, #ddd4bc);
-}
-
-.graph-layer-btn:focus-visible {
-  outline: 2px solid var(--gold, #c9a55a);
-  outline-offset: 2px;
-}
-
-.graph-layer-btn[aria-pressed="true"] {
-  background: var(--layer-color, var(--gold, #c9a55a));
-  border-color: var(--layer-color, var(--gold, #c9a55a));
-  color: #fff;
-}
-
-.graph-layer-btn[aria-pressed="true"] .graph-layer-glyph {
-  color: #fff !important; /* overrides the CSSOM-set per-layer colour */
-}
-
-.graph-layer-btn.is-disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-}
-
-.graph-layer-count {
-  font-size: 0.8rem;
-  opacity: 0.85;
-}
-
-.graph-layer-count::before { content: '('; }
-.graph-layer-count::after  { content: ')'; }
-
-.graph-layer-hint {
-  flex-basis: 100%;
-  font-size: 0.72rem;
-  font-style: italic;
-}
-
-.graph-layer-hint:empty {
-  display: none;
-}
-
-/* The desktop info panel starts below the toolbar (--graph-toolbar-h is set by
-   graph.js via CSSOM). */
-@media (min-width: 768px) {
-  .graph-info-panel {
-    top: calc(var(--graph-toolbar-h, 0px) + 0.6rem);
-    height: calc(100% - var(--graph-toolbar-h, 0px) - 0.6rem);
+@media (max-width: 760px), (pointer: coarse) {
+  .graph-view-toggle button {
+    height: var(--tap);
   }
 }
 
-/* ── Layer nodes, edges and labels ────────────────────────────────────────── */
-
-.graph-node:focus path {
-  stroke: var(--gold, #c9a55a);
-  stroke-width: 2.5;
-}
-
-.graph-node:hover path {
-  opacity: 0.85;
-}
-
-/* Layer-node labels are hidden until the node is hovered, focused or selected,
-   or is a drawn neighbour of the selected node. */
-.graph-node-layer .graph-label {
-  display: none;
-}
-
-.graph-node-layer:hover .graph-label,
-.graph-node-layer:focus .graph-label,
-.graph-node-layer.is-selected .graph-label,
-.graph-node-layer.is-neighbor .graph-label {
-  display: block;
-}
-
-.graph-link-layer {
-  pointer-events: stroke;
-}
-
-/* ── Legend: layers ───────────────────────────────────────────────────────── */
-
-.graph-legend-glyph {
-  font-size: 0.9rem;
-  line-height: 1;
-}
-
-.graph-legend-note {
-  width: 100%;
-  margin: 0.2rem 0 0;
-  font-style: italic;
-  color: #6a5a3a;
-}
-
-/* ── Panel: layer badges and overflow text ────────────────────────────────── */
-
-.badge-layer-cases     { background: rgba(110, 90, 138, 0.1); color: #6e5a8a; border-color: rgba(110, 90, 138, 0.25); }
-.badge-layer-locations { background: rgba(63, 115, 100, 0.1); color: #3f7364; border-color: rgba(63, 115, 100, 0.25); }
-.badge-layer-artifacts { background: rgba(154, 90, 34, 0.1);  color: #9a5a22; border-color: rgba(154, 90, 34, 0.25); }
-.badge-layer-factions  { background: rgba(86, 96, 42, 0.1);  color: #56602a; border-color: rgba(86, 96, 42, 0.25); }
-
-.panel-more {
-  align-self: center;
-  font-size: 0.85rem;
-  font-style: italic;
-  color: var(--text-muted, #6b5c45);
-}
-
-/* ── Small scales (Session 14.1) ──────────────────────────────────────────── */
-
-/* Below the label scale threshold (set by graph.js as .is-zoomed-out on the SVG)
-   character labels show only for anchors, hover, focus, the selected node and its
-   drawn neighbours. */
-.graph-svg.is-zoomed-out .graph-node:not(.graph-node-layer):not(.is-anchor) .graph-label {
-  display: none;
-}
-
-.graph-svg.is-zoomed-out .graph-node:not(.graph-node-layer):hover .graph-label,
-.graph-svg.is-zoomed-out .graph-node:not(.graph-node-layer):focus .graph-label,
-.graph-svg.is-zoomed-out .graph-node:not(.graph-node-layer).is-selected .graph-label,
-.graph-svg.is-zoomed-out .graph-node:not(.graph-node-layer).is-neighbor .graph-label {
-  display: block;
+.graph-view-toggle button[aria-pressed="true"] {
+  background: var(--primary-bg);
+  color: var(--primary-ink);
 }
 
 /* ── Mini-graphs on detail pages (Session 15) ─────────────────────────────── */
 
-.detail-connections .mini-graph {
+.mini-graph {
   position: relative;
+  overflow: hidden;
 }
 
-.mini-graph-link {
-  margin: 0.6rem 0 0;
-  font-size: 0.95rem;
+.mini-graph .graph-svg {
+  --halo: var(--panel);
+}
+
+.mini-graph .graph-info-panel {
+  top: 12px;
+  right: 12px;
+  width: min(320px, calc(100% - 24px));
+  max-height: calc(100% - 24px);
+  padding: 20px;
+}
+
+.mini-graph .panel-name {
+  font-size: 26px;
 }
 
 .mini-graph-hint {
-  font-size: 0.85rem;
-  font-style: italic;
-  color: var(--text-muted, #6b5c45);
+  padding: 8px 18px 12px;
+  font-size: 0.75rem;
+  color: var(--faint);
 }
 
 /* Mini-graphs: hand one-finger vertical drags to the page (graph.js also filters
@@ -540,9 +1157,8 @@
   cursor: default;
 }
 
-.graph-node.is-focus circle,
-.graph-node.is-focus path {
-  stroke: var(--ink, #1a130a);
+.graph-node.is-focus .node-shape {
+  stroke: var(--ink);
   stroke-width: 3;
 }
 
@@ -556,48 +1172,6 @@
 
 /* ── List mode (Session 16) ───────────────────────────────────────────────── */
 
-/* The Graph / List switch is for phones only. */
-.graph-view-toggle {
-  display: none;
-}
-
-@media (max-width: 767px) {
-  .graph-view-toggle {
-    display: inline-flex;
-    margin-bottom: 0.75rem;
-    border: 1px solid var(--border-strong, rgba(180, 160, 120, 0.6));
-    border-radius: 3px;
-    overflow: hidden;
-  }
-}
-
-.graph-view-toggle button {
-  min-width: 44px;
-  min-height: 44px;
-  box-sizing: border-box;
-  padding: 0.4rem 1.1rem;
-  background: var(--parchment-warm, #ede4d0);
-  border: none;
-  font-family: var(--font-body, 'EB Garamond', Georgia, serif);
-  font-size: 0.95rem;
-  color: var(--ink-soft, #2e2318);
-  cursor: pointer;
-}
-
-.graph-view-toggle button + button {
-  border-left: 1px solid var(--border-strong, rgba(180, 160, 120, 0.6));
-}
-
-.graph-view-toggle button[aria-pressed="true"] {
-  background: var(--ink, #1a130a);
-  color: var(--gold-bright, #e2bb72);
-}
-
-.graph-view-toggle button:focus-visible {
-  outline: 2px solid var(--gold, #c9a55a);
-  outline-offset: -2px;
-}
-
 .graph-list,
 .graph-list-rels {
   list-style: none;
@@ -605,11 +1179,15 @@
   padding: 0;
 }
 
+.graph-list-view {
+  padding: 0 var(--gutter);
+}
+
 .graph-list-char {
   padding: 0.6rem 0;
-  border-bottom: 1px solid var(--border, rgba(180, 160, 120, 0.35));
-  font-family: var(--font-body, 'EB Garamond', Georgia, serif);
-  font-size: 1.05rem;
+  border-bottom: 1px solid var(--line-25);
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
 }
 
 .graph-list-char > a {
@@ -623,14 +1201,13 @@
 }
 
 .graph-list-type {
-  font-size: 0.8rem;
-  font-style: italic;
-  color: var(--text-muted, #6b5c45);
+  font-family: var(--font-ui);
+  font-size: 0.8125rem;
+  color: var(--muted);
 }
 
 .graph-list-none {
   margin: 0.2rem 0 0 1rem;
   font-size: 0.9rem;
-  font-style: italic;
-  color: var(--text-muted, #6b5c45);
+  color: var(--muted);
 }
