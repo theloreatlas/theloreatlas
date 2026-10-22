@@ -373,7 +373,28 @@
       "case_a-study-in-scarlet",
       "case_the-adventure-of-wisteria-lodge"
     ],
-    "biography": "Inspector Tobias Gregson is one of Scotland Yard's ablest detectives and, along with Lestrade, Holmes's most frequent official contact. Holmes considers him and Lestrade the pick of a bad lot — smart within limits, energetic, but chained to conventional procedure. Gregson appears in A Study in Scarlet as the Yard's lead investigator on the Lauriston Gardens murder, where he and Lestrade compete as much with each other as with the case. He is described as tall and flaxen-haired, with a self-satisfied manner that Holmes finds mildly amusing. He recurs in Five Orange Pips and Wisteria Lodge, always following the facts further than the average officer but stopping short of Holmes's leaps of inference.",
+    "biography": [
+      {
+        "text": "Inspector Tobias Gregson is one of Scotland Yard's ablest detectives and, along with Lestrade, Holmes's most frequent official contact. Holmes considers him and Lestrade the pick of a bad lot — smart within limits, energetic, but chained to conventional procedure. Gregson appears in A Study in Scarlet as the Yard's lead investigator on the Lauriston Gardens murder, where he and Lestrade compete as much with each other as with the case. He is described as tall and flaxen-haired, with a self-satisfied manner that Holmes finds mildly amusing."
+      },
+      {
+        "text": "He recurs in Five Orange Pips.",
+        "from": {
+          "book": 3,
+          "chapter": 5
+        }
+      },
+      {
+        "text": "He appears again in Wisteria Lodge.",
+        "from": {
+          "book": 8,
+          "chapter": 1
+        }
+      },
+      {
+        "text": "In all of these he follows the facts further than the average officer but stops short of Holmes's leaps of inference."
+      }
+    ],
     "tags": [
       "Scotland Yard",
       "inspector",
@@ -717,7 +738,17 @@
     ],
     "biography": [
       {
-        "text": "Dr. John H. Watson is a retired Army surgeon and the chronicler of Sherlock Holmes's cases. Invalided home from the Second Anglo-Afghan War (wounded at the Battle of Maiwand), Watson meets Holmes through Stamford and moves into 221B Baker Street as his lodger. He serves as Holmes's companion, occasional assistant, and the narrator of nearly all the published accounts. Watson is a man of action, loyalty, and warmth — qualities that complement Holmes's cold rationalism."
+        "text": "Dr. John H. Watson is a retired Army surgeon and the chronicler of Sherlock Holmes's cases. Invalided home from the Second Anglo-Afghan War (wounded at the Battle of Maiwand), Watson meets Holmes through Stamford."
+      },
+      {
+        "text": "He moves into 221B Baker Street as Holmes's lodger.",
+        "from": {
+          "book": 1,
+          "chapter": 2
+        }
+      },
+      {
+        "text": "He serves as Holmes's companion, occasional assistant, and the narrator of nearly all the published accounts. Watson is a man of action, loyalty, and warmth — qualities that complement Holmes's cold rationalism."
       },
       {
         "text": "He later marries Mary Morstan (whom he met during The Sign of the Four) and sets up a medical practice.",
@@ -1253,7 +1284,17 @@
     ],
     "biography": [
       {
-        "text": "Sherlock Holmes is a consulting detective of extraordinary ability, residing at 221B Baker Street, London. He is the world's only consulting detective — a role he invented himself. Holmes applies rigorous logical deduction, deep knowledge of chemistry, anatomy, criminal history, and a vast network of informants to solve cases that baffle Scotland Yard. He is a skilled violinist, occasional user of cocaine (7% solution), and a master of disguise. His methods are as famous as his cases: he observes what others merely see, and deduces what others cannot imagine."
+        "text": "Sherlock Holmes is a consulting detective of extraordinary ability, residing at 221B Baker Street, London. He is the world's only consulting detective — a role he invented himself. Holmes applies rigorous logical deduction, deep knowledge of chemistry, anatomy, criminal history, and a vast network of informants to solve difficult cases."
+      },
+      {
+        "text": "Many of these are cases that baffle Scotland Yard.",
+        "from": {
+          "book": 1,
+          "chapter": 3
+        }
+      },
+      {
+        "text": "He is a skilled violinist, occasional user of cocaine (7% solution), and a master of disguise. His methods are as famous as his cases: he observes what others merely see, and deduces what others cannot imagine."
       },
       {
         "text": "He apparently died at the Reichenbach Falls in 1891 during a confrontation with Professor Moriarty.",
