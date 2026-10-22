@@ -1073,11 +1073,22 @@ const LoreGraph = (() => {
     panel.id = 'graph-info-panel';
     panel.className = 'graph-info-panel';
     panel.setAttribute('role', 'complementary');
-    panel.setAttribute('aria-live', 'polite');
     panel.setAttribute('aria-label', 'Selected entity details');
     panel.setAttribute('tabindex', '-1');
     panel.hidden = true;
     container.appendChild(panel);
+
+    // Selection changes are announced as one short line here; the panel itself is
+    // not a live region, or every change would re-read all of its contents.
+    const liveRegion = document.createElement('p');
+    liveRegion.className = 'visually-hidden';
+    liveRegion.setAttribute('role', 'status');
+    liveRegion.setAttribute('aria-live', 'polite');
+    container.appendChild(liveRegion);
+    function announceSelection(id) {
+      const n = nodeById[id];
+      liveRegion.textContent = id ? `Selected: ${(n && n.name) || id}` : '';
+    }
 
     // A "Connected to" row that swaps the panel to another node. The dash takes
     // its colour from data-rel (a relationship group) or data-layer (a layer)
@@ -1240,6 +1251,7 @@ const LoreGraph = (() => {
       panel.hidden = false;
       requestAnimationFrame(() => panel.classList.add('open'));
       markSelection();
+      if (!restore) announceSelection(id);
       if (restore) recenter(); // the first fit has not run yet: fit into the area the panel leaves
       if (!restore) {
         recenter();
@@ -1255,6 +1267,7 @@ const LoreGraph = (() => {
       panel.innerHTML = renderPanelContent(id);
       bindPanelControls();
       markSelection();
+      announceSelection(id);
       writeQuery({ selected: id });
     }
 
@@ -1263,6 +1276,7 @@ const LoreGraph = (() => {
     function closePanel(opts) {
       if (selectedEntityId === null) return;
       selectedEntityId = null;
+      announceSelection(null);
       markSelection();
       panel.classList.remove('open');
       writeQuery({ selected: null });

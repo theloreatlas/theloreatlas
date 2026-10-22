@@ -466,11 +466,21 @@
         "text": "One of several Holmes cases involving state secrets at the highest level."
       },
       {
-        "text": "The pattern — a government document stolen through opportunity rather than espionage, recovered without official acknowledgement — recurs in the Second Stain and the Bruce-Partington Plans. Holmes's willingness to resolve these cases privately, without credit, reflects his complex relationship with institutional authority.",
+        "text": "The pattern — a government document stolen through opportunity rather than espionage, recovered without official acknowledgement — recurs in the Second Stain.",
+        "from": {
+          "book": 6,
+          "chapter": 13
+        }
+      },
+      {
+        "text": "State secrets return in the Bruce-Partington Plans, this time stolen for a foreign agent.",
         "from": {
           "book": 8,
           "chapter": 4
         }
+      },
+      {
+        "text": "Holmes's willingness to resolve such cases privately, without credit, reflects his complex relationship with institutional authority."
       }
     ],
     "ownership_chain": [
@@ -542,10 +552,10 @@
     "description": "A letter written by a foreign potentate — described as imprudent and inflammatory in the extreme — whose publication would, according to the Prime Minister and the Secretary for European Affairs (Trelawney Hope), bring Britain to the brink of war. The letter was stolen from Hope's dispatch box, which was kept in his private study. Holmes traces it through the murder of intelligence broker Eduardo Lucas and a concealed hiding place beneath a loose carpet square stained twice with blood — the 'second stain' of the title. The letter is recovered and quietly returned without public disclosure; the statesman's imprudence is suppressed.",
     "significance": [
       {
-        "text": "The Second Stain is among Holmes's major diplomatic cases and the most politically consequential — involving the highest levels of government and a direct threat of European war."
+        "text": "The Second Stain follows the Naval Treaty among Holmes's major diplomatic cases and is the most politically consequential — involving the highest levels of government and a direct threat of European war."
       },
       {
-        "text": "It ranks as the third of those major diplomatic cases, after the Naval Treaty and the Bruce-Partington Plans.",
+        "text": "The Bruce-Partington Plans later join them.",
         "from": {
           "book": 8,
           "chapter": 4

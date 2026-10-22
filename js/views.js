@@ -976,12 +976,13 @@ function factionView(entity, status) {
 }
 
 function locationView(entity, status) {
+  const realWorldBasis = visibleRealWorldBasis(entity, entity.series);
   return {
     labelTone: 'location',
     chip: entity.type ? { label: humanize(entity.type), tone: 'location' } : null,
     facts: [
       entity.type ? ['Type', esc(humanize(entity.type))] : null,
-      entity.real_world_basis ? ['Real-world basis', esc(entity.real_world_basis)] : null,
+      realWorldBasis ? ['Real-world basis', esc(realWorldBasis)] : null,
       entity.first_mention ? ['First appears', esc(formatPosition(entity.first_mention, entity.series))] : null,
     ],
     prose: proseSection(entity, status, 'description'),

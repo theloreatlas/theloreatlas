@@ -95,11 +95,21 @@ function nameMatchesQuery(entity, q, seriesId) {
   return names.some(n => typeof n === 'string' && n.toLowerCase().includes(q));
 }
 
+// The staged prose fields search reads, with the label a prose-only match shows.
+const SEARCH_PROSE_FIELDS = [
+  ['biography', 'biography'], ['synopsis', 'synopsis'], ['description', 'description'],
+  ['significance', 'significance'], ['notes', 'notes'],
+];
+
+// → null when the entity doesn't match, otherwise { proseLabel }: the label of
+// the first prose field that matched when prose is the ONLY way in (so the row
+// has nothing to highlight), or null when a name, nickname, alias, tag or the
+// like matched.
 function entityMatchesQuery(entity, entityType, q, seriesId) {
   const status = SpoilerGate.getRevealStatus(entity, seriesId);
 
   // Hidden entities are never surfaced in search.
-  if (status === 'hidden') return false;
+  if (status === 'hidden') return null;
 
   // Non-prose fields — always searchable.
   const fields = [
@@ -108,18 +118,8 @@ function entityMatchesQuery(entity, entityType, q, seriesId) {
     visibleNickname(entity, seriesId),
     entity.relationship_type,
   ];
-
-  // Prose fields — only searchable when fully revealed, and only the text
-  // currently visible at the reader's position (Session 13.9 staged prose:
-  // a withheld segment isn't in the DOM, so it shouldn't be searchable either).
-  if (status === 'full') {
-    for (const f of ['biography', 'synopsis', 'description', 'significance', 'notes']) {
-      fields.push(proseText(entity, f, seriesId).text);
-    }
-  }
-
   for (const f of fields) {
-    if (typeof f === 'string' && f.toLowerCase().includes(q)) return true;
+    if (typeof f === 'string' && f.toLowerCase().includes(q)) return { proseLabel: null };
   }
 
   // Aliases go through aliasNames() (Session 14.3): a staged alias isn't
@@ -129,7 +129,7 @@ function entityMatchesQuery(entity, entityType, q, seriesId) {
   for (const arr of arrays) {
     if (Array.isArray(arr)) {
       for (const item of arr) {
-        if (typeof item === 'string' && item.toLowerCase().includes(q)) return true;
+        if (typeof item === 'string' && item.toLowerCase().includes(q)) return { proseLabel: null };
       }
     }
   }
@@ -140,14 +140,24 @@ function entityMatchesQuery(entity, entityType, q, seriesId) {
   if (entityType === 'relationships') {
     for (const id of [entity.character_a, entity.character_b]) {
       const c = LoreLoader.getById(id);
-      if (c && c.name && SpoilerGate.isRevealed(c, seriesId) && c.name.toLowerCase().includes(q)) return true;
+      if (c && c.name && SpoilerGate.isRevealed(c, seriesId) && c.name.toLowerCase().includes(q)) return { proseLabel: null };
     }
   }
 
-  return false;
+  // Prose fields — only searchable when fully revealed, and only the text
+  // currently visible at the reader's position (Session 13.9 staged prose:
+  // a withheld segment isn't in the DOM, so it shouldn't be searchable either).
+  // Checked last, so a hit here means nothing else matched.
+  if (status === 'full') {
+    for (const [field, label] of SEARCH_PROSE_FIELDS) {
+      if (proseText(entity, field, seriesId).text.toLowerCase().includes(q)) return { proseLabel: label };
+    }
+  }
+
+  return null;
 }
 
-// → { results: [{ entity, entityType, seriesId }], hidden: { [entityType]: n } }
+// → { results: [{ entity, entityType, seriesId, proseLabel }], hidden: { [entityType]: n } }
 // `hidden` only counts entities past the bookmark whose name or alias matches;
 // nothing about them is kept.
 function searchEntities(query) {
@@ -159,8 +169,9 @@ function searchEntities(query) {
     for (const et of ENTITY_TYPES) {
       const entities = LoreLoader.getAll(series.id, et.key);
       for (const entity of entities) {
-        if (entityMatchesQuery(entity, et.key, q, series.id)) {
-          out.results.push({ entity, entityType: et.key, seriesId: series.id });
+        const match = entityMatchesQuery(entity, et.key, q, series.id);
+        if (match) {
+          out.results.push({ entity, entityType: et.key, seriesId: series.id, proseLabel: match.proseLabel });
         } else if (et.key !== 'relationships'
             && SpoilerGate.getRevealStatus(entity, series.id) === 'hidden'
             && nameMatchesQuery(entity, q, series.id)) {
@@ -194,6 +205,7 @@ function searchRowHtml(r, q) {
     + dotHtml(searchTone(r.entity, r.entityType))
     + `<span class="srow-text"><span class="srow-name">${highlightMatch(String(entityDisplayName(r.entity, r.entityType)), q)}</span>`
     + (first ? `<span class="srow-sub">First appears in ${esc(formatPosition(first, r.seriesId))}</span>` : '')
+    + (r.proseLabel ? `<span class="srow-sub srow-matched">Matched in ${esc(r.proseLabel)}</span>` : '')
     + `</span><span class="srow-open" aria-hidden="true">Open &rarr;</span></a>`;
 }
 

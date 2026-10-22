@@ -2906,6 +2906,10 @@ dialog.first-visit::backdrop {
   color: var(--muted);
 }
 
+.srow-matched {
+  font-size: 12px;
+}
+
 .srow-open {
   font-size: 13px;
   color: var(--accent-text);

@@ -68,13 +68,6 @@
         "text": "Holmes regards Gregson as one of the two best men at Scotland Yard — he and Lestrade form the top tier of official detection. Gregson is more willing than Lestrade to acknowledge Holmes openly and to ask for help without the performance of skepticism. Holmes assists him in Study in Scarlet."
       },
       {
-        "text": "Holmes assists him again in Five Orange Pips.",
-        "from": {
-          "book": 3,
-          "chapter": 5
-        }
-      },
-      {
         "text": "Holmes also assists him in Wisteria Lodge.",
         "from": {
           "book": 8,
@@ -280,7 +273,18 @@
     "character_b": "char_inspector-lestrade",
     "relationship_type": "professional",
     "first_established": "case_a-study-in-scarlet",
-    "notes": "Holmes and Lestrade maintain a long professional relationship built on grudging mutual respect. Lestrade represents the best of the official police — tenacious, hardworking, honest — but lacks the imaginative leap Holmes makes effortlessly. He frequently consults Holmes on difficult cases while publicly maintaining skepticism about his methods. Holmes, for his part, regards Lestrade as the best of the official detectives and frequently allows him to take public credit for Holmes's solutions, understanding that Lestrade's career depends on visible results. Over the years the dynamic mellows: by the later stories Lestrade's skepticism has been replaced by genuine admiration, even if he still cannot follow Holmes's reasoning.",
+    "notes": [
+      {
+        "text": "Holmes and Lestrade maintain a long professional relationship built on grudging mutual respect. Lestrade represents the best of the official police — tenacious, hardworking, honest — but lacks the imaginative leap Holmes makes effortlessly. He frequently consults Holmes on difficult cases while publicly maintaining skepticism about his methods. Holmes, for his part, regards Lestrade as the best of the official detectives and frequently allows him to take public credit for Holmes's solutions, understanding that Lestrade's career depends on visible results."
+      },
+      {
+        "text": "Over the years the dynamic mellows: by the later stories Lestrade's skepticism has been replaced by genuine admiration, even if he still cannot follow Holmes's reasoning.",
+        "from": {
+          "book": 6,
+          "chapter": 8
+        }
+      }
+    ],
     "first_mention": {
       "book": 1,
       "chapter": 3
