@@ -46,14 +46,17 @@ function initSiteSearch() {
   });
 
   // "/" jumps to search, unless the reader is typing somewhere or the field is
-  // hidden (below 900px the tab bar's Search link takes over).
+  // hidden (below 900px the tab bar's Search link takes over). On the search
+  // page the header field is hidden, so the page's own input takes the focus.
   document.addEventListener('keydown', (e) => {
     if (e.key !== '/' || e.metaKey || e.ctrlKey || e.altKey) return;
     const t = e.target;
     if (t && (t.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName))) return;
-    if (!input.offsetParent) return;
+    const pageInput = document.getElementById('search-input');
+    const target = pageInput || (input.offsetParent ? input : null);
+    if (!target) return;
     e.preventDefault();
-    input.focus();
+    target.focus();
   });
 
   siteSearchInitialized = true;
@@ -227,7 +230,7 @@ function listRowHtml(row, entityType, group, seriesId, seriesName) {
 
 function booksBodyHtml(seriesId) {
   const books = LoreLoader.getAll(seriesId, 'books').slice().sort((a, b) => (a.chronological_order || 0) - (b.chronological_order || 0));
-  if (!books.length) return '<p class="state-loading">No entries yet.</p>';
+  if (!books.length) return emptyState('No entries yet', 'Entries appear here as they are added to the atlas.');
   const rows = books.map(b => {
     const n = SpoilerGate.getChapterCount(b);
     return `<a class="lrow lrow-book" href="${entityRowHref(b)}">`
@@ -280,12 +283,12 @@ function listBodyHtml(model, entityType, ui, seriesId) {
   }
 
   if (html) return html;
-  if (!filtering) return '<p class="state-loading">No entries yet.</p>';
+  if (!filtering) return emptyState('No entries yet', 'Entries appear here as they are added to the atlas.');
 
   const roleOnly = ui.role !== 'all' && !q;
   const title = roleOnly ? `No ${ROLE_PLURALS[ui.role] || humanize(ui.role).toLowerCase()} yet` : 'Nothing matches';
   const line = roleOnly && model.hiddenCount ? 'More may appear as your bookmark moves forward.' : 'Try a different name or filter.';
-  return `<div class="list-empty"><h2 class="empty-title">${esc(title)}</h2><p>${line}</p><button type="button" class="btn btn-secondary" data-clear>Clear filter</button></div>`;
+  return emptyState(title, line, { label: 'Clear filter', attr: 'data-clear' });
 }
 
 const FILTER_ICON = '<svg class="filter-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="7" r="5"/><path d="M11 11l3.5 3.5"/></svg>';
@@ -297,6 +300,11 @@ function renderEntityList(container, seriesId, entityType) {
 
   if (!series || !etConfig) {
     renderNotFound(container);
+    return;
+  }
+
+  if (entityType === 'events') {
+    renderTimeline(container, seriesId);
     return;
   }
 
@@ -369,24 +377,6 @@ function renderEntityList(container, seriesId, entityType) {
   });
 }
 
-// Used by search results (restyled in Phase 6).
-function renderEntityListItem(entity, entityType, seriesId, status) {
-  const href = entityPath(seriesId, entityType, entity.id);
-  const name = getEntityName(entity, entityType);
-  const meta = getEntityMeta(entity, entityType);
-  const badge = getEntityBadge(entity, entityType);
-  const gatedBadge = (status === 'partial')
-    ? `<span class="badge badge-gated">partial</span>`
-    : '';
-
-  return `
-    <a class="entity-list-item" href="${href}">
-      <span class="item-name">${esc(name)}${badge}${gatedBadge}</span>
-      <span class="item-meta">${esc(meta)}</span>
-    </a>
-  `;
-}
-
 // ── Shared bits: names, positions, fog, breadcrumbs ──────────────────────────
 
 function humanize(s) {
@@ -443,6 +433,19 @@ function crumbsHtml(seriesId, trail) {
     .concat(trail.map(t => t.href ? `<a href="${t.href}">${esc(t.label)}</a>` : `<span aria-current="page">${esc(t.label)}</span>`));
   return `<nav class="crumbs" aria-label="Breadcrumb">${parts.join('<span class="crumb-sep" aria-hidden="true">/</span>')}</nav>`;
 }
+
+// The shared empty state: title (Display 34), one line and an optional action
+// button. `action`: { label, attr, primary? }: `attr` is a data attribute the
+// caller listens for ([data-clear] etc.). Text is escaped here.
+function emptyState(title, line, action) {
+  const btn = action
+    ? `<button type="button" class="btn ${action.primary ? 'btn-primary' : 'btn-secondary'}" ${action.attr}>${esc(action.label)}</button>`
+    : '';
+  return `<div class="empty-state"><h2 class="empty-title">${esc(title)}</h2><p>${esc(line)}</p>${btn}</div>`;
+}
+
+// "Move my bookmark" opens the picker (bookmark-picker.js listens for the attribute).
+const PICKER_ACTION = { label: 'Move my bookmark', attr: 'data-open-picker', primary: true };
 
 // ── Cross-reference helpers ───────────────────────────────────────────────────
 
@@ -1093,7 +1096,7 @@ function graphListData(seriesId) {
 
 function graphListHtml(seriesId) {
   const items = graphListData(seriesId);
-  if (!items.length) return '<p class="state-loading">No characters visible at your current reading position.</p>';
+  if (!items.length) return emptyState('No characters yet', 'Characters appear as your bookmark moves through the books.', PICKER_ACTION);
   return '<ul class="graph-list">' + items.map(c => `
     <li class="graph-list-char" data-id="${esc(c.id)}">${entityLink(c.id)}${c.partners.length
       ? '<ul class="graph-list-rels">' + c.partners.map(p =>
@@ -1321,9 +1324,28 @@ function renderGraph(container, seriesId) {
 }
 
 function renderNotFound(container) {
-  container.innerHTML = `
-    <div class="page-header"><h1>Page not found</h1></div>
-    <p><a href="/">← Back to home</a></p>
-  `;
+  const series = LoreLoader.getSeries()[0];
+  const home = series ? `/${encodeURIComponent(series.id)}/` : '/';
+  container.innerHTML = `<div class="page-wide notfound">
+    <div class="nf-copy">
+      <p class="label">404</p>
+      <h1 class="nf-title">This page isn't on the map.</h1>
+      <p class="nf-line">The link may be old, or the entry may have moved. Try searching, or go back to the atlas.</p>
+      <div class="nf-actions">
+        <a class="btn btn-primary" href="${home}">Back to the atlas</a>
+        <a class="btn btn-secondary" href="/search">Search</a>
+      </div>
+    </div>
+    <div class="nf-map" aria-hidden="true">
+      <svg viewBox="0 0 420 300" focusable="false">
+        <line x1="65" y1="75" x2="180" y2="162"/>
+        <line x1="167" y1="187" x2="304" y2="114"/>
+        <circle class="nf-dot" cx="65" cy="75" r="5"/>
+        <circle class="nf-dot nf-dot-lg" cx="167" cy="187" r="7"/>
+        <circle class="nf-dot" cx="304" cy="114" r="4"/>
+        <ellipse class="nf-unknown" cx="296" cy="239" rx="46" ry="29"/>
+        <text x="296" y="245" text-anchor="middle">?</text>
+      </svg>
+    </div>
+  </div>`;
 }
-

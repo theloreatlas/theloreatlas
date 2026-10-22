@@ -452,7 +452,7 @@ const LoreGraph = (() => {
     computeGating();
 
     if (chars.length === 0) {
-      container.innerHTML = '<p class="state-loading">No characters visible at your current reading position.</p>';
+      container.innerHTML = emptyState('No characters yet', 'Characters appear as your bookmark moves through the books.', PICKER_ACTION);
       return;
     }
 

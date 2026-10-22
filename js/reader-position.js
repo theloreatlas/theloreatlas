@@ -14,8 +14,8 @@
 // The position is saved to localStorage but nothing else reads it until the
 // next render, so re-render the current route right away (it reads `location`,
 // so ?layers= / ?selected= survive). Keeps the scroll offset: onRouteChange
-// swaps in a short "Loading…" placeholder that would otherwise jump the page
-// to the top.
+// swaps in a short loading skeleton that would otherwise jump the page to the
+// top.
 //
 // The graph page is the exception (Session 16): it re-gates in place, keeping
 // the SVG, zoom, pan, layers and panel; the route is re-rendered only if that
@@ -123,14 +123,15 @@ function initBookmarkBar() {
   bookmarkBar = { seriesId, seriesName, books, els };
   renderBookmarkBar();
   bar.hidden = false;
+  initFooter();
   maybeShowFirstVisit();
 }
 
-// The pill is a plain link to the universe hub until the switcher (Phase 6).
+// The pill is a button that opens the universe switcher (universe-switcher.js).
 function initUniversePill(seriesId, seriesName) {
   const pill = document.getElementById('universe-pill');
   if (!pill || !seriesName) return;
-  pill.setAttribute('href', `/${encodeURIComponent(seriesId)}/`);
+  bindUniverseSwitcher(pill);
   const words = seriesName.trim().split(/\s+/);
   const long  = pill.querySelector('.universe-name');
   const short = pill.querySelector('.universe-name-short');
@@ -182,6 +183,55 @@ function stepBookmark(delta) {
       return setBookmark(prev.chronological_order, SpoilerGate.getChapterCount(prev));
     }
   }
+}
+
+// ── Footer ────────────────────────────────────────────────────────────────────
+
+const RESET_CONFIRM_MS = 4000;
+
+// The Universes column comes from the data; "Reset my bookmarks" clears every
+// series' bookmark and first-visit flag after a second click (the label asks,
+// and goes back after a few seconds).
+function initFooter() {
+  const list = document.getElementById('footer-universes');
+  if (list) {
+    list.innerHTML = LoreLoader.getSeries().map(s =>
+      `<li><a href="/${encodeURIComponent(s.id)}/">${esc(s.name)}</a></li>`).join('')
+      + '<li class="footer-faint">More coming</li>';
+  }
+
+  const btn = document.getElementById('reset-bookmarks');
+  if (!btn) return;
+  const label = btn.textContent;
+  let timer = null;
+  const disarm = () => {
+    clearTimeout(timer);
+    btn.textContent = label;
+    btn.removeAttribute('data-armed');
+  };
+  btn.addEventListener('click', () => {
+    if (!btn.hasAttribute('data-armed')) {
+      btn.dataset.armed = '';
+      btn.textContent = 'Click again to reset';
+      bookmarkBar.els.live.textContent = 'Click again to reset all your bookmarks.';
+      timer = setTimeout(disarm, RESET_CONFIRM_MS);
+      return;
+    }
+    disarm();
+    resetAllBookmarks();
+  });
+  // Moving on without confirming cancels it.
+  btn.addEventListener('blur', disarm);
+}
+
+function resetAllBookmarks() {
+  for (const s of LoreLoader.getSeries()) {
+    SpoilerGate.clearPosition(s.id);
+    try { localStorage.removeItem(firstVisitKey(s.id)); } catch { /* storage blocked */ }
+  }
+  renderBookmarkBar();
+  bookmarkBar.els.live.textContent = 'All bookmarks reset. Everything is shown.';
+  rerenderForPositionChange();
 }
 
 // ── Render ────────────────────────────────────────────────────────────────────

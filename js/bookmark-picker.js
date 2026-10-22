@@ -34,6 +34,8 @@ function storyTitle(book, n) {
 
 // Numbered grid for novels, two-column title list for collections. Clicking a
 // unit calls onPick(n); the caller redraws (this re-renders and keeps focus).
+// The units are one roving-tabindex group: a single Tab stop on the current
+// unit (the first one when none is current); arrow keys move it.
 function renderUnits(container, book, pos, onPick, noneState = 'read') {
   const novel = book.type === 'novel';
   const count = SpoilerGate.getChapterCount(book);
@@ -41,12 +43,16 @@ function renderUnits(container, book, pos, onPick, noneState = 'read') {
   container.classList.toggle('is-grid', novel);
   container.classList.toggle('is-list', !novel);
 
+  const states = Array.from({ length: count }, (_, i) => unitState(book, i + 1, pos, noneState));
+  const stop = Math.max(0, states.indexOf('current')); // 0 when none is current
+
   for (let n = 1; n <= count; n++) {
-    const state = unitState(book, n, pos, noneState);
+    const state = states[n - 1];
     const btn = document.createElement('button');
     btn.type = 'button';
     btn.className = novel ? 'pk-cell' : 'pk-story';
     btn.dataset.state = state;
+    btn.tabIndex = n - 1 === stop ? 0 : -1;
     if (state === 'current') btn.setAttribute('aria-current', 'true');
 
     if (novel) {
@@ -67,8 +73,13 @@ function renderUnits(container, book, pos, onPick, noneState = 'read') {
   }
 }
 
-// Arrow keys move between units: left/right by one, up/down by a row.
+// Arrow keys move between units: left/right by one, up/down by a row. Focus
+// carries the Tab stop with it.
 function bindUnitArrowKeys(container) {
+  container.addEventListener('focusin', (e) => {
+    if (e.target.parentNode !== container) return;
+    for (const item of container.children) item.tabIndex = item === e.target ? 0 : -1;
+  });
   container.addEventListener('keydown', (e) => {
     const keys = { ArrowLeft: -1, ArrowRight: 1, ArrowUp: -1, ArrowDown: 1 };
     if (!(e.key in keys)) return;
@@ -282,6 +293,12 @@ function openBookmarkPicker(opener) {
   positionBookmarkPicker();
   window.addEventListener('resize', positionBookmarkPicker);
 }
+
+// Empty-state "Move my bookmark" buttons (views.js emptyState + PICKER_ACTION).
+document.addEventListener('click', (e) => {
+  if (!e.target.closest('[data-open-picker]')) return;
+  if (bookmarkBar) openBookmarkPicker(bookmarkBar.els.title);
+});
 
 // ── First visit ───────────────────────────────────────────────────────────────
 
